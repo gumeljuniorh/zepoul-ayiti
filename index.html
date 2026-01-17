@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zepoul Ayiti | Leader de la Distribution Avicole Professionnelle</title>
     
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <!-- Meta SEO -->
     <meta name="description" content="Zepoul Ayiti : Fournisseur leader d'œufs frais en Haïti pour les professionnels. Production locale certifiée MCI, livraison en 24h.">
     <meta name="keywords" content="Zepoul Ayiti, Zepoul Peyi, Ze Poul Peyi, oeufs frais Haiti, GL Zepoul Peyi, grossiste oeufs Haiti">
@@ -119,10 +123,10 @@
         .hero-img { flex: 1; position: relative; display: flex; justify-content: center; }
         .hero-img img { 
             width: 100%; 
-            max-width: 600px; /* Ogmante yon ti jan pou l pa parèt twò pitit */
+            max-width: 600px; 
             border-radius: 20px; 
             box-shadow: var(--shadow-premium); 
-            object-fit: contain; /* Chanje pou l pa koupe pati nan imaj la */
+            object-fit: contain; 
             animation: float 6s ease-in-out infinite;
         }
 
@@ -206,12 +210,12 @@
 </head>
 <body>
 
-    <!-- WhatsApp Button -->
+    <!-- Bouton WhatsApp -->
     <a href="https://wa.me/50942605756" class="wa-float" target="_blank" title="Diskite sou WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Email Button -->
+    <!-- Bouton Email -->
     <a href="mailto:info@zepoulayiti.com" class="mail-float" title="Voye yon imèl">
         <i class="fas fa-envelope"></i>
     </a>
@@ -240,7 +244,7 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Section Hero -->
         <section class="hero">
             <div class="hero-text">
                 <h2>L'excellence avicole au service des professionnels.</h2>
@@ -255,19 +259,18 @@
                 </div>
             </div>
             <div class="hero-img">
-                <!-- Itilize imaj pèsonèl "hero.png" la -->
                 <img src="hero.png" alt="Production d'oeufs frais Zepoul Ayiti" onerror="this.src='https://images.unsplash.com/photo-1582722872445-41ca501ea146?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'">
             </div>
         </section>
 
-        <!-- Stats Section -->
+        <!-- Section Stats -->
         <section class="stats-bar">
             <div class="stat-item"><h3>+25</h3><p>Partenaires B2B</p></div>
             <div class="stat-item"><h3>100%</h3><p>Production Locale</p></div>
             <div class="stat-item"><h3>&lt; 24h</h3><p>Délai de Livraison</p></div>
         </section>
 
-        <!-- Live Stock Display -->
+        <!-- Affichage Stock Live -->
         <section class="stock-display">
             <h3 class="section-title">Disponibilité en Temps Réel</h3>
             <div class="stock-card">
@@ -279,7 +282,7 @@
             </div>
         </section>
 
-        <!-- Expertise Section -->
+        <!-- Section Expertise -->
         <section class="expertise" id="expertise">
             <h3 class="section-title">Pourquoi nous choisir ?</h3>
             <div class="grid-expertise">
@@ -301,7 +304,7 @@
             </div>
         </section>
 
-        <!-- Order Form -->
+        <!-- Formulaire de Commande -->
         <section class="order-section" id="commande">
             <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Prêt à commander ?</h3>
             <p style="margin-bottom: 40px; opacity: 0.9;">Remplissez le formulaire pour une réponse instantanée.</p>
@@ -350,6 +353,7 @@
     </footer>
 
     <script>
+        // Fonksyon pou voye mesaj sou WhatsApp
         function sendWA() {
             const i = document.getElementById('inst').value;
             const v = document.getElementById('vol').value;
@@ -361,8 +365,10 @@
             window.open(`https://wa.me/50942605756?text=${encodeURIComponent(m)}`, '_blank');
         }
 
+        // Lyen CSV Google Sheets la
         const sheetCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQbMLK_7FhmhnSoV9R74CwUDm6TmlrIm8KtT1TJ8d_WDcWlZuQeO3CRX8aI2KuFD6zS0YVMVdSnDWdg/pub?output=csv';
 
+        // Fonksyon pou rekupere stock la an dirèk
         async function getStock() {
             try {
                 const response = await fetch(sheetCSV);
@@ -390,9 +396,10 @@
             }
         }
 
+        // Lancement lè paj la fin chaje
         window.onload = function() {
             getStock();
-            setInterval(getStock, 300000); // Mise à jour chak 5 minit
+            setInterval(getStock, 300000); // Mizajou chak 5 minit
         };
     </script>
 </body>
