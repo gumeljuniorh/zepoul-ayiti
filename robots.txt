@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Lien vers votre sitemap pour aider l'indexation
+Sitemap: https://zepoulayiti.com/sitemap.xml
