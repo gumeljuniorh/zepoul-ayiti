@@ -17,9 +17,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     
-    <!-- Icons (Font Awesome 6.4.0) -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -28,22 +28,21 @@
             --primary: #1a7f37;
             --primary-dark: #0b3d1a;
             --accent: #fbc531;
-            --text-main: #1e272e;
-            --text-muted: #485460;
-            --bg-light: #f4f9f6;
+            --text-main: #1a1a1a;
+            --text-muted: #636e72;
+            --bg-light: #f8faf9;
             --white: #ffffff;
             --shadow-premium: 0 20px 50px rgba(0,0,0,0.08);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* --- RESET & BASE --- */
-        * { box-sizing: border-box; scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         
         body { 
-            margin: 0; 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             color: var(--text-main); 
-            line-height: 1.7; 
+            line-height: 1.6; 
             background: var(--white); 
             overflow-x: hidden;
         }
@@ -51,271 +50,420 @@
         /* --- TOP BAR --- */
         .top-bar {
             background: var(--primary-dark);
-            color: var(--accent);
+            color: var(--white);
             text-align: center;
-            padding: 10px;
-            font-size: 0.75rem;
+            padding: 12px;
+            font-size: 0.7rem;
             font-weight: 800;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        .top-bar span { color: var(--accent); }
 
         /* --- HEADER --- */
         header {
             display: flex; 
             align-items: center; 
             justify-content: space-between;
-            padding: 1rem 8%; 
+            padding: 0.8rem 8%; 
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(15px); 
             position: sticky; 
             top: 0; 
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 85px;
         }
 
-        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand img { height: 50px; width: auto; }
-        .brand h1 { font-size: 1.4rem; margin: 0; color: var(--primary-dark); font-weight: 800; text-transform: uppercase; }
-
-        nav { display: flex; align-items: center; }
-        .menu-links { display: flex; align-items: center; }
-        .menu-links a { margin-left: 25px; text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
-        .menu-links a:hover { color: var(--primary); }
-        .nav-cta { background: var(--primary); color: white !important; padding: 8px 18px; border-radius: 8px; box-shadow: 0 4px 15px rgba(26, 127, 55, 0.3); }
-
-        .header-socials { 
+        .brand { 
             display: flex; 
             align-items: center; 
             gap: 15px; 
-            margin-left: 20px; 
-            padding-left: 20px; 
-            border-left: 1px solid #eee; 
+            text-decoration: none; 
+            cursor: pointer;
         }
-        .header-socials a {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        .brand img { 
+            height: 55px; 
+            width: 55px; 
+            border-radius: 12px; 
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        .brand h1 { 
+            font-size: 1.3rem; 
+            color: var(--primary-dark); 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: -0.5px;
+        }
+        .brand-sub {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+
+        nav { display: flex; align-items: center; }
+        .menu-links { display: flex; align-items: center; gap: 30px; }
+        .menu-links a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-weight: 700; 
+            font-size: 0.9rem; 
             transition: var(--transition);
+        }
+        .menu-links a:not(.nav-cta):hover { color: var(--primary); }
+        
+        .nav-cta { 
+            background: var(--primary); 
+            color: white !important; 
+            padding: 12px 24px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(26, 127, 55, 0.2);
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            gap: 8px;
         }
-        .header-socials a:hover { 
-            color: var(--primary); 
-            transform: scale(1.1); 
+        .nav-cta:hover { 
+            background: var(--primary-dark); 
+            transform: translateY(-2px);
         }
-        .header-socials svg { width: 16px; height: 16px; fill: currentColor; }
+
+        /* --- VISION SECTION --- */
+        .vision-section { 
+            padding: 120px 8%; 
+            background: linear-gradient(to bottom, #ffffff, var(--bg-light));
+            position: relative;
+        }
+        .vision-section::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(26,127,55,0.03) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .vision-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+        
+        .vision-header { text-align: center; margin-bottom: 80px; }
+        .badge-vision {
+            display: inline-block;
+            background: rgba(26,127,55,0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .vision-header h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary-dark); margin-bottom: 25px; line-height: 1.1; }
+        .vision-header p { font-size: 1.25rem; color: var(--text-muted); max-width: 850px; margin: 0 auto; line-height: 1.8; }
+
+        .vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 60px; }
+        
+        .vision-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 32px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .vision-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            border-color: var(--primary);
+        }
+        .vision-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            background: var(--bg-light);
+            width: 80px; height: 80px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+        .vision-card:hover i {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1) rotate(-5deg);
+        }
+        .vision-card h3 { 
+            font-size: 1.8rem; 
+            color: var(--primary-dark); 
+            margin-bottom: 20px; 
+            font-family: 'Playfair Display', serif;
+        }
+        .vision-card p { color: var(--text-muted); margin-bottom: 25px; font-size: 1rem; }
+        
+        .vision-list { list-style: none; }
+        .vision-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        .vision-list li i {
+            width: 20px; height: 20px; font-size: 0.7rem; margin: 0;
+            background: var(--accent); color: var(--primary-dark);
+            border-radius: 50%;
+        }
+
+        .impact-banner {
+            margin-top: 80px;
+            background: var(--primary-dark);
+            border-radius: 40px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            gap: 40px;
+            box-shadow: 0 20px 40px rgba(11, 61, 26, 0.3);
+        }
+        .impact-text h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 15px; }
+        .impact-text p { opacity: 0.8; font-size: 1.1rem; max-width: 600px; }
+        
+        .impact-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            min-width: 200px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .impact-badge span { display: block; font-size: 2.5rem; font-weight: 900; color: var(--accent); }
+        .impact-badge label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
         /* --- HERO --- */
         .hero { 
             padding: 80px 8%; 
             display: flex; 
             align-items: center; 
-            min-height: 80vh; 
+            min-height: 85vh; 
             gap: 60px; 
-            background: radial-gradient(circle at top right, #e8f5e9, #ffffff);
+            background: linear-gradient(135deg, #fff 0%, var(--bg-light) 100%);
         }
-        
-        .hero-text h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--primary-dark); }
-        .hero-text p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
-
+        .hero-text h2 { font-family: 'Playfair Display', serif; font-size: 3.8rem; line-height: 1.1; margin-bottom: 25px; color: var(--primary-dark); }
+        .hero-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 550px; }
         .hero-img { flex: 1; position: relative; display: flex; justify-content: center; }
         .hero-img img { 
-            width: 100%; 
-            max-width: 600px; 
-            border-radius: 20px; 
-            box-shadow: var(--shadow-premium); 
-            object-fit: contain; 
+            width: 100%; max-width: 550px; border-radius: 30px; 
+            box-shadow: var(--shadow-premium); object-fit: cover; 
             animation: float 6s ease-in-out infinite;
         }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        /* --- REST OF THE STYLES --- */
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); padding: 80px 8%; background: white; text-align: center; }
+        .stat-item h3 { color: var(--primary); font-size: 3rem; font-weight: 800; margin-bottom: 5px; }
+        .stat-item p { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+
+        .stock-display { background: var(--white); padding: 100px 8%; text-align: center; }
+        .stock-card { 
+            background: var(--bg-light); max-width: 500px; margin: 0 auto; padding: 50px; 
+            border-radius: 40px; box-shadow: var(--shadow-premium); 
+            border: 2px dashed var(--primary);
         }
+        #stock-count { font-size: 5rem; font-weight: 900; color: var(--primary); display: block; line-height: 1; }
+        
+        .expertise { padding: 120px 8%; background: var(--bg-light); }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary-dark); margin-bottom: 80px; }
+        .grid-expertise { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .exp-card { padding: 60px 40px; background: var(--white); border-radius: 30px; transition: var(--transition); text-align: center; }
+        .exp-card i { font-size: 3rem; color: var(--accent); margin-bottom: 25px; display: block; }
+        .exp-card h4 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary-dark); }
+        .exp-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-premium); }
 
-        /* --- STATS --- */
-        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); padding: 60px 8%; background: white; text-align: center; border-bottom: 1px solid #eee; }
-        .stat-item h3 { color: var(--primary); font-size: 2.5rem; margin: 0; font-weight: 800; }
-        .stat-item p { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 800; margin-top: 5px; }
+        .order-section { padding: 120px 8%; background: var(--primary-dark); color: white; text-align: center; }
+        .order-card { max-width: 650px; margin: 60px auto 0; background: white; padding: 60px; border-radius: 40px; color: var(--text-main); }
+        input { width: 100%; padding: 20px; margin-bottom: 25px; border-radius: 15px; border: 2px solid #eee; font-size: 1rem; }
+        .btn-whatsapp { width: 100%; padding: 22px; background: var(--primary); color: white; border: none; border-radius: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 1.15rem; }
 
-        /* --- STOCK --- */
-        .stock-display { background: var(--bg-light); padding: 80px 8%; text-align: center; }
-        .stock-card { background: white; max-width: 450px; margin: 0 auto; padding: 40px; border-radius: 30px; box-shadow: var(--shadow-premium); border-top: 6px solid var(--primary); transition: var(--transition); }
-        .stock-card:hover { transform: scale(1.02); }
-        #stock-count { font-size: 4.5rem; font-weight: 800; color: var(--primary); display: block; }
-        #last-update { font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; background: #f0f0f0; padding: 5px 15px; border-radius: 5px; display: inline-block; }
+        .float-btn { position: fixed; bottom: 30px; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; z-index: 2000; transition: var(--transition); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .wa-float { right: 30px; background: #25d366; }
+        .mail-float { left: 30px; background: #007bff; }
 
-        /* --- FLOATING BUTTONS --- */
-        .wa-float {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 32px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 2000;
-            transition: var(--transition); text-decoration: none; animation: pulse 2s infinite;
-        }
-
-        .mail-float {
-            position: fixed; bottom: 30px; left: 30px;
-            background: #007bff; color: white; width: 65px; height: 65px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 30px;
-            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4); z-index: 2000;
-            transition: var(--transition); text-decoration: none;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .wa-float:hover, .mail-float:hover { transform: scale(1.1) rotate(10deg); }
-
-        /* --- EXPERTISE --- */
-        .expertise { padding: 100px 8%; background: white; }
-        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--primary-dark); margin-bottom: 60px; }
-        .grid-expertise { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .exp-card { padding: 50px 30px; background: var(--white); border: 1px solid #eee; border-radius: 25px; transition: var(--transition); text-align: center; }
-        .exp-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
-        .exp-card:hover { box-shadow: var(--shadow-premium); transform: translateY(-10px); border-color: var(--primary); }
-
-        /* --- ORDER --- */
-        .order-section { padding: 100px 8%; background: linear-gradient(135deg, var(--primary-dark) 0%, #05220e 100%); color: white; text-align: center; }
-        .order-card { max-width: 600px; margin: 50px auto 0; background: white; padding: 50px; border-radius: 30px; color: var(--text-main); box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-        input { width: 100%; padding: 16px; margin: 10px 0 25px; border-radius: 12px; border: 2px solid #eee; font-size: 1rem; transition: var(--transition); }
-        input:focus { border-color: var(--primary); outline: none; }
-        .btn-whatsapp { width: 100%; padding: 20px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); font-size: 1.1rem; }
-        .btn-whatsapp:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-        /* --- FOOTER --- */
-        footer { padding: 80px 8% 30px; background: #0a0a0a; color: #888; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
-        .footer-brand h2 { color: white; margin-bottom: 15px; }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: #888; text-decoration: none; transition: 0.3s; }
+        footer { padding: 100px 8% 40px; background: #0f1411; color: #a0a0a0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; }
+        .footer-links { list-style: none; }
+        .footer-links a { color: #a0a0a0; text-decoration: none; transition: 0.3s; }
         .footer-links a:hover { color: var(--primary); }
 
-        @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 40px; }
-            .hero-text h2 { font-size: 2.5rem; }
-            header { padding: 1rem 5%; }
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; }
+            .hero-text h2 { font-size: 2.8rem; }
             .menu-links a:not(.nav-cta) { display: none; }
-            .header-socials { display: none; }
-            .stats-bar { grid-template-columns: 1fr; gap: 30px; }
-            .hero-img img { max-width: 100%; }
+            .impact-banner { flex-direction: column; text-align: center; }
+            .vision-header h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bouton WhatsApp -->
-    <a href="https://wa.me/50942605756" class="wa-float" target="_blank" title="Diskite sou WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/50942605756" class="float-btn wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:info@zepoulayiti.com" class="float-btn mail-float"><i class="fas fa-envelope"></i></a>
 
-    <!-- Bouton Email -->
-    <a href="mailto:info@zepoulayiti.com" class="mail-float" title="Voye yon imèl">
-        <i class="fas fa-envelope"></i>
-    </a>
-
-    <!-- Top Bar -->
-    <div class="top-bar">Livraison prioritaire 24h pou tout enstitisyon 🇭🇹</div>
+    <div class="top-bar">Livraison prioritaire 24h pou tout enstitisyon <span>🇭🇹</span></div>
 
     <header>
-        <div class="brand">
+        <div class="brand" onclick="window.scrollTo(0,0)">
             <img src="logo.png" alt="Logo Zepoul Ayiti" onerror="this.src='https://via.placeholder.com/50x50?text=ZA'">
-            <h1>Zepoul Ayiti</h1>
+            <div class="brand-text">
+                <h1>Zepoul Ayiti</h1>
+                <span class="brand-sub">GL ZEPOUL PEYI</span>
+            </div>
         </div>
         <nav>
             <div class="menu-links">
+                <a href="#vision">Notre Vision</a>
                 <a href="#expertise">Expertise</a>
-                <a href="#commande" class="nav-cta">Cotation</a>
-            </div>
-            <div class="header-socials">
-                <a href="https://www.facebook.com/search/top?q=zepoul%20ayiti" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/zepoul_ayiti?igsh=OGc1MnE2aXJicjly&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com/zepoul_ayiti" target="_blank" title="X (Twitter)">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <a href="#commande" class="nav-cta">
+                    <i class="fas fa-file-invoice-dollar"></i> Cotation Directe
                 </a>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- Section Hero -->
+        <!-- HERO -->
         <section class="hero">
             <div class="hero-text">
                 <h2>L'excellence avicole au service des professionnels.</h2>
-                <p>Zepoul Ayiti (votre source de <strong>Ze Poul Peyi</strong>) sécurise l'approvisionnement des institutions haïtiennes avec des œufs frais du jour.</p>
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                    <a href="#commande" class="nav-cta" style="padding: 18px 40px; font-size: 1.1rem; display: inline-block; text-decoration: none;">
-                        Demander une Cotation
-                    </a>
-                    <a href="#expertise" style="padding: 18px 40px; font-size: 1.1rem; border: 2px solid var(--primary); color: var(--primary); border-radius: 8px; text-decoration: none; font-weight: 700;">
-                        Notre Expertise
-                    </a>
+                <p>Zepoul Ayiti sécurise l'approvisionnement des institutions haïtiennes avec des œufs frais du jour, certifiés et produits localement.</p>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#commande" class="nav-cta" style="padding: 20px 40px; font-size: 1.1rem; text-decoration: none;">Demander une Cotation</a>
+                    <a href="#vision" style="padding: 20px 40px; font-size: 1.1rem; border: 2px solid var(--primary); color: var(--primary); border-radius: 10px; text-decoration: none; font-weight: 800;">Notre Vision</a>
                 </div>
             </div>
             <div class="hero-img">
-                <img src="hero.png" alt="Production d'oeufs frais Zepoul Ayiti" onerror="this.src='https://images.unsplash.com/photo-1582722872445-41ca501ea146?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'">
+                <img src="hero.png" alt="Production Zepoul Ayiti" onerror="this.src='https://images.unsplash.com/photo-1582722872445-41ca501ea146?auto=format&fit=crop&w=1000&q=80'">
             </div>
         </section>
 
-        <!-- Section Stats -->
+        <!-- STATS -->
         <section class="stats-bar">
             <div class="stat-item"><h3>+25</h3><p>Partenaires B2B</p></div>
-            <div class="stat-item"><h3>100%</h3><p>Production Locale</p></div>
-            <div class="stat-item"><h3>&lt; 24h</h3><p>Délai de Livraison</p></div>
+            <div class="stat-item"><h3>100%</h3><p>Origine Locale</p></div>
+            <div class="stat-item"><h3>&lt; 24h</h3><p>Délai Livraison</p></div>
         </section>
 
-        <!-- Affichage Stock Live -->
+        <!-- VISION (Restauration des textes "Ancien") -->
+        <section class="vision-section" id="vision">
+            <div class="vision-content">
+                <div class="vision-header">
+                    <span class="badge-vision">Notre Mission</span>
+                    <h2>Une Vision pour l’avenir d’Haïti.</h2>
+                    <p>Zepoul Ayiti n'est pas seulement un fournisseur ; c'est un engagement envers le développement national et l'autonomie alimentaire.</p>
+                </div>
+
+                <div class="vision-grid">
+                    <div class="vision-card">
+                        <i class="fas fa-seedling"></i>
+                        <h3>Autonomie Alimentaire</h3>
+                        <p>Nous travaillons pour réduire la dépendance d’Haïti aux importations en renforçant la production locale d’œufs de haute qualité.</p>
+                        <ul class="vision-list">
+                            <li><i class="fas fa-check"></i> Fraîcheur imbattable</li>
+                            <li><i class="fas fa-check"></i> Moins de transport</li>
+                            <li><i class="fas fa-check"></i> Produit 100% Peyi</li>
+                        </ul>
+                    </div>
+
+                    <div class="vision-card">
+                        <i class="fas fa-vial"></i>
+                        <h3>Qualité et Sécurité</h3>
+                        <p>La santé de nos consommateurs est notre priorité absolue. Nous appliquons des protocoles sanitaires rigoureux à chaque étape.</p>
+                        <ul class="vision-list">
+                            <li><i class="fas fa-check"></i> Contrôle MCI</li>
+                            <li><i class="fas fa-check"></i> Hygiène stricte</li>
+                            <li><i class="fas fa-check"></i> Zéro produits chimiques</li>
+                        </ul>
+                    </div>
+
+                    <div class="vision-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Soutien à l’Économie</h3>
+                        <p>En choisissant Zepoul Ayiti, vous soutenez directement les agriculteurs locaux et contribuez à la création d'emplois en Haïti.</p>
+                        <ul class="vision-list">
+                            <li><i class="fas fa-check"></i> Emplois locaux</li>
+                            <li><i class="fas fa-check"></i> Croissance régionale</li>
+                            <li><i class="fas fa-check"></i> Futur durable</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="impact-banner">
+                    <div class="impact-text">
+                        <h3>Notre engagement pour Haïti</h3>
+                        <p>Faire de <strong>Zepoul Ayiti</strong> la référence nationale incontournable, tout en renforçant l’autonomie alimentaire et la valeur économique locale.</p>
+                    </div>
+                    <div class="impact-badge">
+                        <span>365j</span>
+                        <label>Engagement Total</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STOCK -->
         <section class="stock-display">
             <h3 class="section-title">Disponibilité en Temps Réel</h3>
             <div class="stock-card">
-                <p class="label">Volume actuel prêt pour livraison</p>
+                <p style="text-transform: uppercase; font-weight: 800; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; letter-spacing: 1px;">Cartons Prêts</p>
                 <span id="stock-count"><i class="fas fa-spinner fa-spin"></i></span>
-                <p style="color:var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Cartons Disponibles</p>
-                <div id="last-update">Vérification en cours...</div>
-                <p style="font-size: 0.65rem; margin-top: 15px; font-style: italic; opacity: 0.7;">* 1 Carton = 30 œufs frais certifiés</p>
+                <div id="last-update" style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Synchronisation...</div>
             </div>
         </section>
 
-        <!-- Section Expertise -->
+        <!-- EXPERTISE -->
         <section class="expertise" id="expertise">
             <h3 class="section-title">Pourquoi nous choisir ?</h3>
             <div class="grid-expertise">
                 <div class="exp-card">
                     <i class="fa-solid fa-certificate"></i>
                     <h4>Qualité Certifiée</h4>
-                    <p>Production locale rigoureusement contrôlée pour répondre aux standards hôteliers et hospitaliers.</p>
+                    <p>Production MCI rigoureusement contrôlée pour répondre aux standards hôteliers et hospitaliers.</p>
                 </div>
                 <div class="exp-card">
                     <i class="fa-solid fa-truck-fast"></i>
                     <h4>Logistique Express</h4>
-                    <p>Une flotte dédiée pour assurer une livraison en moins de 24h dans tout le département.</p>
+                    <p>Une flotte dédiée assurant une livraison en moins de 24h pour garantir une fraîcheur maximale.</p>
                 </div>
                 <div class="exp-card">
                     <i class="fa-solid fa-handshake-angle"></i>
                     <h4>Partenariat Durable</h4>
-                    <p>Contrats d'approvisionnement fixes pour garantir vos stocks toute l'année, sans rupture.</p>
+                    <p>Contrats d'approvisionnement fixes garantissant vos stocks toute l'année, sans risque de rupture.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Formulaire de Commande -->
+        <!-- ORDER -->
         <section class="order-section" id="commande">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Prêt à commander ?</h3>
-            <p style="margin-bottom: 40px; opacity: 0.9;">Remplissez le formulaire pour une réponse instantanée.</p>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 3rem;">Prêt à commander ?</h3>
             <div class="order-card">
-                <h3 style="text-align:center; margin-bottom: 30px; color: var(--primary-dark);">Bon de Cotation Pro</h3>
+                <h3 style="margin-bottom: 30px; color: var(--primary-dark);">Demande de Cotation Pro</h3>
                 <input type="text" id="inst" placeholder="Nom de l'Institution / Entreprise">
-                <input type="number" id="vol" placeholder="Volume souhaité (Cartons de 30 oeufs)">
+                <input type="number" id="vol" placeholder="Volume hebdomadaire (Cartons)">
                 <button onclick="sendWA()" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Envoyer ma demande via WhatsApp
+                    <i class="fab fa-whatsapp"></i> Obtenir un devis WhatsApp
                 </button>
-                <p style="font-size: 0.8rem; margin-top: 20px; color: #888;">Réponse garantie en moins de 30 minutes.</p>
             </div>
         </section>
     </main>
@@ -324,83 +472,49 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h2>Zepoul Ayiti</h2>
-                <p>Leader de la distribution avicole professionnelle dans le Nord-Ouest d'Haïti. Une marque de <strong>GL Zepoul Peyi</strong>.</p>
-                <div style="margin-top: 20px; font-size: 1.5rem; display: flex; gap: 20px;">
-                    <a href="https://www.facebook.com/search/top?q=zepoul%20ayiti" target="_blank" style="color: white;"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/zepoul_ayiti?igsh=OGc1MnE2aXJicjly&utm_source=qr" target="_blank" style="color: white;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/zepoul_ayiti" target="_blank" style="color: white;">
-                        <svg viewBox="0 0 24 24" style="width:24px; height:24px; fill:currentColor; vertical-align:middle;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-                    </a>
-                </div>
+                <p>Leader de la distribution avicole professionnelle. Une marque engagée pour la souveraineté alimentaire d'Haïti.</p>
             </div>
             <div>
-                <h5 style="color: white; margin-bottom: 20px; text-transform: uppercase;">Liens Rapides</h5>
+                <h5 style="color: white; margin-bottom: 25px; text-transform: uppercase;">Navigation</h5>
                 <ul class="footer-links">
-                    <li><a href="#">À Propos</a></li>
-                    <li><a href="#expertise">Nos Services</a></li>
-                    <li><a href="#commande">Devenir Partenaire</a></li>
+                    <li><a href="#vision">Notre Vision</a></li>
+                    <li><a href="#expertise">Services</a></li>
+                    <li><a href="#commande">Cotation</a></li>
                 </ul>
             </div>
             <div>
-                <h5 style="color: white; margin-bottom: 20px; text-transform: uppercase;">Contact Direct</h5>
-                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Port-de-Paix, Nord-Ouest, Haïti</p>
-                <p><i class="fab fa-whatsapp" style="margin-right: 10px;"></i> +509 4260 5756</p>
-                <p><i class="far fa-envelope" style="margin-right: 10px;"></i> info@zepoulayiti.com</p>
+                <h5 style="color: white; margin-bottom: 25px; text-transform: uppercase;">Contact</h5>
+                <p>Port-de-Paix, Haïti</p>
+                <p>+509 4260 5756</p>
+                <p>info@zepoulayiti.com</p>
             </div>
         </div>
-        <hr style="border: 0; border-top: 1px solid #222; margin: 40px 0;">
-        <p style="text-align:center; font-size: 0.8rem; opacity: 0.6;">© 2026 Zepoul Ayiti. Designé pour l'excellence avicole.</p>
+        <p style="text-align:center; font-size: 0.8rem; margin-top: 60px; opacity: 0.5;">© 2026 Zepoul Ayiti | GL ZEPOUL PEYI.</p>
     </footer>
 
     <script>
-        // Fonksyon pou voye mesaj sou WhatsApp
         function sendWA() {
             const i = document.getElementById('inst').value;
             const v = document.getElementById('vol').value;
-            if(!i || !v) { 
-                alert("Tanpri ranpli non enstitisyon an ak kantite cartons ou bezwen an.");
-                return; 
-            }
-            const m = `Bonjour Zepoul Ayiti, je représente l'institution "${i}". Nous souhaiterions recevoir une cotation pour une commande de ${v} cartons d'œufs frais. Merci d'avance.`;
+            if(!i || !v) return;
+            const m = `Bonjour Zepoul Ayiti, je représente "${i}". Cotation pour ${v} cartons svp.`;
             window.open(`https://wa.me/50942605756?text=${encodeURIComponent(m)}`, '_blank');
         }
 
-        // Lyen CSV Google Sheets la
         const sheetCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQbMLK_7FhmhnSoV9R74CwUDm6TmlrIm8KtT1TJ8d_WDcWlZuQeO3CRX8aI2KuFD6zS0YVMVdSnDWdg/pub?output=csv';
 
-        // Fonksyon pou rekupere stock la an dirèk
         async function getStock() {
             try {
                 const response = await fetch(sheetCSV);
                 const data = await response.text();
-                const rows = data.split('\n');
-                if (rows[1]) {
-                    const stockValue = rows[1].split(',')[0].trim();
-                    document.getElementById('stock-count').innerText = stockValue;
-                    
-                    const maintenant = new Date();
-                    const options = { 
-                        timeZone: 'America/New_York', 
-                        day: '2-digit', 
-                        month: '2-digit', 
-                        year: 'numeric', 
-                        hour: '2-digit', 
-                        minute: '2-digit'
-                    };
-                    const dateHT = maintenant.toLocaleString('fr-FR', options);
-                    document.getElementById('last-update').innerText = "Dernière mise à jour : " + dateHT + " (EST)";
-                }
-            } catch (e) { 
-                console.error("Erreur stock:", e);
-                document.getElementById('stock-count').innerText = "--";
-            }
+                const stock = data.split('\n')[1].split(',')[0].trim();
+                document.getElementById('stock-count').innerText = stock;
+                const date = new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
+                document.getElementById('last-update').innerText = "Mise à jour à " + date;
+            } catch (e) { document.getElementById('stock-count').innerText = "--"; }
         }
 
-        // Lancement lè paj la fin chaje
-        window.onload = function() {
-            getStock();
-            setInterval(getStock, 300000); // Mizajou chak 5 minit
-        };
+        window.onload = () => { getStock(); setInterval(getStock, 300000); };
     </script>
 </body>
 </html>
