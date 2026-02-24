@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>À propos | GL Zepoul Peyi - Zepoul Ayiti</title>
+
+    <!-- SEO Meta -->
+    <meta name="description" content="Découvrez la vision de Girard Gumel J. Henry, fondateur de GL Zepoul Peyi, entreprise haïtienne spécialisée dans la production d’œufs de qualité. Engagement, durabilité et développement agricole local.">
+    <meta name="keywords" content="Girard Gumel J. Henry, Zepoul Ayiti, GL Zepoul Peyi, œufs Haïti, aviculture Haïti, entrepreneuriat Haïti, agriculture durable">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1a7f37;
+            --primary-dark: #0b3d1a;
+            --accent: #fbc531;
+            --text-main: #1a1a1a;
+            --text-muted: #636e72;
+            --bg-light: #f8faf9;
+            --white: #ffffff;
+            --shadow-premium: 0 20px 50px rgba(0,0,0,0.08);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); line-height: 1.7; background: var(--white); }
+
+        /* --- HEADER --- */
+        header {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 0.8rem 8%; 
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(15px); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 85px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
+        .brand img { height: 50px; width: 50px; border-radius: 10px; object-fit: cover; }
+        .brand h1 { font-size: 1.2rem; color: var(--primary-dark); font-weight: 800; text-transform: uppercase; }
+        
+        .menu-links { display: flex; align-items: center; gap: 30px; }
+        .menu-links a { text-decoration: none; color: var(--text-main); font-weight: 700; font-size: 0.9rem; transition: var(--transition); }
+        .menu-links a:hover { color: var(--primary); }
+        .nav-cta { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 800; }
+
+        /* --- CONTENT --- */
+        .page-header { background: var(--bg-light); padding: 80px 8%; text-align: center; }
+        .page-header h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary-dark); margin-bottom: 10px; }
+
+        .container { max-width: 1000px; margin: auto; padding: 60px 8%; }
+
+        .box { 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 24px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+            margin-bottom: 40px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .box h2 { font-family: 'Playfair Display', serif; color: var(--primary-dark); margin-bottom: 20px; font-size: 1.8rem; border-left: 5px solid var(--accent); padding-left: 15px; }
+        
+        p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: justify; }
+        .highlight { color: var(--primary); font-weight: 800; }
+
+        ul { list-style: none; margin-top: 15px; margin-bottom: 20px; }
+        ul li { position: relative; padding-left: 35px; margin-bottom: 12px; font-weight: 600; color: var(--text-main); }
+        ul li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary); font-size: 1.2rem; }
+
+        .vision-footer { margin-top: 40px; padding: 30px; background: var(--primary-dark); color: white; border-radius: 20px; text-align: center; }
+
+        footer { text-align: center; padding: 40px; background: #0f1411; color: #a0a0a0; margin-top: 60px; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .page-header h2 { font-size: 2.2rem; }
+            header { padding: 0.8rem 5%; }
+            .menu-links { display: none; } /* On cache le menu sur mobile pour simplifier */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <img src="logo.png" alt="Logo Zepoul Ayiti" onerror="this.src='https://via.placeholder.com/50x50?text=ZA'">
+            <div class="brand-text">
+                <h1>Zepoul Ayiti</h1>
+            </div>
+        </a>
+        <nav>
+            <div class="menu-links">
+                <a href="index.html">Accueil</a>
+                <a href="about.html" style="color: var(--primary)">À Propos</a>
+                <a href="index.html#commande" class="nav-cta">Cotation Directe</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h2>À propos de GL Zepoul Peyi</h2>
+        <p style="color: var(--text-muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem;">Notre engagement pour l’autonomie d’Haïti</p>
+    </div>
+
+    <div class="container">
+
+        <div class="box">
+            <h2>Qui suis-je ?</h2>
+            <p>
+                Je m’appelle <span class="highlight">Girard Gumel J. Henry</span>, fondateur de 
+                <span class="highlight">GL Zepoul Peyi</span>. 
+                Entrepreneur engagé et passionné par le développement agricole, j’ai créé cette entreprise avec la volonté de contribuer concrètement à l’autonomie alimentaire et au développement économique d’Haïti.
+            </p>
+            <p>
+                Fort d’une expérience variée dans la gestion, la logistique et les services professionnels, j’ai choisi d’investir dans l’aviculture comme levier stratégique pour produire localement, créer de l’emploi et offrir des produits de qualité à la population.
+            </p>
+        </div>
+
+        <div class="box">
+            <h2>Notre mission</h2>
+            <p>
+                Chez <strong>GL Zepoul Peyi</strong>, notre mission est de produire des œufs frais, sains et accessibles, tout en respectant les normes sanitaires et environnementales les plus strictes.
+            </p>
+            <p>Nous nous engageons à :</p>
+            <ul>
+                <li>Assurer une production avicole moderne et contrôlée</li>
+                <li>Offrir des œufs de qualité constante pour les institutions</li>
+                <li>Soutenir l’économie locale et la création d’emplois</li>
+                <li>Contribuer activement à la sécurité alimentaire en Haïti</li>
+            </ul>
+        </div>
+
+        <div class="box">
+            <h2>Ma vision</h2>
+            <p>
+                Ma vision pour <strong>GL Zepoul Peyi</strong> est de bâtir une structure de référence nationale, pilier de l’indépendance agro-alimentaire du pays.
+            </p>
+            <ul>
+                <li><strong>Solide&nbsp;:</strong> Une structure professionnelle et durable.</li>
+                <li><strong>Innovante&nbsp;:</strong> Utilisation de méthodes modernes d’élevage.</li>
+                <li><strong>Responsable&nbsp;:</strong> Respectueuse de l’environnement et du bien-être.</li>
+                <li><strong>Référente&nbsp;:</strong> Devenir le leader incontournable de la production d’œufs.</li>
+            </ul>
+            
+            <div class="vision-footer">
+                <p style="color: white; margin-bottom: 0; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.2rem;">
+                    "GL Zepoul Peyi ambitionne de devenir un acteur clé du secteur avicole haïtien et un modèle d’entrepreneuriat agricole moderne."
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 – GL Zepoul Peyi | Tous droits réservés</p>
+        <p style="margin-top: 10px; opacity: 0.5;">Une marque du réseau Zepoul Ayiti</p>
+    </footer>
+
+</body>
+</html>
