@@ -124,7 +124,8 @@
         @media (max-width: 768px) {
             .page-header h1 { font-size: 2.2rem; }
             header { padding: 0.8rem 5%; }
-            .menu-links { display: none; } /* On cache le menu sur mobile pour simplifier */
+            .menu-links > a { display: none; } /* On masque les liens texte et on garde les icônes sociales */
+            .social-icons { margin-left: 0; }
         }
     </style>
 </head>
