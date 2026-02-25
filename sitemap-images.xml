@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://zepoulayiti.com/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/hero.png</image:loc>
+      <image:title>Production d'œufs Zepoul Ayiti</image:title>
+      <image:caption>Production et conditionnement d'œufs en Haïti</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:title>Logo Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zepoulayiti.com/about.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
+      <image:title>Girard Gumel J. Henry</image:title>
+      <image:caption>Fondateur de GL Zepoul Peyi</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:title>Logo Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zepoulayiti.com/girard-gumel-j-henry.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
+      <image:title>Portrait de Girard Gumel J. Henry</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zepoulayiti.com/services.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:title>Services Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zepoulayiti.com/vision.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:title>Vision Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zepoulayiti.com/expertise.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:title>Expertise Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+</urlset>
