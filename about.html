@@ -117,14 +117,15 @@
         }
         .bio-photo {
             width: 100%;
+            height: auto;
             border-radius: 18px;
             border: 1px solid rgba(0,0,0,0.08);
             box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-            object-fit: cover;
-            object-position: center 20%;
-            transform: scale(1.03);
-            aspect-ratio: 4 / 5;
-            background: #f2f5f3;
+            object-fit: contain;
+            object-position: center;
+            transform: none;
+            aspect-ratio: auto;
+            background: #fff;
         }
         .bio-link {
             display: inline-block;
