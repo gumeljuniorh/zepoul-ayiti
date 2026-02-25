@@ -19,6 +19,13 @@
 <meta name="twitter:title" content="À propos | GL Zepoul Peyi - Zepoul Ayiti">
 <meta name="twitter:description" content="L’histoire et la vision de GL Zepoul Peyi en Haïti.">
 <meta name="twitter:image" content="https://zepoulayiti.com/logo.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
 
     <script type="application/ld+json">
     {
@@ -142,6 +149,7 @@
         <nav>
             <div class="menu-links">
                 <a href="index.html">Accueil</a>
+                <a href="services.html">Services</a>
                 <a href="about.html" style="color: var(--primary)">À Propos</a>
                 <a href="index.html#commande" class="nav-cta">Cotation Directe</a>
                 <div class="social-icons" aria-label="Réseaux sociaux">
@@ -209,9 +217,27 @@
     </div>
 
     <footer>
+        <p><a href="mentions-legales.html" style="color:#d0d0d0;text-decoration:none;">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:#d0d0d0;text-decoration:none;">Politique de confidentialité</a></p>
         <p>© 2026 – GL Zepoul Peyi | Tous droits réservés</p>
         <p style="margin-top: 10px; opacity: 0.5;">Une marque du réseau Zepoul Ayiti</p>
     </footer>
 
+  <script>
+    const trackEvent = (name, params = {}) => {
+      if (typeof gtag === "function") gtag("event", name, params);
+    };
+    document.querySelectorAll("a[href*='wa.me']").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("whatsapp_click", { page: "about" }));
+    });
+    document.querySelectorAll("a[href^='mailto:']").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("email_click", { page: "about" }));
+    });
+    document.querySelectorAll("a[href^='tel:']").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("phone_click", { page: "about" }));
+    });
+    document.querySelectorAll(".social-icons a").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("social_click", { page: "about", target: link.href }));
+    });
+  </script>
 </body>
 </html>

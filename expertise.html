@@ -17,6 +17,13 @@
   <meta name="twitter:title" content="Expertise | Zepoul Ayiti" />
   <meta name="twitter:description" content="Les expertises clés de Zepoul Ayiti." />
   <meta name="twitter:image" content="https://zepoulayiti.com/logo.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-XXXXXXXXXX");
+  </script>
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +47,9 @@
     body{margin:0;font-family:"Plus Jakarta Sans",sans-serif;color:var(--text);background:#f7fbf8}
     .wrap{max-width:1050px;margin:0 auto;padding:70px 24px}
     .nav{display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:26px}
-    .brand{font-weight:800;color:var(--primary-dark);text-decoration:none}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--primary-dark);text-decoration:none}
+    .brand img{width:42px;height:42px;border-radius:10px;object-fit:cover;border:1px solid rgba(0,0,0,.08)}
+    .brand span{display:block;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)}
     .links a{color:#2d2d2d;text-decoration:none;font-weight:700;margin-left:14px}
     .links a:hover{color:var(--primary)}
     .social-icons{display:inline-flex;align-items:center;gap:8px;margin-left:14px}
@@ -54,15 +63,19 @@
     .card h2{margin:0 0 8px;color:var(--primary);font-size:1.2rem}
     .card p{margin:0;color:var(--muted)}
     .cta{display:inline-block;margin-top:22px;background:var(--primary);color:#fff;text-decoration:none;padding:11px 16px;border-radius:10px;font-weight:800}
+    .site-footer{margin-top:28px;padding:16px 0;border-top:1px solid rgba(0,0,0,.08);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+    .site-footer a{text-decoration:none;color:var(--muted)}
+    .site-footer a:hover{color:var(--primary)}
     @media (max-width:720px){h1{font-size:2.1rem}.nav{flex-direction:column;align-items:flex-start}.links a{margin-left:0;margin-right:12px}}
   </style>
 </head>
 <body>
   <main class="wrap">
     <nav class="nav" aria-label="Navigation">
-      <a class="brand" href="index.html">Zepoul Ayiti</a>
+      <a class="brand" href="index.html"><img src="logo.png" alt="Logo Zepoul Ayiti" /><div>Zepoul Ayiti<span>GL Zepoul Peyi</span></div></a>
       <div class="links">
         <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
         <a href="vision.html">Notre vision</a>
         <a href="about.html">À propos</a>
         <span class="social-icons" aria-label="Réseaux sociaux">
@@ -93,6 +106,27 @@
     </div>
 
     <a class="cta" href="vision.html">Voir la page Vision</a>
+    <footer class="site-footer">
+      <span>© 2026 Zepoul Ayiti</span>
+      <span><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a></span>
+    </footer>
   </main>
+  <script>
+    const trackEvent = (name, params = {}) => {
+      if (typeof gtag === "function") gtag("event", name, params);
+    };
+    document.querySelectorAll("a[href*='wa.me']").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("whatsapp_click", { page: "expertise" }));
+    });
+    document.querySelectorAll("a[href^='mailto:']").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("email_click", { page: "expertise" }));
+    });
+    document.querySelectorAll("a[href^='tel:']").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("phone_click", { page: "expertise" }));
+    });
+    document.querySelectorAll(".social-icons a").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("social_click", { page: "expertise", target: link.href }));
+    });
+  </script>
 </body>
 </html>
