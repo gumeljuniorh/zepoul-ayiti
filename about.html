@@ -115,6 +115,23 @@
             margin-bottom: 40px;
             border: 1px solid rgba(0,0,0,0.05);
         }
+        .bio-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 26px;
+            align-items: start;
+        }
+        .bio-photo {
+            width: 100%;
+            border-radius: 18px;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+            object-fit: cover;
+            object-position: center 20%;
+            transform: scale(1.03);
+            aspect-ratio: 4 / 5;
+            background: #f2f5f3;
+        }
         .box h2 { font-family: 'Playfair Display', serif; color: var(--primary-dark); margin-bottom: 20px; font-size: 1.8rem; border-left: 5px solid var(--accent); padding-left: 15px; }
         
         p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: justify; }
@@ -133,6 +150,7 @@
             header { padding: 0.8rem 5%; }
             .menu-links > a { display: none; } /* On masque les liens texte et on garde les icônes sociales */
             .social-icons { margin-left: 0; }
+            .bio-layout { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -171,14 +189,19 @@
 
         <div class="box">
             <h2>Qui suis-je ?</h2>
-            <p>
-                Je m’appelle <span class="highlight">Girard Gumel J. Henry</span>, fondateur de 
-                <span class="highlight">GL Zepoul Peyi</span>. 
-                Entrepreneur engagé et passionné par le développement agricole, j’ai créé cette entreprise avec la volonté de contribuer concrètement à l’autonomie alimentaire et au développement économique d’Haïti.
-            </p>
-            <p>
-                Fort d’une expérience variée dans la gestion, la logistique et les services professionnels, j’ai choisi d’investir dans l’aviculture comme levier stratégique pour produire localement, créer de l’emploi et offrir des produits de qualité à la population.
-            </p>
+            <div class="bio-layout">
+                <img class="bio-photo" src="Girard.png.jpeg" alt="Portrait de Girard Gumel J. Henry" />
+                <div>
+                    <p>
+                        Je m’appelle <span class="highlight">Girard Gumel J. Henry</span>, fondateur de 
+                        <span class="highlight">GL Zepoul Peyi</span>. 
+                        Entrepreneur engagé et passionné par le développement agricole, j’ai créé cette entreprise avec la volonté de contribuer concrètement à l’autonomie alimentaire et au développement économique d’Haïti.
+                    </p>
+                    <p>
+                        Fort d’une expérience variée dans la gestion, la logistique et les services professionnels, j’ai choisi d’investir dans l’aviculture comme levier stratégique pour produire localement, créer de l’emploi et offrir des produits de qualité à la population.
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div class="box">
