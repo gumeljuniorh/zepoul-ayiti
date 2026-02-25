@@ -13,6 +13,8 @@
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="author" content="Zepoul Ayiti" />
   <link rel="canonical" href="https://zepoulayiti.com/" />
+  <link rel="alternate" hreflang="fr" href="https://zepoulayiti.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://zepoulayiti.com/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Zepoul Ayiti" />
 <meta property="og:title" content="Production et distribution d'œufs en Haïti | Zepoul Ayiti" />
@@ -28,12 +30,26 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://zepoulayiti.com/#organization",
     "name": "Zepoul Ayiti",
     "alternateName": "GL Zepoul Peyi",
     "url": "https://zepoulayiti.com/",
     "logo": "https://zepoulayiti.com/logo-optimized.png",
     "email": "info@zepoulayiti.com",
     "telephone": "+50942605756",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Port-de-Paix",
+      "addressCountry": "HT"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+50942605756",
+      "contactType": "customer service",
+      "areaServed": "HT",
+      "availableLanguage": ["fr", "ht", "en"]
+    },
+    "knowsLanguage": ["fr", "ht", "en"],
     "areaServed": [
       "Haïti",
       "Port-au-Prince",
@@ -56,6 +72,56 @@
     ],
     "sameAs": [
       "https://zepoulayiti.com/",
+      "https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/",
+      "https://www.instagram.com/zepoul_ayiti/",
+      "https://www.tiktok.com/@zepoul.ayiti",
+      "https://x.com/Zepoul_Ayiti"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://zepoulayiti.com/#website",
+    "url": "https://zepoulayiti.com/",
+    "name": "Zepoul Ayiti",
+    "publisher": {
+      "@id": "https://zepoulayiti.com/#organization"
+    },
+    "inLanguage": ["fr", "ht", "en"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://zepoulayiti.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://zepoulayiti.com/#localbusiness",
+    "name": "Zepoul Ayiti",
+    "url": "https://zepoulayiti.com/",
+    "image": "https://zepoulayiti.com/logo-optimized.png",
+    "telephone": "+50942605756",
+    "email": "info@zepoulayiti.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Port-de-Paix",
+      "addressCountry": "HT"
+    },
+    "areaServed": [
+      "Haïti",
+      "Port-au-Prince",
+      "Cap-Haïtien",
+      "Jacmel"
+    ],
+    "parentOrganization": {
+      "@id": "https://zepoulayiti.com/#organization"
+    },
+    "sameAs": [
       "https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/",
       "https://www.instagram.com/zepoul_ayiti/",
       "https://www.tiktok.com/@zepoul.ayiti",
