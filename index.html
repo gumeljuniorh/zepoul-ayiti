@@ -127,11 +127,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
-  <link rel="preload" as="image" href="hero-optimized.jpg" />
+  <link rel="preload" as="image" href="hero-mobile-520w.jpg" media="(max-width: 768px)" />
+  <link rel="preload" as="image" href="hero-optimized.jpg" media="(min-width: 769px)" />
   <link rel="stylesheet" href="site.css" />
 
   <style>
@@ -674,6 +675,15 @@
         width: 52px;
         height: 52px;
       }
+
+      .site-header {
+        backdrop-filter: none;
+        background: #fff;
+      }
+
+      .hero-media img {
+        animation: none;
+      }
     }
 
     @supports (content-visibility: auto) {
@@ -752,7 +762,10 @@
         </div>
 
         <div class="hero-media">
-          <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" onerror="this.src='hero.png'" />
+          <picture>
+            <source media="(max-width: 768px)" srcset="hero-mobile-520w.jpg" />
+            <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" onerror="this.src='hero.png'" />
+          </picture>
         </div>
       </div>
     </section>
