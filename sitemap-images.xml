@@ -4,9 +4,9 @@
 
   <url>
     <loc>https://zepoulayiti.com/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/hero.png</image:loc>
+      <image:loc>https://zepoulayiti.com/hero-optimized.jpg</image:loc>
       <image:title>Production d'œufs Zepoul Ayiti</image:title>
       <image:caption>Production et conditionnement d'œufs en Haïti</image:caption>
     </image:image>
@@ -63,6 +63,16 @@
     <image:image>
       <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
       <image:title>Expertise Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zepoulayiti.com/faq.html</loc>
+    <lastmod>2026-02-28</lastmod>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:title>FAQ Zepoul Ayiti</image:title>
+      <image:caption>Questions fréquentes sur l'achat d'œufs en Haïti</image:caption>
     </image:image>
   </url>
 

@@ -1,5 +1,16 @@
 User-agent: *
 Allow: /
+Allow: /llms.txt
+
+# OpenAI crawlers
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
 
 # Lien vers vos sitemaps pour aider l'indexation
 Sitemap: https://zepoulayiti.com/sitemap.xml
