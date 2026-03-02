@@ -19,7 +19,6 @@ Business type: Egg production and B2B distribution in Haiti
 - Vision: https://zepoulayiti.com/vision.html
 - Expertise: https://zepoulayiti.com/expertise.html
 - About: https://zepoulayiti.com/about.html
-- FAQ: https://zepoulayiti.com/faq.html
 
 ## Brand and entity references
 - Brand: Zepoul Ayiti
