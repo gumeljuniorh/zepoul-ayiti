@@ -716,9 +716,6 @@
   </style>
 </head>
 <body data-page="index">
-  <a class="float-btn float-wa" href="https://wa.me/50942605756" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
-  </a>
   <a class="float-btn float-mail" href="mailto:info@zepoulayiti.com" aria-label="Envoyer un email">
     <i class="fas fa-envelope" aria-hidden="true"></i>
   </a>
@@ -877,7 +874,7 @@
       <div class="container">
         <div class="section-head">
           <h3>Prêt à commander</h3>
-          <p>Envoyez une demande de cotation en quelques secondes via WhatsApp.</p>
+          <p>Envoyez une demande de cotation en quelques secondes. Notre équipe vous répond rapidement par e-mail.</p>
         </div>
 
         <form class="order-box" id="quote-form" novalidate>
@@ -892,9 +889,9 @@
           </div>
 
           <button type="submit" class="btn btn-primary" style="width:100%;padding:14px 18px;">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Obtenir un devis WhatsApp
+            <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer une demande de devis
           </button>
-          <p class="form-note">En soumettant, vous serez redirigé vers WhatsApp avec un message pré-rempli.</p>
+          <p class="form-note">En soumettant, votre application e-mail s’ouvrira avec un message pré-rempli.</p>
         </form>
       </div>
     </section>
@@ -921,7 +918,6 @@
       <section>
         <h5>Contact</h5>
         <p>Port-de-Paix, Haïti</p>
-        <p><a href="tel:+50942605756">+509 4260 5756</a></p>
         <p><a href="mailto:info@zepoulayiti.com">info@zepoulayiti.com</a></p>
       </section>
     </div>
@@ -938,10 +934,11 @@
       if (typeof window.trackEvent === "function") window.trackEvent(name, params);
     };
 
-    function sendWAMessage(institution, volume) {
-      const message = `Bonjour Zepoul Ayiti, je représente "${institution}". Cotation pour ${volume} cartons, s’il vous plaît.`;
-      emitEvent("whatsapp_quote_click", { institution, volume });
-      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    function sendQuoteEmail(institution, volume) {
+      const subject = "Demande de cotation - Zepoul Ayiti";
+      const message = `Bonjour Zepoul Ayiti,\n\nJe représente "${institution}".\nJ’aimerais une cotation pour ${volume} cartons.\n\nMerci.`;
+      emitEvent("email_quote_click", { institution, volume });
+      window.location.href = `mailto:info@zepoulayiti.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
     }
 
     async function getStock() {
@@ -980,7 +977,7 @@
       }
 
       emitEvent("quote_form_submit", { institution, volume });
-      sendWAMessage(institution, volume);
+      sendQuoteEmail(institution, volume);
     });
 
     window.addEventListener("load", () => {
