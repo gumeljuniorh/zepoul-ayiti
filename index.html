@@ -22,14 +22,14 @@
 <meta property="og:title" content="Production et distribution d'œufs en Haïti | Zepoul Ayiti" />
 <meta property="og:description" content="Pwodiksyon ak vant ze an Ayiti. Fournisseur d'œufs frais en Haïti. Egg supplier for B2B institutions." />
 <meta property="og:url" content="https://zepoulayiti.com/" />
-<meta property="og:image" content="https://zepoulayiti.com/hero.png" />
+<meta property="og:image" content="https://zepoulayiti.com/hero-optimized.jpg" />
 <meta property="og:image:alt" content="Production avicole Zepoul Ayiti en Haïti" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@Zepoul_Ayiti" />
 <meta name="twitter:title" content="Production et distribution d'œufs en Haïti | Zepoul Ayiti" />
 <meta name="twitter:description" content="Founisè ze Ayiti pou B2B. Fournisseur d'œufs en Haïti. Egg supplier Haiti for institutions." />
 <meta name="twitter:url" content="https://zepoulayiti.com/" />
-<meta name="twitter:image" content="https://zepoulayiti.com/hero.png" />
+<meta name="twitter:image" content="https://zepoulayiti.com/hero-optimized.jpg" />
 
   <script type="application/ld+json">
   {
@@ -129,6 +129,22 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Présentation de GL Zepoul Peyi",
+    "description": "Présentation vidéo de Zepoul Ayiti et de son engagement en production avicole en Haïti.",
+    "thumbnailUrl": "https://zepoulayiti.com/hero-optimized.jpg",
+    "contentUrl": "https://zepoulayiti.com/zepoul-intro.mp4",
+    "embedUrl": "https://zepoulayiti.com/#presentation",
+    "uploadDate": "2026-03-09",
+    "publisher": {
+      "@id": "https://zepoulayiti.com/#organization"
+    },
+    "inLanguage": "fr"
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,7 +152,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
-  <link rel="preload" as="image" href="hero-mobile-520w.jpg" media="(max-width: 768px)" />
+  <link rel="preload" as="image" href="hero-mobile-420w.jpg" media="(max-width: 768px)" />
   <link rel="preload" as="image" href="hero-optimized.jpg" media="(min-width: 769px)" />
   <link rel="stylesheet" href="site.css" />
 
@@ -836,7 +852,7 @@
 
         <div class="hero-media">
           <picture>
-            <source media="(max-width: 768px)" srcset="hero-mobile-520w.jpg" />
+            <source media="(max-width: 768px)" srcset="hero-mobile-360w.jpg 360w, hero-mobile-420w.jpg 420w, hero-mobile-520w.jpg 520w" sizes="(max-width: 420px) 92vw, 420px" />
             <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" onerror="this.src='hero.png'" />
           </picture>
         </div>
@@ -850,7 +866,7 @@
           <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
         </div>
         <div class="video-shell">
-          <video id="brand-video" class="brand-video" controls muted playsinline preload="metadata" poster="hero-optimized.jpg">
+          <video id="brand-video" class="brand-video" controls muted playsinline preload="none" poster="hero-mobile-420w.jpg">
             <source src="zepoul-intro.mp4" type="video/mp4" />
             Votre navigateur ne prend pas en charge la lecture vidéo.
           </video>
@@ -1113,8 +1129,11 @@
         if (!response.ok) throw new Error("Form endpoint error");
 
         emitEvent("quote_form_submit", { institution, volume, channel: "server_form" });
-        setFormStatus("Demande envoyée avec succès. Nous vous répondrons rapidement.", true);
+        setFormStatus("Demande envoyée avec succès. Redirection en cours...", true);
         form.reset();
+        window.setTimeout(() => {
+          window.location.href = "merci.html?source=quote";
+        }, 500);
       } catch (err) {
         emitEvent("quote_form_fallback_mailto", { institution, volume });
         setFormStatus("Envoi direct indisponible. Ouverture de votre e-mail en secours...", false);
