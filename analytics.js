@@ -1,6 +1,9 @@
 (function () {
-  var MEASUREMENT_ID = "G-XXXXXXXXXX";
-  if (!MEASUREMENT_ID || MEASUREMENT_ID === "G-XXXXXXXXXX") return;
+  // Replace with your real GA4 Measurement ID (format: G-XXXXXXXXXX).
+  var DEFAULT_MEASUREMENT_ID = "G-XXXXXXXXXX";
+  var MEASUREMENT_ID = (window.GA4_MEASUREMENT_ID || DEFAULT_MEASUREMENT_ID || "").trim();
+  var isValidMeasurementId = /^G-[A-Z0-9]{6,12}$/i.test(MEASUREMENT_ID);
+  if (!isValidMeasurementId || MEASUREMENT_ID === DEFAULT_MEASUREMENT_ID) return;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
@@ -11,6 +14,5 @@
   document.head.appendChild(s);
 
   window.gtag("js", new Date());
-  window.gtag("config", MEASUREMENT_ID);
+  window.gtag("config", MEASUREMENT_ID, { anonymize_ip: true });
 })();
-

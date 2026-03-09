@@ -23,9 +23,12 @@
 <meta property="og:description" content="Pwodiksyon ak vant ze an Ayiti. Fournisseur d'œufs frais en Haïti. Egg supplier for B2B institutions." />
 <meta property="og:url" content="https://zepoulayiti.com/" />
 <meta property="og:image" content="https://zepoulayiti.com/hero.png" />
+<meta property="og:image:alt" content="Production avicole Zepoul Ayiti en Haïti" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Zepoul_Ayiti" />
 <meta name="twitter:title" content="Production et distribution d'œufs en Haïti | Zepoul Ayiti" />
 <meta name="twitter:description" content="Founisè ze Ayiti pou B2B. Fournisseur d'œufs en Haïti. Egg supplier Haiti for institutions." />
+<meta name="twitter:url" content="https://zepoulayiti.com/" />
 <meta name="twitter:image" content="https://zepoulayiti.com/hero.png" />
 
   <script type="application/ld+json">
@@ -577,7 +580,22 @@
       font: inherit;
     }
 
+    .field textarea {
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1px solid #d8dee3;
+      padding: 14px;
+      font: inherit;
+      min-height: 108px;
+      resize: vertical;
+    }
+
     .field input:focus-visible {
+      border-color: var(--primary);
+      outline: 3px solid rgba(26, 127, 55, 0.16);
+    }
+
+    .field textarea:focus-visible {
       border-color: var(--primary);
       outline: 3px solid rgba(26, 127, 55, 0.16);
     }
@@ -586,6 +604,13 @@
       margin: 8px 0 0;
       font-size: 0.86rem;
       color: var(--text-muted);
+    }
+
+    .form-status {
+      margin: 10px 0 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      min-height: 1.2em;
     }
 
     footer {
@@ -858,7 +883,7 @@
           <article class="card">
             <div class="icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
             <h4>Logistique rapide</h4>
-            <p>Livraison fiable en moins de 24h dans les zones desservies.</p>
+            <p>Livraison planifiée selon vos volumes et vos zones desservies.</p>
           </article>
 
           <article class="card">
@@ -888,10 +913,21 @@
             <input id="vol" name="vol" type="number" min="1" step="1" placeholder="Ex&nbsp;: 50" required />
           </div>
 
+          <div class="field">
+            <label for="email">E-mail professionnel</label>
+            <input id="email" name="email" type="email" placeholder="Ex&nbsp;: achats@institution.ht" required />
+          </div>
+
+          <div class="field">
+            <label for="details">Précisions (optionnel)</label>
+            <textarea id="details" name="details" placeholder="Ex&nbsp;: jours de livraison, zone, exigences spécifiques"></textarea>
+          </div>
+
           <button type="submit" class="btn btn-primary" style="width:100%;padding:14px 18px;">
             <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer une demande de devis
           </button>
-          <p class="form-note">En soumettant, votre application e-mail s’ouvrira avec un message pré-rempli.</p>
+          <p class="form-note">En soumettant, votre demande est transmise directement à notre équipe commerciale.</p>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -928,17 +964,33 @@
 
   <script>
     // Set your real GA4 ID in analytics.js, then events will be sent automatically.
-    const WA_NUMBER = "50942605756";
     const sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbMLK_7FhmhnSoV9R74CwUDm6TmlrIm8KtT1TJ8d_WDcWlZuQeO3CRX8aI2KuFD6zS0YVMVdSnDWdg/pub?output=csv";
+    const QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
     const emitEvent = (name, params = {}) => {
       if (typeof window.trackEvent === "function") window.trackEvent(name, params);
     };
 
-    function sendQuoteEmail(institution, volume) {
+    function setFormStatus(message, success) {
+      const statusEl = document.getElementById("form-status");
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.style.color = success ? "var(--primary)" : "#b42318";
+    }
+
+    function openMailtoFallback(institution, volume, email, details) {
       const subject = "Demande de cotation - Zepoul Ayiti";
-      const message = `Bonjour Zepoul Ayiti,\n\nJe représente "${institution}".\nJ’aimerais une cotation pour ${volume} cartons.\n\nMerci.`;
-      emitEvent("email_quote_click", { institution, volume });
-      window.location.href = `mailto:info@zepoulayiti.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+      const bodyLines = [
+        "Bonjour Zepoul Ayiti,",
+        "",
+        `Institution: ${institution}`,
+        `Volume hebdomadaire (cartons): ${volume}`,
+        `Email de contact: ${email}`,
+        details ? `Details: ${details}` : "",
+        "",
+        "Merci."
+      ].filter(Boolean);
+
+      window.location.href = `mailto:info@zepoulayiti.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
     }
 
     async function getStock() {
@@ -965,19 +1017,55 @@
       }
     }
 
-    document.getElementById("quote-form").addEventListener("submit", (event) => {
+    document.getElementById("quote-form").addEventListener("submit", async (event) => {
       event.preventDefault();
 
+      const form = event.currentTarget;
+      const submitBtn = form.querySelector("button[type='submit']");
       const institution = document.getElementById("inst").value.trim();
       const volume = document.getElementById("vol").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const details = document.getElementById("details").value.trim();
 
-      if (!institution || !volume || Number(volume) <= 0) {
-        alert("Veuillez renseigner une institution et un volume valide.");
+      if (!institution || !volume || Number(volume) <= 0 || !email) {
+        setFormStatus("Veuillez renseigner une institution, un volume valide et un e-mail.", false);
         return;
       }
 
-      emitEvent("quote_form_submit", { institution, volume });
-      sendQuoteEmail(institution, volume);
+      const payload = {
+        institution: institution,
+        volume_hebdomadaire_cartons: volume,
+        email: email,
+        details: details,
+        _subject: "Nouvelle demande de cotation - Zepoul Ayiti",
+        _captcha: "false"
+      };
+
+      setFormStatus("Envoi en cours...", true);
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(QUOTE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error("Form endpoint error");
+
+        emitEvent("quote_form_submit", { institution, volume, channel: "server_form" });
+        setFormStatus("Demande envoyée avec succès. Nous vous répondrons rapidement.", true);
+        form.reset();
+      } catch (err) {
+        emitEvent("quote_form_fallback_mailto", { institution, volume });
+        setFormStatus("Envoi direct indisponible. Ouverture de votre e-mail en secours...", false);
+        openMailtoFallback(institution, volume, email, details);
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
 
     window.addEventListener("load", () => {
