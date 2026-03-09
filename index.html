@@ -504,6 +504,29 @@
       color: var(--accent);
     }
 
+    .showcase-video {
+      background: #fff;
+    }
+
+    .video-shell {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 14px;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.06);
+    }
+
+    .brand-video {
+      display: block;
+      width: 100%;
+      border-radius: 14px;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
     .stock {
       background: var(--surface-soft);
     }
@@ -811,6 +834,21 @@
       </div>
     </section>
 
+    <section class="block showcase-video" id="presentation">
+      <div class="container">
+        <div class="section-head">
+          <h3>Présentation de GL Zepoul Peyi</h3>
+          <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
+        </div>
+        <div class="video-shell">
+          <video id="brand-video" class="brand-video" controls muted playsinline preload="metadata" poster="hero-optimized.jpg">
+            <source src="assets/videos/zepoul-intro.mp4" type="video/mp4" />
+            Votre navigateur ne prend pas en charge la lecture vidéo.
+          </video>
+        </div>
+      </div>
+    </section>
+
     <section class="block" id="vision">
       <div class="container">
         <div class="section-head">
@@ -1069,6 +1107,16 @@
     });
 
     window.addEventListener("load", () => {
+      const brandVideo = document.getElementById("brand-video");
+      if (brandVideo) {
+        let trackedPlay = false;
+        brandVideo.addEventListener("play", () => {
+          if (trackedPlay) return;
+          trackedPlay = true;
+          emitEvent("brand_video_play", { page: "index", placement: "presentation_section" });
+        });
+      }
+
       getStock();
       setInterval(getStock, 300000);
     });

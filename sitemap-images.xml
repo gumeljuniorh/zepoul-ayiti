@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
   <url>
     <loc>https://zepoulayiti.com/</loc>
     <lastmod>2026-03-09</lastmod>
+    <video:video>
+      <video:thumbnail_loc>https://zepoulayiti.com/hero-optimized.jpg</video:thumbnail_loc>
+      <video:title>Présentation de GL Zepoul Peyi</video:title>
+      <video:description>Présentation vidéo de Zepoul Ayiti et de son engagement en production avicole en Haïti.</video:description>
+      <video:content_loc>https://zepoulayiti.com/assets/videos/zepoul-intro.mp4</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
     <image:image>
       <image:loc>https://zepoulayiti.com/hero-optimized.jpg</image:loc>
       <image:title>Production d'œufs Zepoul Ayiti</image:title>
