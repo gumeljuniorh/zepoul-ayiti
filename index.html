@@ -152,7 +152,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
-  <link rel="preload" as="image" href="hero-mobile-420w.jpg" media="(max-width: 768px)" />
+  <link rel="preload" as="image" href="hero-mobile-360w.jpg" media="(max-width: 768px)" />
   <link rel="preload" as="image" href="hero-optimized.jpg" media="(min-width: 769px)" />
   <link rel="stylesheet" href="site.css" />
 
@@ -736,6 +736,29 @@
         grid-template-columns: 1fr;
       }
 
+      .hero {
+        padding: 38px 0 16px;
+      }
+
+      .hero h2 {
+        margin-bottom: 12px;
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+      }
+
+      .hero p {
+        margin-bottom: 18px;
+      }
+
+      .hero-actions {
+        gap: 10px;
+      }
+
+      .hero-media {
+        display: flex;
+        justify-content: center;
+        margin-top: 2px;
+      }
+
       .header-row {
         min-height: 74px;
       }
@@ -773,6 +796,12 @@
 
       .hero-media img {
         animation: none;
+        width: min(74vw, 280px);
+        max-width: 280px;
+        border-radius: 18px;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center 18%;
       }
     }
 
@@ -793,6 +822,10 @@
       .social-icons { gap: 6px; }
       .social-icons a { width: 26px; height: 26px; }
       .social-icons img { width: 14px; height: 14px; }
+      .hero-media img {
+        width: min(70vw, 240px);
+        max-width: 240px;
+      }
     }
   </style>
 </head>
@@ -852,7 +885,7 @@
 
         <div class="hero-media">
           <picture>
-            <source media="(max-width: 768px)" srcset="hero-mobile-360w.jpg 360w, hero-mobile-420w.jpg 420w, hero-mobile-520w.jpg 520w" sizes="(max-width: 420px) 92vw, 420px" />
+            <source media="(max-width: 768px)" srcset="hero-mobile-300w.jpg 300w, hero-mobile-360w.jpg 360w, hero-mobile-420w.jpg 420w, hero-mobile-520w.jpg 520w" sizes="(max-width: 560px) 70vw, (max-width: 768px) 74vw, 390px" />
             <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" onerror="this.src='hero.png'" />
           </picture>
         </div>
@@ -866,7 +899,7 @@
           <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
         </div>
         <div class="video-shell">
-          <video id="brand-video" class="brand-video" controls muted playsinline preload="none" poster="hero-mobile-420w.jpg">
+          <video id="brand-video" class="brand-video" controls muted playsinline preload="none" poster="hero-mobile-360w.jpg">
             <source src="zepoul-intro.mp4" type="video/mp4" />
             Votre navigateur ne prend pas en charge la lecture vidéo.
           </video>
