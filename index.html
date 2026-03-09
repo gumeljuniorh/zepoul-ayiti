@@ -737,7 +737,11 @@
       }
 
       .hero {
-        padding: 38px 0 16px;
+        padding: 34px 0 12px;
+      }
+
+      .hero-grid {
+        gap: 14px;
       }
 
       .hero h2 {
@@ -756,7 +760,7 @@
       .hero-media {
         display: flex;
         justify-content: center;
-        margin-top: 2px;
+        margin-top: 0;
       }
 
       .header-row {
@@ -796,12 +800,13 @@
 
       .hero-media img {
         animation: none;
-        width: min(74vw, 280px);
-        max-width: 280px;
+        width: min(86vw, 320px);
+        max-width: 320px;
         border-radius: 18px;
-        aspect-ratio: 4 / 5;
+        height: clamp(210px, 34vh, 280px);
+        aspect-ratio: auto;
         object-fit: cover;
-        object-position: center 18%;
+        object-position: center 22%;
       }
     }
 
@@ -823,8 +828,9 @@
       .social-icons a { width: 26px; height: 26px; }
       .social-icons img { width: 14px; height: 14px; }
       .hero-media img {
-        width: min(70vw, 240px);
-        max-width: 240px;
+        width: min(88vw, 300px);
+        max-width: 300px;
+        height: clamp(200px, 32vh, 250px);
       }
     }
   </style>
