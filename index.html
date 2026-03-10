@@ -844,7 +844,7 @@
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="#top" aria-label="Retour en haut">
-        <img src="logo-optimized.png" width="54" height="54" alt="Logo Zepoul Ayiti" onerror="this.src='https://via.placeholder.com/54x54?text=ZA'" />
+        <img src="logo-optimized.png" width="54" height="54" alt="Logo Zepoul Ayiti" onerror="this.src='logo.png'" />
         <div>
           <h1>Zepoul Ayiti</h1>
           <span>GL Zepoul Peyi</span>
@@ -1014,7 +1014,7 @@
           <p>Envoyez une demande de cotation en quelques secondes. Notre équipe vous répond rapidement par e-mail.</p>
         </div>
 
-        <form class="order-box" id="quote-form" novalidate>
+        <form class="order-box" id="quote-form" action="https://formsubmit.co/info@zepoulayiti.com" method="POST" novalidate>
           <div class="field">
             <label for="inst">Nom de l’institution</label>
             <input id="inst" name="inst" type="text" placeholder="Ex&nbsp;: Hotel Soleil" required />
@@ -1034,6 +1034,10 @@
             <label for="details">Précisions (optionnel)</label>
             <textarea id="details" name="details" placeholder="Ex&nbsp;: jours de livraison, zone, exigences spécifiques"></textarea>
           </div>
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_subject" value="Nouvelle demande de cotation - Zepoul Ayiti" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://zepoulayiti.com/merci.html?source=quote" />
 
           <button type="submit" class="btn btn-primary" style="width:100%;padding:14px 18px;">
             <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer une demande de devis
@@ -1108,9 +1112,11 @@
     async function getStock() {
       const stockEl = document.getElementById("stock-count");
       const updateEl = document.getElementById("last-update");
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 8000);
 
       try {
-        const response = await fetch(sheetCSV, { cache: "no-store" });
+        const response = await fetch(sheetCSV, { cache: "no-store", signal: controller.signal });
         if (!response.ok) throw new Error("Stock source unavailable");
 
         const data = await response.text();
@@ -1126,6 +1132,8 @@
       } catch (err) {
         stockEl.textContent = "--";
         updateEl.textContent = "Impossible de synchroniser le stock pour le moment";
+      } finally {
+        window.clearTimeout(timeoutId);
       }
     }
 
