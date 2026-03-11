@@ -7,7 +7,7 @@
 
     <!-- SEO Meta -->
     <meta name="description" content="Découvrez GL Zepoul Peyi, l’engagement de Girard Gumel J. Henry pour une production d’œufs locale, durable et professionnelle en Haïti.">
-    <meta name="keywords" content="Girard Gumel J. Henry, Girard Gumel Henry, Girard Gumel Junior Henry, Girard Gumel J Henry, Girard Henry, GL Zepoul Peyi, Zepoul Ayiti, aviculture Haïti, agriculture durable Haïti, autonomie alimentaire Haïti, production d'œufs en Haïti, founisè ze Ayiti, zepoul Haiti, oeuf haiti, zepoulayiti.com">
+    <meta name="keywords" content="Girard Gumel J. Henry, Directeur exécutif, GL Zepoul Peyi, Zepoul Ayiti, aviculture Haïti, production d'œufs Haïti, agriculture durable Haïti, zepoulayiti.com">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="canonical" href="https://zepoulayiti.com/about.html">
     <link rel="alternate" hreflang="fr" href="https://zepoulayiti.com/about.html">
@@ -141,30 +141,15 @@
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); line-height: 1.7; background: var(--white); }
 
-        /* --- HEADER --- */
-        header {
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            padding: 0.8rem 8%; 
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(15px); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            height: 85px;
-        }
-
-        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
-        .brand img { height: 50px; width: 50px; border-radius: 10px; object-fit: cover; }
-        .brand h1 { font-size: 1.2rem; color: var(--primary-dark); font-weight: 800; text-transform: uppercase; }
-        
-        .menu-links { display: flex; align-items: center; gap: 30px; }
-        .menu-links a { text-decoration: none; color: var(--text-main); font-weight: 700; font-size: 0.9rem; transition: var(--transition); }
-        .menu-links a:hover { color: var(--primary); }
-        .nav-cta { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 800; }
-        .social-icons { display: inline-flex; align-items: center; gap: 8px; margin-left: 6px; }
+        .wrap { max-width: 1050px; margin: 0 auto; padding: 28px 24px 0; }
+        .nav { display: flex; gap: 18px; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary-dark); text-decoration: none; }
+        .brand img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(0,0,0,0.08); }
+        .brand span { display: block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
+        .links a { color: #2d2d2d; text-decoration: none; font-weight: 700; margin-left: 14px; }
+        .nav-cta { background: var(--primary); color: #fff !important; padding: 9px 14px; border-radius: 10px; font-weight: 800; margin-left: 14px; display: inline-block; }
+        .links a:hover { color: var(--primary); }
+        .social-icons { display: inline-flex; align-items: center; gap: 8px; margin-left: 14px; }
         .social-icons a { display: inline-flex; width: 28px; height: 28px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); align-items: center; justify-content: center; background: #fff; text-decoration: none; }
         .social-icons img { width: 15px; height: 15px; object-fit: contain; }
         .social-icons .tt { font-size: 10px; font-weight: 800; color: #111; font-family: Arial, sans-serif; }
@@ -212,6 +197,12 @@
         }
         .bio-link:hover { color: var(--primary-dark); border-bottom-color: var(--primary-dark); }
         .box h2 { font-family: 'Playfair Display', serif; color: var(--primary-dark); margin-bottom: 20px; font-size: 1.8rem; border-left: 5px solid var(--accent); padding-left: 15px; }
+        .section-note { margin: -6px 0 18px; color: var(--text-muted); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 10px; }
+        .card { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; padding: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
+        .card h3 { margin: 0 0 6px; color: var(--primary); font-size: 1.05rem; }
+        .card p { margin: 0; color: #444; text-align: left; }
+        .note-inline { margin-top: 12px; color: var(--text-muted); font-size: 0.95rem; }
         
         p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: justify; }
         .highlight { color: var(--primary); font-weight: 800; }
@@ -222,12 +213,10 @@
 
         .vision-footer { margin-top: 40px; padding: 30px; background: var(--primary-dark); color: white; border-radius: 20px; text-align: center; }
 
-        footer { text-align: center; padding: 40px; background: #0f1411; color: #a0a0a0; margin-top: 60px; font-size: 0.85rem; }
-
         @media (max-width: 768px) {
             .page-header h1 { font-size: 2.2rem; }
-            header { padding: 0.8rem 5%; }
-            .mobile-menu.fixed-top { top: 85px; }
+            .nav { flex-direction: column; align-items: flex-start; }
+            .links a { margin-left: 0; margin-right: 12px; }
             .social-icons { margin-left: 0; }
             .bio-layout { grid-template-columns: 1fr; }
         }
@@ -236,40 +225,35 @@
 
 <body data-page="about">
 
-    <header>
-        <a href="index.html" class="brand">
-            <img src="logo-optimized.png" width="50" height="50" alt="Logo Zepoul Ayiti" onerror="this.src='logo.png'">
-            <div class="brand-text">
-                <p style="margin:0;font-size:1.2rem;color:var(--primary-dark);font-weight:800;text-transform:uppercase;">Zepoul Ayiti</p>
-            </div>
-        </a>
-        <nav>
-            <div class="menu-links desktop-links">
+    <div class="wrap">
+        <nav class="nav" aria-label="Navigation">
+            <a class="brand" href="index.html"><img src="logo-optimized.png" width="42" height="42" alt="Logo Zepoul Ayiti" onerror="this.src='logo.png'" /><div>Zepoul Ayiti<span>GL Zepoul Peyi</span></div></a>
+            <div class="links desktop-links">
                 <a href="index.html">Accueil</a>
                 <a href="vision.html">Notre vision</a>
                 <a href="expertise.html">Expertise</a>
                 <a href="services.html">Services</a>
-                <a href="about.html" style="color: var(--primary)">À propos</a>
-                <a href="index.html#commande" class="nav-cta">Cotation Directe</a>
-                <div class="social-icons" aria-label="Réseaux sociaux">
+                <a href="about.html">À propos</a>
+                <a href="index.html#commande" class="nav-cta">Cotation directe</a>
+                <span class="social-icons" aria-label="Réseaux sociaux">
                     <a href="https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" loading="lazy" decoding="async" /></a>
                     <a href="https://www.instagram.com/zepoul_ayiti/" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt="Instagram" loading="lazy" decoding="async" /></a>
                     <a href="https://www.tiktok.com/@zepoul.ayiti" target="_blank" rel="noopener" aria-label="TikTok"><img src="tiktok-icon.png" alt="TikTok" loading="lazy" decoding="async" /></a>
                     <a href="https://x.com/Zepoul_Ayiti" target="_blank" rel="noopener" aria-label="X"><img src="x.png" alt="X" loading="lazy" decoding="async" /></a>
-                </div>
+                </span>
             </div>
             <button class="menu-toggle" data-menu-target="about-mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="about-mobile-menu">
                 <span aria-hidden="true">☰</span>
             </button>
         </nav>
-    </header>
-    <div class="mobile-menu fixed-top" id="about-mobile-menu">
-        <a href="index.html">Accueil</a>
-        <a href="vision.html">Notre vision</a>
-        <a href="expertise.html">Expertise</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">À propos</a>
-        <a href="index.html#commande">Cotation directe</a>
+        <div class="mobile-menu" id="about-mobile-menu">
+            <a href="index.html">Accueil</a>
+            <a href="vision.html">Notre vision</a>
+            <a href="expertise.html">Expertise</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">À propos</a>
+            <a href="index.html#commande">Cotation directe</a>
+        </div>
     </div>
 
     <div class="page-header">
@@ -316,6 +300,26 @@
         </div>
 
         <div class="box">
+            <h2>Chiffres clés</h2>
+            <p class="section-note">Repères opérationnels qui résument notre présence et notre focus.</p>
+            <div class="grid">
+                <article class="card">
+                    <h3>4 segments professionnels</h3>
+                    <p>Restauration, hôtellerie, santé, institutions.</p>
+                </article>
+                <article class="card">
+                    <h3>3 zones prioritaires</h3>
+                    <p>Port-au-Prince, Cap-Haïtien, Jacmel.</p>
+                </article>
+                <article class="card">
+                    <h3>1 objectif central</h3>
+                    <p>Autonomie alimentaire durable pour Haïti.</p>
+                </article>
+            </div>
+            <p class="note-inline">Les volumes contractuels sont confirmés sur demande.</p>
+        </div>
+
+        <div class="box">
             <h2>Notre vision stratégique</h2>
             <p>
                 Notre vision pour <strong>GL Zepoul Peyi</strong> est de bâtir une entreprise de référence nationale, capable d’accompagner durablement l’indépendance agroalimentaire du pays.
@@ -336,10 +340,31 @@
 
     </div>
 
-    <footer>
-        <p><a href="mentions-legales.html" style="color:#d0d0d0;text-decoration:none;">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:#d0d0d0;text-decoration:none;">Politique de confidentialité</a></p>
-        <p>© 2026 – GL Zepoul Peyi | Tous droits réservés</p>
-        <p style="margin-top: 10px; opacity: 0.5;">Une marque du réseau Zepoul Ayiti</p>
+    <footer class="site-footer">
+        <div class="wrap footer-grid">
+            <section>
+                <h5>Zepoul Ayiti</h5>
+                <p>Distribution avicole professionnelle engagée pour la souveraineté alimentaire d’Haïti.</p>
+                <p><strong>Vision :</strong> structurer une filière locale durable. <a href="vision.html">Lire la vision</a></p>
+            </section>
+            <section>
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="vision.html">Notre vision</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="index.html#commande">Cotation</a></li>
+                </ul>
+            </section>
+            <section>
+                <h5>Contact</h5>
+                <p>Port-de-Paix, Haïti</p>
+                <p><a href="mailto:info@zepoulayiti.com">info@zepoulayiti.com</a></p>
+            </section>
+        </div>
+        <p class="footer-tagline">Zepoul Ayiti, se ze pou tout Ayiti.</p>
+        <p class="footer-legal"><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a></p>
+        <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
     </footer>
 
     <script defer src="analytics.js"></script>
