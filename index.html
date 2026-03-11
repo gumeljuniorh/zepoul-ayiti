@@ -505,6 +505,16 @@
       object-fit: cover;
     }
 
+    .vision-teaser {
+      background: var(--surface-soft);
+    }
+
+    .vision-teaser .teaser-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
     .video-fallback {
       margin: 10px 0 2px;
       text-align: right;
@@ -810,7 +820,6 @@
           <p>Zepoul Ayiti sécurise l’approvisionnement des institutions haïtiennes avec des œufs frais, contrôlés et produits localement.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#commande">Demander une cotation</a>
-            <a class="btn btn-secondary" href="vision.html">Voir notre mission</a>
           </div>
         </div>
 
@@ -819,23 +828,6 @@
             <source media="(max-width: 768px)" srcset="hero-mobile-300w.jpg 300w, hero-mobile-360w.jpg 360w, hero-mobile-420w.jpg 420w, hero-mobile-520w.jpg 520w" sizes="(max-width: 560px) 70vw, (max-width: 768px) 74vw, 390px" />
             <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" onerror="this.src='hero.png'" />
           </picture>
-        </div>
-      </div>
-    </section>
-
-    <section class="block showcase-video" id="presentation">
-      <div class="container">
-        <div class="section-head">
-          <h3>Présentation de GL Zepoul Peyi</h3>
-          <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
-        </div>
-        <div class="video-shell">
-          <video id="brand-video" class="brand-video" controls muted autoplay loop playsinline preload="none" poster="hero-mobile-360w.jpg">
-            <source src="zepoul-intro-medium.mp4" type="video/mp4" media="(max-width: 768px)" />
-            <source src="zepoul-intro.mp4" type="video/mp4" />
-            Votre navigateur ne prend pas en charge la lecture vidéo.
-          </video>
-          <p class="video-fallback"><a href="zepoul-intro.mp4" target="_blank" rel="noopener">Ouvrir la vidéo directement</a></p>
         </div>
       </div>
     </section>
@@ -865,6 +857,36 @@
             <h4>Partenariat durable</h4>
             <p>Approvisionnements réguliers pour limiter les ruptures et stabiliser vos opérations.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block showcase-video" id="presentation">
+      <div class="container">
+        <div class="section-head">
+          <h3>Présentation de GL Zepoul Peyi</h3>
+          <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
+        </div>
+
+        <div class="video-shell">
+          <video id="brand-video" class="brand-video" controls muted autoplay loop playsinline preload="none" poster="hero-mobile-360w.jpg">
+            <source src="zepoul-intro-medium.mp4" type="video/mp4" media="(max-width: 768px)" />
+            <source src="zepoul-intro.mp4" type="video/mp4" />
+            Votre navigateur ne prend pas en charge la lecture vidéo.
+          </video>
+          <p class="video-fallback"><a href="zepoul-intro.mp4" target="_blank" rel="noopener">Ouvrir la vidéo directement</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block vision-teaser">
+      <div class="container">
+        <div class="section-head">
+          <h3>Notre vision en bref</h3>
+          <p>Construire une filière avicole locale, durable et fiable pour renforcer l’autonomie alimentaire d’Haïti.</p>
+        </div>
+        <div class="teaser-actions">
+          <a class="btn btn-secondary" href="vision.html">Lire notre vision</a>
         </div>
       </div>
     </section>
