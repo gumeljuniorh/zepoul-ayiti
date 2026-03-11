@@ -374,44 +374,6 @@
       background: #fff;
     }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .stat {
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      text-align: center;
-      padding: 18px 12px;
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--primary-dark);
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: clamp(0.86rem, 1.5vw, 1rem);
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: 0.02em;
-      margin: 0 auto 4px;
-      max-width: 22ch;
-    }
-
-    .stat span {
-      color: var(--text-muted);
-      display: block;
-      font-size: clamp(0.74rem, 1.2vw, 0.84rem);
-      text-transform: none;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      line-height: 1.3;
-      margin: 0 auto;
-      max-width: 24ch;
-    }
-
     section.block {
       padding: 84px 0;
     }
@@ -557,43 +519,6 @@
     }
 
     .video-fallback a:hover { text-decoration: underline; }
-
-    .stock {
-      background: var(--surface-soft);
-    }
-
-    .stock-card {
-      max-width: 560px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 34px 24px;
-      border-radius: 22px;
-      border: 2px dashed rgba(26, 127, 55, 0.35);
-      background: #fff;
-    }
-
-    .stock-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-
-    #stock-count {
-      font-size: clamp(2.8rem, 9vw, 4.8rem);
-      line-height: 1.1;
-      color: var(--primary);
-      font-weight: 900;
-      margin: 0;
-    }
-
-    #last-update {
-      margin-top: 10px;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
 
     .order {
       background: #0f2f1a;
@@ -779,10 +704,6 @@
         top: 74px;
       }
 
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
       .impact {
         flex-direction: column;
         align-items: flex-start;
@@ -919,69 +840,6 @@
       </div>
     </section>
 
-    <section class="stats" aria-label="Indicateurs principaux">
-      <div class="container stats-grid">
-        <article class="stat"><strong>Performance opérationnelle</strong><span>Approvisionnement continu</span></article>
-        <article class="stat"><strong>Conformité produit</strong><span>Origine locale contrôlée</span></article>
-        <article class="stat"><strong>Engagement logistique</strong><span>Délais de livraison planifiés</span></article>
-      </div>
-    </section>
-
-    <section class="block" id="vision">
-      <div class="container">
-        <div class="section-head">
-          <h3>Une vision pour l’avenir d’Haïti</h3>
-          <p>Notre mission est de renforcer l’autonomie alimentaire nationale en offrant une distribution fiable, locale et professionnelle.</p>
-        </div>
-
-        <div class="vision-grid">
-          <article class="card">
-            <div class="icon"><i class="fas fa-seedling" aria-hidden="true"></i></div>
-            <h4>Autonomie alimentaire</h4>
-            <p>Moins de dépendance aux importations, plus de valeur créée localement.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon"><i class="fas fa-vial" aria-hidden="true"></i></div>
-            <h4>Qualité et sécurité</h4>
-            <p>Protocoles sanitaires stricts et conformité aux attentes des professionnels.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
-            <h4>Soutien à l’économie</h4>
-            <p>Chaque commande soutient les producteurs, l’emploi et la croissance locale.</p>
-          </article>
-        </div>
-
-        <div class="impact">
-          <div>
-            <h4>Un engagement continu pour Haïti</h4>
-            <p>Faire de Zepoul Ayiti la référence nationale de la distribution avicole professionnelle.</p>
-          </div>
-          <div class="impact-badge">
-            <strong>365j</strong>
-            <span>Engagement total</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="block stock" aria-labelledby="stock-title">
-      <div class="container">
-        <div class="section-head">
-          <h3 id="stock-title">Disponibilité en temps réel</h3>
-          <p>Stock synchronisé automatiquement depuis notre système.</p>
-        </div>
-
-        <div class="stock-card">
-          <div class="stock-label">Cartons prêts</div>
-          <p id="stock-count" aria-live="polite"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i></p>
-          <p id="last-update">Synchronisation...</p>
-        </div>
-      </div>
-    </section>
-
     <section class="block" id="expertise">
       <div class="container">
         <div class="section-head">
@@ -1084,7 +942,6 @@
 
   <script>
     // Set your real GA4 ID in analytics.js, then events will be sent automatically.
-    const sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbMLK_7FhmhnSoV9R74CwUDm6TmlrIm8KtT1TJ8d_WDcWlZuQeO3CRX8aI2KuFD6zS0YVMVdSnDWdg/pub?output=csv";
     const QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
     const emitEvent = (name, params = {}) => {
       if (typeof window.trackEvent === "function") window.trackEvent(name, params);
@@ -1111,34 +968,6 @@
       ].filter(Boolean);
 
       window.location.href = `mailto:info@zepoulayiti.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-    }
-
-    async function getStock() {
-      const stockEl = document.getElementById("stock-count");
-      const updateEl = document.getElementById("last-update");
-      const controller = new AbortController();
-      const timeoutId = window.setTimeout(() => controller.abort(), 8000);
-
-      try {
-        const response = await fetch(sheetCSV, { cache: "no-store", signal: controller.signal });
-        if (!response.ok) throw new Error("Stock source unavailable");
-
-        const data = await response.text();
-        const lines = data.trim().split(/\r?\n/);
-        if (lines.length < 2) throw new Error("Missing CSV rows");
-
-        const firstValue = lines[1].split(",")[0]?.replace(/\"/g, "").trim();
-        if (!firstValue) throw new Error("Missing stock value");
-
-        stockEl.textContent = firstValue;
-        const time = new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
-        updateEl.textContent = `Mise à jour à ${time}`;
-      } catch (err) {
-        stockEl.textContent = "--";
-        updateEl.textContent = "Impossible de synchroniser le stock pour le moment";
-      } finally {
-        window.clearTimeout(timeoutId);
-      }
     }
 
     document.getElementById("quote-form").addEventListener("submit", async (event) => {
@@ -1215,9 +1044,6 @@
           emitEvent("brand_video_play", { page: "index", placement: "presentation_section" });
         });
       }
-
-      getStock();
-      setInterval(getStock, 300000);
     });
   </script>
   <script defer src="analytics.js"></script>
