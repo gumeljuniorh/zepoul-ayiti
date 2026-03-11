@@ -852,9 +852,11 @@
       </a>
 
       <nav class="nav-links desktop-links" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
         <a href="vision.html">Notre vision</a>
         <a href="expertise.html">Expertise</a>
         <a href="services.html">Services</a>
+        <a href="about.html">À propos</a>
         <a class="btn btn-primary" href="#commande"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i> Cotation directe</a>
         <div class="social-icons" aria-label="Réseaux sociaux">
           <a href="https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" loading="lazy" decoding="async" /></a>
@@ -870,6 +872,7 @@
   </header>
   <div class="mobile-menu fixed-top" id="mobile-menu" aria-label="Menu mobile">
     <div class="container">
+      <a href="index.html">Accueil</a>
       <a href="vision.html">Notre vision</a>
       <a href="expertise.html">Expertise</a>
       <a href="services.html">Services</a>
@@ -906,7 +909,8 @@
           <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
         </div>
         <div class="video-shell">
-          <video id="brand-video" class="brand-video" controls muted playsinline preload="none" poster="hero-mobile-360w.jpg">
+          <video id="brand-video" class="brand-video" controls muted autoplay loop playsinline preload="none" poster="hero-mobile-360w.jpg">
+            <source src="zepoul-intro-medium.mp4" type="video/mp4" media="(max-width: 768px)" />
             <source src="zepoul-intro.mp4" type="video/mp4" />
             Votre navigateur ne prend pas en charge la lecture vidéo.
           </video>
@@ -1194,6 +1198,16 @@
     window.addEventListener("load", () => {
       const brandVideo = document.getElementById("brand-video");
       if (brandVideo) {
+        // Force mute even if user tries to unmute.
+        brandVideo.muted = true;
+        brandVideo.volume = 0;
+        brandVideo.addEventListener("volumechange", () => {
+          if (!brandVideo.muted || brandVideo.volume !== 0) {
+            brandVideo.muted = true;
+            brandVideo.volume = 0;
+          }
+        });
+
         let trackedPlay = false;
         brandVideo.addEventListener("play", () => {
           if (trackedPlay) return;
