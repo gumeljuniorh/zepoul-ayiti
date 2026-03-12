@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>À propos | GL Zepoul Peyi - Zepoul Ayiti</title>
 
@@ -227,7 +229,7 @@
 
     <div class="wrap">
         <nav class="nav" aria-label="Navigation">
-            <a class="brand" href="index.html"><img src="logo-optimized.png" width="42" height="42" alt="Logo Zepoul Ayiti" onerror="this.src='logo.png'" /><div>Zepoul Ayiti<span>GL Zepoul Peyi</span></div></a>
+            <a class="brand" href="index.html"><img src="logo-optimized.png" width="42" height="42" alt="Logo Zepoul Ayiti" data-fallback="logo.png" /><div>Zepoul Ayiti<span>GL Zepoul Peyi</span></div></a>
             <div class="links desktop-links">
                 <a href="index.html">Accueil</a>
                 <a href="vision.html">Notre vision</a>

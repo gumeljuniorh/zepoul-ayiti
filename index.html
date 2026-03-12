@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Production et distribution d'œufs en Haïti | Zepoul Ayiti</title>
 
@@ -150,8 +152,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preload" as="image" href="hero-mobile-360w.jpg" media="(max-width: 768px)" />
   <link rel="preload" as="image" href="hero-optimized.jpg" media="(min-width: 769px)" />
   <link rel="stylesheet" href="site.css" />
@@ -775,7 +776,7 @@
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="#top" aria-label="Retour en haut">
-        <img src="logo-optimized.png" width="54" height="54" alt="Logo Zepoul Ayiti" onerror="this.src='logo.png'" />
+        <img src="logo-optimized.png" width="54" height="54" alt="Logo Zepoul Ayiti" data-fallback="logo.png" />
         <div>
           <h1>Zepoul Ayiti</h1>
           <span>GL Zepoul Peyi</span>
@@ -826,7 +827,7 @@
         <div class="hero-media">
           <picture>
             <source media="(max-width: 768px)" srcset="hero-mobile-300w.jpg 300w, hero-mobile-360w.jpg 360w, hero-mobile-420w.jpg 420w, hero-mobile-520w.jpg 520w" sizes="(max-width: 560px) 70vw, (max-width: 768px) 74vw, 390px" />
-            <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" onerror="this.src='hero.png'" />
+            <img src="hero-optimized.jpg" width="734" height="1100" fetchpriority="high" decoding="async" alt="Production et conditionnement d'œufs Zepoul Ayiti" data-fallback="hero.png" />
           </picture>
         </div>
       </div>
@@ -964,112 +965,6 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
 
-  <script>
-    // Set your real GA4 ID in analytics.js, then events will be sent automatically.
-    const QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
-    const emitEvent = (name, params = {}) => {
-      if (typeof window.trackEvent === "function") window.trackEvent(name, params);
-    };
-
-    function setFormStatus(message, success) {
-      const statusEl = document.getElementById("form-status");
-      if (!statusEl) return;
-      statusEl.textContent = message;
-      statusEl.style.color = success ? "var(--primary)" : "#b42318";
-    }
-
-    function openMailtoFallback(institution, volume, email, details) {
-      const subject = "Demande de cotation - Zepoul Ayiti";
-      const bodyLines = [
-        "Bonjour Zepoul Ayiti,",
-        "",
-        `Institution: ${institution}`,
-        `Volume hebdomadaire (cartons): ${volume}`,
-        `Email de contact: ${email}`,
-        details ? `Details: ${details}` : "",
-        "",
-        "Merci."
-      ].filter(Boolean);
-
-      window.location.href = `mailto:info@zepoulayiti.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-    }
-
-    document.getElementById("quote-form").addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const form = event.currentTarget;
-      const submitBtn = form.querySelector("button[type='submit']");
-      const institution = document.getElementById("inst").value.trim();
-      const volume = document.getElementById("vol").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const details = document.getElementById("details").value.trim();
-
-      if (!institution || !volume || Number(volume) <= 0 || !email) {
-        setFormStatus("Veuillez renseigner une institution, un volume valide et un e-mail.", false);
-        return;
-      }
-
-      const payload = {
-        institution: institution,
-        volume_hebdomadaire_cartons: volume,
-        email: email,
-        details: details,
-        _subject: "Nouvelle demande de cotation - Zepoul Ayiti",
-        _captcha: "false"
-      };
-
-      setFormStatus("Envoi en cours...", true);
-      if (submitBtn) submitBtn.disabled = true;
-
-      try {
-        const response = await fetch(QUOTE_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) throw new Error("Form endpoint error");
-
-        emitEvent("quote_form_submit", { institution, volume, channel: "server_form" });
-        setFormStatus("Demande envoyée avec succès. Redirection en cours...", true);
-        form.reset();
-        window.setTimeout(() => {
-          window.location.href = "merci.html?source=quote";
-        }, 500);
-      } catch (err) {
-        emitEvent("quote_form_fallback_mailto", { institution, volume });
-        setFormStatus("Envoi direct indisponible. Ouverture de votre e-mail en secours...", false);
-        openMailtoFallback(institution, volume, email, details);
-      } finally {
-        if (submitBtn) submitBtn.disabled = false;
-      }
-    });
-
-    window.addEventListener("load", () => {
-      const brandVideo = document.getElementById("brand-video");
-      if (brandVideo) {
-        // Force mute even if user tries to unmute.
-        brandVideo.muted = true;
-        brandVideo.volume = 0;
-        brandVideo.addEventListener("volumechange", () => {
-          if (!brandVideo.muted || brandVideo.volume !== 0) {
-            brandVideo.muted = true;
-            brandVideo.volume = 0;
-          }
-        });
-
-        let trackedPlay = false;
-        brandVideo.addEventListener("play", () => {
-          if (trackedPlay) return;
-          trackedPlay = true;
-          emitEvent("brand_video_play", { page: "index", placement: "presentation_section" });
-        });
-      }
-    });
-  </script>
   <script defer src="analytics.js"></script>
   <script defer src="site.js"></script>
 </body>
