@@ -157,8 +157,16 @@
         .social-icons .tt { font-size: 10px; font-weight: 800; color: #111; font-family: Arial, sans-serif; }
 
         /* --- CONTENT --- */
-        .page-header { background: var(--bg-light); padding: 80px 8%; text-align: center; }
+        .page-header { background: var(--bg-light); padding: 80px 8% 70px; text-align: center; }
         .page-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary-dark); margin-bottom: 10px; }
+        .page-subtitle { color: var(--text-muted); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 14px; }
+        .page-lead { max-width: 720px; margin: 0 auto 18px; font-size: 1.1rem; color: #2c2c2c; }
+        .page-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent; transition: var(--transition); }
+        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 12px 24px rgba(26,127,55,0.22); }
+        .btn-primary:hover { transform: translateY(-2px); filter: brightness(0.98); }
+        .btn-secondary { background: #fff; color: var(--primary-dark); border-color: rgba(26,127,55,0.35); }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
 
         .container { max-width: 1000px; margin: auto; padding: 60px 8%; }
 
@@ -179,15 +187,34 @@
         .bio-photo {
             width: 100%;
             height: auto;
+            aspect-ratio: 4 / 5;
+            max-height: 520px;
             border-radius: 18px;
             border: 1px solid rgba(0,0,0,0.08);
             box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
-            transform: none;
-            aspect-ratio: auto;
             background: #fff;
         }
+        .profile-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin: 18px 0 8px;
+            padding: 16px;
+            border-radius: 16px;
+            background: #f7faf8;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .profile-facts .fact-label {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .profile-facts .fact-value { font-weight: 700; color: #1f1f1f; }
         .bio-link {
             display: inline-block;
             margin-top: 6px;
@@ -206,14 +233,15 @@
         .card p { margin: 0; color: #444; text-align: left; }
         .note-inline { margin-top: 12px; color: var(--text-muted); font-size: 0.95rem; }
         
-        p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: justify; }
+        p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: left; }
         .highlight { color: var(--primary); font-weight: 800; }
 
         ul { list-style: none; margin-top: 15px; margin-bottom: 20px; }
         ul li { position: relative; padding-left: 35px; margin-bottom: 12px; font-weight: 600; color: var(--text-main); }
-        ul li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary); font-size: 1.2rem; }
+        ul li::before { content: "✓"; position: absolute; left: 0; color: var(--primary); font-size: 1.1rem; font-weight: 800; }
 
         .vision-footer { margin-top: 40px; padding: 30px; background: var(--primary-dark); color: white; border-radius: 20px; text-align: center; }
+        .vision-quote { color: #fff; margin-bottom: 0; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.2rem; }
 
         @media (max-width: 768px) {
             .page-header h1 { font-size: 2.2rem; }
@@ -221,6 +249,7 @@
             .links a { margin-left: 0; margin-right: 12px; }
             .social-icons { margin-left: 0; }
             .bio-layout { grid-template-columns: 1fr; }
+            .page-actions { justify-content: flex-start; }
         }
     </style>
 </head>
@@ -260,7 +289,12 @@
 
     <div class="page-header">
         <h1>À propos de GL Zepoul Peyi</h1>
-        <p style="color: var(--text-muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem;">Notre engagement pour l’autonomie d’Haïti</p>
+        <p class="page-subtitle">Notre engagement pour l’autonomie d’Haïti</p>
+        <p class="page-lead">GL Zepoul Peyi structure une production avicole locale, responsable et fiable au service des institutions et des familles haïtiennes.</p>
+        <div class="page-actions">
+            <a class="btn btn-primary" href="index.html#commande">Demander une cotation</a>
+            <a class="btn btn-secondary" href="services.html">Voir nos services</a>
+        </div>
     </div>
 
     <div class="container">
@@ -276,6 +310,24 @@
                     <p>
                         Fort d’une expérience en gestion, logistique et services professionnels, il a fait de l’aviculture un levier stratégique pour fiabiliser l’approvisionnement, créer de l’emploi et garantir des produits conformes aux exigences des institutions et des familles.
                     </p>
+                    <div class="profile-facts">
+                        <div class="fact">
+                            <span class="fact-label">Rôle</span>
+                            <span class="fact-value">Direction exécutive</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-label">Expertise</span>
+                            <span class="fact-value">Gestion, logistique, services professionnels</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-label">Focus</span>
+                            <span class="fact-value">Production avicole &amp; approvisionnement institutionnel</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-label">Zone d’impact</span>
+                            <span class="fact-value">Haïti · Port-au-Prince · Cap-Haïtien · Jacmel</span>
+                        </div>
+                    </div>
                     <a class="bio-link" href="https://www.linkedin.com/in/girardgumelhenry/" target="_blank" rel="noopener">
                         Profil LinkedIn de Girard Gumel J. Henry
                     </a>
@@ -299,6 +351,26 @@
                 <li>Soutenir l’économie locale par la création de valeur et d’emplois</li>
                 <li>Contribuer concrètement à la sécurité alimentaire en Haïti</li>
             </ul>
+            <p class="note-inline"><strong>Engagements concrets&nbsp;:</strong> qualité contrôlée, traçabilité des lots et délais de livraison planifiés.</p>
+        </div>
+
+        <div class="box">
+            <h2>Notre approche</h2>
+            <p class="section-note">Une méthode claire pour garantir la continuité de service, la qualité sanitaire et la confiance des partenaires.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Qualité sanitaire</h3>
+                    <p>Protocoles d’hygiène appliqués à chaque étape pour assurer des œufs sûrs et conformes.</p>
+                </div>
+                <div class="card">
+                    <h3>Approvisionnement fiable</h3>
+                    <p>Planification des volumes et coordination logistique pour livrer selon les besoins.</p>
+                </div>
+                <div class="card">
+                    <h3>Partenariats durables</h3>
+                    <p>Relation de confiance avec les institutions pour un service régulier et transparent.</p>
+                </div>
+            </div>
         </div>
 
         <div class="box">
@@ -314,7 +386,7 @@
             </ul>
             
             <div class="vision-footer">
-                <p style="color: white; margin-bottom: 0; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.2rem;">
+                <p class="vision-quote">
                     "GL Zepoul Peyi ambitionne d’être un acteur clé du secteur avicole haïtien et une référence en entrepreneuriat agricole moderne."
                 </p>
             </div>
