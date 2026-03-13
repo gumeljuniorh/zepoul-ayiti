@@ -143,7 +143,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); line-height: 1.7; background: var(--white); }
 
-        .wrap { max-width: 1050px; margin: 0 auto; padding: 28px 24px 0; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 24px 0; }
         .nav { display: flex; gap: 18px; align-items: center; justify-content: space-between; margin-bottom: 26px; }
         .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary-dark); text-decoration: none; }
         .brand img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(0,0,0,0.08); }
@@ -168,7 +168,7 @@
         .btn-secondary { background: #fff; color: var(--primary-dark); border-color: rgba(26,127,55,0.35); }
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
 
-        .container { max-width: 1000px; margin: auto; padding: 60px 8%; }
+        .container { max-width: 1200px; margin: auto; padding: 60px 6%; }
 
         .box { 
             background: #ffffff; 
@@ -252,6 +252,10 @@
 
         @media (max-width: 980px) {
             .section-grid { grid-template-columns: 1fr; margin-bottom: 32px; }
+        }
+        @media (min-width: 1200px) {
+            .wrap { max-width: 1400px; }
+            .container { max-width: 1400px; padding-left: 4%; padding-right: 4%; }
         }
         @media (max-width: 768px) {
             .page-header h1 { font-size: 2.2rem; }
