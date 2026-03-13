@@ -230,7 +230,7 @@
             background: #fff;
             border: 1px solid rgba(0,0,0,0.06);
             border-radius: 14px;
-            padding: 10px 12px;
+            padding: 12px 14px;
         }
         .profile-facts .fact-label {
             display: block;
@@ -238,9 +238,21 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
         .profile-facts .fact-value { font-weight: 700; color: #1f1f1f; }
+        .fact-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(26,127,55,0.08);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.88rem;
+            border: 1px solid rgba(26,127,55,0.18);
+        }
         .bio-link {
             display: inline-block;
             margin-top: 6px;
@@ -368,15 +380,27 @@
                         </div>
                         <div class="fact">
                             <span class="fact-label">Mandat</span>
-                            <span class="fact-value">Orientation stratégique, supervision des opérations, développement des partenariats</span>
+                            <div class="fact-chips">
+                                <span class="chip">Orientation stratégique</span>
+                                <span class="chip">Supervision des opérations</span>
+                                <span class="chip">Développement des partenariats</span>
+                            </div>
                         </div>
                         <div class="fact">
                             <span class="fact-label">Expertise</span>
-                            <span class="fact-value">Logistique et chaîne d’approvisionnement, gestion organisationnelle, services professionnels</span>
+                            <div class="fact-chips">
+                                <span class="chip">Logistique</span>
+                                <span class="chip">Chaîne d’approvisionnement</span>
+                                <span class="chip">Gestion organisationnelle</span>
+                                <span class="chip">Services professionnels</span>
+                            </div>
                         </div>
                         <div class="fact">
                             <span class="fact-label">Axes d’intervention</span>
-                            <span class="fact-value">Production avicole, approvisionnement institutionnel</span>
+                            <div class="fact-chips">
+                                <span class="chip">Production avicole</span>
+                                <span class="chip">Approvisionnement institutionnel</span>
+                            </div>
                         </div>
                     </div>
                     <a class="bio-link" href="https://www.linkedin.com/in/girardgumelhenry/" target="_blank" rel="noopener">
