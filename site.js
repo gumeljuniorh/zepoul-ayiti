@@ -140,10 +140,17 @@
 
     function sendLeadToSheet(payload) {
       if (!QUOTE_DB_ENDPOINT) return;
-      var body = JSON.stringify(payload);
+
+      var params = new URLSearchParams();
+      Object.keys(payload || {}).forEach(function (key) {
+        var value = payload[key];
+        if (value === undefined || value === null) return;
+        params.append(key, String(value));
+      });
+
       try {
         if (navigator.sendBeacon) {
-          var blob = new Blob([body], { type: "application/json" });
+          var blob = new Blob([params.toString()], { type: "application/x-www-form-urlencoded" });
           var queued = navigator.sendBeacon(QUOTE_DB_ENDPOINT, blob);
           if (queued) return;
         }
@@ -154,8 +161,7 @@
       fetch(QUOTE_DB_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: body,
+        body: params,
         keepalive: true
       }).catch(function () {
         // Silent failure: sheet capture is best-effort
