@@ -157,7 +157,24 @@
         .social-icons .tt { font-size: 10px; font-weight: 800; color: #111; font-family: Arial, sans-serif; }
 
         /* --- CONTENT --- */
-        .page-header { background: var(--bg-light); padding: 42px 8% 32px; text-align: center; }
+        .page-header {
+            background: linear-gradient(180deg, #f6faf7 0%, #ffffff 100%);
+            padding: 42px 8% 32px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(26,127,55,0.08), transparent 48%),
+                radial-gradient(circle at 90% 0%, rgba(251,197,49,0.16), transparent 50%);
+            pointer-events: none;
+        }
+        .page-header > * { position: relative; z-index: 1; }
         .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.15rem; color: var(--primary-dark); margin-bottom: 5px; }
         .page-subtitle { color: var(--text-muted); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.74rem; margin-bottom: 6px; }
         .page-lead { max-width: 680px; margin: 0 auto 8px; font-size: 1rem; color: #2c2c2c; }
@@ -175,12 +192,15 @@
             padding: 40px; 
             border-radius: 24px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
-            margin-bottom: 40px;
             border: 1px solid rgba(0,0,0,0.05);
+        }
+        .box-feature {
+            border-color: rgba(26,127,55,0.18);
+            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
         }
         .bio-layout {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: minmax(240px, 320px) 1fr;
             gap: 26px;
             align-items: start;
         }
@@ -201,10 +221,16 @@
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 12px;
             margin: 18px 0 8px;
-            padding: 16px;
-            border-radius: 16px;
+            padding: 12px;
+            border-radius: 18px;
             background: #f7faf8;
             border: 1px solid rgba(0,0,0,0.05);
+        }
+        .profile-facts .fact {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 14px;
+            padding: 10px 12px;
         }
         .profile-facts .fact-label {
             display: block;
@@ -232,6 +258,7 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 24px;
             margin-bottom: 40px;
+            align-items: stretch;
         }
         .section-grid .box { margin-bottom: 0; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 10px; }
@@ -247,7 +274,15 @@
         ul li { position: relative; padding-left: 35px; margin-bottom: 12px; font-weight: 600; color: var(--text-main); }
         ul li::before { content: "✓"; position: absolute; left: 0; color: var(--primary); font-size: 1.1rem; font-weight: 800; }
 
-        .vision-footer { margin-top: 40px; padding: 30px; background: var(--primary-dark); color: white; border-radius: 20px; text-align: center; }
+        .vision-footer {
+            margin-top: 32px;
+            padding: 28px;
+            background: linear-gradient(135deg, #0b3d1a 0%, #145a2a 100%);
+            color: white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 14px 30px rgba(11,61,26,0.22);
+        }
         .vision-quote { color: #fff; margin-bottom: 0; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.2rem; }
 
         @media (max-width: 980px) {
@@ -315,7 +350,7 @@
 
     <div class="container">
 
-        <div class="box">
+        <div class="box box-feature">
             <h2>Direction générale</h2>
             <div class="bio-layout">
                 <img class="bio-photo" src="girard-gumel-j-henry.jpg" width="726" height="991" alt="Portrait de Girard Gumel J. Henry" loading="lazy" decoding="async" fetchpriority="low" />
