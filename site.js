@@ -113,6 +113,7 @@
     if (!form) return;
 
     var QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
+    var QUOTE_DB_ENDPOINT = "https://script.google.com/macros/s/AKfycbydmYHgSLQj2LqKALpi2xYdNmckkOOuEANyI0ONIsGJ7H2cmM_6Wmtzeobmt7tAJ7Jk/exec";
 
     function setFormStatus(message, success) {
       var statusEl = document.getElementById("form-status");
@@ -137,6 +138,30 @@
       window.location.href = "mailto:info@zepoulayiti.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyLines.join("\n"));
     }
 
+    function sendLeadToSheet(payload) {
+      if (!QUOTE_DB_ENDPOINT) return;
+      var body = JSON.stringify(payload);
+      try {
+        if (navigator.sendBeacon) {
+          var blob = new Blob([body], { type: "application/json" });
+          var queued = navigator.sendBeacon(QUOTE_DB_ENDPOINT, blob);
+          if (queued) return;
+        }
+      } catch (err) {
+        // Ignore and fallback to fetch
+      }
+
+      fetch(QUOTE_DB_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: body,
+        keepalive: true
+      }).catch(function () {
+        // Silent failure: sheet capture is best-effort
+      });
+    }
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
@@ -153,12 +178,22 @@
 
       var payload = {
         institution: institution,
+        volume: volume,
         volume_hebdomadaire_cartons: volume,
         email: email,
         details: details,
+        _replyto: email,
         _subject: "Nouvelle demande de cotation - Zepoul Ayiti",
         _captcha: "false"
       };
+
+      sendLeadToSheet({
+        institution: institution,
+        volume: volume,
+        email: email,
+        details: details,
+        source: "site-quote"
+      });
 
       setFormStatus("Envoi en cours...", true);
       if (submitBtn) submitBtn.disabled = true;
