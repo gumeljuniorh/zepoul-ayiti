@@ -516,6 +516,41 @@
       margin-top: 18px;
     }
 
+    .availability-panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .availability-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 14px;
+    }
+
+    .availability-item {
+      background: #f9fcfa;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .availability-label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .availability-value {
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-size: 1.02rem;
+    }
+
     .video-fallback {
       margin: 10px 0 2px;
       text-align: right;
@@ -767,6 +802,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="polish.css">
 </head>
 <body data-page="index">
   <a class="float-btn float-mail" href="mailto:info@zepoulayiti.com" aria-label="Envoyer un email">
@@ -888,6 +924,31 @@
         </div>
         <div class="teaser-actions">
           <a class="btn btn-secondary" href="vision.html">Lire notre vision</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="availability-panel" aria-label="Disponibilite actuelle">
+          <div class="section-head">
+            <h3>Disponibilite actuelle</h3>
+            <p>Indicateurs operationnels pour vous aider a planifier vos approvisionnements.</p>
+          </div>
+          <div class="availability-grid">
+            <article class="availability-item">
+              <span class="availability-label">Volume disponible (indicatif)</span>
+              <span class="availability-value">120 cartons</span>
+            </article>
+            <article class="availability-item">
+              <span class="availability-label">Mise a jour</span>
+              <span class="availability-value">18 mars 2026</span>
+            </article>
+            <article class="availability-item">
+              <span class="availability-label">Statut</span>
+              <span class="availability-value">Disponible</span>
+            </article>
+          </div>
         </div>
       </div>
     </section>
