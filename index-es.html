@@ -377,36 +377,38 @@
     }
 
     .showcase-video {
-      background: var(--surface-soft);
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      background: #fff;
     }
 
     .video-shell {
-      margin-top: 18px;
+      max-width: 860px;
+      margin: 0 auto;
       background: #fff;
-      border-radius: 20px;
-      padding: 16px;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow-lg);
+      border-radius: 22px;
+      padding: 14px;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.06);
     }
 
     .brand-video {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: #000;
       display: block;
+      width: 100%;
+      border-radius: 14px;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
     }
 
     .video-fallback {
-      margin: 12px 0 0;
-      font-size: 0.92rem;
+      margin: 10px 0 2px;
+      text-align: right;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
 
     .video-fallback a {
       color: var(--primary);
+      font-weight: 700;
       text-decoration: none;
     }
 
