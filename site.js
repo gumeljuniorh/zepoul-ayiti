@@ -114,12 +114,87 @@
 
     var QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
     var QUOTE_DB_ENDPOINT = "https://script.google.com/macros/s/AKfycbydmYHgSLQj2LqKALpi2xYdNmckkOOuEANyI0ONIsGJ7H2cmM_6Wmtzeobmt7tAJ7Jk/exec";
+    var QUOTE_QUEUE_KEY = "zepoulQuoteQueue";
 
     function setFormStatus(message, success) {
       var statusEl = document.getElementById("form-status");
       if (!statusEl) return;
       statusEl.textContent = message;
       statusEl.style.color = success ? "var(--primary)" : "#b42318";
+    }
+
+    function getBackupNote() {
+      return document.getElementById("form-backup-note");
+    }
+
+    function getQueuedLeads() {
+      try {
+        var raw = window.localStorage.getItem(QUOTE_QUEUE_KEY);
+        var parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function setQueuedLeads(items) {
+      try {
+        if (!items || !items.length) {
+          window.localStorage.removeItem(QUOTE_QUEUE_KEY);
+          return;
+        }
+        window.localStorage.setItem(QUOTE_QUEUE_KEY, JSON.stringify(items));
+      } catch (err) {
+        // Ignore storage issues on restricted browsers.
+      }
+    }
+
+    function queueLead(payload) {
+      var queue = getQueuedLeads();
+      queue.push({ payload: payload, savedAt: new Date().toISOString() });
+      setQueuedLeads(queue);
+      var backupNote = getBackupNote();
+      if (backupNote) backupNote.hidden = false;
+    }
+
+    function clearQueuedLead(payload) {
+      var queue = getQueuedLeads().filter(function (item) {
+        return JSON.stringify(item.payload) !== JSON.stringify(payload);
+      });
+      setQueuedLeads(queue);
+      var backupNote = getBackupNote();
+      if (backupNote && !queue.length) backupNote.hidden = true;
+    }
+
+    function postToSheet(payload) {
+      var params = new URLSearchParams();
+      Object.keys(payload || {}).forEach(function (key) {
+        var value = payload[key];
+        if (value === undefined || value === null) return;
+        params.append(key, String(value));
+      });
+
+      return fetch(QUOTE_DB_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        body: params,
+        keepalive: true
+      });
+    }
+
+    function flushQueuedLeads() {
+      var queue = getQueuedLeads();
+      if (!queue.length) return;
+
+      queue.forEach(function (item) {
+        postToSheet(item.payload)
+          .then(function () {
+            clearQueuedLead(item.payload);
+          })
+          .catch(function () {
+            // Keep queued for another attempt on next page load.
+          });
+      });
     }
 
     function openMailtoFallback(institution, volume, email, details) {
@@ -139,33 +214,32 @@
     }
 
     function sendLeadToSheet(payload) {
-      if (!QUOTE_DB_ENDPOINT) return;
+      if (!QUOTE_DB_ENDPOINT) return Promise.resolve();
 
-      var params = new URLSearchParams();
-      Object.keys(payload || {}).forEach(function (key) {
-        var value = payload[key];
-        if (value === undefined || value === null) return;
-        params.append(key, String(value));
-      });
+      queueLead(payload);
 
       try {
         if (navigator.sendBeacon) {
+          var params = new URLSearchParams();
+          Object.keys(payload || {}).forEach(function (key) {
+            var value = payload[key];
+            if (value === undefined || value === null) return;
+            params.append(key, String(value));
+          });
           var blob = new Blob([params.toString()], { type: "application/x-www-form-urlencoded" });
-          var queued = navigator.sendBeacon(QUOTE_DB_ENDPOINT, blob);
-          if (queued) return;
+          navigator.sendBeacon(QUOTE_DB_ENDPOINT, blob);
         }
       } catch (err) {
-        // Ignore and fallback to fetch
+        // Ignore and continue with fetch-based attempt.
       }
 
-      fetch(QUOTE_DB_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        body: params,
-        keepalive: true
-      }).catch(function () {
-        // Silent failure: sheet capture is best-effort
-      });
+      return postToSheet(payload)
+        .then(function () {
+          clearQueuedLead(payload);
+        })
+        .catch(function () {
+          // Keep queued locally for retry on next load.
+        });
     }
 
     form.addEventListener("submit", function (event) {
@@ -193,25 +267,38 @@
         _captcha: "false"
       };
 
-      sendLeadToSheet({
+      var leadPayload = {
         institution: institution,
         volume: volume,
         email: email,
         details: details,
         source: "site-quote"
-      });
+      };
+
+      sendLeadToSheet(leadPayload);
 
       setFormStatus("Envoi en cours...", true);
       if (submitBtn) submitBtn.disabled = true;
 
-      fetch(QUOTE_ENDPOINT, {
+      var requestOptions = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
         body: JSON.stringify(payload)
-      })
+      };
+
+      var timeoutId;
+      if (typeof AbortController !== "undefined") {
+        var controller = new AbortController();
+        requestOptions.signal = controller.signal;
+        timeoutId = window.setTimeout(function () {
+          controller.abort();
+        }, 12000);
+      }
+
+      fetch(QUOTE_ENDPOINT, requestOptions)
         .then(function (response) {
           if (!response.ok) throw new Error("Form endpoint error");
           emit("quote_form_submit", { institution: institution, volume: volume, channel: "server_form" });
@@ -227,6 +314,7 @@
           openMailtoFallback(institution, volume, email, details);
         })
         .finally(function () {
+          if (timeoutId) window.clearTimeout(timeoutId);
           if (submitBtn) submitBtn.disabled = false;
         });
     });
@@ -267,6 +355,7 @@
     bindImageFallbacks();
     bindQuoteForm();
     bindBrandVideo();
+    flushQueuedLeads();
     trackThankYou();
   });
 })();
