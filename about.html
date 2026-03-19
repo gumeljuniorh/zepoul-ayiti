@@ -158,8 +158,7 @@
         /* --- CONTENT --- */
         .page-header {
             background: linear-gradient(180deg, #f6faf7 0%, #ffffff 100%);
-            padding: 42px 8% 32px;
-            text-align: center;
+            padding: 42px 8% 36px;
             border-bottom: 1px solid rgba(0,0,0,0.06);
             position: relative;
             overflow: hidden;
@@ -174,15 +173,91 @@
             pointer-events: none;
         }
         .page-header > * { position: relative; z-index: 1; }
-        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.15rem; color: var(--primary-dark); margin-bottom: 5px; }
-        .page-subtitle { color: var(--text-muted); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.74rem; margin-bottom: 6px; }
-        .page-lead { max-width: 680px; margin: 0 auto 8px; font-size: 1rem; color: #2c2c2c; }
-        .page-actions { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+        .page-header-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(280px, 360px);
+            gap: 28px;
+            align-items: center;
+        }
+        .page-header-copy { text-align: left; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(26,127,55,0.08);
+            color: var(--primary-dark);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(251,197,49,0.18);
+        }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.35rem; color: var(--primary-dark); margin-bottom: 8px; max-width: 12ch; }
+        .page-subtitle { color: var(--text-muted); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.74rem; margin-bottom: 8px; }
+        .page-lead { max-width: 60ch; margin: 0 0 10px; font-size: 1.04rem; color: #2c2c2c; }
+        .page-actions { display: flex; justify-content: flex-start; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent; transition: var(--transition); }
         .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 12px 24px rgba(26,127,55,0.22); }
         .btn-primary:hover { transform: translateY(-2px); filter: brightness(0.98); }
         .btn-secondary { background: #fff; color: var(--primary-dark); border-color: rgba(26,127,55,0.35); }
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+        .page-panel {
+            padding: 24px;
+            border-radius: 26px;
+            background: linear-gradient(160deg, rgba(11,61,26,0.98), rgba(20,90,42,0.94));
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(11,61,26,0.18);
+        }
+        .page-panel-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.12);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .page-panel strong {
+            display: block;
+            font-size: 1.45rem;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+        .page-panel-note {
+            margin: 0 0 16px;
+            color: rgba(255,255,255,0.86);
+            font-size: 0.98rem;
+        }
+        .page-panel-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .page-panel-list span {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.14);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
 
         .container { max-width: 1200px; margin: auto; padding: 46px 6%; }
 
@@ -203,17 +278,35 @@
             gap: 26px;
             align-items: start;
         }
+        .bio-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
         .bio-photo {
             width: 100%;
             height: auto;
             aspect-ratio: 4 / 5;
             max-height: 520px;
             border-radius: 18px;
-            border: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+            border: 8px solid rgba(255,255,255,0.96);
+            box-shadow: 0 16px 34px rgba(0,0,0,0.1);
             object-fit: cover;
             object-position: center;
             background: #fff;
+        }
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(26,127,55,0.08);
+            color: var(--primary);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
         }
         .profile-facts {
             display: grid;
@@ -273,7 +366,31 @@
         }
         .section-grid .box { margin-bottom: 0; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 10px; }
-        .card { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; padding: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
+        .card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .card-feature::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 5px;
+            background: linear-gradient(180deg, var(--accent), rgba(26,127,55,0.75));
+        }
+        .card-kicker {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
         .card h3 { margin: 0 0 6px; color: var(--primary); font-size: 1.05rem; }
         .card p { margin: 0; color: #444; text-align: left; }
         .note-inline { margin-top: 12px; color: var(--text-muted); font-size: 0.95rem; }
@@ -298,6 +415,7 @@
 
         @media (max-width: 980px) {
             .section-grid { grid-template-columns: 1fr; margin-bottom: 32px; }
+            .page-header-shell { grid-template-columns: 1fr; }
         }
         @media (min-width: 1200px) {
             .wrap { max-width: 1400px; }
@@ -312,6 +430,7 @@
             .social-icons { margin-left: 0; }
             .bio-layout { grid-template-columns: 1fr; }
             .page-actions { justify-content: flex-start; }
+            .page-panel { padding: 22px; }
         }
     </style>
     <link rel="stylesheet" href="polish.css">
@@ -351,22 +470,38 @@
     </div>
 
     <div class="page-header">
-        <h1>À propos de GL Zepoul Peyi</h1>
-        <p class="page-subtitle">Notre engagement pour l’autonomie d’Haïti</p>
-        <p class="page-lead">GL Zepoul Peyi structure une production avicole locale, responsable et fiable au service des institutions et des familles haïtiennes.</p>
-        <div class="page-actions">
-            <a class="btn btn-primary" href="index.html#commande">Demander une cotation</a>
-            <a class="btn btn-secondary" href="services.html">Voir nos services</a>
+        <div class="page-header-shell">
+            <div class="page-header-copy">
+                <span class="eyebrow">Leadership et engagement</span>
+                <p class="page-subtitle">Notre engagement pour l’autonomie d’Haïti</p>
+                <h1>À propos de GL Zepoul Peyi</h1>
+                <p class="page-lead">GL Zepoul Peyi structure une production avicole locale, responsable et fiable au service des institutions et des familles haïtiennes.</p>
+                <div class="page-actions">
+                    <a class="btn btn-primary" href="index.html#commande">Demander une cotation</a>
+                    <a class="btn btn-secondary" href="services.html">Voir nos services</a>
+                </div>
+            </div>
+            <aside class="page-panel" aria-label="Repères institutionnels">
+                <span class="page-panel-label">Repères institutionnels</span>
+                <strong>Direction générale</strong>
+                <p class="page-panel-note">Une gouvernance engagée pour structurer une production locale durable et un approvisionnement institutionnel fiable.</p>
+                <div class="page-panel-list">
+                    <span>Vision stratégique</span>
+                    <span>Production avicole</span>
+                    <span>Approvisionnement institutionnel</span>
+                </div>
+            </aside>
         </div>
     </div>
 
     <div class="container">
 
         <div class="box box-feature">
+            <span class="section-kicker">Profil dirigeant</span>
             <h2>Direction générale</h2>
             <div class="bio-layout">
                 <img class="bio-photo" src="girard-gumel-j-henry.jpg" width="726" height="991" alt="Portrait de Girard Gumel J. Henry" loading="lazy" decoding="async" fetchpriority="low" />
-                <div>
+                <div class="bio-text">
                     <p>
                         <span class="highlight">GL Zepoul Peyi</span> est dirigée par <span class="highlight">Girard Gumel J. Henry</span>, directeur exécutif. L’entreprise poursuit une ambition claire&nbsp;: renforcer l’autonomie alimentaire d’Haïti grâce à une production avicole locale, structurée et durable.
                     </p>
@@ -416,6 +551,7 @@
 
         <div class="section-grid">
             <div class="box">
+                <span class="section-kicker">Mission</span>
                 <h2>Notre mission</h2>
                 <p>
                     Chez <strong>GL Zepoul Peyi</strong>, notre mission est d’assurer un approvisionnement régulier en œufs frais, sûrs et accessibles, en appliquant des standards sanitaires et environnementaux rigoureux.
@@ -431,18 +567,22 @@
             </div>
 
             <div class="box">
+                <span class="section-kicker">Méthode</span>
                 <h2>Notre approche</h2>
                 <p class="section-note">Une méthode claire pour garantir la continuité de service, la qualité sanitaire et la confiance des partenaires.</p>
                 <div class="grid">
-                    <div class="card">
+                    <div class="card card-feature">
+                        <span class="card-kicker">Contrôle</span>
                         <h3>Qualité sanitaire</h3>
                         <p>Protocoles d’hygiène appliqués à chaque étape pour assurer des œufs sûrs et conformes.</p>
                     </div>
-                    <div class="card">
+                    <div class="card card-feature">
+                        <span class="card-kicker">Planification</span>
                         <h3>Approvisionnement fiable</h3>
                         <p>Planification des volumes et coordination logistique pour répondre avec précision aux besoins exprimés.</p>
                     </div>
-                    <div class="card">
+                    <div class="card card-feature">
+                        <span class="card-kicker">Relation</span>
                         <h3>Partenariats durables</h3>
                         <p>Relation de confiance avec les institutions pour un service régulier et transparent.</p>
                     </div>
@@ -451,6 +591,7 @@
         </div>
 
         <div class="box">
+            <span class="section-kicker">Cap stratégique</span>
             <h2>Notre vision stratégique</h2>
             <p>
                 Notre ambition est de faire de <strong>GL Zepoul Peyi</strong> une entreprise de référence à l’échelle nationale, capable d’accompagner durablement l’indépendance agroalimentaire du pays.

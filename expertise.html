@@ -69,7 +69,7 @@
     :root { --primary:#1a7f37; --primary-dark:#0b3d1a; --text:#1b1b1b; --muted:#5f6a67; --border:#e5ece8; }
     *{box-sizing:border-box}
     body{margin:0;font-family:"Plus Jakarta Sans",sans-serif;color:var(--text);background:#f7fbf8}
-    .wrap{max-width:1050px;margin:0 auto;padding:70px 24px}
+    .wrap{max-width:1160px;margin:0 auto;padding:70px 24px}
     .nav{display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:26px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--primary-dark);text-decoration:none}
     .brand img{width:42px;height:42px;border-radius:10px;object-fit:cover;border:1px solid rgba(0,0,0,.08)}
@@ -81,16 +81,141 @@
     .social-icons a{display:inline-flex;width:28px;height:28px;border-radius:8px;border:1px solid rgba(0,0,0,.1);align-items:center;justify-content:center;background:#fff;text-decoration:none}
     .social-icons img{width:15px;height:15px;object-fit:contain}
     .social-icons .tt{font-size:10px;font-weight:800;color:#111;font-family:Arial,sans-serif}
-    h1{margin:0 0 12px;font:900 2.7rem/1.1 "Playfair Display",serif;color:var(--primary-dark)}
-    .lead{margin:0 0 28px;max-width:68ch;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-    .card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+    .hero-shell{
+      display:grid;
+      grid-template-columns:minmax(0,1.45fr) minmax(280px,360px);
+      gap:28px;
+      align-items:center;
+      margin-bottom:34px;
+    }
+    .hero-copy{max-width:700px}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(26,127,55,.08);
+      color:var(--primary-dark);
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#fbc531;
+      box-shadow:0 0 0 6px rgba(251,197,49,.18);
+    }
+    h1{margin:0 0 12px;font:900 2.85rem/1.05 "Playfair Display",serif;color:var(--primary-dark);max-width:11ch}
+    .lead{margin:0 0 22px;max-width:62ch;color:var(--muted);font-size:1.02rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:999px;text-decoration:none;font-weight:800;border:2px solid transparent}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 12px 24px rgba(26,127,55,.18)}
+    .btn-secondary{background:#fff;color:var(--primary-dark);border-color:rgba(26,127,55,.22)}
+    .hero-panel{
+      padding:24px;
+      border-radius:26px;
+      background:linear-gradient(160deg,rgba(11,61,26,.98),rgba(20,90,42,.94));
+      color:#fff;
+      box-shadow:0 18px 40px rgba(11,61,26,.18);
+    }
+    .hero-panel-label{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      font-size:.74rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+    .hero-panel strong{display:block;font-size:1.4rem;line-height:1.15;margin-bottom:10px}
+    .hero-panel p{margin:0 0 16px;color:rgba(255,255,255,.86)}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:10px}
+    .hero-tags span{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.14);
+      font-size:.9rem;
+      font-weight:700;
+    }
+    .section-kicker{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(26,127,55,.08);
+      color:var(--primary);
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin:20px 0 12px;
+    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:0 12px 28px rgba(0,0,0,.05);
+      position:relative;
+      overflow:hidden;
+    }
+    .card-feature::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width:5px;
+      background:linear-gradient(180deg,#fbc531,rgba(26,127,55,.78));
+    }
+    .card-kicker{
+      display:inline-block;
+      margin-bottom:8px;
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
     .card h2{margin:0 0 8px;color:var(--primary);font-size:1.2rem}
     .card p{margin:0;color:var(--muted)}
-    .section-title{margin:28px 0 10px;font-size:1.35rem;color:var(--primary-dark)}
+    .section-title{margin:0 0 10px;font-size:1.45rem;color:var(--primary-dark)}
     .section-note{margin:0 0 12px;color:var(--muted)}
-    .cta{display:inline-block;margin-top:22px;background:var(--primary);color:#fff;text-decoration:none;padding:11px 16px;border-radius:10px;font-weight:800}
-    @media (max-width:720px){h1{font-size:2.1rem}.nav{flex-direction:column;align-items:flex-start}.links a{margin-left:0;margin-right:12px}}
+    .band{
+      margin-top:28px;
+      padding:26px;
+      border-radius:24px;
+      background:linear-gradient(130deg,var(--primary-dark),#145a2a);
+      color:#fff;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:16px;
+      align-items:center;
+      box-shadow:0 18px 36px rgba(11,61,26,.18);
+    }
+    .band-copy strong{display:block;font-size:1.35rem;margin-bottom:6px}
+    .band-copy p{margin:0;color:rgba(255,255,255,.84)}
+    .cta{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--primary-dark);text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:800}
+    @media (max-width:920px){
+      .hero-shell,
+      .band{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      h1{font-size:2.15rem}
+      .nav{flex-direction:column;align-items:flex-start}
+      .links a{margin-left:0;margin-right:12px}
+    }
   </style>
   <link rel="stylesheet" href="polish.css">
 </head>
@@ -125,59 +250,96 @@
       <a href="index.html#commande">Demander une cotation</a>
     </div>
 
-    <h1>Expertise</h1>
-    <p class="lead">Des solutions fiables pour l’hôtellerie, la restauration, la santé et les institutions, avec un accompagnement structuré et orienté performance.</p>
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <span class="eyebrow">Savoir-faire opérationnel</span>
+        <h1>Expertise</h1>
+        <p class="lead">Des solutions fiables pour l’hôtellerie, la restauration, la santé et les institutions, avec un accompagnement structuré et orienté performance.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="index.html#commande">Demander une cotation</a>
+          <a class="btn btn-secondary" href="services.html">Voir nos services</a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="Positionnement expertise">
+        <span class="hero-panel-label">Positionnement</span>
+        <strong>Une expertise pensée pour la continuité de service</strong>
+        <p>Notre approche associe qualité produit, coordination logistique et relation client structurée pour sécuriser les approvisionnements professionnels.</p>
+        <div class="hero-tags">
+          <span>Qualité</span>
+          <span>Logistique</span>
+          <span>Suivi client</span>
+        </div>
+      </aside>
+    </div>
 
+    <span class="section-kicker">Axes d’expertise</span>
     <div class="grid">
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Exigence produit</span>
         <h2>Qualité certifiée</h2>
         <p>Production contrôlée, traçabilité des lots et constance des standards de qualité.</p>
       </article>
-      <article class="card">
-        <h2>Logistique rapide</h2>
+      <article class="card card-feature">
+        <span class="card-kicker">Coordination</span>
+        <h2>Logistique maîtrisée</h2>
         <p>Livraisons planifiées pour sécuriser vos besoins hebdomadaires.</p>
       </article>
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Relation durable</span>
         <h2>Partenariat durable</h2>
         <p>Approvisionnements stables pour limiter les ruptures et sécuriser vos opérations.</p>
       </article>
     </div>
 
+    <span class="section-kicker">Méthode</span>
     <h2 class="section-title">Notre méthode de travail</h2>
     <p class="section-note">Un accompagnement structuré pour fiabiliser vos approvisionnements et faciliter vos opérations.</p>
     <div class="grid">
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Organisation</span>
         <h2>Planification</h2>
         <p>Calendrier d’approvisionnement adapté à vos volumes et contraintes.</p>
       </article>
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Vérification</span>
         <h2>Contrôle qualité</h2>
         <p>Vérification des lots, conditions de stockage et conformité produit.</p>
       </article>
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Accompagnement</span>
         <h2>Suivi client</h2>
         <p>Un interlocuteur dédié pour ajuster la fréquence, les volumes et les priorités.</p>
       </article>
     </div>
 
+    <span class="section-kicker">Engagements</span>
     <h2 class="section-title">Engagements opérationnels</h2>
     <p class="section-note">Des engagements concrets pour sécuriser vos flux et éviter les ruptures.</p>
     <div class="grid">
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Prévisibilité</span>
         <h2>Planification confirmée</h2>
         <p>Volumes et fréquences validés à l’avance pour limiter l’incertitude.</p>
       </article>
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Réactivité</span>
         <h2>Communication proactive</h2>
         <p>Un point de contact dédié pour ajuster rapidement selon vos besoins.</p>
       </article>
-      <article class="card">
+      <article class="card card-feature">
+        <span class="card-kicker">Conformité</span>
         <h2>Conformité produit</h2>
         <p>Contrôles, stockage adapté et standards de présentation respectés.</p>
       </article>
     </div>
 
-    <a class="cta" href="vision.html">Découvrir notre vision</a>
+    <div class="band">
+      <div class="band-copy">
+        <strong>Une expertise au service des professionnels</strong>
+        <p>Notre rôle est d’apporter une base d’approvisionnement plus stable, plus lisible et mieux coordonnée pour les acteurs qui ont besoin de continuité.</p>
+      </div>
+      <a class="cta" href="vision.html">Découvrir notre vision</a>
+    </div>
   </main>
   <footer class="site-footer">
     <div class="wrap footer-grid">
