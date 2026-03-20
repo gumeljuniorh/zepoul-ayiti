@@ -316,9 +316,14 @@
         }
         .bio-layout {
             display: grid;
-            grid-template-columns: minmax(240px, 320px) 1fr;
+            grid-template-columns: minmax(250px, 340px) 1fr;
             gap: 26px;
             align-items: start;
+        }
+        .bio-media {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
         .bio-text {
             display: flex;
@@ -336,6 +341,25 @@
             object-fit: cover;
             object-position: center;
             background: #fff;
+        }
+        .bio-caption {
+            padding: 18px 18px 16px;
+            border-radius: 18px;
+            background: linear-gradient(160deg, rgba(11,61,26,0.98), rgba(20,90,42,0.94));
+            color: #fff;
+            box-shadow: 0 16px 34px rgba(11,61,26,0.18);
+        }
+        .bio-caption strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+            line-height: 1.25;
+        }
+        .bio-caption p {
+            margin: 0;
+            color: rgba(255,255,255,0.86);
+            font-size: 0.94rem;
+            line-height: 1.6;
         }
         .section-kicker {
             display: inline-flex;
@@ -491,6 +515,73 @@
             font-size: 1rem;
             line-height: 1.7;
         }
+        .commitment-list {
+            list-style: none;
+            margin: 18px 0 20px;
+            padding: 0;
+            display: grid;
+            gap: 12px;
+        }
+        .commitment-list li {
+            position: relative;
+            padding: 16px 18px 16px 54px;
+            margin: 0;
+            border-radius: 18px;
+            background: #f7faf8;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.03);
+            font-weight: 500;
+        }
+        .commitment-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 18px;
+            top: 17px;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(26,127,55,0.12);
+            color: var(--primary);
+            font-size: 0.92rem;
+            font-weight: 900;
+        }
+        .commitment-title {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+        .commitment-text {
+            display: block;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .vision-pillars {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin: 18px 0 8px;
+        }
+        .vision-pillar {
+            padding: 18px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+        }
+        .vision-pillar h3 {
+            margin: 0 0 8px;
+            color: var(--primary-dark);
+            font-size: 1.08rem;
+        }
+        .vision-pillar p {
+            margin: 0;
+            color: #4b5c53;
+            font-size: 0.98rem;
+        }
         
         p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: left; }
         .highlight { color: var(--primary); font-weight: 800; }
@@ -515,6 +606,7 @@
             .page-header-shell { grid-template-columns: 1fr; }
             .about-overview { grid-template-columns: 1fr; }
             .executive-grid { grid-template-columns: 1fr; }
+            .vision-pillars { grid-template-columns: 1fr; }
         }
         @media (min-width: 1200px) {
             .wrap { max-width: 1400px; }
@@ -626,7 +718,13 @@
             <span class="section-kicker">Profil dirigeant</span>
             <h2>Direction générale</h2>
             <div class="bio-layout">
-                <img class="bio-photo" src="girard-gumel-j-henry.jpg" width="726" height="991" alt="Portrait de Girard Gumel J. Henry" loading="lazy" decoding="async" fetchpriority="low" />
+                <div class="bio-media">
+                    <img class="bio-photo" src="girard-gumel-j-henry.jpg" width="726" height="991" alt="Portrait de Girard Gumel J. Henry" loading="lazy" decoding="async" fetchpriority="low" />
+                    <div class="bio-caption">
+                        <strong>Une direction alignée sur la continuité et la structuration</strong>
+                        <p>La direction générale porte une vision d’entreprise fondée sur la qualité produit, la fiabilité des approvisionnements et l’ancrage local.</p>
+                    </div>
+                </div>
                 <div class="bio-text">
                     <p>
                         <span class="highlight">GL Zepoul Peyi</span> est dirigée par <span class="highlight">Girard Gumel J. Henry</span>, directeur exécutif. L’entreprise poursuit une ambition claire&nbsp;: renforcer l’autonomie alimentaire d’Haïti grâce à une production avicole locale, structurée et durable.
@@ -703,11 +801,23 @@
                     Chez <strong>GL Zepoul Peyi</strong>, notre mission est d’assurer un approvisionnement régulier en œufs frais, sûrs et accessibles, en appliquant des standards sanitaires et environnementaux rigoureux.
                 </p>
                 <p>Nous nous engageons à :</p>
-                <ul>
-                    <li>Déployer une production avicole moderne, encadrée et contrôlée</li>
-                    <li>Fournir une qualité constante, adaptée aux exigences institutionnelles</li>
-                    <li>Soutenir l’économie locale par la création de valeur et d’emplois</li>
-                    <li>Contribuer concrètement à la sécurité alimentaire en Haïti</li>
+                <ul class="commitment-list">
+                    <li>
+                        <span class="commitment-title">Production avicole encadrée</span>
+                        <span class="commitment-text">Déployer une production moderne, organisée et contrôlée.</span>
+                    </li>
+                    <li>
+                        <span class="commitment-title">Qualité adaptée aux exigences institutionnelles</span>
+                        <span class="commitment-text">Garantir une qualité constante et conforme aux attentes professionnelles.</span>
+                    </li>
+                    <li>
+                        <span class="commitment-title">Création de valeur locale</span>
+                        <span class="commitment-text">Soutenir l’économie par l’emploi, l’activité et l’ancrage territorial.</span>
+                    </li>
+                    <li>
+                        <span class="commitment-title">Contribution à la sécurité alimentaire</span>
+                        <span class="commitment-text">Participer concrètement au renforcement durable de l’approvisionnement en Haïti.</span>
+                    </li>
                 </ul>
                 <p class="note-inline"><strong>Engagements concrets&nbsp;:</strong> qualité contrôlée, traçabilité des lots et délais de livraison planifiés.</p>
             </div>
@@ -742,12 +852,24 @@
             <p>
                 Notre ambition est de faire de <strong>GL Zepoul Peyi</strong> une entreprise de référence à l’échelle nationale, capable d’accompagner durablement l’indépendance agroalimentaire du pays.
             </p>
-            <ul>
-                <li><strong>Structurée&nbsp;:</strong> Une organisation professionnelle, stable et pérenne.</li>
-                <li><strong>Performante&nbsp;:</strong> Des méthodes d’élevage modernes et des processus maîtrisés.</li>
-                <li><strong>Responsable&nbsp;:</strong> Une démarche attentive à l’environnement et au bien-être animal.</li>
-                <li><strong>Référente&nbsp;:</strong> Une position reconnue dans la production d’œufs en Haïti.</li>
-            </ul>
+            <div class="vision-pillars" aria-label="Piliers stratégiques">
+                <article class="vision-pillar">
+                    <h3>Organisation structurée</h3>
+                    <p>Une entreprise construite sur des bases professionnelles, stables et pérennes.</p>
+                </article>
+                <article class="vision-pillar">
+                    <h3>Performance maîtrisée</h3>
+                    <p>Des méthodes d’élevage modernes et des processus encadrés à chaque étape.</p>
+                </article>
+                <article class="vision-pillar">
+                    <h3>Responsabilité durable</h3>
+                    <p>Une attention portée à l’environnement, au bien-être animal et à la régularité des pratiques.</p>
+                </article>
+                <article class="vision-pillar">
+                    <h3>Position de référence</h3>
+                    <p>Une ambition claire de reconnaissance dans la production d’œufs et l’organisation de la filière locale.</p>
+                </article>
+            </div>
             
             <div class="vision-footer">
                 <p class="vision-quote">

@@ -128,6 +128,9 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   .card,
   .box,
   .overview-card,
+  .bio-caption,
+  .commitment-list li,
+  .vision-pillar,
   .note,
   .fact,
   .profile-facts,
@@ -175,6 +178,8 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   .fact strong,
   .fact-value,
   .overview-value,
+  .commitment-title,
+  .vision-pillar h3,
   .executive-card h3,
   .section-title,
   .page-panel strong,
@@ -209,6 +214,8 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   .footer,
   .bio-link,
   .overview-text,
+  .commitment-text,
+  .vision-pillar p,
   .card p,
   .executive-card p {
     color: #b8c7be !important;
