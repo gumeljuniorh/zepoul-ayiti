@@ -260,6 +260,48 @@
         }
 
         .container { max-width: 1200px; margin: auto; padding: 46px 6%; }
+        .about-top {
+            padding-top: 24px;
+            padding-bottom: 8px;
+        }
+        .about-overview {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .overview-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+        }
+        .overview-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(26,127,55,0.08);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .overview-value {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            line-height: 1.15;
+        }
+        .overview-text {
+            margin: 0;
+            color: #4b5c53;
+            font-size: 0.97rem;
+        }
 
         .box { 
             background: #ffffff; 
@@ -471,6 +513,7 @@
         @media (max-width: 980px) {
             .section-grid { grid-template-columns: 1fr; margin-bottom: 32px; }
             .page-header-shell { grid-template-columns: 1fr; }
+            .about-overview { grid-template-columns: 1fr; }
             .executive-grid { grid-template-columns: 1fr; }
         }
         @media (min-width: 1200px) {
@@ -493,6 +536,7 @@
             .page-panel-list { gap: 8px; }
             .container { padding: 38px 5% 40px; }
             .box { padding: 28px; }
+            .overview-card { padding: 20px; }
         }
     </style>
     <link rel="stylesheet" href="polish.css">
@@ -556,6 +600,26 @@
         </div>
     </div>
 
+    <div class="container about-top">
+        <div class="about-overview" aria-label="Synthèse institutionnelle">
+            <article class="overview-card">
+                <span class="overview-label">Gouvernance</span>
+                <strong class="overview-value">Direction exécutive structurée</strong>
+                <p class="overview-text">Une gouvernance orientée décision, supervision des opérations et développement durable de l’activité.</p>
+            </article>
+            <article class="overview-card">
+                <span class="overview-label">Mission</span>
+                <strong class="overview-value">Production locale responsable</strong>
+                <p class="overview-text">Une production avicole organisée pour répondre avec régularité, conformité et ancrage territorial.</p>
+            </article>
+            <article class="overview-card">
+                <span class="overview-label">Cap</span>
+                <strong class="overview-value">Autonomie alimentaire durable</strong>
+                <p class="overview-text">Un projet d’entreprise aligné sur la continuité des approvisionnements et la structuration d’une filière locale.</p>
+            </article>
+        </div>
+    </div>
+
     <div class="container">
 
         <div class="box box-feature">
@@ -589,7 +653,7 @@
                                 <span class="chip">Logistique</span>
                                 <span class="chip">Chaîne d’approvisionnement</span>
                                 <span class="chip">Gestion organisationnelle</span>
-                                <span class="chip">Services professionnels</span>
+                                <span class="chip">Pilotage opérationnel</span>
                             </div>
                         </div>
                         <div class="fact">

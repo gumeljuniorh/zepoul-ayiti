@@ -2,6 +2,7 @@
   --polish-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
   --polish-radius: 18px;
   --polish-text: 70ch;
+  color-scheme: light;
 }
 
 * {
@@ -92,4 +93,188 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
 @keyframes polishFade {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --polish-shadow: 0 16px 30px rgba(0, 0, 0, 0.34);
+  }
+
+  html,
+  body {
+    background: #07110c !important;
+    color: #e5efe9 !important;
+  }
+
+  body[data-page="index"] .site-header,
+  .page-header,
+  body[data-page="vision"] .hero,
+  body[data-page="services"] .wrap,
+  body[data-page="expertise"] .wrap,
+  body[data-page="profil-girard"] .wrap,
+  body[data-page="merci"],
+  body[data-page="mentions-legales"],
+  body[data-page="politique-confidentialite"],
+  body[data-page="404"],
+  body:not([data-page="index"]) {
+    background: radial-gradient(1000px 420px at 75% -10%, rgba(26, 127, 55, 0.14), transparent), #07110c !important;
+  }
+
+  .site-header,
+  .mobile-menu,
+  .menu-toggle,
+  .social-icons a,
+  .card,
+  .box,
+  .overview-card,
+  .note,
+  .fact,
+  .profile-facts,
+  .hero-proof-item,
+  .hero-badge,
+  .showcase-copy,
+  .availability-panel,
+  .availability-item,
+  .availability-item-primary,
+  .video-shell,
+  .order-box,
+  .order-highlight,
+  .showcase-point,
+  .contact-panel,
+  .executive-card,
+  .status-panel,
+  .field input,
+  .field textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea {
+    background: #0d1813 !important;
+    color: #e5efe9 !important;
+    border-color: rgba(214, 231, 219, 0.12) !important;
+    box-shadow: var(--polish-shadow) !important;
+  }
+
+  .page-header,
+  .box-feature,
+  .showcase-video {
+    background: linear-gradient(180deg, #0a1711 0%, #0d1813 100%) !important;
+    border-color: rgba(214, 231, 219, 0.08) !important;
+  }
+
+  .brand,
+  .brand div,
+  .links a,
+  .mobile-menu a,
+  h1,
+  h2,
+  h3,
+  h4,
+  strong,
+  .fact strong,
+  .fact-value,
+  .overview-value,
+  .executive-card h3,
+  .section-title,
+  .page-panel strong,
+  .hero-panel strong,
+  .profile-panel strong,
+  .status-panel strong,
+  .availability-value,
+  .availability-value-lg,
+  .card h2,
+  .card h3 {
+    color: #f3f8f5 !important;
+  }
+
+  p,
+  li,
+  .lead,
+  .section-note,
+  .note,
+  .page-lead,
+  .page-subtitle,
+  .page-panel-note,
+  .hero-panel p,
+  .profile-panel p,
+  .availability-copy p,
+  .availability-meta-text,
+  .availability-footnote,
+  .showcase-copy p,
+  .order-copy p,
+  .order-highlight span,
+  .showcase-point,
+  .form-note,
+  .footer,
+  .bio-link,
+  .overview-text,
+  .card p,
+  .executive-card p {
+    color: #b8c7be !important;
+  }
+
+  .chip,
+  .overview-label,
+  .section-kicker,
+  .eyebrow,
+  .card-kicker,
+  .executive-kicker,
+  .contact-label,
+  .status-label,
+  .availability-badge {
+    background: rgba(67, 114, 84, 0.22) !important;
+    color: #b7ddc3 !important;
+    border-color: rgba(112, 170, 132, 0.18) !important;
+  }
+
+  .btn-secondary,
+  .cta,
+  .nav-cta,
+  .btn {
+    border-color: rgba(214, 231, 219, 0.14);
+  }
+
+  .btn-secondary,
+  .cta.btn-secondary {
+    background: #122018 !important;
+    color: #eff7f1 !important;
+  }
+
+  .menu-toggle {
+    color: #eff7f1;
+  }
+
+  .mobile-menu a {
+    border-bottom-color: rgba(214, 231, 219, 0.08);
+  }
+
+  .section-title::before,
+  .mobile-menu .lang-switch,
+  .site-header,
+  .hero-media img,
+  .bio-photo {
+    border-color: rgba(214, 231, 219, 0.1) !important;
+  }
+
+  .site-footer {
+    background: #040906;
+    color: #9fb0a5;
+  }
+
+  .site-footer h5,
+  .site-footer .footer-tagline {
+    color: #f3f8f5;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder,
+  input::placeholder,
+  textarea::placeholder {
+    color: #89a095 !important;
+  }
+
+  a {
+    color: inherit;
+  }
 }
