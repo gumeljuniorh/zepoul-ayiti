@@ -7,6 +7,29 @@
 
   window.trackEvent = emit;
 
+  function bindThemePreference() {
+    if (!window.matchMedia) return;
+
+    var root = document.documentElement;
+    var query = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function applyTheme(eventOrQuery) {
+      var isDark = !!(eventOrQuery && eventOrQuery.matches);
+      root.setAttribute("data-theme", isDark ? "dark" : "light");
+      if (document.body) {
+        document.body.setAttribute("data-theme", isDark ? "dark" : "light");
+      }
+    }
+
+    applyTheme(query);
+
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", applyTheme);
+    } else if (typeof query.addListener === "function") {
+      query.addListener(applyTheme);
+    }
+  }
+
   function bindMenu() {
     var items = [];
 
@@ -197,6 +220,9 @@
       });
     }
 
+    window.flushQueuedLeads = flushQueuedLeads;
+    flushQueuedLeads();
+
     function openMailtoFallback(institution, volume, email, details) {
       var subject = "Demande de cotation - Zepoul Ayiti";
       var bodyLines = [
@@ -349,13 +375,14 @@
     emit("thank_you_view", { page: "merci", source: source });
   }
 
+  bindThemePreference();
+
   document.addEventListener("DOMContentLoaded", function () {
     bindMenu();
     bindTracking();
     bindImageFallbacks();
     bindQuoteForm();
     bindBrandVideo();
-    flushQueuedLeads();
     trackThankYou();
   });
 })();
