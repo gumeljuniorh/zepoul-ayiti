@@ -394,6 +394,61 @@
         .card h3 { margin: 0 0 6px; color: var(--primary); font-size: 1.05rem; }
         .card p { margin: 0; color: #444; text-align: left; }
         .note-inline { margin-top: 12px; color: var(--text-muted); font-size: 0.95rem; }
+        .executive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .executive-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 12px 26px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .executive-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 5px;
+            background: linear-gradient(180deg, var(--accent), rgba(26,127,55,0.78));
+        }
+        .executive-kicker {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .executive-card h3 {
+            margin: 0 0 10px;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+        .executive-card p {
+            margin: 0;
+            color: #444;
+        }
+        .closing-statement {
+            margin-top: 18px;
+            padding: 20px 22px;
+            border-radius: 20px;
+            background: linear-gradient(160deg, rgba(11,61,26,0.98), rgba(20,90,42,0.94));
+            color: #fff;
+            box-shadow: 0 18px 36px rgba(11,61,26,0.18);
+        }
+        .closing-statement p {
+            margin: 0;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
         
         p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: left; }
         .highlight { color: var(--primary); font-weight: 800; }
@@ -416,6 +471,7 @@
         @media (max-width: 980px) {
             .section-grid { grid-template-columns: 1fr; margin-bottom: 32px; }
             .page-header-shell { grid-template-columns: 1fr; }
+            .executive-grid { grid-template-columns: 1fr; }
         }
         @media (min-width: 1200px) {
             .wrap { max-width: 1400px; }
@@ -552,6 +608,26 @@
                         Voir la fiche du directeur exécutif
                     </a>
                 </div>
+            </div>
+            <div class="executive-grid" aria-label="Cadre exécutif">
+                <section class="executive-card">
+                    <span class="executive-kicker">Mandat exécutif</span>
+                    <h3>Structurer et piloter l’activité</h3>
+                    <p>La direction exécutive veille à l’orientation stratégique de l’entreprise, à la supervision des opérations et au développement de relations durables avec les partenaires.</p>
+                </section>
+                <section class="executive-card">
+                    <span class="executive-kicker">Domaines de responsabilité</span>
+                    <h3>Gouvernance opérationnelle</h3>
+                    <p>Production avicole, chaîne d’approvisionnement, coordination logistique et structuration commerciale relèvent d’une même exigence de continuité et de fiabilité.</p>
+                </section>
+                <section class="executive-card">
+                    <span class="executive-kicker">Vision portée</span>
+                    <h3>Renforcer une filière locale durable</h3>
+                    <p>Cette direction s’inscrit dans une ambition de professionnalisation du secteur, de production locale maîtrisée et de contribution concrète à l’autonomie alimentaire d’Haïti.</p>
+                </section>
+            </div>
+            <div class="closing-statement">
+                <p>La direction exécutive de GL Zepoul Peyi s’inscrit dans une ambition de structuration durable, de fiabilité opérationnelle et de contribution concrète à l’autonomie alimentaire d’Haïti.</p>
             </div>
         </div>
 
