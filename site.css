@@ -57,6 +57,8 @@
 .btn-block {
   width: 100%;
   padding: 14px 18px;
+  gap: 0;
+  text-align: center;
 }
 
 .site-footer {
