@@ -31,6 +31,34 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
 
 :where(.btn, .nav-cta, .cta) { border-radius: 12px; }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.lang-switch a {
+  text-decoration: none;
+  color: #1b1b1b;
+  opacity: 0.65;
+}
+
+.lang-switch a.is-active {
+  color: var(--primary, #1a7f37);
+  opacity: 1;
+}
+
+.lang-switch span { opacity: 0.4; }
+
+.mobile-menu .lang-switch {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
 .section-title {
   position: relative;
   padding-top: 14px;

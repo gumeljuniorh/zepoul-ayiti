@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demande envoyée | Zepoul Ayiti</title>
@@ -71,12 +72,6 @@
       line-height: 1.7;
     }
 
-    .request-ref {
-      margin-top: 12px;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
     .actions {
       margin-top: 22px;
       display: flex;
@@ -108,16 +103,16 @@
       background: #fff;
     }
   </style>
+  <link rel="stylesheet" href="polish.css">
 </head>
 <body data-page="merci">
   <main class="card">
     <img src="logo-optimized.png" alt="Logo Zepoul Ayiti" width="64" height="64" />
-    <h1>Demande bien reçue</h1>
+    <h1>Confirmation de réception de la demande de cotation</h1>
     <p>
-      Merci pour votre demande de cotation. Notre équipe commerciale vous répondra rapidement
-      à l’adresse e-mail communiquée.
+      Votre demande de cotation a bien été enregistrée. Notre équipe commerciale vous répondra
+      dans les meilleurs délais à l’adresse fournie.
     </p>
-    <p class="request-ref" id="request-ref-note" hidden></p>
     <div class="actions">
       <a class="btn btn-primary" href="index.html">Retour à l’accueil</a>
       <a class="btn btn-secondary" href="services.html">Voir nos services</a>

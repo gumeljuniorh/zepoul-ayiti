@@ -1,7 +1,7 @@
 # Zepoul Ayiti (GL Zepoul Peyi)
 
 Official website: https://zepoulayiti.com/
-Primary language: French (fr), Haitian Creole (ht), English (en), Spanish (es)
+Primary language: French (fr), Haitian Creole (ht), English (en)
 Business type: Egg production and B2B distribution in Haiti
 
 ## What we offer
@@ -18,11 +18,6 @@ Business type: Egg production and B2B distribution in Haiti
 - Vision: https://zepoulayiti.com/vision.html
 - Expertise: https://zepoulayiti.com/expertise.html
 - About: https://zepoulayiti.com/about.html
-
-## Localized pages
-- English: https://zepoulayiti.com/index-en.html
-- Spanish: https://zepoulayiti.com/index-es.html
-- Haitian Creole: https://zepoulayiti.com/index-ht.html
 
 ## Brand and entity references
 - Brand: Zepoul Ayiti

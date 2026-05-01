@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Production et distribution d'œufs en Haïti | Zepoul Ayiti</title>
@@ -9,24 +10,26 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" href="logo-optimized.png" />
 
-  <meta name="description" content="Production et distribution d'œufs en Haïti. Zepoul Ayiti propose un approvisionnement avicole structuré, fiable et orienté continuité." />
-  <meta name="keywords" content="production d'œufs Haïti, distribution d'œufs Haïti, approvisionnement institutionnel Haïti, œufs frais Haïti, logistique alimentaire Haïti, sécurité alimentaire Haïti, Zepoul Ayiti, GL Zepoul Peyi, zepoulayiti.com" />
+  <meta name="description" content="Pwodiksyon ak distribisyon ze an Ayiti. Production et distribution d'œufs en Haïti. Egg supplier in Haiti for restaurants, hotels, hospitals and institutions." />
+  <meta name="keywords" content="production d'œufs Haïti, distribution d'œufs Haïti, œufs frais Haïti, fournisseur d'œufs Haïti, vente d'œufs en gros Haïti, ferme avicole Haïti, Zepoul Ayiti, GL Zepoul Peyi, zepoulayiti.com, pwodiksyon ze Ayiti, founisè ze Ayiti" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="author" content="Zepoul Ayiti" />
   <link rel="canonical" href="https://zepoulayiti.com/" />
   <link rel="alternate" hreflang="fr" href="https://zepoulayiti.com/" />
+  <link rel="alternate" hreflang="ht" href="https://zepoulayiti.com/" />
+  <link rel="alternate" hreflang="en" href="https://zepoulayiti.com/" />
   <link rel="alternate" hreflang="x-default" href="https://zepoulayiti.com/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Zepoul Ayiti" />
 <meta property="og:title" content="Production et distribution d'œufs en Haïti | Zepoul Ayiti" />
-<meta property="og:description" content="Production avicole locale et approvisionnement structuré en Haïti, avec qualité contrôlée et continuité des livraisons." />
+<meta property="og:description" content="Pwodiksyon ak vant ze an Ayiti. Fournisseur d'œufs frais en Haïti. Egg supplier for B2B institutions." />
 <meta property="og:url" content="https://zepoulayiti.com/" />
 <meta property="og:image" content="https://zepoulayiti.com/hero-optimized.jpg" />
 <meta property="og:image:alt" content="Production avicole Zepoul Ayiti en Haïti" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@Zepoul_Ayiti" />
 <meta name="twitter:title" content="Production et distribution d'œufs en Haïti | Zepoul Ayiti" />
-<meta name="twitter:description" content="Approvisionnement avicole structuré en Haïti, avec qualité contrôlée et continuité des livraisons." />
+<meta name="twitter:description" content="Founisè ze Ayiti pou B2B. Fournisseur d'œufs en Haïti. Egg supplier Haiti for institutions." />
 <meta name="twitter:url" content="https://zepoulayiti.com/" />
 <meta name="twitter:image" content="https://zepoulayiti.com/hero-optimized.jpg" />
 
@@ -51,9 +54,9 @@
       "telephone": "+50942605756",
       "contactType": "customer service",
       "areaServed": "HT",
-      "availableLanguage": ["fr"]
+      "availableLanguage": ["fr", "ht", "en"]
     },
-    "knowsLanguage": ["fr"],
+    "knowsLanguage": ["fr", "ht", "en"],
     "areaServed": [
       "Haïti",
       "Port-au-Prince",
@@ -62,12 +65,17 @@
     ],
     "knowsAbout": [
       "Production d'œufs en Haïti",
+      "Pwodiksyon ze nan Ayiti",
       "Distribution d'œufs Haïti",
-      "Approvisionnement institutionnel Haïti",
-      "Qualité avicole contrôlée",
-      "Logistique alimentaire Haïti",
+      "Distribisyon ze Ayiti",
+      "Vente d'œufs en gros Haïti",
+      "Vann ze an gwo Ayiti",
+      "Fournisseur d'œufs restaurants Haïti",
+      "Founisè ze pou restoran Ayiti",
       "Sécurité alimentaire Haïti",
-      "Agriculture locale Haïti"
+      "Sekirite alimantè Ayiti",
+      "Agriculture locale Haïti",
+      "Agrikilti lokal Ayiti"
     ],
     "sameAs": [
       "https://zepoulayiti.com/",
@@ -88,7 +96,7 @@
     "publisher": {
       "@id": "https://zepoulayiti.com/#organization"
     },
-    "inLanguage": ["fr"]
+    "inLanguage": ["fr", "ht", "en"]
   }
   </script>
   <script type="application/ld+json">
@@ -216,7 +224,7 @@
       border: 1px solid var(--border);
     }
 
-    .brand-title {
+    .brand h1 {
       margin: 0;
       font-size: 1.18rem;
       line-height: 1.1;
@@ -310,7 +318,7 @@
 
     .hero {
       background: radial-gradient(1200px 460px at 80% -10%, rgba(251, 197, 49, 0.16), transparent), linear-gradient(180deg, #ffffff, #f7fbf8);
-      padding: 42px 0 20px;
+      padding: 52px 0 24px;
     }
 
     .hero-grid {
@@ -320,7 +328,7 @@
       align-items: center;
     }
 
-    .hero h1 {
+    .hero h2 {
       margin: 0 0 16px;
       font-family: "Playfair Display", serif;
       font-size: clamp(2rem, 4.8vw, 3.6rem);
@@ -508,6 +516,41 @@
       margin-top: 18px;
     }
 
+    .availability-panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .availability-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 14px;
+    }
+
+    .availability-item {
+      background: #f9fcfa;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .availability-label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .availability-value {
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-size: 1.02rem;
+    }
+
     .video-fallback {
       margin: 10px 0 2px;
       text-align: right;
@@ -665,14 +708,14 @@
       }
 
       .hero {
-        padding: 28px 0 8px;
+        padding: 34px 0 12px;
       }
 
       .hero-grid {
-        gap: 10px;
+        gap: 14px;
       }
 
-      .hero h1 {
+      .hero h2 {
         margin-bottom: 12px;
         font-size: clamp(1.8rem, 8vw, 2.4rem);
       }
@@ -724,10 +767,10 @@
 
       .hero-media img {
         animation: none;
-        width: min(78vw, 280px);
-        max-width: 280px;
+        width: min(86vw, 320px);
+        max-width: 320px;
         border-radius: 18px;
-        height: clamp(170px, 30vh, 230px);
+        height: clamp(220px, 36vh, 300px);
         aspect-ratio: auto;
         object-fit: cover;
         object-position: center top;
@@ -752,14 +795,14 @@
       .social-icons a { width: 26px; height: 26px; }
       .social-icons img { width: 14px; height: 14px; }
       .hero-media img {
-        width: min(76vw, 250px);
-        max-width: 250px;
-        height: clamp(150px, 27vh, 195px);
+        width: min(88vw, 300px);
+        max-width: 300px;
+        height: clamp(210px, 34vh, 270px);
         object-position: center top;
       }
     }
   </style>
-  <link rel="stylesheet" href="polish.css" />
+  <link rel="stylesheet" href="polish.css">
 </head>
 <body data-page="index">
   <a class="float-btn float-mail" href="mailto:info@zepoulayiti.com" aria-label="Envoyer un email">
@@ -771,7 +814,7 @@
       <a class="brand" href="#top" aria-label="Retour en haut">
         <img src="logo-optimized.png" width="54" height="54" alt="Logo Zepoul Ayiti" data-fallback="logo.png" />
         <div>
-          <div class="brand-title">Zepoul Ayiti</div>
+          <h1>Zepoul Ayiti</h1>
           <span>GL Zepoul Peyi</span>
         </div>
       </a>
@@ -809,8 +852,8 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1>L’excellence avicole au service des professionnels</h1>
+        <div>
+          <h2>L’excellence avicole au service des professionnels</h2>
           <p>Zepoul Ayiti sécurise l’approvisionnement des institutions haïtiennes avec des œufs frais, contrôlés et produits localement.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#commande">Demander une cotation</a>
@@ -829,8 +872,8 @@
     <section class="block" id="expertise">
       <div class="container">
         <div class="section-head">
-          <h3>Pourquoi nous choisir&nbsp;?</h3>
-          <p>Une solution opérationnelle dédiée à la stabilité des approvisionnements.</p>
+          <h3>Pourquoi nous choisir</h3>
+          <p>Un partenaire fiable pour la restauration, l’hôtellerie, la santé et les institutions.</p>
         </div>
 
         <div class="expertise-grid">
@@ -842,7 +885,7 @@
 
           <article class="card">
             <div class="icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
-            <h4>Logistique maîtrisée</h4>
+            <h4>Logistique rapide</h4>
             <p>Livraison planifiée selon vos volumes et vos zones desservies.</p>
           </article>
 
@@ -855,11 +898,29 @@
       </div>
     </section>
 
+    <section class="block showcase-video" id="presentation">
+      <div class="container">
+        <div class="section-head">
+          <h3>Présentation de GL Zepoul Peyi</h3>
+          <p>Un aperçu visuel de nos activités et de notre engagement opérationnel en Haïti.</p>
+        </div>
+
+        <div class="video-shell">
+          <video id="brand-video" class="brand-video" controls muted autoplay loop playsinline preload="none" poster="hero-mobile-360w.jpg">
+            <source src="zepoul-intro-medium.mp4" type="video/mp4" media="(max-width: 768px)" />
+            <source src="zepoul-intro.mp4" type="video/mp4" />
+            Votre navigateur ne prend pas en charge la lecture vidéo.
+          </video>
+          <p class="video-fallback"><a href="zepoul-intro.mp4" target="_blank" rel="noopener">Ouvrir la vidéo directement</a></p>
+        </div>
+      </div>
+    </section>
+
     <section class="block vision-teaser">
       <div class="container">
         <div class="section-head">
           <h3>Notre vision en bref</h3>
-          <p>Structurer une filière avicole locale et fiable au service de l’autonomie alimentaire d’Haïti.</p>
+          <p>Construire une filière avicole locale, durable et fiable pour renforcer l’autonomie alimentaire d’Haïti.</p>
         </div>
         <div class="teaser-actions">
           <a class="btn btn-secondary" href="vision.html">Lire notre vision</a>
@@ -867,11 +928,36 @@
       </div>
     </section>
 
+    <section class="block">
+      <div class="container">
+        <div class="availability-panel" aria-label="Disponibilite actuelle">
+          <div class="section-head">
+            <h3>Disponibilite actuelle</h3>
+            <p>Indicateurs operationnels pour vous aider a planifier vos approvisionnements.</p>
+          </div>
+          <div class="availability-grid">
+            <article class="availability-item">
+              <span class="availability-label">Volume disponible (indicatif)</span>
+              <span class="availability-value">120 cartons</span>
+            </article>
+            <article class="availability-item">
+              <span class="availability-label">Mise a jour</span>
+              <span class="availability-value">18 mars 2026</span>
+            </article>
+            <article class="availability-item">
+              <span class="availability-label">Statut</span>
+              <span class="availability-value">Disponible</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="block order" id="commande">
       <div class="container">
         <div class="section-head">
-          <h3>Demande de cotation</h3>
-          <p>Votre demande est étudiée afin de proposer un approvisionnement adapté à vos besoins opérationnels.</p>
+          <h3>Prêt à commander</h3>
+          <p>Envoyez une demande de cotation en quelques secondes. Notre équipe vous répond rapidement par e-mail.</p>
         </div>
 
         <form class="order-box" id="quote-form" action="https://formsubmit.co/info@zepoulayiti.com" method="POST" novalidate>
@@ -894,36 +980,17 @@
             <label for="details">Précisions (optionnel)</label>
             <textarea id="details" name="details" placeholder="Ex&nbsp;: jours de livraison, zone, exigences spécifiques"></textarea>
           </div>
-          <input type="text" name="_honey" class="hidden-honey" tabindex="-1" autocomplete="off" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <input type="hidden" name="_subject" value="Nouvelle demande de cotation - Zepoul Ayiti" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://zepoulayiti.com/merci.html?source=quote" />
-          <input type="hidden" name="reference_demande" id="reference_demande" />
 
-          <button type="submit" class="btn btn-primary btn-block">
-            Envoyer une demande de devis
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:14px 18px;">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer une demande de devis
           </button>
           <p class="form-note">En soumettant, votre demande est transmise directement à notre équipe commerciale.</p>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
-      </div>
-    </section>
-
-    <section class="block showcase-video" id="presentation">
-      <div class="container">
-        <div class="section-head">
-          <h3>Notre démarche en images</h3>
-          <p>Un aperçu de notre engagement pour une production avicole locale, structurée et responsable.</p>
-        </div>
-
-        <div class="video-shell">
-          <video id="brand-video" class="brand-video" controls muted autoplay loop playsinline preload="none" poster="hero-mobile-360w.jpg">
-            <source src="zepoul-intro-medium.mp4" type="video/mp4" media="(max-width: 768px)" />
-            <source src="zepoul-intro.mp4" type="video/mp4" />
-            Votre navigateur ne prend pas en charge la lecture vidéo.
-          </video>
-          <p class="video-fallback"><a href="zepoul-intro.mp4" target="_blank" rel="noopener">Ouvrir la vidéo directement</a></p>
-        </div>
       </div>
     </section>
 
