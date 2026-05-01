@@ -508,49 +508,6 @@
       margin-top: 18px;
     }
 
-    .availability-panel {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
-    }
-
-    .availability-grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      margin-top: 14px;
-    }
-
-    .availability-item {
-      background: #f9fcfa;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 12px;
-      padding: 12px;
-    }
-
-    .availability-label {
-      display: block;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .availability-value {
-      font-weight: 800;
-      color: var(--primary-dark);
-      font-size: 1.02rem;
-    }
-
-    .availability-value.is-warning {
-      color: #9c6f19;
-    }
-
-    .availability-value.is-error {
-      color: #b42318;
-    }
-
     .video-fallback {
       margin: 10px 0 2px;
       text-align: right;
@@ -894,37 +851,6 @@
             <h4>Partenariat durable</h4>
             <p>Approvisionnements réguliers pour limiter les ruptures et stabiliser vos opérations.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="disponibilite">
-      <div class="container">
-        <div class="availability-panel"
-             aria-label="Disponibilité actuelle"
-             data-stock-endpoint="https://docs.google.com/spreadsheets/d/10tGOWMj_PGjyNS4oVlTVP6nQ6uWkJ5-JxtDgSzbGEYE/gviz/tq?gid=0&tqx=out:json"
-             data-stock-fallback-endpoint="https://script.google.com/macros/s/AKfycbydmYHgSLQj2LqKALpi2xYdNmckkOOuEANyI0ONIsGJ7H2cmM_6Wmtzeobmt7tAJ7Jk/exec?action=stock"
-             data-stock-sheet-id="10tGOWMj_PGjyNS4oVlTVP6nQ6uWkJ5-JxtDgSzbGEYE"
-             data-stock-sheet-gid="0"
-             data-stock-refresh-ms="3600000">
-          <div class="section-head">
-            <h3>Disponibilité actuelle</h3>
-            <p>Indicateurs opérationnels mis à jour automatiquement pour planifier vos approvisionnements.</p>
-          </div>
-          <div class="availability-grid">
-            <article class="availability-item">
-              <span class="availability-label">Volume disponible (indicatif)</span>
-              <span class="availability-value" data-stock-cartons>-- cartons</span>
-            </article>
-            <article class="availability-item">
-              <span class="availability-label">Dernière mise à jour</span>
-              <span class="availability-value" data-stock-updated>En attente de synchronisation</span>
-            </article>
-            <article class="availability-item">
-              <span class="availability-label">Statut</span>
-              <span class="availability-value" data-stock-status>Synchronisation en cours</span>
-            </article>
-          </div>
         </div>
       </div>
     </section>
