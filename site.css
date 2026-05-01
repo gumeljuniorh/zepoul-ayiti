@@ -50,6 +50,15 @@
   margin: 0 auto;
 }
 
+.hidden-honey {
+  display: none !important;
+}
+
+.btn-block {
+  width: 100%;
+  padding: 14px 18px;
+}
+
 .site-footer {
   background: #0d1110;
   color: #a9b4ad;

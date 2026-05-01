@@ -2,10 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>À propos de GL Zepoul Peyi | Zepoul Ayiti</title>
+    <title>À propos | GL Zepoul Peyi - Zepoul Ayiti</title>
 
     <!-- SEO Meta -->
     <meta name="description" content="Découvrez GL Zepoul Peyi, l’engagement de Girard Gumel J. Henry pour une production d’œufs locale, durable et professionnelle en Haïti.">
@@ -16,15 +15,15 @@
     <link rel="alternate" hreflang="x-default" href="https://zepoulayiti.com/about.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zepoul Ayiti">
-<meta property="og:title" content="À propos de GL Zepoul Peyi | Zepoul Ayiti">
-<meta property="og:description" content="L’engagement et la vision de GL Zepoul Peyi pour renforcer durablement l’agriculture locale en Haïti.">
+<meta property="og:title" content="À propos | GL Zepoul Peyi - Zepoul Ayiti">
+<meta property="og:description" content="L’histoire et la vision de GL Zepoul Peyi pour renforcer l’agriculture locale en Haïti.">
 <meta property="og:url" content="https://zepoulayiti.com/about.html">
 <meta property="og:image" content="https://zepoulayiti.com/girard-gumel-j-henry.jpg">
 <meta property="og:image:alt" content="Portrait de Girard Gumel J. Henry">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Zepoul_Ayiti">
-<meta name="twitter:title" content="À propos de GL Zepoul Peyi | Zepoul Ayiti">
-<meta name="twitter:description" content="L’engagement et la vision de GL Zepoul Peyi au service de l’agriculture haïtienne.">
+<meta name="twitter:title" content="À propos | GL Zepoul Peyi - Zepoul Ayiti">
+<meta name="twitter:description" content="L’histoire et la vision de GL Zepoul Peyi en Haïti.">
 <meta name="twitter:url" content="https://zepoulayiti.com/about.html">
 <meta name="twitter:image" content="https://zepoulayiti.com/girard-gumel-j-henry.jpg">
 
@@ -38,6 +37,7 @@
       "url": "https://zepoulayiti.com/",
       "logo": "https://zepoulayiti.com/logo-optimized.png",
       "email": "info@zepoulayiti.com",
+      "telephone": "+50942605756",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Port-de-Paix",
@@ -45,12 +45,12 @@
       },
       "contactPoint": {
         "@type": "ContactPoint",
-          "contactType": "customer service",
-      "email": "info@zepoulayiti.com",
+        "telephone": "+50942605756",
+        "contactType": "customer service",
         "areaServed": "HT",
-        "availableLanguage": ["fr"]
+        "availableLanguage": ["fr", "ht", "en"]
       },
-      "knowsLanguage": ["fr"],
+      "knowsLanguage": ["fr", "ht", "en"],
       "areaServed": ["Haïti", "Port-au-Prince", "Cap-Haïtien", "Jacmel"],
       "sameAs": [
         "https://zepoulayiti.com/",
@@ -142,7 +142,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); line-height: 1.7; background: var(--white); }
 
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 24px 0; }
+        .wrap { max-width: 1050px; margin: 0 auto; padding: 28px 24px 0; }
         .nav { display: flex; gap: 18px; align-items: center; justify-content: space-between; margin-bottom: 26px; }
         .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary-dark); text-decoration: none; }
         .brand img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(0,0,0,0.08); }
@@ -156,260 +156,36 @@
         .social-icons .tt { font-size: 10px; font-weight: 800; color: #111; font-family: Arial, sans-serif; }
 
         /* --- CONTENT --- */
-        .page-header {
-            background: linear-gradient(180deg, #f6faf7 0%, #ffffff 100%);
-            padding: 42px 8% 36px;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            position: relative;
-            overflow: hidden;
-        }
-        .page-header::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 10% 10%, rgba(26,127,55,0.08), transparent 48%),
-                radial-gradient(circle at 90% 0%, rgba(251,197,49,0.16), transparent 50%);
-            pointer-events: none;
-        }
-        .page-header > * { position: relative; z-index: 1; }
-        .page-header-shell {
-            max-width: 1180px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(280px, 360px);
-            gap: 28px;
-            align-items: center;
-        }
-        .page-header-copy { text-align: left; }
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(26,127,55,0.08);
-            color: var(--primary-dark);
-            font-size: 0.82rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-        .eyebrow::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: var(--accent);
-            box-shadow: 0 0 0 6px rgba(251,197,49,0.18);
-        }
-        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.35rem; color: var(--primary-dark); margin-bottom: 8px; max-width: 12ch; }
-        .page-subtitle { color: var(--text-muted); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.74rem; margin-bottom: 8px; }
-        .page-lead { max-width: 60ch; margin: 0 0 10px; font-size: 1.04rem; color: #2c2c2c; }
-        .page-actions { display: flex; justify-content: flex-start; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent; transition: var(--transition); }
-        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 12px 24px rgba(26,127,55,0.22); }
-        .btn-primary:hover { transform: translateY(-2px); filter: brightness(0.98); }
-        .btn-secondary { background: #fff; color: var(--primary-dark); border-color: rgba(26,127,55,0.35); }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
-        .page-panel {
-            padding: 24px;
-            border-radius: 26px;
-            background: linear-gradient(160deg, rgba(11,61,26,0.98), rgba(20,90,42,0.94));
-            color: #fff;
-            box-shadow: 0 18px 40px rgba(11,61,26,0.18);
-        }
-        .page-panel-label {
-            display: inline-flex;
-            align-items: center;
-            padding: 7px 12px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.12);
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-        .page-panel strong {
-            display: block;
-            font-size: 1.45rem;
-            line-height: 1.15;
-            margin-bottom: 10px;
-        }
-        .page-panel-note {
-            margin: 0 0 16px;
-            color: rgba(255,255,255,0.86);
-            font-size: 0.98rem;
-        }
-        .page-panel-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .page-panel-list span {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.14);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
+        .page-header { background: var(--bg-light); padding: 80px 8%; text-align: center; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary-dark); margin-bottom: 10px; }
 
-        .container { max-width: 1200px; margin: auto; padding: 46px 6%; }
-        .about-top {
-            padding-top: 24px;
-            padding-bottom: 8px;
-        }
-        .about-overview {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-        }
-        .overview-card {
-            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 22px;
-            padding: 22px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
-        }
-        .overview-label {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(26,127,55,0.08);
-            color: var(--primary);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-        .overview-value {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--primary-dark);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            line-height: 1.15;
-        }
-        .overview-text {
-            margin: 0;
-            color: #4b5c53;
-            font-size: 0.97rem;
-        }
+        .container { max-width: 1000px; margin: auto; padding: 60px 8%; }
 
         .box { 
             background: #ffffff; 
             padding: 40px; 
             border-radius: 24px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+            margin-bottom: 40px;
             border: 1px solid rgba(0,0,0,0.05);
-        }
-        .box-feature {
-            border-color: rgba(26,127,55,0.18);
-            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
         }
         .bio-layout {
             display: grid;
-            grid-template-columns: minmax(250px, 340px) 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 26px;
             align-items: start;
-        }
-        .bio-media {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .bio-text {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
         }
         .bio-photo {
             width: 100%;
             height: auto;
-            aspect-ratio: 4 / 5;
-            max-height: 520px;
             border-radius: 18px;
-            border: 8px solid rgba(255,255,255,0.96);
-            box-shadow: 0 16px 34px rgba(0,0,0,0.1);
-            object-fit: cover;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+            object-fit: contain;
             object-position: center;
+            transform: none;
+            aspect-ratio: auto;
             background: #fff;
-        }
-        .bio-caption {
-            padding: 18px 18px 16px;
-            border-radius: 18px;
-            background: linear-gradient(160deg, rgba(11,61,26,0.98), rgba(20,90,42,0.94));
-            color: #fff;
-            box-shadow: 0 16px 34px rgba(11,61,26,0.18);
-        }
-        .bio-caption strong {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.05rem;
-            line-height: 1.25;
-        }
-        .bio-caption p {
-            margin: 0;
-            color: rgba(255,255,255,0.86);
-            font-size: 0.94rem;
-            line-height: 1.6;
-        }
-        .section-kicker {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(26,127,55,0.08);
-            color: var(--primary);
-            font-size: 0.76rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-        .profile-facts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 12px;
-            margin: 18px 0 8px;
-            padding: 12px;
-            border-radius: 18px;
-            background: #f7faf8;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .profile-facts .fact {
-            background: #fff;
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 14px;
-            padding: 12px 14px;
-        }
-        .profile-facts .fact-label {
-            display: block;
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-        .profile-facts .fact-value { font-weight: 700; color: #1f1f1f; }
-        .fact-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(26,127,55,0.08);
-            color: var(--primary-dark);
-            font-weight: 700;
-            font-size: 0.88rem;
-            border: 1px solid rgba(26,127,55,0.18);
         }
         .bio-link {
             display: inline-block;
@@ -423,215 +199,30 @@
         .bio-link:hover { color: var(--primary-dark); border-bottom-color: var(--primary-dark); }
         .box h2 { font-family: 'Playfair Display', serif; color: var(--primary-dark); margin-bottom: 20px; font-size: 1.8rem; border-left: 5px solid var(--accent); padding-left: 15px; }
         .section-note { margin: -6px 0 18px; color: var(--text-muted); }
-        .section-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
-            align-items: stretch;
-        }
-        .section-grid .box { margin-bottom: 0; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 10px; }
-        .card {
-            background: #fff;
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        .card-feature::before {
-            content: "";
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: 5px;
-            background: linear-gradient(180deg, var(--accent), rgba(26,127,55,0.75));
-        }
-        .card-kicker {
-            display: inline-block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
+        .card { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; padding: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
         .card h3 { margin: 0 0 6px; color: var(--primary); font-size: 1.05rem; }
         .card p { margin: 0; color: #444; text-align: left; }
         .note-inline { margin-top: 12px; color: var(--text-muted); font-size: 0.95rem; }
-        .executive-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-        }
-        .executive-card {
-            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 12px 26px rgba(0,0,0,0.04);
-            position: relative;
-            overflow: hidden;
-        }
-        .executive-card::before {
-            content: "";
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: 5px;
-            background: linear-gradient(180deg, var(--accent), rgba(26,127,55,0.78));
-        }
-        .executive-kicker {
-            display: inline-block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .executive-card h3 {
-            margin: 0 0 10px;
-            color: var(--primary-dark);
-            font-size: 1.2rem;
-            line-height: 1.2;
-        }
-        .executive-card p {
-            margin: 0;
-            color: #444;
-        }
-        .closing-statement {
-            margin-top: 18px;
-            padding: 20px 22px;
-            border-radius: 20px;
-            background: linear-gradient(160deg, rgba(11,61,26,0.98), rgba(20,90,42,0.94));
-            color: #fff;
-            box-shadow: 0 18px 36px rgba(11,61,26,0.18);
-        }
-        .closing-statement p {
-            margin: 0;
-            color: rgba(255,255,255,0.9);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-        .commitment-list {
-            list-style: none;
-            margin: 18px 0 20px;
-            padding: 0;
-            display: grid;
-            gap: 12px;
-        }
-        .commitment-list li {
-            position: relative;
-            padding: 16px 18px 16px 54px;
-            margin: 0;
-            border-radius: 18px;
-            background: #f7faf8;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 10px 22px rgba(0,0,0,0.03);
-            font-weight: 500;
-        }
-        .commitment-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 18px;
-            top: 17px;
-            width: 24px;
-            height: 24px;
-            border-radius: 999px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(26,127,55,0.12);
-            color: var(--primary);
-            font-size: 0.92rem;
-            font-weight: 900;
-        }
-        .commitment-title {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--primary-dark);
-            font-weight: 800;
-        }
-        .commitment-text {
-            display: block;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-        .vision-pillars {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            margin: 18px 0 8px;
-        }
-        .vision-pillar {
-            padding: 18px;
-            border-radius: 18px;
-            background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
-            border: 1px solid rgba(0,0,0,0.06);
-            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
-        }
-        .vision-pillar h3 {
-            margin: 0 0 8px;
-            color: var(--primary-dark);
-            font-size: 1.08rem;
-        }
-        .vision-pillar p {
-            margin: 0;
-            color: #4b5c53;
-            font-size: 0.98rem;
-        }
         
-        p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: left; }
+        p { margin-bottom: 20px; font-size: 1.05rem; color: #444; text-align: justify; }
         .highlight { color: var(--primary); font-weight: 800; }
 
         ul { list-style: none; margin-top: 15px; margin-bottom: 20px; }
         ul li { position: relative; padding-left: 35px; margin-bottom: 12px; font-weight: 600; color: var(--text-main); }
-        ul li::before { content: "✓"; position: absolute; left: 0; color: var(--primary); font-size: 1.1rem; font-weight: 800; }
+        ul li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary); font-size: 1.2rem; }
 
-        .vision-footer {
-            margin-top: 32px;
-            padding: 28px;
-            background: linear-gradient(135deg, #0b3d1a 0%, #145a2a 100%);
-            color: white;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 14px 30px rgba(11,61,26,0.22);
-        }
-        .vision-quote { color: #fff; margin-bottom: 0; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+        .vision-footer { margin-top: 40px; padding: 30px; background: var(--primary-dark); color: white; border-radius: 20px; text-align: center; }
 
-        @media (max-width: 980px) {
-            .section-grid { grid-template-columns: 1fr; margin-bottom: 32px; }
-            .page-header-shell { grid-template-columns: 1fr; }
-            .about-overview { grid-template-columns: 1fr; }
-            .executive-grid { grid-template-columns: 1fr; }
-            .vision-pillars { grid-template-columns: 1fr; }
-        }
-        @media (min-width: 1200px) {
-            .wrap { max-width: 1400px; }
-            .container { max-width: 1400px; padding-left: 4%; padding-right: 4%; }
-        }
         @media (max-width: 768px) {
-            .wrap { padding: 22px 18px 0; }
-            .page-header { padding: 42px 7% 34px; }
-            .page-header-shell { gap: 20px; }
-            .page-header h1 { font-size: 1.95rem; }
-            .page-lead { font-size: 1rem; }
+            .page-header h1 { font-size: 2.2rem; }
             .nav { flex-direction: column; align-items: flex-start; }
             .links a { margin-left: 0; margin-right: 12px; }
             .social-icons { margin-left: 0; }
             .bio-layout { grid-template-columns: 1fr; }
-            .page-actions { justify-content: flex-start; }
-            .page-panel { padding: 22px; }
-            .page-actions .btn { width: 100%; }
-            .page-panel-list { gap: 8px; }
-            .container { padding: 38px 5% 40px; }
-            .box { padding: 28px; }
-            .overview-card { padding: 20px; }
         }
     </style>
-    <link rel="stylesheet" href="polish.css">
+  <link rel="stylesheet" href="polish.css" />
 </head>
 
 <body data-page="about">
@@ -645,7 +236,7 @@
                 <a href="expertise.html">Expertise</a>
                 <a href="services.html">Services</a>
                 <a href="about.html">À propos</a>
-                <a href="index.html#commande" class="nav-cta">Demander une cotation</a>
+                <a href="index.html#commande" class="nav-cta">Cotation directe</a>
                 <span class="social-icons" aria-label="Réseaux sociaux">
                     <a href="https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" loading="lazy" decoding="async" /></a>
                     <a href="https://www.instagram.com/zepoul_ayiti/" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt="Instagram" loading="lazy" decoding="async" /></a>
@@ -663,105 +254,28 @@
             <a href="expertise.html">Expertise</a>
             <a href="services.html">Services</a>
             <a href="about.html">À propos</a>
-            <a href="index.html#commande">Demander une cotation</a>
+            <a href="index.html#commande">Cotation directe</a>
         </div>
     </div>
 
     <div class="page-header">
-        <div class="page-header-shell">
-            <div class="page-header-copy">
-                <span class="eyebrow">Leadership et engagement</span>
-                <p class="page-subtitle">Notre engagement pour l’autonomie d’Haïti</p>
-                <h1>À propos de GL Zepoul Peyi</h1>
-                <p class="page-lead">GL Zepoul Peyi structure une production avicole locale, responsable et fiable au service des institutions et des familles haïtiennes.</p>
-                <div class="page-actions">
-                    <a class="btn btn-primary" href="index.html#commande">Demander une cotation</a>
-                    <a class="btn btn-secondary" href="services.html">Voir nos services</a>
-                </div>
-            </div>
-            <aside class="page-panel" aria-label="Repères institutionnels">
-                <span class="page-panel-label">Repères institutionnels</span>
-                <strong>Direction générale</strong>
-                <p class="page-panel-note">Une gouvernance engagée pour structurer une production locale durable et un approvisionnement institutionnel fiable.</p>
-                <div class="page-panel-list">
-                    <span>Vision stratégique</span>
-                    <span>Production avicole</span>
-                    <span>Approvisionnement institutionnel</span>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <div class="container about-top">
-        <div class="about-overview" aria-label="Synthèse institutionnelle">
-            <article class="overview-card">
-                <span class="overview-label">Gouvernance</span>
-                <strong class="overview-value">Direction exécutive structurée</strong>
-                <p class="overview-text">Une gouvernance orientée décision, supervision des opérations et développement durable de l’activité.</p>
-            </article>
-            <article class="overview-card">
-                <span class="overview-label">Mission</span>
-                <strong class="overview-value">Production locale responsable</strong>
-                <p class="overview-text">Une production avicole organisée pour répondre avec régularité, conformité et ancrage territorial.</p>
-            </article>
-            <article class="overview-card">
-                <span class="overview-label">Cap</span>
-                <strong class="overview-value">Autonomie alimentaire durable</strong>
-                <p class="overview-text">Un projet d’entreprise aligné sur la continuité des approvisionnements et la structuration d’une filière locale.</p>
-            </article>
-        </div>
+        <h1>À propos de GL Zepoul Peyi</h1>
+        <p style="color: var(--text-muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem;">Notre engagement pour l’autonomie d’Haïti</p>
     </div>
 
     <div class="container">
 
-        <div class="box box-feature">
-            <span class="section-kicker">Profil dirigeant</span>
+        <div class="box">
             <h2>Direction générale</h2>
             <div class="bio-layout">
-                <div class="bio-media">
-                    <img class="bio-photo" src="girard-gumel-j-henry.jpg" width="726" height="991" alt="Portrait de Girard Gumel J. Henry" loading="lazy" decoding="async" fetchpriority="low" />
-                    <div class="bio-caption">
-                        <strong>Une direction alignée sur la continuité et la structuration</strong>
-                        <p>La direction générale porte une vision d’entreprise fondée sur la qualité produit, la fiabilité des approvisionnements et l’ancrage local.</p>
-                    </div>
-                </div>
-                <div class="bio-text">
+                <img class="bio-photo" src="girard-gumel-j-henry.jpg" width="726" height="991" alt="Portrait de Girard Gumel J. Henry" loading="lazy" decoding="async" fetchpriority="low" />
+                <div>
                     <p>
-                        <span class="highlight">GL Zepoul Peyi</span> est dirigée par <span class="highlight">Girard Gumel J. Henry</span>, directeur exécutif. L’entreprise poursuit une ambition claire&nbsp;: renforcer l’autonomie alimentaire d’Haïti grâce à une production avicole locale, structurée et durable.
+                        <span class="highlight">GL Zepoul Peyi</span> est dirigée par <span class="highlight">Girard Gumel J. Henry</span>, Directeur exécutif. L’entreprise vise à renforcer l’autonomie alimentaire d’Haïti à travers une production avicole locale, structurée et durable.
                     </p>
                     <p>
-                        Fort d’une expérience en gestion, en logistique et en services professionnels, il a choisi l’aviculture comme levier stratégique pour sécuriser l’approvisionnement, créer de l’emploi et garantir des produits conformes aux exigences des institutions et des familles.
+                        Fort d’une expérience en gestion, logistique et services professionnels, il a fait de l’aviculture un levier stratégique pour fiabiliser l’approvisionnement, créer de l’emploi et garantir des produits conformes aux exigences des institutions et des familles.
                     </p>
-                    <div class="profile-facts">
-                        <div class="fact">
-                            <span class="fact-label">Fonction</span>
-                            <span class="fact-value">Direction exécutive</span>
-                        </div>
-                        <div class="fact">
-                            <span class="fact-label">Mandat</span>
-                            <div class="fact-chips">
-                                <span class="chip">Orientation stratégique</span>
-                                <span class="chip">Supervision des opérations</span>
-                                <span class="chip">Développement des partenariats</span>
-                            </div>
-                        </div>
-                        <div class="fact">
-                            <span class="fact-label">Expertise</span>
-                            <div class="fact-chips">
-                                <span class="chip">Logistique</span>
-                                <span class="chip">Chaîne d’approvisionnement</span>
-                                <span class="chip">Gestion organisationnelle</span>
-                                <span class="chip">Pilotage opérationnel</span>
-                            </div>
-                        </div>
-                        <div class="fact">
-                            <span class="fact-label">Axes d’intervention</span>
-                            <div class="fact-chips">
-                                <span class="chip">Production avicole</span>
-                                <span class="chip">Approvisionnement institutionnel</span>
-                            </div>
-                        </div>
-                    </div>
                     <a class="bio-link" href="https://www.linkedin.com/in/girardgumelhenry/" target="_blank" rel="noopener">
                         Profil LinkedIn de Girard Gumel J. Henry
                     </a>
@@ -771,109 +285,37 @@
                     </a>
                 </div>
             </div>
-            <div class="executive-grid" aria-label="Cadre exécutif">
-                <section class="executive-card">
-                    <span class="executive-kicker">Mandat exécutif</span>
-                    <h3>Structurer et piloter l’activité</h3>
-                    <p>La direction exécutive veille à l’orientation stratégique de l’entreprise, à la supervision des opérations et au développement de relations durables avec les partenaires.</p>
-                </section>
-                <section class="executive-card">
-                    <span class="executive-kicker">Domaines de responsabilité</span>
-                    <h3>Gouvernance opérationnelle</h3>
-                    <p>Production avicole, chaîne d’approvisionnement, coordination logistique et structuration commerciale relèvent d’une même exigence de continuité et de fiabilité.</p>
-                </section>
-                <section class="executive-card">
-                    <span class="executive-kicker">Vision portée</span>
-                    <h3>Renforcer une filière locale durable</h3>
-                    <p>Cette direction s’inscrit dans une ambition de professionnalisation du secteur, de production locale maîtrisée et de contribution concrète à l’autonomie alimentaire d’Haïti.</p>
-                </section>
-            </div>
-            <div class="closing-statement">
-                <p>La direction exécutive de GL Zepoul Peyi s’inscrit dans une ambition de structuration durable, de fiabilité opérationnelle et de contribution concrète à l’autonomie alimentaire d’Haïti.</p>
-            </div>
-        </div>
-
-        <div class="section-grid">
-            <div class="box">
-                <span class="section-kicker">Mission</span>
-                <h2>Notre mission</h2>
-                <p>
-                    Chez <strong>GL Zepoul Peyi</strong>, notre mission est d’assurer un approvisionnement régulier en œufs frais, sûrs et accessibles, en appliquant des standards sanitaires et environnementaux rigoureux.
-                </p>
-                <p>Nous nous engageons à :</p>
-                <ul class="commitment-list">
-                    <li>
-                        <span class="commitment-title">Production avicole encadrée</span>
-                        <span class="commitment-text">Déployer une production moderne, organisée et contrôlée.</span>
-                    </li>
-                    <li>
-                        <span class="commitment-title">Qualité adaptée aux exigences institutionnelles</span>
-                        <span class="commitment-text">Garantir une qualité constante et conforme aux attentes professionnelles.</span>
-                    </li>
-                    <li>
-                        <span class="commitment-title">Création de valeur locale</span>
-                        <span class="commitment-text">Soutenir l’économie par l’emploi, l’activité et l’ancrage territorial.</span>
-                    </li>
-                    <li>
-                        <span class="commitment-title">Contribution à la sécurité alimentaire</span>
-                        <span class="commitment-text">Participer concrètement au renforcement durable de l’approvisionnement en Haïti.</span>
-                    </li>
-                </ul>
-                <p class="note-inline"><strong>Engagements concrets&nbsp;:</strong> qualité contrôlée, traçabilité des lots et délais de livraison planifiés.</p>
-            </div>
-
-            <div class="box">
-                <span class="section-kicker">Méthode</span>
-                <h2>Notre approche</h2>
-                <p class="section-note">Une méthode claire pour garantir la continuité de service, la qualité sanitaire et la confiance des partenaires.</p>
-                <div class="grid">
-                    <div class="card card-feature">
-                        <span class="card-kicker">Contrôle</span>
-                        <h3>Qualité sanitaire</h3>
-                        <p>Protocoles d’hygiène appliqués à chaque étape pour assurer des œufs sûrs et conformes.</p>
-                    </div>
-                    <div class="card card-feature">
-                        <span class="card-kicker">Planification</span>
-                        <h3>Approvisionnement fiable</h3>
-                        <p>Planification des volumes et coordination logistique pour répondre avec précision aux besoins exprimés.</p>
-                    </div>
-                    <div class="card card-feature">
-                        <span class="card-kicker">Relation</span>
-                        <h3>Partenariats durables</h3>
-                        <p>Relation de confiance avec les institutions pour un service régulier et transparent.</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="box">
-            <span class="section-kicker">Cap stratégique</span>
+            <h2>Notre mission</h2>
+            <p>
+                Chez <strong>GL Zepoul Peyi</strong>, notre mission est d’assurer un approvisionnement régulier en œufs frais, sûrs et accessibles, en appliquant des standards sanitaires et environnementaux rigoureux.
+            </p>
+            <p>Nous nous engageons à :</p>
+            <ul>
+                <li>Déployer une production avicole moderne, encadrée et contrôlée</li>
+                <li>Fournir une qualité constante, adaptée aux exigences institutionnelles</li>
+                <li>Soutenir l’économie locale par la création de valeur et d’emplois</li>
+                <li>Contribuer concrètement à la sécurité alimentaire en Haïti</li>
+            </ul>
+        </div>
+
+        <div class="box">
             <h2>Notre vision stratégique</h2>
             <p>
-                Notre ambition est de faire de <strong>GL Zepoul Peyi</strong> une entreprise de référence à l’échelle nationale, capable d’accompagner durablement l’indépendance agroalimentaire du pays.
+                Notre vision pour <strong>GL Zepoul Peyi</strong> est de bâtir une entreprise de référence nationale, capable d’accompagner durablement l’indépendance agroalimentaire du pays.
             </p>
-            <div class="vision-pillars" aria-label="Piliers stratégiques">
-                <article class="vision-pillar">
-                    <h3>Organisation structurée</h3>
-                    <p>Une entreprise construite sur des bases professionnelles, stables et pérennes.</p>
-                </article>
-                <article class="vision-pillar">
-                    <h3>Performance maîtrisée</h3>
-                    <p>Des méthodes d’élevage modernes et des processus encadrés à chaque étape.</p>
-                </article>
-                <article class="vision-pillar">
-                    <h3>Responsabilité durable</h3>
-                    <p>Une attention portée à l’environnement, au bien-être animal et à la régularité des pratiques.</p>
-                </article>
-                <article class="vision-pillar">
-                    <h3>Position de référence</h3>
-                    <p>Une ambition claire de reconnaissance dans la production d’œufs et l’organisation de la filière locale.</p>
-                </article>
-            </div>
+            <ul>
+                <li><strong>Structurée&nbsp;:</strong> Une organisation professionnelle, stable et pérenne.</li>
+                <li><strong>Performante&nbsp;:</strong> Des méthodes d’élevage modernes et des processus maîtrisés.</li>
+                <li><strong>Responsable&nbsp;:</strong> Une démarche attentive à l’environnement et au bien-être animal.</li>
+                <li><strong>Référente&nbsp;:</strong> Une position reconnue dans la production d’œufs en Haïti.</li>
+            </ul>
             
             <div class="vision-footer">
-                <p class="vision-quote">
-                    « GL Zepoul Peyi ambitionne d’être un acteur clé du secteur avicole haïtien et une référence en entrepreneuriat agricole moderne. »
+                <p style="color: white; margin-bottom: 0; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.2rem;">
+                    "GL Zepoul Peyi ambitionne d’être un acteur clé du secteur avicole haïtien et une référence en entrepreneuriat agricole moderne."
                 </p>
             </div>
         </div>
@@ -884,7 +326,7 @@
         <div class="wrap footer-grid">
             <section>
                 <h5>Zepoul Ayiti</h5>
-                <p>Distribution avicole professionnelle engagée en faveur de la souveraineté alimentaire d’Haïti.</p>
+                <p>Distribution avicole professionnelle engagée pour la souveraineté alimentaire d’Haïti.</p>
                 <p><strong>Vision :</strong> structurer une filière locale durable. <a href="vision.html">Lire la vision</a></p>
             </section>
             <section>
@@ -893,7 +335,7 @@
                     <li><a href="vision.html">Notre vision</a></li>
                     <li><a href="expertise.html">Expertise</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="index.html#commande">Demander une cotation</a></li>
+                    <li><a href="index.html#commande">Cotation</a></li>
                 </ul>
             </section>
             <section>

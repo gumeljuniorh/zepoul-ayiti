@@ -1,5 +1,5 @@
 (function () {
-  // Remplacez par votre identifiant GA4 réel (format : G-XXXXXXXXXX).
+  // Replace with your real GA4 Measurement ID (format: G-XXXXXXXXXX).
   var DEFAULT_MEASUREMENT_ID = "G-XXXXXXXXXX";
   var MEASUREMENT_ID = (window.GA4_MEASUREMENT_ID || DEFAULT_MEASUREMENT_ID || "").trim();
   var isValidMeasurementId = /^G-[A-Z0-9]{6,12}$/i.test(MEASUREMENT_ID);

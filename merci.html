@@ -2,10 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Confirmation de réception | Zepoul Ayiti</title>
+  <title>Demande envoyée | Zepoul Ayiti</title>
   <meta name="description" content="Confirmation d'envoi de votre demande de cotation Zepoul Ayiti." />
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="https://zepoulayiti.com/merci.html" />
@@ -43,57 +42,16 @@
       width: min(760px, 100%);
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 34px;
-      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.07);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.06);
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(26,127,55,0.08), transparent 42%),
-        radial-gradient(circle at 90% 0%, rgba(251,197,49,0.14), transparent 40%);
-      pointer-events: none;
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(26,127,55,0.08);
-      color: var(--primary-dark);
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #fbc531;
-      box-shadow: 0 0 0 6px rgba(251,197,49,0.18);
     }
 
     .card img {
       width: 64px;
       height: 64px;
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid var(--border);
       object-fit: cover;
     }
@@ -113,41 +71,10 @@
       line-height: 1.7;
     }
 
-    .status-panel {
-      margin: 20px auto 0;
-      max-width: 620px;
-      padding: 18px 20px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
-      border: 1px solid rgba(26,127,55,0.12);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.05);
-      text-align: left;
-    }
-
-    .status-label {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(26,127,55,0.08);
-      color: var(--primary);
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .status-panel strong {
-      display: block;
+    .request-ref {
+      margin-top: 12px;
+      font-weight: 700;
       color: var(--primary-dark);
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-    }
-
-    .status-panel p {
-      margin: 0;
-      max-width: none;
     }
 
     .actions {
@@ -180,29 +107,17 @@
       color: var(--primary-dark);
       background: #fff;
     }
-
-    @media (max-width: 560px) {
-      .card { padding: 26px 20px; }
-      .actions .btn { width: 100%; }
-      .status-panel { padding: 16px 16px; }
-    }
   </style>
-  <link rel="stylesheet" href="polish.css">
 </head>
 <body data-page="merci">
   <main class="card">
-    <span class="eyebrow">Confirmation</span>
     <img src="logo-optimized.png" alt="Logo Zepoul Ayiti" width="64" height="64" />
-    <h1>Confirmation de réception de la demande de cotation</h1>
+    <h1>Demande bien reçue</h1>
     <p>
-      Votre demande de cotation a bien été enregistrée. Notre équipe commerciale reviendra vers vous
-      dans les meilleurs délais à l’adresse communiquée.
+      Merci pour votre demande de cotation. Notre équipe commerciale vous répondra rapidement
+      à l’adresse e-mail communiquée.
     </p>
-    <div class="status-panel" aria-label="Suite du traitement">
-      <span class="status-label">Suivi</span>
-      <strong>Votre demande est en cours de traitement</strong>
-      <p>Les informations transmises ont été enregistrées pour permettre à notre équipe commerciale de vous répondre avec une proposition adaptée à votre besoin.</p>
-    </div>
+    <p class="request-ref" id="request-ref-note" hidden></p>
     <div class="actions">
       <a class="btn btn-primary" href="index.html">Retour à l’accueil</a>
       <a class="btn btn-secondary" href="services.html">Voir nos services</a>

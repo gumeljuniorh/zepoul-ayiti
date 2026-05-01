@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page introuvable | Zepoul Ayiti</title>
@@ -10,137 +9,18 @@
   <link rel="canonical" href="https://zepoulayiti.com/404.html" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <style>
-    :root{
-      --primary:#1a7f37;
-      --primary-dark:#0b3d1a;
-      --text:#16331f;
-      --muted:#43544b;
-      --border:#dce9df;
-      --bg:#f6fbf7;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Plus Jakarta Sans",sans-serif;
-      background:radial-gradient(1000px 420px at 75% -10%, rgba(26,127,55,0.1), transparent), var(--bg);
-      color:var(--text);
-      display:grid;
-      place-items:center;
-      min-height:100vh;
-      padding:24px
-    }
-    .box{
-      max-width:700px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:28px;
-      padding:34px;
-      text-align:center;
-      box-shadow:0 20px 42px rgba(0,0,0,0.07);
-      position:relative;
-      overflow:hidden
-    }
-    .box::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(26,127,55,0.08), transparent 42%),
-        radial-gradient(circle at 90% 0%, rgba(251,197,49,0.14), transparent 40%);
-      pointer-events:none
-    }
-    .box>*{position:relative;z-index:1}
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(26,127,55,0.08);
-      color:var(--primary-dark);
-      font-size:.8rem;
-      font-weight:800;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      margin-bottom:12px
-    }
-    .eyebrow::before{
-      content:"";
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:#fbc531;
-      box-shadow:0 0 0 6px rgba(251,197,49,0.18)
-    }
-    h1{
-      margin:0 0 10px;
-      font-family:"Playfair Display",serif;
-      color:var(--primary-dark);
-      font-size:clamp(2rem,4.6vw,2.8rem);
-      line-height:1.1
-    }
-    p{
-      margin:0 auto 18px;
-      max-width:54ch;
-      color:var(--muted);
-      line-height:1.7
-    }
-    .note{
-      margin:0 auto 22px;
-      max-width:560px;
-      padding:18px 20px;
-      border-radius:18px;
-      background:linear-gradient(180deg,#ffffff 0%,#f7fbf8 100%);
-      border:1px solid rgba(26,127,55,0.12);
-      box-shadow:0 12px 28px rgba(0,0,0,0.05)
-    }
-    .note strong{
-      display:block;
-      color:var(--primary-dark);
-      margin-bottom:8px;
-      font-size:1.05rem
-    }
-    .actions{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap
-    }
-    a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      padding:12px 18px;
-      border-radius:999px;
-      font-weight:800
-    }
-    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 22px rgba(26,127,55,0.2)}
-    .btn-secondary{background:#fff;color:var(--primary-dark);border:2px solid rgba(26,127,55,0.22)}
-    @media (max-width:560px){
-      .box{padding:26px 20px}
-      .actions a{width:100%}
-    }
+    body{margin:0;font-family:Arial,sans-serif;background:#f6fbf7;color:#16331f;display:grid;place-items:center;min-height:100vh;padding:24px}
+    .box{max-width:620px;background:#fff;border:1px solid #dce9df;border-radius:16px;padding:28px;text-align:center}
+    h1{margin:0 0 10px;font-size:2rem}
+    p{margin:0 0 18px;color:#43544b}
+    a{display:inline-block;background:#1a7f37;color:#fff;text-decoration:none;padding:10px 16px;border-radius:10px;font-weight:700}
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="polish.css">
 </head>
 <body>
   <main class="box">
-    <span class="eyebrow">Navigation</span>
-    <h1>404 — Page introuvable</h1>
-    <p>La page que vous recherchez est introuvable ou a été déplacée.</p>
-    <div class="note">
-      <strong>Nous vous aidons à revenir au bon endroit</strong>
-      <p>Vous pouvez retourner à la page d’accueil ou consulter les principales sections du site pour retrouver rapidement l’information recherchée.</p>
-    </div>
-    <div class="actions">
-      <a class="btn-primary" href="index.html">Retour à l’accueil</a>
-      <a class="btn-secondary" href="services.html">Voir nos services</a>
-    </div>
+    <h1>404 - Page introuvable</h1>
+    <p>La page demandée n'existe pas ou a été déplacée.</p>
+    <a href="/">Retour à l'accueil</a>
   </main>
-  <script defer src="site.js"></script>
 </body>
 </html>
