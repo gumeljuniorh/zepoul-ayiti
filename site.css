@@ -79,12 +79,13 @@
 
 .site-footer .footer-logo {
   display: block;
-  width: 92px;
-  max-width: 100%;
-  height: auto;
+  width: 72px !important;
+  max-width: 72px !important;
+  height: 72px !important;
+  object-fit: contain;
   margin: 0 0 12px;
-  padding: 6px;
-  border-radius: 16px;
+  padding: 5px;
+  border-radius: 14px;
   background: #fff;
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
@@ -188,5 +189,9 @@
 
 @media (max-width: 980px) {
   .site-footer .footer-grid { grid-template-columns: 1fr; }
-  .site-footer .footer-logo { width: 104px; }
+  .site-footer .footer-logo {
+    width: 64px !important;
+    max-width: 64px !important;
+    height: 64px !important;
+  }
 }
