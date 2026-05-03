@@ -5,7 +5,7 @@
 
   <url>
     <loc>https://zepoulayiti.com/</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <video:video>
       <video:thumbnail_loc>https://zepoulayiti.com/hero-optimized.jpg</video:thumbnail_loc>
       <video:title>Notre démarche en images</video:title>
@@ -19,22 +19,26 @@
       <image:caption>Production et conditionnement d'œufs en Haïti</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
-      <image:title>Logo Zepoul Ayiti</image:title>
+      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:title>Logo officiel Zepoul Ayiti</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zepoulayiti.com/logo-mark.jpg</image:loc>
+      <image:title>Emblème Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
     <loc>https://zepoulayiti.com/about.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <image:image>
       <image:loc>https://zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
       <image:title>Girard Gumel J. Henry</image:title>
       <image:caption>Directeur exécutif de GL Zepoul Peyi</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
-      <image:title>Logo Zepoul Ayiti</image:title>
+      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:title>Logo officiel Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
@@ -49,27 +53,27 @@
 
   <url>
     <loc>https://zepoulayiti.com/services.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Services Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
     <loc>https://zepoulayiti.com/vision.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Vision Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
     <loc>https://zepoulayiti.com/expertise.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-optimized.png</image:loc>
+      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Expertise Zepoul Ayiti</image:title>
     </image:image>
   </url>

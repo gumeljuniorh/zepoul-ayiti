@@ -122,15 +122,16 @@
       statusEl.style.color = success ? "var(--primary)" : "#b42318";
     }
 
-    function openMailtoFallback(institution, volume, email, details) {
+    function openMailtoFallback(institution, volume, email, phone, details) {
       var subject = "Demande de cotation - Zepoul Ayiti";
       var bodyLines = [
         "Bonjour Zepoul Ayiti,",
         "",
-        "Institution: " + institution,
+        "Client: " + institution,
         "Volume hebdomadaire (cartons): " + volume,
         "Email de contact: " + email,
-        details ? "Details: " + details : "",
+        "WhatsApp: " + phone,
+        details ? "Précisions: " + details : "",
         "",
         "Merci."
       ].filter(Boolean);
@@ -175,10 +176,11 @@
       var institution = document.getElementById("inst").value.trim();
       var volume = document.getElementById("vol").value.trim();
       var email = document.getElementById("email").value.trim();
+      var phone = document.getElementById("phone").value.trim();
       var details = document.getElementById("details").value.trim();
 
-      if (!institution || !volume || Number(volume) <= 0 || !email) {
-        setFormStatus("Veuillez renseigner une institution, un volume valide et un e-mail.", false);
+      if (!institution || !volume || Number(volume) <= 0 || !email || !phone) {
+        setFormStatus("Veuillez renseigner le client, un volume valide, un e-mail et un numéro WhatsApp.", false);
         return;
       }
 
@@ -187,6 +189,8 @@
         volume: volume,
         volume_hebdomadaire_cartons: volume,
         email: email,
+        phone: phone,
+        whatsapp: phone,
         details: details,
         _replyto: email,
         _subject: "Nouvelle demande de cotation - Zepoul Ayiti",
@@ -197,6 +201,8 @@
         institution: institution,
         volume: volume,
         email: email,
+        phone: phone,
+        whatsapp: phone,
         details: details,
         source: "site-quote"
       });
@@ -224,7 +230,7 @@
         .catch(function () {
           emit("quote_form_fallback_mailto", { institution: institution, volume: volume });
           setFormStatus("Envoi direct indisponible. Ouverture de votre e-mail en secours...", false);
-          openMailtoFallback(institution, volume, email, details);
+          openMailtoFallback(institution, volume, email, phone, details);
         })
         .finally(function () {
           if (submitBtn) submitBtn.disabled = false;
