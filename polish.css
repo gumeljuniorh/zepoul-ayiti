@@ -112,6 +112,14 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   gap: 20px !important;
 }
 
+.site-header .container,
+.mobile-menu.fixed-top .container {
+  width: min(1160px, 92vw) !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
 .site-header .brand {
   display: flex !important;
   align-items: center !important;
@@ -129,8 +137,10 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
-.site-header .brand h1 {
+.site-header .brand h1,
+.site-header .brand .brand-name {
   margin: 0 !important;
+  display: block !important;
   font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 1.18rem !important;
   font-weight: 800 !important;
@@ -159,6 +169,7 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
 }
 
 .site-header .brand h1,
+.site-header .brand .brand-name,
 .site-header .nav-links a,
 .mobile-menu a {
   color: #0b3d1a !important;
@@ -182,6 +193,7 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
+  border: 0 !important;
   background: #1a7f37 !important;
   color: #ffffff !important;
   border-radius: 12px !important;

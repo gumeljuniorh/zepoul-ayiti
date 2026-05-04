@@ -34,8 +34,10 @@
   border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
 }
 
-.site-header .brand h1 {
+.site-header .brand h1,
+.site-header .brand .brand-name {
   margin: 0;
+  display: block;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.18rem;
   font-weight: 800;
@@ -360,6 +362,14 @@
   gap: 20px !important;
 }
 
+.site-header .container,
+.mobile-menu.fixed-top .container {
+  width: min(1160px, 92vw) !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
 .site-header .brand {
   display: flex !important;
   align-items: center !important;
@@ -377,8 +387,10 @@
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
-.site-header .brand h1 {
+.site-header .brand h1,
+.site-header .brand .brand-name {
   margin: 0 !important;
+  display: block !important;
   font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 1.18rem !important;
   font-weight: 800 !important;
@@ -423,6 +435,7 @@
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
+  border: 0 !important;
   background: #1a7f37 !important;
   color: #ffffff !important;
   border-radius: 12px !important;
