@@ -93,3 +93,42 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Navigation uniforme : mêmes couleurs et proportions que la page d'accueil. */
+.site-header {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.site-header .brand h1,
+.site-header .nav-links a,
+.mobile-menu a {
+  color: #0b3d1a !important;
+}
+
+.site-header .brand span,
+.site-header .nav-links a:hover,
+.site-header .nav-links a:focus-visible,
+.site-header .nav-links a.is-active,
+.mobile-menu a.is-active {
+  color: #1a7f37 !important;
+}
+
+.site-header .btn.btn-primary {
+  background: #1a7f37 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 12px 22px !important;
+  box-shadow: 0 8px 20px rgba(26, 127, 55, 0.22) !important;
+}
+
+.site-header .social-icons a {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.site-header .menu-toggle {
+  color: #0b3d1a !important;
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
