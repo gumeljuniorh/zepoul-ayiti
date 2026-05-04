@@ -96,14 +96,77 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
 
 /* Navigation uniforme : mêmes couleurs et proportions que la page d'accueil. */
 .site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  backdrop-filter: blur(10px) !important;
   background: rgba(255, 255, 255, 0.92) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.site-header .header-row {
+  min-height: 84px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+}
+
+.site-header .brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-width: 0 !important;
+  color: #0b3d1a !important;
+  text-decoration: none !important;
+}
+
+.site-header .brand img {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.site-header .brand h1 {
+  margin: 0 !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: 1.18rem !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase !important;
+  color: #0b3d1a !important;
+}
+
+.site-header .brand span {
+  display: block !important;
+  margin-top: 2px !important;
+  font-size: 0.7rem !important;
+  color: #1a7f37 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+}
+
+.site-header .nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
 }
 
 .site-header .brand h1,
 .site-header .nav-links a,
 .mobile-menu a {
   color: #0b3d1a !important;
+}
+
+.site-header .nav-links a {
+  margin-left: 0 !important;
+  text-decoration: none !important;
 }
 
 .site-header .brand span,
@@ -115,6 +178,10 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
 }
 
 .site-header .btn.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
   background: #1a7f37 !important;
   color: #ffffff !important;
   border-radius: 12px !important;
@@ -122,13 +189,56 @@ body:not([data-page="index"]) .wrap { max-width: 1160px; }
   box-shadow: 0 8px 20px rgba(26, 127, 55, 0.22) !important;
 }
 
+.site-header .social-icons {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-left: 6px !important;
+}
+
 .site-header .social-icons a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
   background: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
+  text-decoration: none !important;
+}
+
+.site-header .social-icons img {
+  width: 15px !important;
+  height: 15px !important;
+  object-fit: contain !important;
 }
 
 .site-header .menu-toggle {
   color: #0b3d1a !important;
   background: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+@media (max-width: 900px) {
+  .site-header .header-row {
+    min-height: 74px !important;
+  }
+
+  .site-header .nav-links > a:not(.btn-primary),
+  .site-header .nav-links .btn-primary {
+    display: none !important;
+  }
+
+  .site-header .social-icons {
+    margin-left: 0 !important;
+  }
+
+  .site-header .menu-toggle {
+    display: inline-flex !important;
+  }
+
+  .mobile-menu.fixed-top {
+    top: 74px !important;
+  }
 }
