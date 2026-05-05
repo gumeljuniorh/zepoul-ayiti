@@ -260,6 +260,54 @@
     });
   }
 
+  function bindLightboxes() {
+    var activeLightbox = null;
+
+    function openLightbox(lightbox, trigger) {
+      if (!lightbox) return;
+      lightbox.__lastTrigger = trigger || null;
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      activeLightbox = lightbox;
+
+      var closeButton = lightbox.querySelector("[data-lightbox-close]");
+      if (closeButton && typeof closeButton.focus === "function") {
+        closeButton.focus({ preventScroll: true });
+      }
+    }
+
+    function closeLightbox(lightbox) {
+      if (!lightbox) return;
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      activeLightbox = null;
+
+      if (lightbox.__lastTrigger && typeof lightbox.__lastTrigger.focus === "function") {
+        lightbox.__lastTrigger.focus({ preventScroll: true });
+      }
+    }
+
+    document.querySelectorAll("[data-lightbox-open]").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        var targetId = trigger.getAttribute("data-lightbox-open");
+        var lightbox = targetId ? document.getElementById(targetId) : null;
+        openLightbox(lightbox, trigger);
+      });
+    });
+
+    document.querySelectorAll("[data-lightbox-close]").forEach(function (closeButton) {
+      closeButton.addEventListener("click", function () {
+        closeLightbox(closeButton.closest(".lightbox"));
+      });
+    });
+
+    document.addEventListener("keydown", function (evt) {
+      if (evt.key === "Escape" && activeLightbox) {
+        closeLightbox(activeLightbox);
+      }
+    });
+  }
+
   function trackThankYou() {
     if (document.body.getAttribute("data-page") !== "merci") return;
     var params = new URLSearchParams(window.location.search);
@@ -273,6 +321,7 @@
     bindImageFallbacks();
     bindQuoteForm();
     bindBrandVideo();
+    bindLightboxes();
     trackThankYou();
   });
 })();

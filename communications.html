@@ -6,7 +6,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Communications institutionnelles | Zepoul Ayiti</title>
-  <meta name="description" content="Communications institutionnelles de Zepoul Ayiti : messages officiels, publications et prises de parole autour de l’agriculture, du travail et de la production locale en Haïti." />
+  <meta name="description" content="Archive des communications institutionnelles de Zepoul Ayiti : messages officiels, publications et prises de parole autour de l’agriculture, du travail et de la production locale en Haïti." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://zepoulayiti.com/communications.html" />
   <link rel="alternate" hreflang="fr" href="https://zepoulayiti.com/communications.html" />
@@ -28,14 +28,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css?v=20260504-titles1" />
+  <link rel="stylesheet" href="site.css?v=20260505-visual2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": "CollectionPage",
     "name": "Communications institutionnelles | Zepoul Ayiti",
     "url": "https://zepoulayiti.com/communications.html",
-    "description": "Messages officiels et publications institutionnelles de Zepoul Ayiti autour de l’agriculture, du travail et de la production locale en Haïti.",
+    "description": "Archive des messages officiels et publications institutionnelles de Zepoul Ayiti autour de l’agriculture, du travail et de la production locale en Haïti.",
     "inLanguage": "fr",
     "about": {
       "@type": "Organization",
@@ -47,7 +47,16 @@
       "@type": "ImageObject",
       "url": "https://zepoulayiti.com/communication-1er-mai-2026.png",
       "caption": "Fête de l’Agriculture et du Travail 2026 - Zepoul Ayiti"
-    }
+    },
+    "hasPart": [
+      {
+        "@type": "Article",
+        "headline": "Fête de l’Agriculture et du Travail",
+        "datePublished": "2026-05-01",
+        "image": "https://zepoulayiti.com/communication-1er-mai-2026.png",
+        "description": "Message institutionnel de Zepoul Ayiti à l’occasion de la Fête de l’Agriculture et du Travail."
+      }
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -93,32 +102,59 @@
     .page-wrap {
       width: min(1160px, 92vw);
       margin: 0 auto;
-      padding: 64px 0;
+      padding: 48px 0 58px;
     }
 
     .hero-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.75fr);
-      gap: 28px;
-      align-items: center;
-      margin-bottom: 30px;
-      padding: 36px;
+      margin-bottom: 28px;
+      padding: clamp(26px, 4vw, 38px);
       border: 1px solid rgba(26, 127, 55, 0.12);
       border-radius: 30px;
       background:
+        radial-gradient(circle at 88% 12%, rgba(11, 61, 26, 0.08), transparent 32%),
         radial-gradient(circle at 8% 8%, rgba(251, 197, 49, 0.18), transparent 32%),
         linear-gradient(180deg, #ffffff, #f8fcf9);
       box-shadow: 0 18px 38px rgba(0, 0, 0, 0.06);
     }
 
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
     .eyebrow {
       display: inline-flex;
-      margin-bottom: 12px;
+      margin-bottom: 0;
       color: var(--primary);
       font-size: 0.78rem;
       font-weight: 900;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(26, 127, 55, 0.08);
+      color: var(--primary-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 5px rgba(26, 127, 55, 0.12);
     }
 
     h1 {
@@ -130,74 +166,196 @@
 
     .lead {
       margin: 0;
-      max-width: 68ch;
+      max-width: 62ch;
       color: var(--muted);
       font-size: 1.03rem;
       line-height: 1.75;
     }
 
-    .summary-card {
-      padding: 22px;
-      border-radius: 22px;
-      background: #0b3d1a;
-      color: #fff;
-      box-shadow: 0 16px 34px rgba(11, 61, 26, 0.18);
+    .archive-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 0 16px;
+      flex-wrap: wrap;
     }
 
-    .summary-card strong {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--accent);
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
+    .archive-label {
+      margin: 0 0 6px;
+      color: var(--primary-dark);
+      font-weight: 900;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      font-size: 0.78rem;
     }
 
-    .summary-card p {
+    .archive-title {
       margin: 0;
-      color: rgba(255, 255, 255, 0.86);
-      line-height: 1.7;
+      color: var(--text);
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .archive-count {
+      display: inline-flex;
+      padding: 9px 12px;
+      border: 1px solid rgba(26, 127, 55, 0.14);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 800;
     }
 
     .communication-card {
       display: grid;
-      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1fr);
-      gap: 28px;
-      align-items: start;
-      padding: 28px;
+      grid-template-columns: 116px minmax(0, 1fr) 190px;
+      gap: 24px;
+      align-items: center;
+      padding: 22px;
       border: 1px solid var(--border);
-      border-radius: 30px;
+      border-radius: 24px;
       background: #fff;
-      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.05);
+    }
+
+    .date-card {
+      display: grid;
+      place-items: center;
+      min-height: 118px;
+      border-radius: 20px;
+      background: linear-gradient(150deg, #0b3d1a, #17642d);
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 14px 26px rgba(11, 61, 26, 0.18);
+    }
+
+    .date-card time {
+      display: grid;
+      gap: 3px;
+      font-weight: 900;
+    }
+
+    .date-card .day {
+      color: var(--accent);
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .date-card .month {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .date-card .year {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.82rem;
     }
 
     .flyer-frame {
       margin: 0;
-      padding: 12px;
-      border-radius: 24px;
+      padding: 8px;
+      border-radius: 18px;
       background: #fff;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.06);
     }
 
     .flyer-frame img {
       display: block;
       width: 100%;
       height: auto;
-      border-radius: 18px;
+      max-height: 300px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 14px;
+    }
+
+    .flyer-zoom {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      border-radius: 14px;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .flyer-zoom:focus-visible {
+      outline: 3px solid rgba(26, 127, 55, 0.35);
+      outline-offset: 4px;
     }
 
     .flyer-frame figcaption {
-      margin-top: 10px;
+      margin-top: 8px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.78rem;
       text-align: center;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(3, 12, 7, 0.78);
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-out;
+    }
+
+    .lightbox-panel {
+      position: relative;
+      z-index: 1;
+      width: min(860px, 92vw);
+      max-height: 90vh;
+      padding: 14px;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    .lightbox-panel img {
+      display: block;
+      width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 18px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      border: 0;
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: rgba(11, 61, 26, 0.92);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
     }
 
     .communication-content time {
       display: inline-flex;
-      margin-bottom: 12px;
-      padding: 8px 12px;
+      margin-bottom: 10px;
+      padding: 7px 11px;
       border-radius: 999px;
       background: rgba(26, 127, 55, 0.08);
       color: var(--primary-dark);
@@ -205,41 +363,52 @@
       font-size: 0.88rem;
     }
 
+    .type-badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(251, 197, 49, 0.22);
+      color: #5a4600;
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
     .communication-content h2 {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       color: var(--primary-dark);
-      font: 800 1.8rem / 1.15 "Playfair Display", serif;
+      font: 800 1.55rem / 1.15 "Playfair Display", serif;
     }
 
     .communication-content p {
-      margin: 0 0 14px;
+      margin: 0;
       color: #33473b;
       line-height: 1.75;
     }
 
-    .values-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
+    .communication-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
     }
 
-    .values-list li {
-      padding: 13px 14px;
-      border-radius: 16px;
+    .communication-tags span {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
       background: #f7fbf8;
       color: var(--primary-dark);
-      font-weight: 800;
       border: 1px solid rgba(26, 127, 55, 0.12);
+      font-size: 0.82rem;
+      font-weight: 800;
     }
 
     .actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-top: 22px;
+      margin-top: 18px;
     }
 
     .cta {
@@ -248,8 +417,12 @@
       justify-content: center;
       padding: 12px 16px;
       border-radius: 12px;
+      border: 0;
       font-weight: 800;
       text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
     }
 
     .cta-primary {
@@ -264,18 +437,50 @@
       border: 2px solid rgba(26, 127, 55, 0.25);
     }
 
+    .archive-note {
+      margin: 18px 0 0;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px dashed rgba(26, 127, 55, 0.25);
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.94rem;
+    }
+
     @media (max-width: 860px) {
       .page-wrap { padding: 42px 0; }
-      .hero-panel,
+      .hero-panel {
+        padding: 24px;
+      }
+
       .communication-card {
         grid-template-columns: 1fr;
         padding: 24px;
       }
 
-      .values-list { grid-template-columns: 1fr; }
+      .date-card {
+        min-height: auto;
+        padding: 16px;
+        justify-items: start;
+        text-align: left;
+      }
+
+      .flyer-frame {
+        max-width: 260px;
+      }
+
+      .lightbox {
+        padding: 14px;
+      }
+
+      .lightbox-panel {
+        width: min(560px, 94vw);
+        padding: 10px;
+      }
     }
   </style>
-  <link rel="stylesheet" href="polish.css?v=20260504-titles1">
+  <link rel="stylesheet" href="polish.css?v=20260504-cleanup1">
 </head>
 <body data-page="communications">
   <header class="site-header">
@@ -320,44 +525,66 @@
 
   <main class="page-wrap">
     <section class="hero-panel">
-      <div>
+      <div class="hero-topline">
         <span class="eyebrow">Publications officielles</span>
-        <h1>Communications institutionnelles</h1>
-        <p class="lead">Retrouvez les messages, publications et prises de parole de Zepoul Ayiti autour de la production locale, de l’agriculture, du travail et du développement économique d’Haïti.</p>
+        <span class="status-pill">Archive active</span>
       </div>
-      <aside class="summary-card">
-        <strong>Rôle de cette page</strong>
-        <p>Présenter les communications officielles de l’entreprise sans surcharger la page d’accueil, tout en donnant aux visiteurs une preuve d’activité et d’engagement local.</p>
-      </aside>
+      <h1>Communications institutionnelles</h1>
+      <p class="lead">Messages officiels, publications et prises de parole de Zepoul Ayiti autour de la production locale, de l’agriculture et du développement économique d’Haïti.</p>
     </section>
 
+    <div class="archive-header">
+      <div>
+        <p class="archive-label">Archive des communications</p>
+        <h2 class="archive-title">Publications récentes</h2>
+      </div>
+      <span class="archive-count">1 communication publiée</span>
+    </div>
+
     <article class="communication-card">
-      <figure class="flyer-frame">
-        <img src="communication-1er-mai-2026.png" width="1024" height="1536" alt="Flyer Zepoul Ayiti pour la Fête de l’Agriculture et du Travail du 1er mai 2026" loading="lazy" decoding="async" />
-        <figcaption>Publication institutionnelle diffusée à l’occasion du 1er mai 2026.</figcaption>
-      </figure>
+      <div class="date-card" aria-label="Date de publication">
+        <time datetime="2026-05-01">
+          <span class="day">01</span>
+          <span class="month">Mai</span>
+          <span class="year">2026</span>
+        </time>
+      </div>
 
       <div class="communication-content">
-        <time datetime="2026-05-01">1er mai 2026</time>
+        <span class="type-badge">Message institutionnel</span>
         <h2>Fête de l’Agriculture et du Travail</h2>
-        <p>À l’occasion de la Fête de l’Agriculture et du Travail, Zepoul Ayiti a adressé ses vœux à ses clients, partenaires et à toutes les personnes qui contribuent chaque jour à la production, au travail et au développement agricole d’Haïti.</p>
-        <p>Cette communication rappelle l’importance du travail productif, de la valorisation de l’agriculture locale et de la construction de partenariats durables au service du pays.</p>
-        <p>Elle s’inscrit dans la volonté de GL Zepoul Peyi de bâtir une entreprise avicole sérieuse, enracinée dans le territoire haïtien et tournée vers une croissance responsable.</p>
+        <p>Zepoul Ayiti remercie ses clients, partenaires et travailleurs qui contribuent chaque jour au développement agricole et productif d’Haïti.</p>
 
-        <ul class="values-list" aria-label="Axes de communication">
-          <li>Soutenir le travail</li>
-          <li>Valoriser l’agriculture</li>
-          <li>Renforcer les partenariats</li>
-          <li>Construire l’avenir</li>
-        </ul>
+        <div class="communication-tags" aria-label="Thèmes de la communication">
+          <span>Agriculture</span>
+          <span>Travail</span>
+          <span>Engagement local</span>
+        </div>
 
         <div class="actions">
-          <a class="cta cta-primary" href="index.html#commande">Demander une cotation</a>
+          <button class="cta cta-primary" type="button" data-lightbox-open="communication-lightbox">Voir le visuel</button>
           <a class="cta cta-secondary" href="about.html">Découvrir l’entreprise</a>
         </div>
       </div>
+
+      <figure class="flyer-frame">
+        <button class="flyer-zoom" type="button" data-lightbox-open="communication-lightbox" aria-label="Agrandir le flyer du 1er mai 2026">
+          <img src="communication-1er-mai-2026-thumb.png" width="346" height="520" alt="Aperçu du flyer Zepoul Ayiti pour la Fête de l’Agriculture et du Travail du 1er mai 2026" loading="lazy" decoding="async" />
+        </button>
+        <figcaption>Cliquez sur l’image pour agrandir.</figcaption>
+      </figure>
     </article>
+
+    <p class="archive-note">Cette page pourra accueillir progressivement les communiqués, annonces officielles et publications institutionnelles de Zepoul Ayiti, sans surcharger la page d’accueil.</p>
   </main>
+
+  <div class="lightbox" id="communication-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Flyer agrandi - Fête de l’Agriculture et du Travail">
+    <button class="lightbox-backdrop" type="button" data-lightbox-close aria-label="Fermer l’aperçu"></button>
+    <div class="lightbox-panel">
+      <button class="lightbox-close" type="button" data-lightbox-close>Fermer</button>
+      <img src="communication-1er-mai-2026.png" width="1024" height="1536" alt="Flyer Zepoul Ayiti agrandi pour la Fête de l’Agriculture et du Travail du 1er mai 2026" loading="lazy" decoding="async" />
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -401,6 +628,6 @@
   </footer>
 
   <script defer src="analytics.js"></script>
-  <script defer src="site.js"></script>
+  <script defer src="site.js?v=20260504-cleanup1"></script>
 </body>
 </html>
