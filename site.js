@@ -241,9 +241,30 @@
   function bindBrandVideo() {
     var brandVideo = document.getElementById("brand-video");
     if (!brandVideo) return;
+    var loaded = false;
 
     brandVideo.muted = true;
     brandVideo.volume = 0;
+
+    function loadVideo() {
+      if (loaded) return;
+      loaded = true;
+
+      brandVideo.querySelectorAll("source[data-src]").forEach(function (source) {
+        source.src = source.getAttribute("data-src");
+        source.removeAttribute("data-src");
+      });
+
+      brandVideo.load();
+      if (brandVideo.autoplay) {
+        var playPromise = brandVideo.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(function () {
+            // Mobile browsers may wait for user interaction.
+          });
+        }
+      }
+    }
 
     brandVideo.addEventListener("volumechange", function () {
       if (!brandVideo.muted || brandVideo.volume !== 0) {
@@ -258,6 +279,23 @@
       trackedPlay = true;
       emit("brand_video_play", { page: "index", placement: "presentation_section" });
     });
+
+    brandVideo.addEventListener("pointerdown", loadVideo, { once: true });
+    brandVideo.addEventListener("focus", loadVideo, { once: true });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          loadVideo();
+          observer.disconnect();
+        });
+      }, { rootMargin: "300px 0px" });
+
+      observer.observe(brandVideo);
+    } else {
+      window.setTimeout(loadVideo, 2000);
+    }
   }
 
   function bindLightboxes() {
@@ -308,6 +346,24 @@
     });
   }
 
+  function loadDeferredFonts() {
+    if (document.querySelector("link[data-deferred-fonts]")) return;
+
+    var load = function () {
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap";
+      link.setAttribute("data-deferred-fonts", "true");
+      document.head.appendChild(link);
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(load, { timeout: 1200 });
+    } else {
+      window.setTimeout(load, 700);
+    }
+  }
+
   function trackThankYou() {
     if (document.body.getAttribute("data-page") !== "merci") return;
     var params = new URLSearchParams(window.location.search);
@@ -322,6 +378,7 @@
     bindQuoteForm();
     bindBrandVideo();
     bindLightboxes();
+    loadDeferredFonts();
     trackThankYou();
   });
 })();

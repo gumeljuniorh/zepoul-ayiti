@@ -4,108 +4,108 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
   <url>
-    <loc>https://zepoulayiti.com/</loc>
+    <loc>https://www.zepoulayiti.com/</loc>
     <lastmod>2026-05-04</lastmod>
     <video:video>
-      <video:thumbnail_loc>https://zepoulayiti.com/hero-optimized.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://www.zepoulayiti.com/hero-optimized.jpg</video:thumbnail_loc>
       <video:title>Notre démarche en images</video:title>
       <video:description>Présentation vidéo de Zepoul Ayiti et de son engagement en production avicole en Haïti.</video:description>
-      <video:content_loc>https://zepoulayiti.com/zepoul-intro.mp4</video:content_loc>
+      <video:content_loc>https://www.zepoulayiti.com/zepoul-intro.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <image:image>
-      <image:loc>https://zepoulayiti.com/hero-optimized.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/hero-optimized.jpg</image:loc>
       <image:title>Production d'œufs Zepoul Ayiti</image:title>
       <image:caption>Production et conditionnement d'œufs en Haïti</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Logo officiel Zepoul Ayiti</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-mark.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/logo-mark.jpg</image:loc>
       <image:title>Emblème Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://zepoulayiti.com/about.html</loc>
+    <loc>https://www.zepoulayiti.com/about.html</loc>
     <lastmod>2026-05-04</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
       <image:title>Girard Gumel J. Henry</image:title>
       <image:caption>Directeur exécutif de GL Zepoul Peyi</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Logo officiel Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://zepoulayiti.com/girard-gumel-j-henry.html</loc>
+    <loc>https://www.zepoulayiti.com/girard-gumel-j-henry.html</loc>
     <lastmod>2026-05-04</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
       <image:title>Portrait de Girard Gumel J. Henry</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://zepoulayiti.com/services.html</loc>
+    <loc>https://www.zepoulayiti.com/services.html</loc>
     <lastmod>2026-05-04</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Services Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://zepoulayiti.com/communications.html</loc>
+    <loc>https://www.zepoulayiti.com/communications.html</loc>
     <lastmod>2026-05-10</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/communication-soti-lakay-2026-05-13.png</image:loc>
+      <image:loc>https://www.zepoulayiti.com/communication-soti-lakay-2026-05-13.png</image:loc>
       <image:title>Soti lakay nou pou rive lakay ou - Zepoul Ayiti</image:title>
       <image:caption>Communication Zepoul Ayiti programmée pour le 13 mai 2026 autour des œufs frais, de la famille et de la production locale.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/communication-soti-lakay-2026-05-13-thumb.png</image:loc>
+      <image:loc>https://www.zepoulayiti.com/communication-soti-lakay-2026-05-13-thumb.png</image:loc>
       <image:title>Aperçu de la communication Soti lakay nou pou rive lakay ou - Zepoul Ayiti</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/communication-fraicheur-2026-05-09.png</image:loc>
+      <image:loc>https://www.zepoulayiti.com/communication-fraicheur-2026-05-09.png</image:loc>
       <image:title>La fraîcheur qui nourrit - Zepoul Ayiti</image:title>
       <image:caption>Communication de Zepoul Ayiti publiée le 9 mai 2026 autour de la fraîcheur, de la production locale et de la qualité des œufs.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/communication-fraicheur-2026-05-09-thumb.png</image:loc>
+      <image:loc>https://www.zepoulayiti.com/communication-fraicheur-2026-05-09-thumb.png</image:loc>
       <image:title>Aperçu de la communication La fraîcheur qui nourrit - Zepoul Ayiti</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/communication-1er-mai-2026.png</image:loc>
+      <image:loc>https://www.zepoulayiti.com/communication-1er-mai-2026.png</image:loc>
       <image:title>Fête de l’Agriculture et du Travail 2026 - Zepoul Ayiti</image:title>
       <image:caption>Communication institutionnelle de Zepoul Ayiti publiée à l’occasion du 1er mai 2026.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://zepoulayiti.com/communication-1er-mai-2026-thumb.png</image:loc>
+      <image:loc>https://www.zepoulayiti.com/communication-1er-mai-2026-thumb.png</image:loc>
       <image:title>Aperçu de la communication du 1er mai 2026 - Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://zepoulayiti.com/vision.html</loc>
+    <loc>https://www.zepoulayiti.com/vision.html</loc>
     <lastmod>2026-05-04</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Vision Zepoul Ayiti</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://zepoulayiti.com/expertise.html</loc>
+    <loc>https://www.zepoulayiti.com/expertise.html</loc>
     <lastmod>2026-05-04</lastmod>
     <image:image>
-      <image:loc>https://zepoulayiti.com/logo-full-light.jpg</image:loc>
+      <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Expertise Zepoul Ayiti</image:title>
     </image:image>
   </url>
