@@ -270,6 +270,11 @@ html {
   box-shadow: 0 8px 18px rgba(11, 61, 26, 0.08) !important;
 }
 
+.site-header .brand picture {
+  display: flex !important;
+  flex: 0 0 auto !important;
+}
+
 .site-header .brand h1,
 .site-header .brand .brand-name {
   margin: 0 !important;

@@ -35,8 +35,7 @@
   <link rel="manifest" href="site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css?v=20260510-perf2" />
+  <link rel="stylesheet" href="site.css?v=20260510-perf3" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -299,6 +298,11 @@
       border-radius: 14px;
     }
 
+    .flyer-frame picture,
+    .lightbox-panel picture {
+      display: block;
+    }
+
     .flyer-zoom {
       display: block;
       width: 100%;
@@ -511,7 +515,10 @@
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="index.html" aria-label="Retour à l’accueil">
-        <img src="logo-mark.jpg" width="54" height="54" alt="Logo Zepoul Ayiti" data-fallback="logo-optimized.png" />
+        <picture>
+          <source type="image/avif" srcset="logo-mark.avif" />
+          <img src="logo-mark.jpg" width="54" height="54" alt="Logo Zepoul Ayiti" data-fallback="logo-optimized.png" />
+        </picture>
         <div>
           <strong class="brand-name">Zepoul Ayiti</strong>
           <span>GL Zepoul Peyi</span>
@@ -594,7 +601,10 @@
 
       <figure class="flyer-frame">
         <button class="flyer-zoom" type="button" data-lightbox-open="communication-lakay-lightbox" aria-label="Agrandir le visuel Soti lakay nou pou rive lakay ou du 13 mai 2026">
-          <img src="communication-soti-lakay-2026-05-13-thumb.png" width="346" height="520" alt="Aperçu du visuel Zepoul Ayiti Soti lakay nou pou rive lakay ou prévu pour le 13 mai 2026" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/avif" srcset="communication-soti-lakay-2026-05-13-thumb.avif" />
+            <img src="communication-soti-lakay-2026-05-13-thumb.png" width="346" height="520" alt="Aperçu du visuel Zepoul Ayiti Soti lakay nou pou rive lakay ou prévu pour le 13 mai 2026" loading="lazy" decoding="async" />
+          </picture>
         </button>
         <figcaption>Cliquez sur l’image pour agrandir.</figcaption>
       </figure>
@@ -628,7 +638,10 @@
 
       <figure class="flyer-frame">
         <button class="flyer-zoom" type="button" data-lightbox-open="communication-fraicheur-lightbox" aria-label="Agrandir le visuel La fraîcheur qui nourrit du 9 mai 2026">
-          <img src="communication-fraicheur-2026-05-09-thumb.png" width="346" height="520" alt="Aperçu du visuel Zepoul Ayiti La fraîcheur qui nourrit du 9 mai 2026" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/avif" srcset="communication-fraicheur-2026-05-09-thumb.avif" />
+            <img src="communication-fraicheur-2026-05-09-thumb.png" width="346" height="520" alt="Aperçu du visuel Zepoul Ayiti La fraîcheur qui nourrit du 9 mai 2026" loading="lazy" decoding="async" />
+          </picture>
         </button>
         <figcaption>Cliquez sur l’image pour agrandir.</figcaption>
       </figure>
@@ -662,7 +675,10 @@
 
       <figure class="flyer-frame">
         <button class="flyer-zoom" type="button" data-lightbox-open="communication-lightbox" aria-label="Agrandir le flyer du 1er mai 2026">
-          <img src="communication-1er-mai-2026-thumb.png" width="346" height="520" alt="Aperçu du flyer Zepoul Ayiti pour la Fête de l’Agriculture et du Travail du 1er mai 2026" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/avif" srcset="communication-1er-mai-2026-thumb.avif" />
+            <img src="communication-1er-mai-2026-thumb.png" width="346" height="520" alt="Aperçu du flyer Zepoul Ayiti pour la Fête de l’Agriculture et du Travail du 1er mai 2026" loading="lazy" decoding="async" />
+          </picture>
         </button>
         <figcaption>Cliquez sur l’image pour agrandir.</figcaption>
       </figure>
@@ -674,7 +690,10 @@
     <button class="lightbox-backdrop" type="button" data-lightbox-close aria-label="Fermer l’aperçu"></button>
     <div class="lightbox-panel">
       <button class="lightbox-close" type="button" data-lightbox-close>Fermer</button>
-      <img src="communication-soti-lakay-2026-05-13.png" width="1024" height="1536" alt="Visuel Zepoul Ayiti agrandi : Soti lakay nou pou rive lakay ou, prévu pour le 13 mai 2026" loading="lazy" decoding="async" />
+      <picture>
+        <source type="image/avif" data-srcset="communication-soti-lakay-2026-05-13.avif" />
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="communication-soti-lakay-2026-05-13.png" width="1024" height="1536" alt="Visuel Zepoul Ayiti agrandi : Soti lakay nou pou rive lakay ou, prévu pour le 13 mai 2026" decoding="async" />
+      </picture>
     </div>
   </div>
 
@@ -682,7 +701,10 @@
     <button class="lightbox-backdrop" type="button" data-lightbox-close aria-label="Fermer l’aperçu"></button>
     <div class="lightbox-panel">
       <button class="lightbox-close" type="button" data-lightbox-close>Fermer</button>
-      <img src="communication-fraicheur-2026-05-09.png" width="1024" height="1536" alt="Visuel Zepoul Ayiti agrandi : La fraîcheur qui nourrit, publié le 9 mai 2026" loading="lazy" decoding="async" />
+      <picture>
+        <source type="image/avif" data-srcset="communication-fraicheur-2026-05-09.avif" />
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="communication-fraicheur-2026-05-09.png" width="1024" height="1536" alt="Visuel Zepoul Ayiti agrandi : La fraîcheur qui nourrit, publié le 9 mai 2026" decoding="async" />
+      </picture>
     </div>
   </div>
 
@@ -690,7 +712,10 @@
     <button class="lightbox-backdrop" type="button" data-lightbox-close aria-label="Fermer l’aperçu"></button>
     <div class="lightbox-panel">
       <button class="lightbox-close" type="button" data-lightbox-close>Fermer</button>
-      <img src="communication-1er-mai-2026.png" width="1024" height="1536" alt="Flyer Zepoul Ayiti agrandi pour la Fête de l’Agriculture et du Travail du 1er mai 2026" loading="lazy" decoding="async" />
+      <picture>
+        <source type="image/avif" data-srcset="communication-1er-mai-2026.avif" />
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="communication-1er-mai-2026.png" width="1024" height="1536" alt="Flyer Zepoul Ayiti agrandi pour la Fête de l’Agriculture et du Travail du 1er mai 2026" decoding="async" />
+      </picture>
     </div>
   </div>
 
@@ -736,6 +761,6 @@
   </footer>
 
   <script defer src="analytics.js"></script>
-  <script defer src="site.js?v=20260504-cleanup1"></script>
+  <script defer src="site.js?v=20260510-perf3"></script>
 </body>
 </html>

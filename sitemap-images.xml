@@ -5,7 +5,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <video:video>
       <video:thumbnail_loc>https://www.zepoulayiti.com/hero-optimized.jpg</video:thumbnail_loc>
       <video:title>Notre démarche en images</video:title>
@@ -19,12 +19,20 @@
       <image:caption>Production et conditionnement d'œufs en Haïti</image:caption>
     </image:image>
     <image:image>
+      <image:loc>https://www.zepoulayiti.com/hero-optimized.avif</image:loc>
+      <image:title>Production d'œufs Zepoul Ayiti - format optimisé</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Logo officiel Zepoul Ayiti</image:title>
     </image:image>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/logo-mark.jpg</image:loc>
       <image:title>Emblème Zepoul Ayiti</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.zepoulayiti.com/logo-mark.avif</image:loc>
+      <image:title>Emblème Zepoul Ayiti - format optimisé</image:title>
     </image:image>
   </url>
 
@@ -69,8 +77,16 @@
       <image:caption>Communication Zepoul Ayiti programmée pour le 13 mai 2026 autour des œufs frais, de la famille et de la production locale.</image:caption>
     </image:image>
     <image:image>
+      <image:loc>https://www.zepoulayiti.com/communication-soti-lakay-2026-05-13.avif</image:loc>
+      <image:title>Soti lakay nou pou rive lakay ou - Zepoul Ayiti - format optimisé</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://www.zepoulayiti.com/communication-soti-lakay-2026-05-13-thumb.png</image:loc>
       <image:title>Aperçu de la communication Soti lakay nou pou rive lakay ou - Zepoul Ayiti</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.zepoulayiti.com/communication-soti-lakay-2026-05-13-thumb.avif</image:loc>
+      <image:title>Aperçu optimisé de la communication Soti lakay nou pou rive lakay ou - Zepoul Ayiti</image:title>
     </image:image>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/communication-fraicheur-2026-05-09.png</image:loc>
@@ -78,8 +94,16 @@
       <image:caption>Communication de Zepoul Ayiti publiée le 9 mai 2026 autour de la fraîcheur, de la production locale et de la qualité des œufs.</image:caption>
     </image:image>
     <image:image>
+      <image:loc>https://www.zepoulayiti.com/communication-fraicheur-2026-05-09.avif</image:loc>
+      <image:title>La fraîcheur qui nourrit - Zepoul Ayiti - format optimisé</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://www.zepoulayiti.com/communication-fraicheur-2026-05-09-thumb.png</image:loc>
       <image:title>Aperçu de la communication La fraîcheur qui nourrit - Zepoul Ayiti</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.zepoulayiti.com/communication-fraicheur-2026-05-09-thumb.avif</image:loc>
+      <image:title>Aperçu optimisé de la communication La fraîcheur qui nourrit - Zepoul Ayiti</image:title>
     </image:image>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/communication-1er-mai-2026.png</image:loc>
@@ -87,8 +111,16 @@
       <image:caption>Communication institutionnelle de Zepoul Ayiti publiée à l’occasion du 1er mai 2026.</image:caption>
     </image:image>
     <image:image>
+      <image:loc>https://www.zepoulayiti.com/communication-1er-mai-2026.avif</image:loc>
+      <image:title>Fête de l’Agriculture et du Travail 2026 - Zepoul Ayiti - format optimisé</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://www.zepoulayiti.com/communication-1er-mai-2026-thumb.png</image:loc>
       <image:title>Aperçu de la communication du 1er mai 2026 - Zepoul Ayiti</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.zepoulayiti.com/communication-1er-mai-2026-thumb.avif</image:loc>
+      <image:title>Aperçu optimisé de la communication du 1er mai 2026 - Zepoul Ayiti</image:title>
     </image:image>
   </url>
 

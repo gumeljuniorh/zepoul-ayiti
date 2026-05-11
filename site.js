@@ -303,6 +303,14 @@
 
     function openLightbox(lightbox, trigger) {
       if (!lightbox) return;
+      lightbox.querySelectorAll("source[data-srcset]").forEach(function (source) {
+        source.srcset = source.getAttribute("data-srcset");
+        source.removeAttribute("data-srcset");
+      });
+      lightbox.querySelectorAll("img[data-src]").forEach(function (img) {
+        img.src = img.getAttribute("data-src");
+        img.removeAttribute("data-src");
+      });
       lightbox.__lastTrigger = trigger || null;
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
