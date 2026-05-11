@@ -682,6 +682,54 @@ body:not([data-page="index"]) .wrap {
     color: #d5ded8 !important;
   }
 
+  body[data-page="index"] .hero,
+  body[data-page="index"] .block,
+  body[data-page="index"] .audience,
+  body[data-page="index"] .container {
+    background-color: transparent !important;
+  }
+
+  body[data-page="index"] .hero-proof article,
+  body[data-page="index"] .audience-card,
+  body[data-page="index"] .order-box,
+  body[data-page="index"] .video-shell {
+    background: rgba(8, 8, 8, 0.96) !important;
+    border-color: rgba(255, 255, 255, 0.13) !important;
+    color: #edf5ee !important;
+  }
+
+  body[data-page="index"] .hero p,
+  body[data-page="index"] .audience-card p,
+  body[data-page="index"] .section-note,
+  body[data-page="index"] .order-box p {
+    color: #b9c8be !important;
+  }
+
+  body[data-page="services"] .wrap,
+  body[data-page="services"] main {
+    background-color: transparent !important;
+  }
+
+  body[data-page="services"] .service-panel,
+  body[data-page="services"] .service-flow,
+  body[data-page="services"] .note,
+  body[data-page="services"] .client-strip span {
+    background: rgba(8, 8, 8, 0.96) !important;
+    border-color: rgba(255, 255, 255, 0.13) !important;
+    color: #edf5ee !important;
+    box-shadow: 0 20px 46px rgba(0, 0, 0, 0.56) !important;
+  }
+
+  body[data-page="services"] .flow-step + .flow-step {
+    border-color: rgba(255, 255, 255, 0.13) !important;
+  }
+
+  body[data-page="services"] .service-list li,
+  body[data-page="services"] .flow-step p,
+  body[data-page="services"] .note {
+    color: #d5ded8 !important;
+  }
+
   body[data-page="about"] .page-header {
     background:
       radial-gradient(circle at 12% 0%, rgba(251, 197, 49, 0.08), transparent 34%),
@@ -718,4 +766,209 @@ body:not([data-page="index"]) .wrap {
   body[data-page="about"] .executive-label {
     color: #9fe7b1 !important;
   }
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #45d27c !important;
+  --primary-dark: #f4f7ec !important;
+  --accent: #fbc531 !important;
+  --text: #edf5ee !important;
+  --text-main: #edf5ee !important;
+  --text-muted: #b9c8be !important;
+  --muted: #b9c8be !important;
+  --border: rgba(255, 255, 255, 0.14) !important;
+  --surface: #000000 !important;
+  --surface-soft: #080808 !important;
+  --bg: #000000 !important;
+  --polish-shadow: 0 20px 46px rgba(0, 0, 0, 0.62) !important;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 16% -8%, rgba(251, 197, 49, 0.08), transparent 28%),
+    radial-gradient(circle at 86% 8%, rgba(69, 210, 124, 0.08), transparent 32%),
+    #000000 !important;
+  color: #edf5ee !important;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .page-wrap,
+html[data-theme="dark"] main,
+html[data-theme="dark"] section.block,
+html[data-theme="dark"] .audience,
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .hero-panel,
+html[data-theme="dark"] .wrap,
+html[data-theme="dark"] body[data-page="index"] .block,
+html[data-theme="dark"] body[data-page="index"] .container,
+html[data-theme="dark"] body[data-page="services"] main {
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] .site-header {
+  background: rgba(0, 0, 0, 0.94) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.58) !important;
+}
+
+html[data-theme="dark"] .site-header .brand,
+html[data-theme="dark"] .site-header .brand h1,
+html[data-theme="dark"] .site-header .brand .brand-name,
+html[data-theme="dark"] .site-header .brand span,
+html[data-theme="dark"] .site-header .nav-links > a:not(.btn-primary),
+html[data-theme="dark"] .menu-toggle,
+html[data-theme="dark"] .mobile-menu a {
+  color: #edf5ee !important;
+}
+
+html[data-theme="dark"] .site-header .brand img,
+html[data-theme="dark"] .site-header .social-icons a,
+html[data-theme="dark"] .site-footer .footer-social a,
+html[data-theme="dark"] .site-footer .footer-logo {
+  background: #fffdf4 !important;
+}
+
+html[data-theme="dark"] .menu-toggle,
+html[data-theme="dark"] .mobile-menu {
+  background: rgba(3, 3, 3, 0.98) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .hero-panel {
+  background:
+    radial-gradient(900px 320px at 80% -20%, rgba(251, 197, 49, 0.08), transparent),
+    linear-gradient(180deg, rgba(6, 6, 6, 0.98), rgba(0, 0, 0, 0.94)) !important;
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .box,
+html[data-theme="dark"] .box-feature,
+html[data-theme="dark"] .expertise-panel,
+html[data-theme="dark"] .audience-card,
+html[data-theme="dark"] .service-panel,
+html[data-theme="dark"] .growth-panel,
+html[data-theme="dark"] .vision-panel,
+html[data-theme="dark"] .metric,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .founder-card,
+html[data-theme="dark"] .bio-card,
+html[data-theme="dark"] .portrait-card,
+html[data-theme="dark"] .communication-card,
+html[data-theme="dark"] .flyer-frame,
+html[data-theme="dark"] .archive-header,
+html[data-theme="dark"] .order-box,
+html[data-theme="dark"] .video-shell,
+html[data-theme="dark"] .note,
+html[data-theme="dark"] .client-strip span,
+html[data-theme="dark"] .service-flow,
+html[data-theme="dark"] .lightbox-panel,
+html[data-theme="dark"] .status-pill,
+html[data-theme="dark"] .type-badge,
+html[data-theme="dark"] body[data-page="about"] .approach-list,
+html[data-theme="dark"] body[data-page="about"] .approach-list div {
+  background: rgba(8, 8, 8, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.13) !important;
+  color: #edf5ee !important;
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.56) !important;
+}
+
+html[data-theme="dark"] .hero-proof article,
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .communication-tags span,
+html[data-theme="dark"] .archive-count,
+html[data-theme="dark"] .cta-secondary,
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background: rgba(255, 255, 255, 0.055) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #edf5ee !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] .section-title,
+html[data-theme="dark"] .archive-title,
+html[data-theme="dark"] .communication-content h2,
+html[data-theme="dark"] .expertise-panel h2,
+html[data-theme="dark"] .executive-name,
+html[data-theme="dark"] .service-panel h2,
+html[data-theme="dark"] .vision-panel h2,
+html[data-theme="dark"] .audience-card h4,
+html[data-theme="dark"] .card h4,
+html[data-theme="dark"] .metric strong,
+html[data-theme="dark"] .hero-proof strong,
+html[data-theme="dark"] body[data-page="about"] .approach-list strong {
+  color: #fff8df !important;
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] li,
+html[data-theme="dark"] .lead,
+html[data-theme="dark"] .section-note,
+html[data-theme="dark"] .archive-label,
+html[data-theme="dark"] .communication-content p,
+html[data-theme="dark"] .service-panel p,
+html[data-theme="dark"] .vision-panel p,
+html[data-theme="dark"] .audience-card p,
+html[data-theme="dark"] .card p,
+html[data-theme="dark"] .expertise-panel p,
+html[data-theme="dark"] .executive-lead,
+html[data-theme="dark"] .executive-title,
+html[data-theme="dark"] .metric p,
+html[data-theme="dark"] .flyer-frame figcaption,
+html[data-theme="dark"] .meta,
+html[data-theme="dark"] .foot,
+html[data-theme="dark"] label,
+html[data-theme="dark"] small,
+html[data-theme="dark"] body[data-page="about"] .approach-list span,
+html[data-theme="dark"] body[data-page="services"] .service-list li,
+html[data-theme="dark"] body[data-page="services"] .flow-step p {
+  color: #b9c8be !important;
+}
+
+html[data-theme="dark"] a:not(.btn):not(.cta),
+html[data-theme="dark"] .home,
+html[data-theme="dark"] .site-header .nav-links > a.is-active,
+html[data-theme="dark"] .mobile-menu a.is-active {
+  color: #78e39b !important;
+}
+
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .cta-primary,
+html[data-theme="dark"] .site-header .btn.btn-primary {
+  background: #45d27c !important;
+  color: #06200f !important;
+  box-shadow: 0 12px 28px rgba(69, 210, 124, 0.24) !important;
+}
+
+html[data-theme="dark"] .btn-whatsapp,
+html[data-theme="dark"] .float-wa {
+  color: #06200f !important;
+}
+
+html[data-theme="dark"] .date-card,
+html[data-theme="dark"] .band,
+html[data-theme="dark"] .impact,
+html[data-theme="dark"] .showcase-video {
+  background: linear-gradient(140deg, #030303, #101010) !important;
+  color: #fff8df !important;
+}
+
+html[data-theme="dark"] body[data-page="about"] .page-header {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(251, 197, 49, 0.08), transparent 34%),
+    linear-gradient(180deg, #050505, #000000) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] body[data-page="about"] .executive-label {
+  color: #9fe7b1 !important;
 }
