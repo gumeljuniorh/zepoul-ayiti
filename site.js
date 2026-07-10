@@ -173,6 +173,7 @@
       event.preventDefault();
 
       var submitBtn = form.querySelector("button[type='submit']");
+      var originalSubmitText = submitBtn ? submitBtn.textContent.trim() : "";
       var institution = document.getElementById("inst").value.trim();
       var volume = document.getElementById("vol").value.trim();
       var email = document.getElementById("email").value.trim();
@@ -208,7 +209,13 @@
       });
 
       setFormStatus("Envoi en cours...", true);
-      if (submitBtn) submitBtn.disabled = true;
+      form.classList.add("is-submitting");
+      form.setAttribute("aria-busy", "true");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute("aria-busy", "true");
+        submitBtn.textContent = "Transmission en cours...";
+      }
 
       fetch(QUOTE_ENDPOINT, {
         method: "POST",
@@ -233,7 +240,13 @@
           openMailtoFallback(institution, volume, email, phone, details);
         })
         .finally(function () {
-          if (submitBtn) submitBtn.disabled = false;
+          form.classList.remove("is-submitting");
+          form.removeAttribute("aria-busy");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute("aria-busy");
+            submitBtn.textContent = originalSubmitText;
+          }
         });
     });
   }
