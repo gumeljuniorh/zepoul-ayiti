@@ -7,6 +7,23 @@
 
   window.trackEvent = emit;
 
+  function ensureSkipLink() {
+    if (document.querySelector(".skip-link")) return;
+
+    var target = document.querySelector("main");
+    if (!target) return;
+
+    if (!target.id) {
+      target.id = "contenu-principal";
+    }
+
+    var skipLink = document.createElement("a");
+    skipLink.className = "skip-link";
+    skipLink.href = "#" + target.id;
+    skipLink.textContent = "Aller au contenu principal";
+    document.body.insertBefore(skipLink, document.body.firstChild);
+  }
+
   function bindMenu() {
     var items = [];
 
@@ -106,6 +123,47 @@
         img.src = fallback;
       });
     });
+  }
+
+  function bindFloatingContacts() {
+    var buttons = Array.prototype.slice.call(document.querySelectorAll(".float-btn"));
+    if (!buttons.length) return;
+
+    var compactViewport = window.matchMedia("(max-width: 720px)");
+    var zones = Array.prototype.slice.call(document.querySelectorAll(".hero, #commande, .site-footer"));
+    if (!zones.length || !("IntersectionObserver" in window)) return;
+
+    var visibleZones = new Set();
+
+    function updateButtons() {
+      var shouldSuppress = compactViewport.matches && visibleZones.size > 0;
+      buttons.forEach(function (button) {
+        button.classList.toggle("is-suppressed", shouldSuppress);
+        button.setAttribute("aria-hidden", shouldSuppress ? "true" : "false");
+        button.tabIndex = shouldSuppress ? -1 : 0;
+      });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          visibleZones.add(entry.target);
+        } else {
+          visibleZones.delete(entry.target);
+        }
+      });
+      updateButtons();
+    }, { threshold: 0.08 });
+
+    zones.forEach(function (zone) {
+      observer.observe(zone);
+    });
+
+    if (typeof compactViewport.addEventListener === "function") {
+      compactViewport.addEventListener("change", updateButtons);
+    } else if (typeof compactViewport.addListener === "function") {
+      compactViewport.addListener(updateButtons);
+    }
   }
 
   function bindQuoteForm() {
@@ -393,9 +451,11 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    ensureSkipLink();
     bindMenu();
     bindTracking();
     bindImageFallbacks();
+    bindFloatingContacts();
     bindQuoteForm();
     bindBrandVideo();
     bindLightboxes();
