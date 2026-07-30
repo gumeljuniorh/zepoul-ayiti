@@ -38,6 +38,14 @@ for (const file of htmlFiles) {
   if (h1Count !== 1) report(file, `la page doit contenir exactement un H1 (trouve: ${h1Count})`);
   if (duplicateIds.length) report(file, `identifiants dupliques: ${[...new Set(duplicateIds)].join(", ")}`);
 
+  for (const match of html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      JSON.parse(match[1]);
+    } catch (error) {
+      report(file, `JSON-LD invalide: ${error.message}`);
+    }
+  }
+
   for (const match of html.matchAll(/\s(?:href|src|poster|data-src)=["']([^"']+)["']/gi)) {
     checkReference(file, match[1]);
   }

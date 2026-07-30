@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b3d1a" />
@@ -50,7 +50,7 @@
     "description": "Entreprise avicole en Haïti avec une production locale stable de 500 œufs par jour et une vision d’expansion vers 50 000 poules pondeuses.",
     "logo": "https://www.zepoulayiti.com/logo-full-light.jpg",
     "email": "info@zepoulayiti.com",
-    "telephone": "+50942605756",
+    "telephone": "+50944975668",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Port-de-Paix",
@@ -58,7 +58,7 @@
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+50942605756",
+      "telephone": "+50944975668",
       "contactType": "customer service",
       "areaServed": "HT",
       "availableLanguage": "fr"
@@ -118,7 +118,7 @@
     "url": "https://www.zepoulayiti.com/",
     "description": "Production locale de 500 œufs par jour en Haïti. Entreprise avicole structurée pour l’approvisionnement professionnel en œufs.",
     "image": "https://www.zepoulayiti.com/logo-full-light.jpg",
-    "telephone": "+50942605756",
+    "telephone": "+50944975668",
     "email": "info@zepoulayiti.com",
     "address": {
       "@type": "PostalAddress",
@@ -145,6 +145,48 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://www.zepoulayiti.com/#oeufs-frais",
+    "name": "Œufs frais Zepoul Ayiti",
+    "alternateName": [
+      "Œufs frais produits en Haïti",
+      "Ze fre Zepoul Ayiti"
+    ],
+    "description": "Œufs issus de la production avicole locale de Zepoul Ayiti, destinés aux clients professionnels et aux circuits d’approvisionnement en Haïti.",
+    "image": "https://www.zepoulayiti.com/hero-optimized.jpg",
+    "category": "Œufs frais",
+    "brand": {
+      "@type": "Brand",
+      "name": "Zepoul Ayiti"
+    },
+    "manufacturer": {
+      "@id": "https://www.zepoulayiti.com/#organization"
+    },
+    "countryOfOrigin": {
+      "@type": "Country",
+      "name": "Haïti"
+    },
+    "audience": {
+      "@type": "BusinessAudience",
+      "audienceType": "Clients professionnels, distributeurs et commerces"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Origine",
+        "value": "Production locale en Haïti"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Modalité commerciale",
+        "value": "Volumes confirmés sur demande"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Notre démarche en images",
     "description": "Aperçu de l’engagement de Zepoul Ayiti pour une production avicole locale, structurée et responsable en Haïti.",
@@ -164,8 +206,8 @@
   <link rel="preload" as="image" href="hero-mobile-360w.avif" type="image/avif" media="(max-width: 768px)" imagesrcset="hero-mobile-300w.avif 300w, hero-mobile-360w.avif 360w, hero-mobile-420w.avif 420w, hero-mobile-520w.avif 520w" imagesizes="(max-width: 560px) 70vw, (max-width: 768px) 74vw, 390px" />
   <link rel="preload" as="image" href="hero-optimized.avif" type="image/avif" media="(min-width: 769px)" />
   <script src="theme.js?v=20260511-dark"></script>
-  <link rel="stylesheet" href="site.css?v=20260718-channels1" />
-  <link rel="stylesheet" href="home.css?v=20260718-priorites1" />
+  <link rel="stylesheet" href="site.css?v=20260730-complete1" />
+  <link rel="stylesheet" href="home.css?v=20260730-turnstile1" />
 </head>
 <body data-page="index">
   <svg class="svg-definitions" aria-hidden="true" width="0" height="0">
@@ -194,7 +236,7 @@
   <a class="float-btn float-mail" href="mailto:info@zepoulayiti.com" aria-label="Envoyer un email">
     <svg class="inline-icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
   </a>
-  <a class="float-btn float-wa" href="https://wa.me/50942605756?text=Bonjour%20Zepoul%20Ayiti%2C%20je%20souhaite%20commander%20des%20%C5%93ufs." target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
+  <a class="float-btn float-wa" href="https://wa.me/50944975668?text=Bonjour%20Zepoul%20Ayiti%2C%20je%20souhaite%20commander%20des%20%C5%93ufs." target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
     <svg class="inline-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
   </a>
 
@@ -245,7 +287,7 @@
           <h1>Production et approvisionnement en œufs en Haïti</h1>
           <p>Une production locale de 500 œufs par jour, structurée pour accompagner une croissance progressive vers une capacité industrielle.</p>
           <div class="hero-actions">
-            <a class="btn btn-whatsapp" href="https://wa.me/50942605756?text=Bonjour%20Zepoul%20Ayiti%2C%20je%20souhaite%20commander%20des%20%C5%93ufs." target="_blank" rel="noopener"><svg class="inline-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> WhatsApp</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/50944975668?text=Bonjour%20Zepoul%20Ayiti%2C%20je%20souhaite%20commander%20des%20%C5%93ufs." target="_blank" rel="noopener"><svg class="inline-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> WhatsApp</a>
             <a class="btn btn-primary" href="#commande">Demander une cotation</a>
             <a class="btn btn-secondary hero-volume-link" href="#commande">Demande en volume</a>
           </div>
@@ -345,6 +387,19 @@
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://www.zepoulayiti.com/merci.html?source=quote" />
 
+          <div class="turnstile-verification">
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAAECN2UCj6eJrxxvb"
+              data-action="quote"
+              data-size="flexible"
+              data-theme="auto"
+              data-language="fr"
+              data-appearance="interaction-only"
+            ></div>
+            <p>Vérification de sécurité assurée par Cloudflare Turnstile.</p>
+          </div>
+
           <button type="submit" class="btn btn-primary">
             Soumettre la demande de cotation
           </button>
@@ -377,7 +432,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <section>
-        <img class="footer-logo" src="logo-full-light.jpg" width="72" height="72" alt="Logo officiel Zepoul Ayiti" loading="lazy" decoding="async" />
+        <img class="footer-logo" src="logo-mark.jpg" width="72" height="72" alt="Logo officiel Zepoul Ayiti" loading="lazy" decoding="async" />
         <h5>Zepoul Ayiti</h5>
         <p class="footer-brandline">Production et fourniture d’œufs en Haïti, avec une capacité stable et une vision de croissance nationale.</p>
         <p><strong>Vision :</strong> structurer une filière locale durable. <a href="vision.html">Lire la vision</a></p>
@@ -399,7 +454,7 @@
         <div class="footer-contact-list">
           <p>Port-de-Paix, Haïti</p>
           <a class="footer-contact-link" href="mailto:info@zepoulayiti.com">info@zepoulayiti.com</a>
-          <a class="footer-contact-link" href="https://wa.me/50942605756" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="footer-contact-link" href="https://wa.me/50944975668" target="_blank" rel="noopener">WhatsApp : +509 44 97 56 68</a>
         </div>
         <div class="footer-social" aria-label="Réseaux sociaux">
           <a href="https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" loading="lazy" decoding="async" /></a>
@@ -415,7 +470,8 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
 
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
   <script defer src="analytics.js"></script>
-  <script defer src="site.js?v=20260718-priorites1"></script>
+  <script defer src="site.js?v=20260730-turnstile1"></script>
 </body>
 </html>

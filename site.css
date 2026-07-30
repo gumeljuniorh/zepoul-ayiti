@@ -173,6 +173,10 @@ html {
   font-weight: 800;
 }
 
+.site-footer .footer-contact-link[href*="wa.me"] {
+  white-space: nowrap;
+}
+
 .site-footer .footer-social {
   display: flex;
   gap: 8px;
@@ -1698,11 +1702,6 @@ html[data-theme="dark"] body :is(.btn-secondary, .cta-secondary) {
 
 html[data-theme="dark"] .site-header .nav-links > a:not(.btn-primary)::before {
   background: #78e39b !important;
-}
-
-/* Temporarily disabled contact channel. Keep the links in HTML for easy reactivation. */
-a[href*="wa.me"] {
-  display: none !important;
 }
 
 /* The service orientation cards use typography only for a more institutional tone. */

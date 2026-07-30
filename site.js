@@ -1,7 +1,13 @@
 (function () {
   function emit(name, params) {
+    var payload = params || {};
+
     if (typeof window.gtag === "function") {
-      window.gtag("event", name, params || {});
+      window.gtag("event", name, payload);
+    }
+
+    if (window.zaraz && typeof window.zaraz.track === "function") {
+      window.zaraz.track(name, payload);
     }
   }
 
@@ -109,6 +115,12 @@
         emit("social_click", { page: page, target: link.href });
       });
     });
+
+    document.querySelectorAll("a[href*='#commande']").forEach(function (link) {
+      link.addEventListener("click", function () {
+        emit("quote_cta_click", { page: page, target: link.href });
+      });
+    });
   }
 
   function bindImageFallbacks() {
@@ -172,6 +184,8 @@
 
     var QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
     var QUOTE_DB_ENDPOINT = "https://script.google.com/macros/s/AKfycbydmYHgSLQj2LqKALpi2xYdNmckkOOuEANyI0ONIsGJ7H2cmM_6Wmtzeobmt7tAJ7Jk/exec";
+    var formReadyAt = Date.now();
+    var honeyInput = form.querySelector("input[name='_honey']");
 
     function setFormStatus(message, success) {
       var statusEl = document.getElementById("form-status");
@@ -230,6 +244,16 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
+      if (honeyInput && honeyInput.value.trim()) {
+        setFormStatus("La demande n’a pas pu être transmise. Veuillez réessayer.", false);
+        return;
+      }
+
+      if (Date.now() - formReadyAt < 1500) {
+        setFormStatus("Veuillez patienter un instant avant de transmettre la demande.", false);
+        return;
+      }
+
       var submitBtn = form.querySelector("button[type='submit']");
       var originalSubmitText = submitBtn ? submitBtn.textContent.trim() : "";
       var institution = document.getElementById("inst").value.trim();
@@ -237,9 +261,16 @@
       var email = document.getElementById("email").value.trim();
       var phone = document.getElementById("phone").value.trim();
       var details = document.getElementById("details").value.trim();
+      var turnstileInput = form.querySelector("input[name='cf-turnstile-response']");
+      var turnstileToken = turnstileInput ? turnstileInput.value.trim() : "";
 
       if (!institution || !volume || Number(volume) <= 0 || !email || !phone) {
         setFormStatus("Veuillez renseigner le client, un volume valide, un e-mail et un numéro WhatsApp.", false);
+        return;
+      }
+
+      if (!turnstileToken) {
+        setFormStatus("Veuillez compléter la vérification de sécurité avant de transmettre la demande.", false);
         return;
       }
 
@@ -253,7 +284,8 @@
         details: details,
         _replyto: email,
         _subject: "Nouvelle demande de cotation - Zepoul Ayiti",
-        _captcha: "false"
+        _captcha: "false",
+        "cf-turnstile-response": turnstileToken
       };
 
       sendLeadToSheet({
