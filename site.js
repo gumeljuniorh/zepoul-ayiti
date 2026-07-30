@@ -182,8 +182,7 @@
     var form = document.getElementById("quote-form");
     if (!form) return;
 
-    var QUOTE_ENDPOINT = "https://formsubmit.co/ajax/info@zepoulayiti.com";
-    var QUOTE_DB_ENDPOINT = "https://script.google.com/macros/s/AKfycbydmYHgSLQj2LqKALpi2xYdNmckkOOuEANyI0ONIsGJ7H2cmM_6Wmtzeobmt7tAJ7Jk/exec";
+    var QUOTE_ENDPOINT = "/api/quote";
     var formReadyAt = Date.now();
     var honeyInput = form.querySelector("input[name='_honey']");
 
@@ -209,36 +208,6 @@
       ].filter(Boolean);
 
       window.location.href = "mailto:info@zepoulayiti.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyLines.join("\n"));
-    }
-
-    function sendLeadToSheet(payload) {
-      if (!QUOTE_DB_ENDPOINT) return;
-
-      var params = new URLSearchParams();
-      Object.keys(payload || {}).forEach(function (key) {
-        var value = payload[key];
-        if (value === undefined || value === null) return;
-        params.append(key, String(value));
-      });
-
-      try {
-        if (navigator.sendBeacon) {
-          var blob = new Blob([params.toString()], { type: "application/x-www-form-urlencoded" });
-          var queued = navigator.sendBeacon(QUOTE_DB_ENDPOINT, blob);
-          if (queued) return;
-        }
-      } catch (err) {
-        // Ignore and fallback to fetch
-      }
-
-      fetch(QUOTE_DB_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        body: params,
-        keepalive: true
-      }).catch(function () {
-        // Silent failure: sheet capture is best-effort
-      });
     }
 
     form.addEventListener("submit", function (event) {
@@ -287,16 +256,6 @@
         _captcha: "false",
         "cf-turnstile-response": turnstileToken
       };
-
-      sendLeadToSheet({
-        institution: institution,
-        volume: volume,
-        email: email,
-        phone: phone,
-        whatsapp: phone,
-        details: details,
-        source: "site-quote"
-      });
 
       setFormStatus("Envoi en cours...", true);
       form.classList.add("is-submitting");
