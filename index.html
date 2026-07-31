@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://formsubmit.co https://script.google.com https://script.googleusercontent.com; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b3d1a" />
@@ -49,7 +49,6 @@
     "url": "https://www.zepoulayiti.com/",
     "description": "Entreprise avicole en Haïti avec une production locale stable de 500 œufs par jour et une vision d’expansion vers 50 000 poules pondeuses.",
     "logo": "https://www.zepoulayiti.com/logo-full-light.jpg",
-    "email": "info@zepoulayiti.com",
     "telephone": "+50944975668",
     "address": {
       "@type": "PostalAddress",
@@ -119,7 +118,6 @@
     "description": "Production locale de 500 œufs par jour en Haïti. Entreprise avicole structurée pour l’approvisionnement professionnel en œufs.",
     "image": "https://www.zepoulayiti.com/logo-full-light.jpg",
     "telephone": "+50944975668",
-    "email": "info@zepoulayiti.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Port-de-Paix",
@@ -233,9 +231,6 @@
       <path d="M4 19h16v2H2V3h2v16Zm2-3.3 4.6-4.6 3 3L20 7.7V12h2V4h-8v2h4.6l-5 5-3-3L4.6 14.3 6 15.7Z"/>
     </symbol>
   </svg>
-  <a class="float-btn float-mail" href="mailto:info@zepoulayiti.com" aria-label="Envoyer un email">
-    <svg class="inline-icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
-  </a>
   <a class="float-btn float-wa" href="https://wa.me/50944975668?text=Bonjour%20Zepoul%20Ayiti%2C%20je%20souhaite%20commander%20des%20%C5%93ufs." target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
     <svg class="inline-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
   </a>
@@ -453,7 +448,6 @@
         <h5>Contact</h5>
         <div class="footer-contact-list">
           <p>Port-de-Paix, Haïti</p>
-          <a class="footer-contact-link" href="mailto:info@zepoulayiti.com">info@zepoulayiti.com</a>
           <a class="footer-contact-link" href="https://wa.me/50944975668" target="_blank" rel="noopener">WhatsApp : +509 44 97 56 68</a>
         </div>
         <div class="footer-social" aria-label="Réseaux sociaux">
@@ -472,6 +466,6 @@
 
   <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
   <script defer src="analytics.js"></script>
-  <script defer src="site.js?v=20260730-worker1"></script>
+  <script defer src="site.js?v=20260730-noemail1"></script>
 </body>
 </html>

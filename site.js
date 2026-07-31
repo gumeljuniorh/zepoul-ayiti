@@ -98,12 +98,6 @@
       });
     });
 
-    document.querySelectorAll("a[href^='mailto:']").forEach(function (link) {
-      link.addEventListener("click", function () {
-        emit("email_click", { page: page });
-      });
-    });
-
     document.querySelectorAll("a[href^='tel:']").forEach(function (link) {
       link.addEventListener("click", function () {
         emit("phone_click", { page: page });
@@ -193,9 +187,8 @@
       statusEl.style.color = success ? "var(--primary)" : "#b42318";
     }
 
-    function openMailtoFallback(institution, volume, email, phone, details) {
-      var subject = "Demande de cotation - Zepoul Ayiti";
-      var bodyLines = [
+    function openWhatsAppFallback(institution, volume, email, phone, details) {
+      var messageLines = [
         "Bonjour Zepoul Ayiti,",
         "",
         "Client: " + institution,
@@ -207,7 +200,7 @@
         "Merci."
       ].filter(Boolean);
 
-      window.location.href = "mailto:info@zepoulayiti.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyLines.join("\n"));
+      window.location.href = "https://wa.me/50944975668?text=" + encodeURIComponent(messageLines.join("\n"));
     }
 
     form.addEventListener("submit", function (event) {
@@ -251,9 +244,6 @@
         phone: phone,
         whatsapp: phone,
         details: details,
-        _replyto: email,
-        _subject: "Nouvelle demande de cotation - Zepoul Ayiti",
-        _captcha: "false",
         "cf-turnstile-response": turnstileToken
       };
 
@@ -284,9 +274,9 @@
           }, 500);
         })
         .catch(function () {
-          emit("quote_form_fallback_mailto", { institution: institution, volume: volume });
-          setFormStatus("Envoi direct indisponible. Ouverture de votre e-mail en secours...", false);
-          openMailtoFallback(institution, volume, email, phone, details);
+          emit("quote_form_fallback_whatsapp", { institution: institution, volume: volume });
+          setFormStatus("Envoi direct indisponible. Ouverture de WhatsApp en secours...", false);
+          openWhatsAppFallback(institution, volume, email, phone, details);
         })
         .finally(function () {
           form.classList.remove("is-submitting");
