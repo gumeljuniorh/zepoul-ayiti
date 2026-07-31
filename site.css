@@ -1682,6 +1682,30 @@ body[data-page="about"] .box {
   }
 }
 
+@media (max-width: 420px) {
+  .site-header .brand {
+    gap: 9px !important;
+  }
+
+  .site-header .brand span {
+    display: none !important;
+  }
+
+  .site-header .brand img {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .site-header .social-icons {
+    gap: 6px !important;
+  }
+
+  .site-header .social-icons a {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
 html[data-theme="dark"] body[data-page="index"] .field label {
   color: #fff8df !important;
 }

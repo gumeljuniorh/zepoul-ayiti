@@ -229,10 +229,24 @@
         .container { max-width: 1400px; padding-left: 4%; padding-right: 4%; }
     }
     @media (max-width: 768px) {
-        .page-header { padding: 42px 7% 34px; }
-        .page-header h1 { font-size: 1.95rem; }
+        .page-header { padding: 30px 7% 28px; }
+        .page-header h1 { font-size: 1.9rem; }
         .page-lead { font-size: 1rem; }
+        .container { padding: 30px 16px; }
+        .box { padding: 24px; }
         .bio-layout { grid-template-columns: 1fr; }
+        .portrait-card { width: min(100%, 270px); margin: 0 auto; }
+        .bio-photo { max-height: 330px; }
+        .portrait-badge { padding: 8px 10px; }
+        .executive-name { font-size: 2rem; }
+        .executive-title,
+        .executive-lead,
+        p { margin-bottom: 14px; }
         .executive-lines { grid-template-columns: 1fr; }
+        .executive-row { padding: 14px; }
+        .executive-label { margin-bottom: 6px; }
+        .box h2 { margin-bottom: 14px; font-size: 1.55rem; }
+        .section-grid { gap: 16px !important; margin-bottom: 20px; }
+        .approach-list div { padding: 14px; }
         .page-actions { justify-content: flex-start; }
     }

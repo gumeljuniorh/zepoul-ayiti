@@ -31,12 +31,23 @@ for (const file of htmlFiles) {
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
   const h1Count = (html.match(/<h1\b/gi) || []).length;
 
+  if (!/<html\b[^>]*\blang=["']fr["']/i.test(html)) report(file, "langue de page fr manquante");
   if (!/<title>[^<]+<\/title>/i.test(html)) report(file, "balise title manquante ou vide");
   if (!/<meta\s+name=["']description["'][^>]+content=["'][^"']+["']/i.test(html)) {
     report(file, "meta description manquante ou vide");
   }
   if (h1Count !== 1) report(file, `la page doit contenir exactement un H1 (trouve: ${h1Count})`);
   if (duplicateIds.length) report(file, `identifiants dupliques: ${[...new Set(duplicateIds)].join(", ")}`);
+
+  for (const match of html.matchAll(/<img\b([^>]*)>/gi)) {
+    if (!/\balt=["'][^"']*["']/i.test(match[1])) report(file, "image sans attribut alt");
+  }
+
+  for (const match of html.matchAll(/<a\b([^>]*)>/gi)) {
+    if (/\btarget=["']_blank["']/i.test(match[1]) && !/\brel=["'][^"']*\bnoopener\b[^"']*["']/i.test(match[1])) {
+      report(file, "lien target=_blank sans rel=noopener");
+    }
+  }
 
   for (const match of html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
@@ -54,6 +65,18 @@ for (const file of htmlFiles) {
     match[1].split(",").forEach((candidate) => {
       checkReference(file, candidate.trim().split(/\s+/, 1)[0]);
     });
+  }
+}
+
+const manifestPath = resolve(root, "site.webmanifest");
+if (!existsSync(manifestPath)) {
+  report("site.webmanifest", "fichier manquant");
+} else {
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    for (const icon of manifest.icons || []) checkReference("site.webmanifest", icon.src || "");
+  } catch (error) {
+    report("site.webmanifest", `JSON invalide: ${error.message}`);
   }
 }
 

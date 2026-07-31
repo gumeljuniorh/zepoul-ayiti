@@ -1,8 +1,10 @@
 {
   "name": "Zepoul Ayiti",
   "short_name": "Zepoul Ayiti",
-  "description": "Production et approvisionnement en oeufs en Haiti.",
+  "description": "Production et approvisionnement en œufs en Haïti.",
+  "lang": "fr",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0b3d1a",
