@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b3d1a" />
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+  <title>Tableau de bord commercial | Zepoul Ayiti</title>
+  <meta name="description" content="Espace commercial sécurisé de Zepoul Ayiti." />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="stylesheet" href="site.css?v=20260731-systems1" />
+  <link rel="stylesheet" href="admin.css?v=20260731-systems1" />
+</head>
+<body class="admin-page" data-page="admin">
+  <a class="skip-link" href="#admin-content">Aller au contenu principal</a>
+
+  <header class="admin-header">
+    <div class="admin-shell admin-header-row">
+      <a class="admin-brand" href="index.html" aria-label="Retour au site Zepoul Ayiti">
+        <img src="logo-mark.jpg" width="46" height="46" alt="" />
+        <span><strong>Zepoul Ayiti</strong><small>Opérations commerciales</small></span>
+      </a>
+      <div class="admin-header-actions">
+        <span class="system-pill" data-system-pill>Vérification du système</span>
+        <button class="admin-button admin-button-secondary" type="button" data-refresh>Actualiser</button>
+        <a class="admin-button admin-button-primary" href="index.html">Voir le site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-shell admin-main" id="admin-content">
+    <section class="admin-intro" aria-labelledby="dashboard-title">
+      <div>
+        <p class="admin-eyebrow">Espace protégé</p>
+        <h1 id="dashboard-title">Suivi des demandes de cotation</h1>
+        <p>Consultez les demandes reçues, attribuez leur suivi et actualisez leur statut commercial.</p>
+      </div>
+      <p class="admin-sync" data-last-sync>Dernière synchronisation : en attente</p>
+    </section>
+
+    <section class="metric-grid" aria-label="Indicateurs commerciaux">
+      <article class="metric-card">
+        <span>Demandes affichées</span>
+        <strong data-metric="total">0</strong>
+      </article>
+      <article class="metric-card metric-card-new">
+        <span>Nouvelles</span>
+        <strong data-metric="Nouvelle">0</strong>
+      </article>
+      <article class="metric-card metric-card-progress">
+        <span>En cours</span>
+        <strong data-metric="En cours">0</strong>
+      </article>
+      <article class="metric-card metric-card-confirmed">
+        <span>Confirmées</span>
+        <strong data-metric="Confirmée">0</strong>
+      </article>
+    </section>
+
+    <section class="admin-panel" aria-labelledby="requests-title">
+      <div class="panel-heading">
+        <div>
+          <p class="admin-eyebrow">Registre opérationnel</p>
+          <h2 id="requests-title">Demandes reçues</h2>
+        </div>
+        <div class="admin-filters">
+          <label>
+            <span class="visually-hidden">Rechercher</span>
+            <input type="search" data-search placeholder="Client, zone, e-mail ou identifiant" autocomplete="off" />
+          </label>
+          <label>
+            <span class="visually-hidden">Filtrer par statut</span>
+            <select data-status-filter>
+              <option value="">Tous les statuts</option>
+              <option value="Nouvelle">Nouvelle</option>
+              <option value="En cours">En cours</option>
+              <option value="Cotation envoyée">Cotation envoyée</option>
+              <option value="Confirmée">Confirmée</option>
+              <option value="Clôturée">Clôturée</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="admin-message" data-admin-message role="status" aria-live="polite">
+        Chargement sécurisé des demandes...
+      </div>
+
+      <div class="table-scroll" data-table-container hidden>
+        <table class="quote-table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Client</th>
+              <th scope="col">Besoin</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Statut</th>
+              <th scope="col"><span class="visually-hidden">Action</span></th>
+            </tr>
+          </thead>
+          <tbody data-quotes-body></tbody>
+        </table>
+      </div>
+
+      <div class="admin-empty" data-empty hidden>
+        <strong>Aucune demande ne correspond aux critères.</strong>
+        <p>Modifiez les filtres ou actualisez les données.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="quote-dialog" data-quote-dialog aria-labelledby="dialog-title">
+    <form class="quote-dialog-form" data-quote-form>
+      <div class="dialog-heading">
+        <div>
+          <p class="admin-eyebrow">Dossier commercial</p>
+          <h2 id="dialog-title" data-dialog-client>Demande de cotation</h2>
+          <p data-dialog-reference></p>
+        </div>
+        <button class="dialog-close" type="button" data-dialog-close aria-label="Fermer">×</button>
+      </div>
+
+      <dl class="quote-summary" data-quote-summary></dl>
+
+      <input type="hidden" name="rowNumber" />
+      <input type="hidden" name="quoteId" />
+
+      <label class="admin-field">
+        <span>Statut</span>
+        <select name="status" required>
+          <option value="Nouvelle">Nouvelle</option>
+          <option value="En cours">En cours</option>
+          <option value="Cotation envoyée">Cotation envoyée</option>
+          <option value="Confirmée">Confirmée</option>
+          <option value="Clôturée">Clôturée</option>
+        </select>
+      </label>
+
+      <label class="admin-field">
+        <span>Responsable du suivi</span>
+        <input name="responsible" type="text" maxlength="160" autocomplete="name" />
+      </label>
+
+      <label class="admin-field">
+        <span>Notes commerciales</span>
+        <textarea name="notes" maxlength="2000" rows="5" placeholder="Compte rendu, prochaine action ou précision interne"></textarea>
+      </label>
+
+      <p class="dialog-status" data-dialog-status role="status" aria-live="polite"></p>
+      <div class="dialog-actions">
+        <button class="admin-button admin-button-secondary" type="button" data-dialog-close>Annuler</button>
+        <button class="admin-button admin-button-primary" type="submit">Enregistrer le suivi</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script defer src="admin.js?v=20260731-systems1"></script>
+</body>
+</html>

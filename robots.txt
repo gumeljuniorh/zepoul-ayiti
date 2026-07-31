@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /cloudflare-worker.js
+Disallow: /google-apps-script.gs
+Disallow: /DEPLOIEMENT-SYSTEME.md
 
 Sitemap: https://www.zepoulayiti.com/sitemap.xml
 Sitemap: https://www.zepoulayiti.com/sitemap-images.xml

@@ -11,6 +11,7 @@ Objectif de développement : expansion progressive vers 50 000 poules pondeuses
 - Demandes de volumes pour entreprises, commerces, distributeurs et marchands
 - Planification des volumes et des fréquences selon les capacités confirmées
 - Demandes de cotation en ligne et contact prioritaire par WhatsApp
+- Disponibilité publique affichée uniquement lorsqu’une quantité récente est confirmée par l’équipe
 
 ## Contact
 - WhatsApp officiel : https://wa.me/50944975668
@@ -19,6 +20,7 @@ Objectif de développement : expansion progressive vers 50 000 poules pondeuses
 ## Pages principales
 - Accueil : https://www.zepoulayiti.com/
 - Services : https://www.zepoulayiti.com/services.html
+- Fournisseur d’œufs en Haïti : https://www.zepoulayiti.com/fournisseur-oeufs-haiti.html
 - Vision : https://www.zepoulayiti.com/vision.html
 - Expertise : https://www.zepoulayiti.com/expertise.html
 - À propos : https://www.zepoulayiti.com/about.html
@@ -30,3 +32,8 @@ Objectif de développement : expansion progressive vers 50 000 poules pondeuses
 - Marque : Zepoul Ayiti
 - Nom d’exploitation : GL Zepoul Peyi
 - Directeur exécutif : Girard Gumel J. Henry
+
+## Principes commerciaux
+- Les volumes, fréquences et zones sont confirmés avant tout engagement.
+- Le site ne publie ni prix non confirmés ni quantité de remplacement lorsque la source opérationnelle est indisponible.
+- Les demandes professionnelles sont enregistrées dans un registre commercial interne sécurisé.

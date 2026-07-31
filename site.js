@@ -287,6 +287,9 @@
     var QUOTE_ENDPOINT = "/api/quote";
     var formReadyAt = Date.now();
     var honeyInput = form.querySelector("input[name='_honey']");
+    var submissionId = window.crypto && typeof window.crypto.randomUUID === "function"
+      ? window.crypto.randomUUID()
+      : Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
 
     function setFormStatus(message, success) {
       var statusEl = document.getElementById("form-status");
@@ -359,12 +362,6 @@
         return;
       }
 
-      var commercialDetails = [
-        "Zone d’approvisionnement : " + zone,
-        "Fréquence souhaitée : " + frequency,
-        details ? "Précisions : " + details : ""
-      ].filter(Boolean).join("\n");
-
       var payload = {
         institution: institution,
         volume: volume,
@@ -374,7 +371,9 @@
         email: email,
         phone: phone,
         whatsapp: phone,
-        details: commercialDetails,
+        details: details,
+        _honey: honeyInput ? honeyInput.value.trim() : "",
+        submissionId: submissionId,
         "cf-turnstile-response": turnstileToken
       };
 
@@ -455,6 +454,77 @@
           }
         });
     });
+  }
+
+  function bindInventoryPanel() {
+    var panel = document.querySelector("[data-inventory-panel]");
+    if (!panel) return;
+
+    var controller = typeof AbortController === "function" ? new AbortController() : null;
+    var timeoutId = window.setTimeout(function () {
+      if (controller) controller.abort();
+    }, 6000);
+
+    fetch("/api/inventory", {
+      headers: { "Accept": "application/json" },
+      cache: "no-store",
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error("inventory_unavailable");
+        return response.json();
+      })
+      .then(function (data) {
+        var cartons = Number(data.cartons);
+        var updatedAt = new Date(data.updatedAt);
+        var age = Date.now() - updatedAt.getTime();
+        var maxAge = 72 * 60 * 60 * 1000;
+
+        if (
+          data.published !== true ||
+          !Number.isFinite(cartons) ||
+          cartons < 0 ||
+          Number.isNaN(updatedAt.getTime()) ||
+          age < -5 * 60 * 1000 ||
+          age > maxAge
+        ) {
+          return;
+        }
+
+        var quantity = panel.querySelector("[data-inventory-cartons]");
+        var status = panel.querySelector("[data-inventory-status]");
+        var message = panel.querySelector("[data-inventory-message]");
+        var updated = panel.querySelector("[data-inventory-updated]");
+        var statusText = data.status || "Disponible";
+
+        if (quantity) quantity.textContent = new Intl.NumberFormat("fr-HT").format(cartons);
+        if (status) {
+          status.textContent = statusText;
+          status.setAttribute("data-status", statusText);
+        }
+        if (message) {
+          message.textContent = data.message || "Quantité publiée par notre équipe commerciale.";
+        }
+        if (updated) {
+          updated.dateTime = updatedAt.toISOString();
+          updated.textContent = new Intl.DateTimeFormat("fr-HT", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          }).format(updatedAt);
+        }
+
+        panel.hidden = false;
+        emit("inventory_view", { status: statusText, cartons: cartons });
+      })
+      .catch(function () {
+        // Aucune valeur de remplacement n’est affichée lorsque la source n’est pas fiable.
+      })
+      .finally(function () {
+        window.clearTimeout(timeoutId);
+      });
   }
 
   function bindBrandVideo() {
@@ -666,6 +736,7 @@
     bindFloatingContacts();
     bindTurnstileLoader();
     bindQuoteForm();
+    bindInventoryPanel();
     bindBrandVideo();
     bindLightboxes();
     loadDeferredFonts();

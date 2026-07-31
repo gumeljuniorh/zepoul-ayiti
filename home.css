@@ -427,6 +427,135 @@ section.block {
   background: #fff;
 }
 
+.inventory-panel {
+  background: linear-gradient(180deg, #f5faf6 0%, #ffffff 100%);
+}
+
+.inventory-panel[hidden] {
+  display: none !important;
+}
+
+.inventory-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(26, 127, 55, 0.14);
+  border-radius: 26px;
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(11, 61, 26, 0.08);
+}
+
+.inventory-shell::after {
+  position: absolute;
+  right: -70px;
+  bottom: -90px;
+  width: 230px;
+  height: 230px;
+  content: "";
+  border-radius: 50%;
+  background: rgba(251, 197, 49, 0.13);
+  pointer-events: none;
+}
+
+.inventory-heading,
+.inventory-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.inventory-heading {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.inventory-kicker {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.inventory-heading h2 {
+  margin: 0;
+  color: var(--primary-dark);
+  font: 800 clamp(1.65rem, 4vw, 2.35rem)/1.1 "Playfair Display", serif;
+}
+
+.inventory-heading p {
+  max-width: 640px;
+  margin: 10px 0 0;
+  color: var(--text-muted);
+}
+
+.inventory-status {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 9px 13px;
+  color: #0b5726;
+  background: #def3e4;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.inventory-status::before {
+  width: 8px;
+  height: 8px;
+  content: "";
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.inventory-status[data-status="Stock limité"] {
+  color: #755100;
+  background: #fff2c4;
+}
+
+.inventory-status[data-status="Indisponible"] {
+  color: #8d2119;
+  background: #fde4e1;
+}
+
+.inventory-content {
+  margin-top: 22px;
+}
+
+.inventory-quantity,
+.inventory-updated {
+  margin: 0;
+}
+
+.inventory-quantity {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.inventory-quantity strong {
+  color: var(--primary-dark);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+}
+
+.inventory-quantity span {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.inventory-updated {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 .video-shell {
   max-width: 860px;
   margin: 0 auto;
@@ -720,12 +849,23 @@ footer {
     object-fit: cover;
     object-position: center top;
   }
+
+  .inventory-heading,
+  .inventory-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .inventory-content .btn {
+    width: 100%;
+  }
 }
 
 @supports (content-visibility: auto) {
   .stats,
   #orientation,
   #commande,
+  #disponibilite,
   #presentation,
   footer {
     content-visibility: auto;

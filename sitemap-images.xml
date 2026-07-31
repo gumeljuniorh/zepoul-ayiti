@@ -5,7 +5,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <video:video>
       <video:thumbnail_loc>https://www.zepoulayiti.com/hero-optimized.jpg</video:thumbnail_loc>
       <video:title>Notre démarche en images</video:title>
@@ -38,7 +38,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/about.html</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
       <image:title>Girard Gumel J. Henry</image:title>
@@ -52,7 +52,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/girard-gumel-j-henry.html</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/girard-gumel-j-henry.jpg</image:loc>
       <image:title>Portrait de Girard Gumel J. Henry</image:title>
@@ -61,7 +61,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/services.html</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Services Zepoul Ayiti</image:title>
@@ -70,7 +70,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/communications.html</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/communication-soti-lakay-2026-05-13.png</image:loc>
       <image:title>Soti lakay nou pou rive lakay ou - Zepoul Ayiti</image:title>
@@ -126,7 +126,7 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/vision.html</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Vision Zepoul Ayiti</image:title>
@@ -135,10 +135,20 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/expertise.html</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Expertise Zepoul Ayiti</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.zepoulayiti.com/fournisseur-oeufs-haiti.html</loc>
+    <lastmod>2026-07-31</lastmod>
+    <image:image>
+      <image:loc>https://www.zepoulayiti.com/hero-optimized.jpg</image:loc>
+      <image:title>Fournisseur d’œufs en Haïti - Zepoul Ayiti</image:title>
+      <image:caption>Production locale et approvisionnement professionnel en œufs en Haïti.</image:caption>
     </image:image>
   </url>
 

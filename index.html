@@ -167,8 +167,8 @@
   <link rel="preload" as="image" href="hero-mobile-360w.avif" type="image/avif" media="(max-width: 768px)" imagesrcset="hero-mobile-300w.avif 300w, hero-mobile-360w.avif 360w, hero-mobile-420w.avif 420w, hero-mobile-520w.avif 520w" imagesizes="(max-width: 560px) 70vw, (max-width: 768px) 74vw, 390px" />
   <link rel="preload" as="image" href="hero-optimized.avif" type="image/avif" media="(min-width: 769px)" />
   <script src="theme.js?v=20260511-dark"></script>
-  <link rel="stylesheet" href="site.css?v=20260730-audit1" />
-  <link rel="stylesheet" href="home.css?v=20260730-audit1" />
+  <link rel="stylesheet" href="site.css?v=20260731-systems1" />
+  <link rel="stylesheet" href="home.css?v=20260731-systems1" />
 </head>
 <body data-page="index">
   <svg class="svg-definitions" aria-hidden="true" width="0" height="0">
@@ -362,6 +362,26 @@
       </div>
     </section>
 
+    <section class="block inventory-panel" id="disponibilite" data-inventory-panel hidden aria-labelledby="inventory-title">
+      <div class="container">
+        <div class="inventory-shell">
+          <div class="inventory-heading">
+            <div>
+              <span class="inventory-kicker">Information opérationnelle</span>
+              <h2 id="inventory-title">Disponibilité communiquée</h2>
+              <p data-inventory-message>Quantité publiée par notre équipe commerciale.</p>
+            </div>
+            <span class="inventory-status" data-inventory-status>Disponible</span>
+          </div>
+          <div class="inventory-content">
+            <p class="inventory-quantity"><strong data-inventory-cartons>0</strong><span>cartons disponibles</span></p>
+            <p class="inventory-updated">Dernière mise à jour : <time data-inventory-updated></time></p>
+            <a class="btn btn-primary" href="#commande">Demander une confirmation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="block showcase-video" id="presentation">
       <div class="container">
         <div class="section-head">
@@ -421,6 +441,6 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
 
-  <script defer src="site.js?v=20260730-audit1"></script>
+  <script defer src="site.js?v=20260731-systems1"></script>
 </body>
 </html>
