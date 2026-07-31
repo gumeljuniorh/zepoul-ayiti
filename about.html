@@ -57,9 +57,11 @@
         "availableLanguage": "fr"
       },
       "knowsLanguage": "fr",
-      "areaServed": ["Haïti", "Port-au-Prince", "Cap-Haïtien", "Jacmel"],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Haïti"
+      },
       "sameAs": [
-        "https://www.zepoulayiti.com/",
         "https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/",
         "https://www.instagram.com/zepoul_ayiti/",
         "https://www.tiktok.com/@zepoul.ayiti",
@@ -92,7 +94,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "@id": "https://www.zepoulayiti.com/about.html#girard-henry",
+      "@id": "https://www.zepoulayiti.com/girard-gumel-j-henry.html#person",
       "name": "Girard Gumel J. Henry",
       "alternateName": [
         "Girard Henry",
@@ -100,7 +102,7 @@
         "Girard Gumel J Henry",
         "Girard Gumel Junior Henry"
       ],
-      "url": "https://www.zepoulayiti.com/about.html",
+      "url": "https://www.zepoulayiti.com/girard-gumel-j-henry.html",
       "image": "https://www.zepoulayiti.com/girard-gumel-j-henry.jpg",
       "jobTitle": "Directeur exécutif",
       "knowsAbout": [
@@ -112,9 +114,7 @@
         "Distribisyon ze Ayiti"
       ],
       "worksFor": {
-        "@type": "Organization",
-        "name": "GL Zepoul Peyi",
-        "url": "https://www.zepoulayiti.com/"
+        "@id": "https://www.zepoulayiti.com/#organization"
       },
       "sameAs": [
         "https://www.linkedin.com/in/girardgumelhenry/"
@@ -132,7 +132,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="theme.js?v=20260511-dark"></script>
-    <link rel="stylesheet" href="site.css?v=20260730-complete1">
+    <link rel="stylesheet" href="site.css?v=20260730-deep1">
   <link rel="stylesheet" href="about.css?v=20260718-priorites1" />
 </head>
 
@@ -161,12 +161,12 @@
           <a href="https://x.com/Zepoul_Ayiti" target="_blank" rel="noopener" aria-label="X"><img src="x.png" alt="X" loading="lazy" decoding="async" /></a>
         </div>
       </nav>
-      <button class="menu-toggle" data-menu-target="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="menu-toggle" type="button" data-menu-target="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
         <span aria-hidden="true">☰</span>
       </button>
     </div>
   </header>
-  <div class="mobile-menu fixed-top" id="mobile-menu" aria-label="Menu mobile">
+  <div class="mobile-menu fixed-top" id="mobile-menu" role="navigation" aria-label="Menu mobile" aria-hidden="true">
     <div class="container">
         <a href="index.html">Accueil</a>
         <a href="vision.html">Notre vision</a>
@@ -180,7 +180,7 @@
     <div class="page-header">
         <h1>Présentation institutionnelle de GL Zepoul Peyi</h1>
         <p class="page-subtitle">Engagement pour l’autonomie alimentaire d’Haïti</p>
-        <p class="page-lead">GL Zepoul Peyi structure une production avicole locale, responsable et fiable au service des institutions et des familles haïtiennes.</p>
+        <p class="page-lead">GL Zepoul Peyi développe une production avicole locale et une organisation d’approvisionnement adaptée aux besoins du marché haïtien.</p>
         <div class="page-actions">
             <a class="btn btn-primary" href="index.html#commande">Demander une cotation</a>
             <a class="btn btn-secondary" href="services.html">Consulter nos services</a>
@@ -234,56 +234,41 @@
         <div class="section-grid">
             <div class="box">
                 <h2>Mission institutionnelle</h2>
-                <p>
-                    Chez <strong>GL Zepoul Peyi</strong>, notre mission est d’assurer un approvisionnement régulier en œufs frais, sûrs et accessibles, en appliquant des standards sanitaires et environnementaux rigoureux.
-                </p>
-                <p>Nous nous engageons à :</p>
+                <p>La mission de <strong>GL Zepoul Peyi</strong> est de structurer une production avicole locale capable d’accompagner progressivement les besoins d’approvisionnement en Haïti.</p>
+                <p>Nos priorités sont les suivantes :</p>
                 <ul>
-                    <li>Déployer une production avicole moderne, encadrée et contrôlée</li>
-                    <li>Fournir une qualité constante, adaptée aux exigences institutionnelles</li>
+                    <li>Organiser une production suivie et adaptée aux capacités disponibles</li>
+                    <li>Planifier les volumes avec clarté avant toute confirmation</li>
                     <li>Soutenir l’économie locale par la création de valeur et d’emplois</li>
-                    <li>Contribuer concrètement à la sécurité alimentaire en Haïti</li>
+                    <li>Contribuer au développement progressif de la filière avicole haïtienne</li>
                 </ul>
-                <p class="note-inline"><strong>Engagements concrets&nbsp;:</strong> qualité contrôlée, traçabilité des lots et délais de livraison planifiés.</p>
+                <p class="note-inline"><strong>Approche opérationnelle&nbsp;:</strong> hygiène, suivi des lots et planification des volumes selon les capacités confirmées.</p>
             </div>
 
             <div class="box">
                 <h2>Méthode de travail</h2>
-                <p class="section-note">Une méthode claire pour garantir la continuité de service, la qualité sanitaire et la confiance des partenaires.</p>
+                <p class="section-note">Une méthode structurée pour favoriser la qualité, la continuité des échanges et la confiance des partenaires.</p>
                 <div class="approach-list">
                     <div>
                         <strong>Qualité sanitaire</strong>
-                        <span>Protocoles d’hygiène appliqués à chaque étape pour assurer des œufs sûrs et conformes.</span>
+                        <span>Procédures d’hygiène et vérifications appliquées aux étapes de production et de conditionnement.</span>
                     </div>
                     <div>
-                        <strong>Approvisionnement fiable</strong>
-                        <span>Planification des volumes et coordination logistique pour livrer selon les besoins.</span>
+                        <strong>Approvisionnement planifié</strong>
+                        <span>Volumes, fréquences et échéances organisés selon les capacités confirmées.</span>
                     </div>
                     <div>
                         <strong>Partenariats durables</strong>
-                        <span>Relation de confiance avec les institutions pour un service régulier et transparent.</span>
+                        <span>Communication directe et suivi transparent des demandes professionnelles.</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="box">
-            <h2>Notre vision stratégique</h2>
-            <p>
-                Notre vision pour <strong>GL Zepoul Peyi</strong> est de bâtir une entreprise de référence nationale, capable d’accompagner durablement l’indépendance agroalimentaire du pays.
-            </p>
-            <ul>
-                <li><strong>Structurée&nbsp;:</strong> Une organisation professionnelle, stable et pérenne.</li>
-                <li><strong>Performante&nbsp;:</strong> Des méthodes d’élevage modernes et des processus maîtrisés.</li>
-                <li><strong>Responsable&nbsp;:</strong> Une démarche attentive à l’environnement et au bien-être animal.</li>
-                <li><strong>Référente&nbsp;:</strong> Une position reconnue dans la production d’œufs en Haïti.</li>
-            </ul>
-            
-            <div class="vision-footer">
-                <p class="vision-quote">
-                    "GL Zepoul Peyi ambitionne d’être un acteur clé du secteur avicole haïtien et une référence en entrepreneuriat agricole moderne."
-                </p>
-            </div>
+            <h2>Orientation stratégique</h2>
+            <p>GL Zepoul Peyi poursuit une croissance progressive afin de renforcer sa capacité de production, son organisation et sa contribution à l’autonomie alimentaire d’Haïti.</p>
+            <a class="btn btn-secondary" href="vision.html">Consulter notre vision</a>
         </div>
 
     </div>
@@ -326,6 +311,6 @@
     </footer>
 
     <script defer src="analytics.js"></script>
-  <script defer src="site.js?v=20260730-noemail1"></script>
+    <script defer src="site.js?v=20260730-deep1"></script>
 </body>
 </html>

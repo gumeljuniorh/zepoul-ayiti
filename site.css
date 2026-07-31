@@ -23,6 +23,13 @@
 }
 
 .mobile-menu.open { display: block; }
+
+html.mobile-menu-open,
+body.mobile-menu-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 .mobile-menu a {
   display: block;
   text-decoration: none;
@@ -598,6 +605,7 @@ body:not([data-page="index"]) .wrap {
   .executive-name,
   .service-panel h2,
   .vision-panel h2,
+  .audience-card h3,
   .audience-card h4,
   .card h4,
   .metric strong,
@@ -905,6 +913,7 @@ html[data-theme="dark"] .expertise-panel h2,
 html[data-theme="dark"] .executive-name,
 html[data-theme="dark"] .service-panel h2,
 html[data-theme="dark"] .vision-panel h2,
+html[data-theme="dark"] .audience-card h3,
 html[data-theme="dark"] .audience-card h4,
 html[data-theme="dark"] .card h4,
 html[data-theme="dark"] .metric strong,
@@ -1325,6 +1334,7 @@ body[data-page="communications"] .section-head {
   max-width: 780px;
 }
 
+body[data-page="index"] .section-head h2,
 body[data-page="index"] .section-head h3,
 body[data-page="communications"] .archive-title,
 body[data-page="communications"] .communication-content h2 {
@@ -1702,11 +1712,6 @@ html[data-theme="dark"] body :is(.btn-secondary, .cta-secondary) {
 
 html[data-theme="dark"] .site-header .nav-links > a:not(.btn-primary)::before {
   background: #78e39b !important;
-}
-
-/* The service orientation cards use typography only for a more institutional tone. */
-body[data-page="index"] .audience-card .card-icon {
-  display: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

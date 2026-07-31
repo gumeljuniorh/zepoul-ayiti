@@ -42,7 +42,7 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
     "@id": "https://www.zepoulayiti.com/#organization",
     "name": "Zepoul Ayiti",
     "alternateName": "GL Zepoul Peyi",
@@ -63,12 +63,10 @@
       "availableLanguage": "fr"
     },
     "knowsLanguage": "fr",
-    "areaServed": [
-      "Haïti",
-      "Port-au-Prince",
-      "Cap-Haïtien",
-      "Jacmel"
-    ],
+    "areaServed": {
+      "@type": "Country",
+      "name": "Haïti"
+    },
     "knowsAbout": [
       "Production d'œufs en Haïti",
       "Pwodiksyon ze nan Ayiti",
@@ -87,7 +85,6 @@
       "Agrikilti lokal Ayiti"
     ],
     "sameAs": [
-      "https://www.zepoulayiti.com/",
       "https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/",
       "https://www.instagram.com/zepoul_ayiti/",
       "https://www.tiktok.com/@zepoul.ayiti",
@@ -106,38 +103,6 @@
       "@id": "https://www.zepoulayiti.com/#organization"
     },
     "inLanguage": "fr"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://www.zepoulayiti.com/#localbusiness",
-    "name": "Zepoul Ayiti",
-    "url": "https://www.zepoulayiti.com/",
-    "description": "Production locale de 500 œufs par jour en Haïti. Entreprise avicole structurée pour l’approvisionnement professionnel en œufs.",
-    "image": "https://www.zepoulayiti.com/logo-full-light.jpg",
-    "telephone": "+50944975668",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Port-de-Paix",
-      "addressCountry": "HT"
-    },
-    "areaServed": [
-      "Haïti",
-      "Port-au-Prince",
-      "Cap-Haïtien",
-      "Jacmel"
-    ],
-    "parentOrganization": {
-      "@id": "https://www.zepoulayiti.com/#organization"
-    },
-    "sameAs": [
-      "https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/",
-      "https://www.instagram.com/zepoul_ayiti/",
-      "https://www.tiktok.com/@zepoul.ayiti",
-      "https://x.com/Zepoul_Ayiti"
-    ]
   }
   </script>
   <script type="application/ld+json">
@@ -204,31 +169,16 @@
   <link rel="preload" as="image" href="hero-mobile-360w.avif" type="image/avif" media="(max-width: 768px)" imagesrcset="hero-mobile-300w.avif 300w, hero-mobile-360w.avif 360w, hero-mobile-420w.avif 420w, hero-mobile-520w.avif 520w" imagesizes="(max-width: 560px) 70vw, (max-width: 768px) 74vw, 390px" />
   <link rel="preload" as="image" href="hero-optimized.avif" type="image/avif" media="(min-width: 769px)" />
   <script src="theme.js?v=20260511-dark"></script>
-  <link rel="stylesheet" href="site.css?v=20260730-complete1" />
-  <link rel="stylesheet" href="home.css?v=20260730-turnstile1" />
+  <link rel="stylesheet" href="site.css?v=20260730-deep1" />
+  <link rel="stylesheet" href="home.css?v=20260730-deep1" />
 </head>
 <body data-page="index">
   <svg class="svg-definitions" aria-hidden="true" width="0" height="0">
-    <symbol id="icon-mail" viewBox="0 0 24 24">
-      <path d="M3.8 5h16.4A1.8 1.8 0 0 1 22 6.8v10.4a1.8 1.8 0 0 1-1.8 1.8H3.8A1.8 1.8 0 0 1 2 17.2V6.8A1.8 1.8 0 0 1 3.8 5Zm8.2 7.1 7.1-5.3H4.9l7.1 5.3Zm-8 5.1h16V8.5l-7.4 5.5a1 1 0 0 1-1.2 0L4 8.5v8.7Z"/>
-    </symbol>
     <symbol id="icon-whatsapp" viewBox="0 0 24 24">
       <path d="M12 2a9.8 9.8 0 0 0-8.3 15l-1 4.1 4.2-1A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 0 16 7.8 7.8 0 0 1-4.2-1.2l-.4-.2-2.1.5.5-2-.3-.5A8 8 0 0 1 12 4Zm-3.4 4.1c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.2.2 1.8 2.9 4.4 4 .6.3 1.1.4 1.5.5.6.2 1.2.1 1.7.1.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.1-1.3l-.6-.3-1.8-.9c-.2-.1-.5-.1-.7.2l-.8 1c-.2.2-.4.2-.7.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.8-1.9c-.2-.4-.4-.4-.7-.4h-.5Z"/>
     </symbol>
     <symbol id="icon-document" viewBox="0 0 24 24">
       <path d="M6 2h8l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 2.5V8h3.5L13 4.5ZM7 11h10v2H7v-2Zm0 4h10v2H7v-2Z"/>
-    </symbol>
-    <symbol id="icon-egg" viewBox="0 0 24 24">
-      <path d="M12 2C8.7 2 6 7.2 6 12.3 6 17.8 8.4 22 12 22s6-4.2 6-9.7C18 7.2 15.3 2 12 2Zm0 18c-2.3 0-4-3.3-4-7.7C8 7.8 10.2 4 12 4s4 3.8 4 8.3c0 4.4-1.7 7.7-4 7.7Z"/>
-    </symbol>
-    <symbol id="icon-boxes" viewBox="0 0 24 24">
-      <path d="M3 7.5 8 5l5 2.5-5 2.6-5-2.6Zm13-2.5 5 2.5-5 2.6-5-2.6 5-2.5ZM8 11.7l5-2.5v6l-5 2.6v-6.1Zm8 0 5-2.5v6l-5 2.6v-6.1ZM3 9.2l5 2.5v6.1l-5-2.6v-6Zm10 0 5 2.5v6.1l-5-2.6v-6Z"/>
-    </symbol>
-    <symbol id="icon-shield" viewBox="0 0 24 24">
-      <path d="M12 2 20 5.5v6.2c0 5-3.2 8.4-8 10.3-4.8-1.9-8-5.3-8-10.3V5.5L12 2Zm0 2.2L6 6.8v4.9c0 3.8 2.2 6.4 6 8.1 3.8-1.7 6-4.3 6-8.1V6.8l-6-2.6Z"/>
-    </symbol>
-    <symbol id="icon-growth" viewBox="0 0 24 24">
-      <path d="M4 19h16v2H2V3h2v16Zm2-3.3 4.6-4.6 3 3L20 7.7V12h2V4h-8v2h4.6l-5 5-3-3L4.6 14.3 6 15.7Z"/>
     </symbol>
   </svg>
   <a class="float-btn float-wa" href="https://wa.me/50944975668?text=Bonjour%20Zepoul%20Ayiti%2C%20je%20souhaite%20commander%20des%20%C5%93ufs." target="_blank" rel="noopener" aria-label="Commander via WhatsApp">
@@ -259,12 +209,12 @@
           <a href="https://x.com/Zepoul_Ayiti" target="_blank" rel="noopener" aria-label="X"><img src="x.png" alt="X" loading="lazy" decoding="async" /></a>
         </div>
       </nav>
-      <button class="menu-toggle" data-menu-target="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="menu-toggle" type="button" data-menu-target="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
         <span aria-hidden="true">☰</span>
       </button>
     </div>
   </header>
-  <div class="mobile-menu fixed-top" id="mobile-menu" aria-label="Menu mobile">
+  <div class="mobile-menu fixed-top" id="mobile-menu" role="navigation" aria-label="Menu mobile" aria-hidden="true">
     <div class="container">
       <a class="is-active" href="index.html" aria-current="page">Accueil</a>
       <a href="vision.html">Notre vision</a>
@@ -316,28 +266,25 @@
     <section class="block audience" id="orientation">
       <div class="container">
         <div class="section-head">
-          <h3>Orientation des services</h3>
-          <p>L’accueil présente l’offre en quelques secondes. Les pages internes expliquent plus précisément nos services, notre expertise et notre vision de croissance.</p>
+          <h2>Orientation des services</h2>
+          <p>Une organisation structurée pour accompagner les besoins d’approvisionnement, de la demande initiale à la planification des volumes.</p>
         </div>
 
         <div class="audience-grid">
           <article class="audience-card">
-            <span class="card-icon"><svg class="inline-icon" aria-hidden="true"><use href="#icon-boxes"></use></svg></span>
-            <h4>Services</h4>
+            <h3>Services</h3>
             <p>Commandes d’œufs pour hôtels, restaurants, supermarchés, distributeurs et marchands.</p>
             <a class="btn btn-secondary" href="services.html">Voir nos services</a>
           </article>
 
           <article class="audience-card">
-            <span class="card-icon"><svg class="inline-icon" aria-hidden="true"><use href="#icon-shield"></use></svg></span>
-            <h4>Expertise</h4>
+            <h3>Expertise</h3>
             <p>Production locale stable, qualité constante et organisation adaptée aux clients professionnels.</p>
             <a class="btn btn-secondary" href="expertise.html">Voir l’expertise</a>
           </article>
 
           <article class="audience-card">
-            <span class="card-icon"><svg class="inline-icon" aria-hidden="true"><use href="#icon-growth"></use></svg></span>
-            <h4>Notre vision</h4>
+            <h3>Notre vision</h3>
             <p>Passer de 500 œufs par jour à une capacité industrielle structurée autour de 50 000 poules pondeuses.</p>
             <a class="btn btn-secondary" href="vision.html">Lire la vision</a>
           </article>
@@ -348,39 +295,52 @@
     <section class="block order" id="commande">
       <div class="container">
         <div class="section-head">
-          <h3>Demande de cotation</h3>
+          <h2>Demande de cotation</h2>
           <p>Transmettez vos besoins afin de recevoir une proposition adaptée à vos volumes et à votre zone d’approvisionnement.</p>
         </div>
 
-        <form class="order-box" id="quote-form" action="/api/quote" method="POST" novalidate aria-describedby="quote-form-note form-status">
+        <form class="order-box" id="quote-form" action="/api/quote" method="POST" aria-describedby="quote-form-note form-status">
           <div class="field">
             <label for="inst">Nom de l’entreprise ou du client</label>
-            <input id="inst" name="inst" type="text" autocomplete="organization" placeholder="Ex&nbsp;: hôtel, restaurant, supermarché ou distributeur" required />
+            <input id="inst" name="inst" type="text" minlength="2" maxlength="160" autocomplete="organization" placeholder="Ex&nbsp;: nom de l’organisation ou du client" required />
           </div>
 
           <div class="field">
-            <label for="vol">Volume hebdomadaire (cartons)</label>
+            <label for="vol">Volume hebdomadaire estimé (cartons)</label>
             <input id="vol" name="vol" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex&nbsp;: 50" required />
+            <small class="field-hint">Une estimation suffit. Le volume final sera confirmé avec notre équipe.</small>
+          </div>
+
+          <div class="field">
+            <label for="zone">Commune ou zone d’approvisionnement</label>
+            <input id="zone" name="zone" type="text" minlength="2" maxlength="120" autocomplete="address-level2" placeholder="Ex&nbsp;: Port-de-Paix" required />
+          </div>
+
+          <div class="field">
+            <label for="frequency">Fréquence souhaitée</label>
+            <select id="frequency" name="frequency" required>
+              <option value="">Sélectionner une fréquence</option>
+              <option value="Demande ponctuelle">Demande ponctuelle</option>
+              <option value="Approvisionnement hebdomadaire">Approvisionnement hebdomadaire</option>
+              <option value="Approvisionnement régulier">Approvisionnement régulier</option>
+            </select>
           </div>
 
           <div class="field">
             <label for="email">E-mail professionnel</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="Ex&nbsp;: achats@institution.ht" required />
+            <input id="email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Ex&nbsp;: achats@institution.ht" required />
           </div>
 
           <div class="field">
             <label for="phone">Numéro WhatsApp</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ex&nbsp;: +509 0000 0000" required />
+            <input id="phone" name="phone" type="tel" minlength="6" maxlength="40" autocomplete="tel" inputmode="tel" placeholder="Ex&nbsp;: +509 0000 0000" required />
           </div>
 
           <div class="field">
             <label for="details">Précisions (optionnel)</label>
-            <textarea id="details" name="details" placeholder="Ex&nbsp;: jours de livraison, zone, exigences spécifiques"></textarea>
+            <textarea id="details" name="details" maxlength="1600" placeholder="Ex&nbsp;: jours souhaités ou exigences particulières"></textarea>
           </div>
           <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="hidden" name="_subject" value="Nouvelle demande de cotation - Zepoul Ayiti" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://www.zepoulayiti.com/merci.html?source=quote" />
 
           <div class="turnstile-verification">
             <div
@@ -398,7 +358,7 @@
           <button type="submit" class="btn btn-primary">
             Soumettre la demande de cotation
           </button>
-          <p class="form-note" id="quote-form-note">En soumettant, votre demande est transmise directement à notre équipe commerciale.</p>
+          <p class="form-note" id="quote-form-note">En soumettant ce formulaire, vous acceptez le traitement de vos renseignements conformément à notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -407,13 +367,12 @@
     <section class="block showcase-video" id="presentation">
       <div class="container">
         <div class="section-head">
-          <h3>Présentation visuelle de notre démarche</h3>
+          <h2>Présentation visuelle de notre démarche</h2>
           <p>Un aperçu de notre engagement pour une production avicole locale, structurée et responsable.</p>
         </div>
 
         <div class="video-shell">
           <video id="brand-video" class="brand-video" controls muted autoplay loop playsinline preload="none" poster="hero-mobile-360w.jpg">
-            <source data-src="zepoul-intro-medium.mp4" type="video/mp4" media="(max-width: 768px)" />
             <source data-src="zepoul-intro.mp4" type="video/mp4" />
             Votre navigateur ne prend pas en charge la lecture vidéo.
           </video>
@@ -464,8 +423,7 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
 
-  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
   <script defer src="analytics.js"></script>
-  <script defer src="site.js?v=20260730-noemail1"></script>
+  <script defer src="site.js?v=20260730-deep1"></script>
 </body>
 </html>

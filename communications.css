@@ -239,6 +239,12 @@ h1 {
   display: flex;
 }
 
+html.lightbox-open,
+body.lightbox-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 .lightbox-backdrop {
   position: absolute;
   inset: 0;

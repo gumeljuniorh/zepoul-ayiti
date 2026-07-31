@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <script src="theme.js?v=20260511-dark"></script>
-  <link rel="stylesheet" href="site.css?v=20260730-complete1" />
+  <link rel="stylesheet" href="site.css?v=20260730-deep1" />
   <style>
     :root { --primary:#1a7f37; --primary-dark:#0b3d1a; --text:#173220; --muted:#415448; --border:#dce9df; --bg:#f6fbf7; }
     * { box-sizing: border-box; }
@@ -62,12 +62,12 @@
           <a href="https://x.com/Zepoul_Ayiti" target="_blank" rel="noopener" aria-label="X"><img src="x.png" alt="X" loading="lazy" decoding="async" /></a>
         </div>
       </nav>
-      <button class="menu-toggle" data-menu-target="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="menu-toggle" type="button" data-menu-target="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
         <span aria-hidden="true">☰</span>
       </button>
     </div>
   </header>
-  <div class="mobile-menu fixed-top" id="mobile-menu" aria-label="Menu mobile">
+  <div class="mobile-menu fixed-top" id="mobile-menu" role="navigation" aria-label="Menu mobile" aria-hidden="true">
     <div class="container">
         <a href="index.html">Accueil</a>
         <a href="vision.html">Notre vision</a>
@@ -84,40 +84,49 @@
         <a class="home" href="index.html">Retour à l’accueil</a>
       </div>
 
-      <p class="meta">Dernière mise à jour : 25 février 2026</p>
+      <p class="meta">Dernière mise à jour : 30 juillet 2026</p>
 
       <h2>1. Objet</h2>
-      <p>La présente politique explique quelles données peuvent être traitées lors de l’utilisation du site <strong>zepoulayiti.com</strong> et dans quel objectif.</p>
+      <p>La présente politique décrit les données traitées lors de l’utilisation du site <strong>zepoulayiti.com</strong>, les finalités de leur utilisation et les moyens mis à votre disposition pour exercer vos droits.</p>
 
       <h2>2. Données concernées</h2>
       <ul>
-        <li>Données de contact transmises volontairement (e-mail, téléphone).</li>
-        <li>Données techniques de navigation (pages consultées, date/heure, type d’appareil), lorsque des outils de mesure sont activés.</li>
+        <li>Nom de l’institution, de l’entreprise ou du client.</li>
+        <li>Volume estimé, zone d’approvisionnement, fréquence souhaitée et précisions communiquées dans le formulaire.</li>
+        <li>Coordonnées transmises volontairement : adresse e-mail et numéro WhatsApp ou téléphone.</li>
+        <li>Données techniques strictement nécessaires à la sécurité du formulaire et à la prévention des envois automatisés.</li>
+        <li>Données de navigation agrégées, lorsque des outils de mesure d’audience sont activés.</li>
       </ul>
 
       <h2>3. Finalités du traitement</h2>
       <ul>
-        <li>Répondre à vos demandes commerciales et opérationnelles.</li>
-        <li>Améliorer la qualité des contenus et l’expérience utilisateur.</li>
-        <li>Mesurer la fréquentation du site de manière agrégée.</li>
+        <li>Enregistrer, analyser et traiter les demandes de cotation.</li>
+        <li>Assurer le suivi commercial et opérationnel des demandes reçues.</li>
+        <li>Protéger le formulaire contre les abus, les robots et les envois frauduleux.</li>
+        <li>Améliorer les contenus et mesurer la fréquentation du site de manière agrégée, lorsque cette mesure est activée.</li>
       </ul>
 
       <h2>4. Base et durée de conservation</h2>
       <p>Les données sont traitées sur la base de l’intérêt légitime de l’entreprise à gérer ses échanges commerciaux, ou sur votre consentement lorsque nécessaire.</p>
-      <p>Elles sont conservées pendant la durée strictement nécessaire aux finalités ci-dessus, puis supprimées ou anonymisées.</p>
+      <p>Les données liées à une demande de cotation sont conservées pendant la durée nécessaire au suivi de la relation commerciale, puis supprimées ou anonymisées au plus tard vingt-quatre mois après le dernier échange, sauf obligation légale ou contractuelle imposant une conservation plus longue.</p>
 
       <h2>5. Cookies et mesure d’audience</h2>
-      <p>Le site utilise des cookies techniques indispensables au fonctionnement.</p>
-      <p>Un outil de mesure d’audience (Google Analytics) peut être activé uniquement si un identifiant GA4 est configuré.</p>
+      <p>Le site peut utiliser des éléments techniques indispensables à son fonctionnement et à sa protection. Le dispositif Cloudflare Turnstile peut notamment vérifier qu’une demande est transmise par un utilisateur légitime.</p>
+      <p>Google Analytics n’est pas actuellement configuré sur le site. Des statistiques techniques ou agrégées peuvent néanmoins être produites par l’infrastructure de diffusion et de sécurité.</p>
 
-      <h2>6. Partage des données</h2>
-      <p>Les données ne sont pas vendues. Elles peuvent être traitées par des prestataires techniques agissant pour le compte de l’éditeur, dans le respect des obligations de confidentialité.</p>
+      <h2>6. Prestataires techniques</h2>
+      <p>Les données ne sont ni vendues ni louées. Elles peuvent être traitées par les prestataires strictement nécessaires au fonctionnement du service :</p>
+      <ul>
+        <li><strong>Cloudflare</strong>, pour la sécurité du site, la vérification Turnstile et le traitement technique du formulaire.</li>
+        <li><strong>Google</strong>, par l’intermédiaire de Google Apps Script et Google Sheets, pour l’enregistrement interne des demandes de cotation.</li>
+        <li><strong>WhatsApp</strong>, uniquement lorsque vous choisissez ce canal de contact ou lorsque le formulaire propose ce moyen de secours.</li>
+      </ul>
 
       <h2>7. Sécurité</h2>
-      <p>Des mesures techniques et organisationnelles raisonnables sont mises en œuvre pour protéger les données contre l’accès non autorisé, l’altération ou la perte.</p>
+      <p>Des mesures techniques et organisationnelles raisonnables sont mises en œuvre pour limiter l’accès non autorisé, l’altération, la divulgation ou la perte des données. Aucun système connecté à Internet ne peut toutefois offrir une sécurité absolue.</p>
 
       <h2>8. Vos droits</h2>
-      <p>Vous pouvez demander l’accès, la rectification, la suppression ou la limitation du traitement de vos données en utilisant le canal WhatsApp officiel indiqué sur le site.</p>
+      <p>Vous pouvez demander l’accès, la rectification ou la suppression des données que vous avez communiquées, ainsi que la limitation de leur traitement lorsque cette demande est applicable. Une vérification raisonnable de votre identité peut être demandée afin de protéger vos informations.</p>
 
       <h2>9. Contact</h2>
       <p>Pour toute question relative à la confidentialité, contactez-nous via <a href="https://wa.me/50944975668" target="_blank" rel="noopener">notre canal WhatsApp officiel</a>.</p>
@@ -162,6 +171,6 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
   <script defer src="analytics.js"></script>
-  <script defer src="site.js?v=20260730-noemail1"></script>
+  <script defer src="site.js?v=20260730-deep1"></script>
 </body>
 </html>
