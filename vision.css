@@ -24,7 +24,5 @@ h1{margin:0 0 12px;font:900 2.7rem/1.1 "Playfair Display",serif;color:var(--prim
 .vision-list li{font-weight:700;color:#24352b}
 .section-title{margin:28px 0 10px;font-size:1.35rem;color:var(--primary-dark)}
 .section-note{margin:0 0 12px;color:var(--muted)}
-.band{margin-top:20px;padding:20px;border-radius:18px;background:linear-gradient(130deg,var(--primary-dark),#145a2a);color:#fff;display:flex;justify-content:space-between;gap:12px;align-items:center}
-.badge{background:rgba(255,255,255,.12);padding:10px 14px;border-radius:12px;font-weight:800}
 .cta{display:inline-block;margin-top:22px;background:var(--primary);color:#fff;text-decoration:none;padding:11px 16px;border-radius:10px;font-weight:800}
-@media (max-width:720px){h1{font-size:2.1rem}.growth-grid,.trajectory,.vision-columns{grid-template-columns:1fr}.growth-panel,.vision-panel{padding:24px}.band{flex-direction:column;align-items:flex-start}}
+@media (max-width:720px){h1{font-size:2.1rem}.growth-grid,.trajectory,.vision-columns{grid-template-columns:1fr}.growth-panel,.vision-panel{padding:24px}}

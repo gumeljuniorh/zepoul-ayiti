@@ -25,6 +25,16 @@ function checkReference(file, reference) {
   }
 }
 
+function checkAnchor(file, reference) {
+  if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(reference)) return;
+  const [page, fragment] = reference.split("#");
+  if (!fragment) return;
+  const target = normalizeReference(page) || file;
+  if (!target.endsWith(".html") || !existsSync(resolve(root, target))) return;
+  const ids = [...readFileSync(resolve(root, target), "utf8").matchAll(/\sid=["']([^"']+)["']/gi)].map((match) => match[1]);
+  if (!ids.includes(decodeURIComponent(fragment))) report(file, `ancre introuvable: ${reference}`);
+}
+
 for (const file of htmlFiles) {
   const html = readFileSync(resolve(root, file), "utf8");
   const ids = [...html.matchAll(/\sid=["']([^"']+)["']/gi)].map((match) => match[1]);
@@ -47,6 +57,12 @@ for (const file of htmlFiles) {
     if (/\btarget=["']_blank["']/i.test(match[1]) && !/\brel=["'][^"']*\bnoopener\b[^"']*["']/i.test(match[1])) {
       report(file, "lien target=_blank sans rel=noopener");
     }
+    const href = match[1].match(/\bhref=["']([^"']+)["']/i);
+    if (href) checkAnchor(file, href[1]);
+  }
+
+  for (const label of html.matchAll(/<label\b[^>]*\bfor=["']([^"']+)["']/gi)) {
+    if (!ids.includes(label[1])) report(file, `champ du label introuvable: ${label[1]}`);
   }
 
   for (const match of html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
@@ -96,6 +112,14 @@ for (const sitemap of ["sitemap.xml", "sitemap-images.xml"]) {
   const xml = readFileSync(resolve(root, sitemap), "utf8");
   if (!/<urlset\b/i.test(xml) || !/<\/urlset>/i.test(xml)) {
     report(sitemap, "structure XML urlset invalide");
+  }
+  for (const match of xml.matchAll(/<(?:image:)?loc>([^<]+)<\/(?:image:)?loc>/g)) {
+    try {
+      const url = new URL(match[1]);
+      if (["zepoulayiti.com", "www.zepoulayiti.com"].includes(url.hostname)) checkReference(sitemap, url.pathname);
+    } catch {
+      report(sitemap, `URL invalide: ${match[1]}`);
+    }
   }
 }
 

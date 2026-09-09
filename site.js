@@ -2,12 +2,13 @@
   function emit(name, params) {
     var payload = params || {};
 
-    if (typeof window.gtag === "function") {
-      window.gtag("event", name, payload);
-    }
-
-    if (window.zaraz && typeof window.zaraz.track === "function") {
-      window.zaraz.track(name, payload);
+    try {
+      if (typeof window.gtag === "function") window.gtag("event", name, payload);
+      if (window.zaraz && typeof window.zaraz.track === "function") {
+        Promise.resolve(window.zaraz.track(name, payload)).catch(function () {});
+      }
+    } catch (error) {
+      // Analytics must never interrupt navigation or a confirmed submission.
     }
   }
 
@@ -32,6 +33,8 @@
 
   function bindMenu() {
     var items = [];
+    var scrollLocked = false;
+    var savedScrollY = 0;
 
     function updateMenuButton(item, isOpen) {
       item.btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
@@ -44,13 +47,23 @@
       var hasOpenMenu = items.some(function (item) {
         return item.menu.classList.contains("open");
       });
+      if (hasOpenMenu && !scrollLocked) {
+        savedScrollY = window.scrollY;
+        document.body.style.top = -savedScrollY + "px";
+      }
       document.documentElement.classList.toggle("mobile-menu-open", hasOpenMenu);
       document.body.classList.toggle("mobile-menu-open", hasOpenMenu);
+      if (!hasOpenMenu && scrollLocked) {
+        document.body.style.removeProperty("top");
+        window.scrollTo({ top: savedScrollY, behavior: "instant" });
+      }
+      scrollLocked = hasOpenMenu;
     }
 
     function closeItem(item, restoreFocus) {
       item.menu.classList.remove("open");
       item.menu.setAttribute("aria-hidden", "true");
+      item.menu.setAttribute("inert", "");
       updateMenuButton(item, false);
       updatePageScroll();
       if (restoreFocus && typeof item.btn.focus === "function") {
@@ -73,6 +86,14 @@
 
       var item = { btn: btn, menu: menu };
       items.push(item);
+      menu.setAttribute("inert", "");
+      var headerSocials = document.querySelector(".site-header .social-icons");
+      if (headerSocials && !menu.querySelector(".mobile-social")) {
+        var socials = headerSocials.cloneNode(true);
+        socials.className = "mobile-social";
+        socials.setAttribute("aria-label", "Retrouvez Zepoul Ayiti sur les réseaux sociaux");
+        menu.appendChild(socials);
+      }
 
       btn.addEventListener("click", function (evt) {
         evt.preventDefault();
@@ -82,6 +103,7 @@
         if (willOpen) {
           menu.classList.add("open");
           menu.setAttribute("aria-hidden", "false");
+          menu.removeAttribute("inert");
           updateMenuButton(item, true);
           updatePageScroll();
           var firstLink = menu.querySelector("a");
@@ -101,6 +123,21 @@
     });
 
     if (!items.length) return;
+
+    var header = document.querySelector(".site-header");
+    function syncHeader() {
+      if (header) {
+        document.documentElement.style.setProperty("--header-height", Math.ceil(header.getBoundingClientRect().height) + "px");
+      }
+      if (window.matchMedia("(min-width: 1101px)").matches) {
+        var focusedInMenu = items.some(function (item) { return item.menu.contains(document.activeElement); });
+        closeAll();
+        if (focusedInMenu && header) header.querySelector("a").focus({ preventScroll: true });
+      }
+    }
+    syncHeader();
+    if (header && "ResizeObserver" in window) new ResizeObserver(syncHeader).observe(header);
+    window.addEventListener("resize", syncHeader, { passive: true });
 
     document.addEventListener("click", function (evt) {
       items.forEach(function (item) {
@@ -124,6 +161,7 @@
       if (evt.key === "Tab") {
         var focusable = [openItem.btn].concat(
           Array.prototype.slice.call(openItem.menu.querySelectorAll("a[href], button:not([disabled])"))
+            .filter(function (element) { return element.getClientRects().length > 0; })
         );
         var first = focusable[0];
         var last = focusable[focusable.length - 1];
@@ -153,7 +191,7 @@
       });
     });
 
-    document.querySelectorAll(".social-icons a").forEach(function (link) {
+    document.querySelectorAll(".social-icons a, .mobile-social a, .footer-social a").forEach(function (link) {
       link.addEventListener("click", function () {
         emit("social_click", { page: page, target: link.href });
       });
@@ -223,15 +261,24 @@
 
   var turnstileLoadPromise = null;
 
+  function isLocalPreview() {
+    return window.location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+  }
+
   function loadTurnstileScript() {
     if (window.turnstile) return Promise.resolve();
     if (turnstileLoadPromise) return turnstileLoadPromise;
 
     turnstileLoadPromise = new Promise(function (resolve, reject) {
+      var timeout = window.setTimeout(function () {
+        reject(new Error("verification_timeout"));
+      }, 15000);
+      function loaded() { window.clearTimeout(timeout); resolve(); }
+      function failed() { window.clearTimeout(timeout); reject(new Error("verification_unavailable")); }
       var existingScript = document.querySelector("script[data-turnstile-loader]");
       if (existingScript) {
-        existingScript.addEventListener("load", resolve, { once: true });
-        existingScript.addEventListener("error", reject, { once: true });
+        existingScript.addEventListener("load", loaded, { once: true });
+        existingScript.addEventListener("error", failed, { once: true });
         return;
       }
 
@@ -240,8 +287,8 @@
       script.async = true;
       script.defer = true;
       script.setAttribute("data-turnstile-loader", "true");
-      script.addEventListener("load", resolve, { once: true });
-      script.addEventListener("error", reject, { once: true });
+      script.addEventListener("load", loaded, { once: true });
+      script.addEventListener("error", failed, { once: true });
       document.head.appendChild(script);
     });
 
@@ -252,16 +299,34 @@
     var verification = document.querySelector(".turnstile-verification");
     var form = document.getElementById("quote-form");
     if (!verification || !form) return;
+    var note = verification.querySelector("p");
+    if (isLocalPreview()) {
+      if (note) note.textContent = "Aperçu local : l’envoi sécurisé sera disponible sur zepoulayiti.com.";
+      return;
+    }
+
+    var retry = document.createElement("button");
+    retry.type = "button";
+    retry.className = "btn btn-secondary verification-retry";
+    retry.textContent = "Recharger la vérification";
+    retry.hidden = true;
+    verification.appendChild(retry);
+    retry.addEventListener("click", requestTurnstile);
 
     var requested = false;
     function requestTurnstile() {
       if (requested) return;
       requested = true;
-      loadTurnstileScript().catch(function () {
+      retry.hidden = true;
+      loadTurnstileScript().then(function () {
+        if (note) note.textContent = "Vérification de sécurité assurée par Cloudflare Turnstile.";
+      }).catch(function () {
         requested = false;
         turnstileLoadPromise = null;
         var failedScript = document.querySelector("script[data-turnstile-loader]");
         if (failedScript) failedScript.remove();
+        if (note) note.textContent = "La vérification de sécurité n’a pas pu se charger. Vérifiez votre connexion, puis réessayez.";
+        retry.hidden = false;
       });
     }
 
@@ -285,6 +350,10 @@
     if (!form) return;
 
     var QUOTE_ENDPOINT = "/api/quote";
+    var isSubmitting = false;
+    var confirmed = false;
+    var fallback = document.getElementById("quote-whatsapp-fallback");
+    var fallbackPayload = null;
     var formReadyAt = Date.now();
     var honeyInput = form.querySelector("input[name='_honey']");
     var submissionId = window.crypto && typeof window.crypto.randomUUID === "function"
@@ -295,7 +364,7 @@
       var statusEl = document.getElementById("form-status");
       if (!statusEl) return;
       statusEl.textContent = message;
-      statusEl.style.color = success ? "var(--primary)" : "#b42318";
+      statusEl.setAttribute("data-state", success ? "success" : "error");
     }
 
     function resetTurnstile() {
@@ -326,8 +395,21 @@
       window.location.href = "https://wa.me/50944975668?text=" + encodeURIComponent(messageLines.join("\n"));
     }
 
+    if (fallback) fallback.addEventListener("click", function () {
+      if (!fallbackPayload) return;
+      emit("quote_form_fallback_whatsapp", { channel: "whatsapp" });
+      openWhatsAppFallback.apply(null, fallbackPayload);
+    });
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
+      if (isSubmitting || confirmed) return;
+      if (fallback) fallback.hidden = true;
+
+      if (isLocalPreview()) {
+        setFormStatus("Cet aperçu ne transmet pas de demandes. Ouvrez zepoulayiti.com pour utiliser le formulaire sécurisé.", false);
+        return;
+      }
 
       if (honeyInput && honeyInput.value.trim()) {
         setFormStatus("La demande n’a pas pu être transmise. Veuillez réessayer.", false);
@@ -362,6 +444,11 @@
         return;
       }
 
+      if (window.navigator.onLine === false) {
+        setFormStatus("Vous êtes hors connexion. Vos renseignements restent dans le formulaire ; reconnectez-vous avant de réessayer.", false);
+        return;
+      }
+
       var payload = {
         institution: institution,
         volume: volume,
@@ -378,6 +465,7 @@
       };
 
       setFormStatus("Envoi en cours...", true);
+      isSubmitting = true;
       form.classList.add("is-submitting");
       form.setAttribute("aria-busy", "true");
       if (submitBtn) {
@@ -404,17 +492,19 @@
           return response.json().catch(function () {
             return {};
           }).then(function (data) {
-            if (!response.ok || data.success === false) {
-              var requestError = new Error(data.error || "request_failed");
+            if (!response.ok || !data || data.success !== true) {
+              var code = data && data.error || "unconfirmed_response";
+              var requestError = new Error(code);
               requestError.status = response.status;
-              requestError.code = data.error || "request_failed";
+              requestError.code = code;
               throw requestError;
             }
             return data;
           });
         })
         .then(function () {
-          emit("quote_form_submit", { institution: institution, volume: volume, channel: "server_form" });
+          confirmed = true;
+          emit("quote_form_submit", { channel: "server_form" });
           setFormStatus("Demande envoyée avec succès. Redirection en cours...", true);
           form.reset();
           window.setTimeout(function () {
@@ -439,12 +529,14 @@
             return;
           }
 
-          emit("quote_form_fallback_whatsapp", { institution: institution, volume: volume });
-          setFormStatus("Envoi direct indisponible. Ouverture de WhatsApp en secours...", false);
-          openWhatsAppFallback(institution, volume, zone, frequency, email, phone, details);
+          setFormStatus("Nous ne pouvons pas confirmer la réception de votre demande. Vos renseignements sont conservés dans ce formulaire. Réessayez ou contactez-nous sur WhatsApp pour vérifier sa réception.", false);
+          fallbackPayload = [institution, volume, zone, frequency, email, phone, details];
+          if (fallback) fallback.hidden = false;
         })
         .finally(function () {
           window.clearTimeout(timeoutId);
+          if (confirmed) return;
+          isSubmitting = false;
           form.classList.remove("is-submitting");
           form.removeAttribute("aria-busy");
           if (submitBtn) {
@@ -458,7 +550,7 @@
 
   function bindInventoryPanel() {
     var panel = document.querySelector("[data-inventory-panel]");
-    if (!panel) return;
+    if (!panel || isLocalPreview()) return;
 
     var controller = typeof AbortController === "function" ? new AbortController() : null;
     var timeoutId = window.setTimeout(function () {
@@ -531,6 +623,9 @@
     var brandVideo = document.getElementById("brand-video");
     if (!brandVideo) return;
     var loaded = false;
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var saveData = window.navigator.connection && window.navigator.connection.saveData;
+    if (reducedMotion.matches || saveData) brandVideo.autoplay = false;
 
     brandVideo.muted = true;
     brandVideo.volume = 0;
@@ -571,6 +666,9 @@
 
     brandVideo.addEventListener("pointerdown", loadVideo, { once: true });
     brandVideo.addEventListener("focus", loadVideo, { once: true });
+
+    // Keep manual playback available without background downloads in data-saving mode.
+    if (reducedMotion.matches || saveData) return;
 
     if ("IntersectionObserver" in window) {
       var observer = new IntersectionObserver(function (entries) {
@@ -703,24 +801,6 @@
     });
   }
 
-  function loadDeferredFonts() {
-    if (document.querySelector("link[data-deferred-fonts]")) return;
-
-    var load = function () {
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap";
-      link.setAttribute("data-deferred-fonts", "true");
-      document.head.appendChild(link);
-    };
-
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(load, { timeout: 1200 });
-    } else {
-      window.setTimeout(load, 700);
-    }
-  }
-
   function trackThankYou() {
     if (document.body.getAttribute("data-page") !== "merci") return;
     var params = new URLSearchParams(window.location.search);
@@ -739,7 +819,6 @@
     bindInventoryPanel();
     bindBrandVideo();
     bindLightboxes();
-    loadDeferredFonts();
     trackThankYou();
   });
 })();

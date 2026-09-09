@@ -808,6 +808,8 @@ footer {
     margin-top: 0;
   }
 
+  body[data-page="index"] .hero-media picture { width: min(86vw, 320px); }
+
   .header-row {
     min-height: 74px;
   }
@@ -861,19 +863,8 @@ footer {
   }
 }
 
-@supports (content-visibility: auto) {
-  .stats,
-  #orientation,
-  #commande,
-  #disponibilite,
-  #presentation,
-  footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 700px;
-  }
-}
-
 @media (max-width: 560px) {
+  body[data-page="index"] .hero-media picture { width: min(88vw, 300px); }
   .header-row { gap: 10px; }
   .brand span { display: none; }
   .social-icons { gap: 6px; }
