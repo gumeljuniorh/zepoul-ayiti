@@ -881,3 +881,124 @@ footer {
     object-position: center top;
   }
 }
+
+/* Editorial offer: use the existing palette and theme variables. */
+body[data-page="index"] .offer-section {
+  padding: clamp(40px, 6vw, 72px) 0;
+}
+.offer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 6vw, 80px);
+  align-items: start;
+}
+.offer-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  color: var(--text-main);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.offer-label::before {
+  content: "";
+  width: 32px;
+  height: 3px;
+  background: var(--accent);
+}
+.offer-intro h2 {
+  margin: 0 0 20px;
+  max-width: 21ch;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -.025em;
+  color: var(--primary-dark);
+}
+.offer-intro > p:not(.offer-label),
+.offer-related p {
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin: 0 0 18px;
+  max-width: 52ch;
+}
+body[data-page="index"] .editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  padding: 7px 0;
+  color: var(--primary-dark);
+  font-size: .9rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
+.editorial-link:hover { text-decoration-color: currentColor; }
+.editorial-link:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.offer-details {
+  padding: 24px clamp(20px, 3vw, 32px);
+  background: var(--surface-soft);
+  border-top: 3px solid var(--accent);
+}
+.offer-details h3 {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 8px;
+  color: var(--primary-dark);
+}
+.offer-details dl { margin: 0; }
+.offer-details dl > div { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.offer-details dt { font-size: .88rem; font-weight: 800; margin-bottom: 6px; }
+.offer-details dd { margin: 0; color: var(--text-muted); font-size: .9rem; line-height: 1.65; }
+.offer-note { margin: 16px 0 0; font-size: .8rem; color: var(--text-muted); line-height: 1.65; }
+.offer-related {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 6vw, 80px);
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.offer-related h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+  margin: 0 0 10px;
+}
+.offer-related p { font-size: .92rem; margin-bottom: 8px; }
+body[data-page="index"] .order { padding: clamp(40px, 5vw, 64px) 0; }
+body[data-page="index"] .order .section-head h2::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin: 0 auto 18px;
+  background: var(--accent);
+}
+body[data-page="index"] .presentation-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+}
+body[data-page="index"] .presentation-layout .section-head {
+  text-align: left;
+  margin: 0;
+}
+body[data-page="index"] .presentation-layout .video-shell { width: 100%; margin: 0; min-width: 0; }
+@media (max-width: 760px) {
+  .offer-layout,
+  body[data-page="index"] .presentation-layout { grid-template-columns: minmax(0, 1fr); }
+  .offer-intro h2 { max-width: 25ch; }
+  .offer-related { gap: 24px; }
+}
+@media (max-width: 480px) {
+  .offer-related { grid-template-columns: minmax(0, 1fr); }
+  .offer-related article + article { padding-top: 24px; border-top: 1px solid var(--border); }
+}
