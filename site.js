@@ -377,12 +377,35 @@
       }
     }
 
-    function openWhatsAppFallback(institution, volume, zone, frequency, email, phone, details) {
+    var frequencyField = document.getElementById("frequency");
+    var volumeLabel = document.getElementById("volume-label");
+    var volumeHint = document.getElementById("volume-hint");
+    var prepareWhatsApp = document.getElementById("quote-whatsapp-prepare");
+    var previewWhatsApp = document.getElementById("quote-whatsapp-preview");
+    var messageWhatsApp = document.getElementById("quote-whatsapp-message");
+    var openWhatsApp = document.getElementById("quote-whatsapp-open");
+
+    function volumeDescription(frequency) {
+      if (frequency === "Approvisionnement hebdomadaire") return "Volume hebdomadaire estimé (cartons)";
+      if (frequency === "Approvisionnement régulier") return "Quantité estimée par livraison (cartons)";
+      return "Quantité estimée (cartons)";
+    }
+
+    function updateFrequency() {
+      if (volumeLabel) volumeLabel.textContent = volumeDescription(frequencyField.value);
+      if (volumeHint) volumeHint.textContent = frequencyField.value === "Approvisionnement régulier"
+        ? "Indiquez la quantité par livraison et précisez le rythme souhaité dans les précisions."
+        : "Une estimation suffit. Le volume final sera confirmé avec notre équipe.";
+    }
+    frequencyField.addEventListener("change", updateFrequency);
+    updateFrequency();
+
+    function buildWhatsAppMessage(institution, volume, zone, frequency, email, phone, details) {
       var messageLines = [
         "Bonjour Zepoul Ayiti,",
         "",
         "Client: " + institution,
-        "Volume hebdomadaire (cartons): " + volume,
+        volumeDescription(frequency) + ": " + volume,
         "Zone d’approvisionnement: " + zone,
         "Fréquence souhaitée: " + frequency,
         "Email de contact: " + email,
@@ -392,7 +415,32 @@
         "Merci."
       ].filter(Boolean);
 
-      window.location.href = "https://wa.me/50944975668?text=" + encodeURIComponent(messageLines.join("\n"));
+      return messageLines.join("\n");
+    }
+
+    function openWhatsAppFallback() {
+      window.location.href = "https://wa.me/50944975668?text=" + encodeURIComponent(buildWhatsAppMessage.apply(null, arguments));
+    }
+
+    if (prepareWhatsApp && previewWhatsApp && messageWhatsApp && openWhatsApp) {
+      prepareWhatsApp.addEventListener("click", function () {
+        if (isSubmitting || confirmed) return;
+        var values = ["inst", "vol", "zone", "frequency", "email", "phone", "details"].map(function (id) {
+          return document.getElementById(id).value.trim() || (id === "details" ? "" : "À préciser");
+        });
+        messageWhatsApp.value = buildWhatsAppMessage.apply(null, values);
+        previewWhatsApp.hidden = false;
+        prepareWhatsApp.setAttribute("aria-expanded", "true");
+        messageWhatsApp.focus();
+      });
+      openWhatsApp.addEventListener("click", function () {
+        if (isSubmitting || confirmed || !messageWhatsApp.value.trim()) return;
+        if (isLocalPreview()) {
+          setFormStatus("Aperçu local : le message peut être préparé, mais aucune demande n’est transmise.", false);
+          return;
+        }
+        window.location.href = "https://wa.me/50944975668?text=" + encodeURIComponent(messageWhatsApp.value.trim());
+      });
     }
 
     if (fallback) fallback.addEventListener("click", function () {
@@ -452,7 +500,6 @@
       var payload = {
         institution: institution,
         volume: volume,
-        volume_hebdomadaire_cartons: volume,
         zone: zone,
         frequency: frequency,
         email: email,
@@ -463,6 +510,8 @@
         submissionId: submissionId,
         "cf-turnstile-response": turnstileToken
       };
+      // Retain the legacy weekly field only for genuinely weekly requests.
+      if (frequency === "Approvisionnement hebdomadaire") payload.volume_hebdomadaire_cartons = volume;
 
       setFormStatus("Envoi en cours...", true);
       isSubmitting = true;
@@ -507,6 +556,7 @@
           emit("quote_form_submit", { channel: "server_form" });
           setFormStatus("Demande envoyée avec succès. Redirection en cours...", true);
           form.reset();
+          updateFrequency();
           window.setTimeout(function () {
             window.location.href = "merci.html?source=quote";
           }, 500);

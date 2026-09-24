@@ -10,7 +10,7 @@ function element(value = '') {
   const attributes = new Map();
   const classes = new Set();
   return {
-    value, textContent: '', hidden: true, disabled: false, listeners: {},
+    value, textContent: '', hidden: true, disabled: false, listeners: {}, focus() {},
     classList: { add: x => classes.add(x), remove: x => classes.delete(x) },
     setAttribute: (k, v) => attributes.set(k, v),
     getAttribute: k => attributes.get(k),
@@ -22,6 +22,7 @@ function element(value = '') {
 function setup({ data = { success: true }, status = 200, reject, malformed = false, pending = false, analyticsError = false } = {}) {
   const fields = Object.fromEntries(Object.entries({ inst: 'Entreprise test', vol: '5', zone: 'Port-de-Paix', frequency: 'Demande ponctuelle', email: 'test@example.com', phone: '+50900000000', details: 'Essai local' }).map(([k, v]) => [k, element(v)]));
   const button = element(); button.textContent = 'Soumettre';
+  for (const id of ['volume-label', 'volume-hint', 'quote-whatsapp-prepare', 'quote-whatsapp-preview', 'quote-whatsapp-message', 'quote-whatsapp-open']) fields[id] = element();
   const honey = element(); const token = element('test-token');
   const statusEl = element(); const fallback = element(); const form = element();
   let resetCount = 0; let challengeResets = 0; let time = 0;
@@ -140,4 +141,39 @@ test('local previews cannot send real requests', () => {
 test('analytics exception cannot turn a confirmed request into failure', async () => {
   const app = setup({ analyticsError: true }); app.submit(); await app.settle();
   assert.equal(app.resets(), 1); assert.match(app.statusEl.textContent, /succès/);
+});
+
+test('quantity labels and payload match the selected frequency', async () => {
+  for (const [frequency, label] of [['Demande ponctuelle', 'Quantité estimée (cartons)'], ['Approvisionnement hebdomadaire', 'Volume hebdomadaire estimé (cartons)'], ['Approvisionnement régulier', 'Quantité estimée par livraison (cartons)']]) {
+    const app = setup(); app.fields.frequency.value = frequency;
+    app.fields.frequency.listeners.change();
+    assert.equal(app.fields['volume-label'].textContent, label);
+    app.submit(); await app.settle();
+    const payload = JSON.parse(app.requests[0].options.body);
+    assert.equal(payload.volume, '5');
+    assert.equal(payload.frequency, frequency);
+    assert.equal('volume_hebdomadaire_cartons' in payload, frequency === 'Approvisionnement hebdomadaire');
+  }
+});
+
+test('WhatsApp preview is editable and does not transmit until explicitly opened', () => {
+  const app = setup(); app.fields['quote-whatsapp-prepare'].listeners.click();
+  assert.equal(app.fields['quote-whatsapp-preview'].hidden, false);
+  assert.match(app.fields['quote-whatsapp-message'].value, /Quantité estimée \(cartons\): 5/);
+  assert.match(app.fields['quote-whatsapp-message'].value, /Port-de-Paix/);
+  assert.equal(app.requests.length, 0);
+  assert.equal(app.window.location.href, 'https://www.zepoulayiti.com/');
+  app.fields['quote-whatsapp-message'].value = 'Mon message corrigé';
+  app.fields['quote-whatsapp-open'].listeners.click();
+  assert.equal(decodeURIComponent(app.window.location.href), 'https://wa.me/50944975668?text=Mon message corrigé');
+  assert.equal(app.resets(), 0);
+});
+
+test('local WhatsApp preview cannot transmit and keeps the message', () => {
+  const app = setup(); app.window.location.hostname = '127.0.0.1';
+  app.fields['quote-whatsapp-prepare'].listeners.click();
+  app.fields['quote-whatsapp-open'].listeners.click();
+  assert.equal(app.window.location.href, 'https://www.zepoulayiti.com/');
+  assert.equal(app.requests.length, 0);
+  assert.match(app.statusEl.textContent, /Aperçu local/);
 });

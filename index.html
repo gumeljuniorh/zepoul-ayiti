@@ -309,17 +309,6 @@
             <input id="inst" name="inst" type="text" minlength="2" maxlength="160" autocomplete="organization" placeholder="Ex&nbsp;: nom de l’organisation ou du client" required />
           </div>
 
-          <div class="field">
-            <label for="vol">Volume hebdomadaire estimé (cartons)</label>
-            <input id="vol" name="vol" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex&nbsp;: 50" aria-describedby="volume-hint" required />
-            <small class="field-hint" id="volume-hint">Une estimation suffit. Le volume final sera confirmé avec notre équipe.</small>
-          </div>
-
-          <div class="field">
-            <label for="zone">Commune ou zone d’approvisionnement</label>
-            <input id="zone" name="zone" type="text" minlength="2" maxlength="120" autocomplete="address-level2" placeholder="Ex&nbsp;: Port-de-Paix" required />
-          </div>
-
           <div class="field field-wide">
             <label for="frequency">Fréquence souhaitée</label>
             <select id="frequency" name="frequency" required>
@@ -329,6 +318,18 @@
               <option value="Approvisionnement régulier">Approvisionnement régulier</option>
             </select>
           </div>
+
+          <div class="field">
+            <label id="volume-label" for="vol">Quantité estimée (cartons)</label>
+            <input id="vol" name="vol" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex&nbsp;: 50" aria-describedby="volume-hint" required />
+            <small class="field-hint" id="volume-hint" aria-live="polite">Une estimation suffit. Le volume final sera confirmé avec notre équipe.</small>
+          </div>
+
+          <div class="field">
+            <label for="zone">Commune ou zone d’approvisionnement</label>
+            <input id="zone" name="zone" type="text" minlength="2" maxlength="120" autocomplete="address-level2" placeholder="Ex&nbsp;: Port-de-Paix" required />
+          </div>
+
 
           <div class="field">
             <label for="email">E-mail professionnel</label>
@@ -362,6 +363,13 @@
           <button type="submit" class="btn btn-primary">
             Soumettre la demande de cotation
           </button>
+          <button type="button" class="btn btn-secondary" id="quote-whatsapp-prepare" aria-expanded="false" aria-controls="quote-whatsapp-preview">Préparer ma demande WhatsApp</button>
+          <div class="field field-wide" id="quote-whatsapp-preview" hidden>
+            <label for="quote-whatsapp-message">Votre message WhatsApp</label>
+            <textarea id="quote-whatsapp-message" rows="9" maxlength="4000" aria-describedby="quote-whatsapp-help"></textarea>
+            <small id="quote-whatsapp-help" class="field-hint">Vérifiez ou modifiez le message. Il ne sera envoyé qu’après votre confirmation dans WhatsApp. Cette option ne confirme pas un enregistrement dans notre formulaire.</small>
+            <button type="button" class="btn btn-secondary" id="quote-whatsapp-open">Continuer dans WhatsApp</button>
+          </div>
           <p class="form-note" id="quote-form-note">En soumettant ce formulaire, vous acceptez le traitement de vos renseignements conformément à notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           <button type="button" class="btn btn-secondary" id="quote-whatsapp-fallback" hidden>Vérifier la réception sur WhatsApp</button>
@@ -449,6 +457,6 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
 
-  <script defer src="site.js?v=20260907-refinement1"></script>
+  <script defer src="site.js?v=20260924-quote1"></script>
 </body>
 </html>
