@@ -49,6 +49,25 @@ for (const file of htmlFiles) {
   if (h1Count !== 1) report(file, `la page doit contenir exactement un H1 (trouve: ${h1Count})`);
   if (duplicateIds.length) report(file, `identifiants dupliques: ${[...new Set(duplicateIds)].join(", ")}`);
 
+  if (html.includes('aria-label="Navigation principale"')) {
+    const menus = [
+      ["ordinateur", html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1]],
+      ["mobile", html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1]],
+    ];
+    const expected = ["index.html", "vision.html", "expertise.html", "services.html", "about.html", "communications.html"];
+    for (const [name, markup] of menus) {
+      const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
+      if (links.slice(0, expected.length).map((link) => link[1]).join("|") !== expected.join("|")) {
+        report(file, `menu ${name} incomplet ou dans un ordre different`);
+      }
+      const communications = links.filter((link) => link[1] === "communications.html");
+      if (communications.length !== 1) report(file, `menu ${name}: lien Communications absent ou duplique`);
+      if (file === "communications.html" && !communications[0]?.[0].includes('aria-current="page"')) {
+        report(file, `menu ${name}: indicateur actif de Communications manquant`);
+      }
+    }
+  }
+
   for (const match of html.matchAll(/<img\b([^>]*)>/gi)) {
     if (!/\balt=["'][^"']*["']/i.test(match[1])) report(file, "image sans attribut alt");
   }

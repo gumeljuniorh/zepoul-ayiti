@@ -129,7 +129,7 @@
       if (header) {
         document.documentElement.style.setProperty("--header-height", Math.ceil(header.getBoundingClientRect().height) + "px");
       }
-      if (window.matchMedia("(min-width: 1101px)").matches) {
+      if (window.matchMedia("(min-width: 1241px)").matches) {
         var focusedInMenu = items.some(function (item) { return item.menu.contains(document.activeElement); });
         closeAll();
         if (focusedInMenu && header) header.querySelector("a").focus({ preventScroll: true });

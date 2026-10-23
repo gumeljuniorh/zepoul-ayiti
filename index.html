@@ -50,6 +50,7 @@
     "description": "Entreprise avicole en Haïti avec une production locale stable de 500 œufs par jour et une vision d’expansion vers 50 000 poules pondeuses.",
     "logo": "https://www.zepoulayiti.com/logo-full-light.jpg",
     "telephone": "+50944975668",
+    "email": "commercial@zepoulayiti.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Port-de-Paix",
@@ -58,6 +59,7 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+50944975668",
+      "email": "commercial@zepoulayiti.com",
       "contactType": "customer service",
       "areaServed": "HT",
       "availableLanguage": "fr"
@@ -169,8 +171,8 @@
   <script src="theme.js?v=20260511-dark"></script>
   <link rel="preload" href="plus-jakarta-sans-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="playfair-display-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="site.css?v=20260909-editorial1" />
-  <link rel="stylesheet" href="home.css?v=20260920-offre1" />
+  <link rel="stylesheet" href="site.css?v=20261023-contact2" />
+  <link rel="stylesheet" href="home.css?v=20261018-polish1" />
 </head>
 <body data-page="index">
   <svg class="svg-definitions" aria-hidden="true" width="0" height="0">
@@ -201,6 +203,7 @@
         <a href="expertise.html">Expertise</a>
         <a href="services.html">Services</a>
         <a href="about.html">À propos</a>
+        <a href="communications.html">Communications</a>
         <a class="btn btn-primary" href="#commande"><svg class="inline-icon" aria-hidden="true"><use href="#icon-document"></use></svg> Demande de cotation</a>
         <div class="social-icons" aria-label="Réseaux sociaux">
           <a href="https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" loading="lazy" decoding="async" /></a>
@@ -221,6 +224,7 @@
       <a href="expertise.html">Expertise</a>
       <a href="services.html">Services</a>
       <a href="about.html">À propos</a>
+      <a href="communications.html">Communications</a>
       <a href="#commande">Demande de cotation</a>
     </div>
   </div>
@@ -297,54 +301,64 @@
     </section>
 
     <section class="block order" id="commande">
-      <div class="container">
+      <div class="container quote-layout">
         <div class="section-head">
           <h2>Demande de cotation</h2>
           <p>Indiquez la quantité souhaitée, la fréquence et votre commune. Notre équipe vous précisera les disponibilités et les conditions.</p>
         </div>
 
         <form class="order-box" id="quote-form" action="/api/quote" method="POST" aria-describedby="quote-form-note form-status">
-          <div class="field field-wide">
-            <label for="inst">Nom de l’entreprise ou du client</label>
-            <input id="inst" name="inst" type="text" minlength="2" maxlength="160" autocomplete="organization" placeholder="Ex&nbsp;: nom de l’organisation ou du client" required />
-          </div>
+          <fieldset class="quote-group">
+            <legend>Votre besoin</legend>
+            <div class="quote-fields">
+              <div class="field">
+                <label for="frequency">Fréquence souhaitée</label>
+                <select id="frequency" name="frequency" required>
+                  <option value="">Sélectionner une fréquence</option>
+                  <option value="Demande ponctuelle">Demande ponctuelle</option>
+                  <option value="Approvisionnement hebdomadaire">Approvisionnement hebdomadaire</option>
+                  <option value="Approvisionnement régulier">Approvisionnement régulier</option>
+                </select>
+              </div>
 
-          <div class="field field-wide">
-            <label for="frequency">Fréquence souhaitée</label>
-            <select id="frequency" name="frequency" required>
-              <option value="">Sélectionner une fréquence</option>
-              <option value="Demande ponctuelle">Demande ponctuelle</option>
-              <option value="Approvisionnement hebdomadaire">Approvisionnement hebdomadaire</option>
-              <option value="Approvisionnement régulier">Approvisionnement régulier</option>
-            </select>
-          </div>
+              <div class="field">
+                <label id="volume-label" for="vol">Quantité estimée (cartons)</label>
+                <input id="vol" name="vol" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex&nbsp;: 50" aria-describedby="volume-hint" required />
+                <small class="field-hint" id="volume-hint" aria-live="polite">Une estimation suffit. Le volume final sera confirmé avec notre équipe.</small>
+              </div>
 
-          <div class="field">
-            <label id="volume-label" for="vol">Quantité estimée (cartons)</label>
-            <input id="vol" name="vol" type="number" min="1" step="1" inputmode="numeric" placeholder="Ex&nbsp;: 50" aria-describedby="volume-hint" required />
-            <small class="field-hint" id="volume-hint" aria-live="polite">Une estimation suffit. Le volume final sera confirmé avec notre équipe.</small>
-          </div>
+              <div class="field field-wide">
+                <label for="zone">Commune ou zone d’approvisionnement</label>
+                <input id="zone" name="zone" type="text" minlength="2" maxlength="120" autocomplete="address-level2" placeholder="Ex&nbsp;: Port-de-Paix" required />
+              </div>
 
-          <div class="field">
-            <label for="zone">Commune ou zone d’approvisionnement</label>
-            <input id="zone" name="zone" type="text" minlength="2" maxlength="120" autocomplete="address-level2" placeholder="Ex&nbsp;: Port-de-Paix" required />
-          </div>
+              <div class="field field-wide">
+                <label for="details">Précisions (optionnel)</label>
+                <textarea id="details" name="details" maxlength="1600" placeholder="Ex&nbsp;: jours souhaités ou exigences particulières"></textarea>
+              </div>
+            </div>
+          </fieldset>
 
+          <fieldset class="quote-group">
+            <legend>Vos coordonnées</legend>
+            <div class="quote-fields">
+              <div class="field field-wide">
+                <label for="inst">Nom de l’entreprise ou du client</label>
+                <input id="inst" name="inst" type="text" minlength="2" maxlength="160" autocomplete="organization" placeholder="Ex&nbsp;: nom de l’organisation ou du client" required />
+              </div>
 
-          <div class="field">
-            <label for="email">E-mail professionnel</label>
-            <input id="email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Ex&nbsp;: achats@institution.ht" required />
-          </div>
+              <div class="field">
+                <label for="email">E-mail professionnel</label>
+                <input id="email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Ex&nbsp;: achats@institution.ht" required />
+              </div>
 
-          <div class="field">
-            <label for="phone">Numéro WhatsApp</label>
-            <input id="phone" name="phone" type="tel" minlength="6" maxlength="40" autocomplete="tel" inputmode="tel" placeholder="Ex&nbsp;: +509 0000 0000" required />
-          </div>
+              <div class="field">
+                <label for="phone">Numéro WhatsApp</label>
+                <input id="phone" name="phone" type="tel" minlength="6" maxlength="40" autocomplete="tel" inputmode="tel" placeholder="Ex&nbsp;: +509 0000 0000" required />
+              </div>
+            </div>
+          </fieldset>
 
-          <div class="field field-wide">
-            <label for="details">Précisions (optionnel)</label>
-            <textarea id="details" name="details" maxlength="1600" placeholder="Ex&nbsp;: jours souhaités ou exigences particulières"></textarea>
-          </div>
           <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
           <div class="turnstile-verification">
@@ -360,10 +374,18 @@
             <p>Vérification de sécurité assurée par Cloudflare Turnstile.</p>
           </div>
 
-          <button type="submit" class="btn btn-primary">
-            Soumettre la demande de cotation
-          </button>
-          <button type="button" class="btn btn-secondary" id="quote-whatsapp-prepare" aria-expanded="false" aria-controls="quote-whatsapp-preview">Préparer ma demande WhatsApp</button>
+          <div class="quote-actions" role="group" aria-label="Choisir un mode de contact">
+            <div class="quote-channel">
+              <p class="quote-channel-label">Par le formulaire</p>
+              <button type="submit" class="btn btn-primary">
+                Soumettre la demande de cotation
+              </button>
+            </div>
+            <div class="quote-channel">
+              <p class="quote-channel-label">Via WhatsApp</p>
+              <button type="button" class="btn btn-secondary" id="quote-whatsapp-prepare" aria-expanded="false" aria-controls="quote-whatsapp-preview">Préparer ma demande WhatsApp</button>
+            </div>
+          </div>
           <div class="field field-wide" id="quote-whatsapp-preview" hidden>
             <label for="quote-whatsapp-message">Votre message WhatsApp</label>
             <textarea id="quote-whatsapp-message" rows="9" maxlength="4000" aria-describedby="quote-whatsapp-help"></textarea>
@@ -441,6 +463,7 @@
         <h5>Contact</h5>
         <div class="footer-contact-list">
           <p>Port-de-Paix, Haïti</p>
+          <a class="footer-contact-link" href="mailto:commercial@zepoulayiti.com"><span>commercial@<wbr>zepoulayiti.com</span></a>
           <a class="footer-contact-link" href="https://wa.me/50944975668" target="_blank" rel="noopener">WhatsApp : +509 44 97 56 68</a>
         </div>
         <div class="footer-social" aria-label="Réseaux sociaux">
@@ -457,6 +480,6 @@
     <p class="footer-copy">© 2026 Zepoul Ayiti | GL Zepoul Peyi</p>
   </footer>
 
-  <script defer src="site.js?v=20260924-quote1"></script>
+  <script defer src="site.js?v=20261018-nav2"></script>
 </body>
 </html>
