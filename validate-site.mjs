@@ -63,17 +63,22 @@ for (const file of htmlFiles) {
       ["ordinateur", html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1]],
       ["mobile", html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1]],
     ];
-    const expected = ["index.html", "vision.html", "expertise.html", "services.html", "about.html", "communications.html"];
+    const expected = ["index.html", "vision.html", "expertise.html", "services.html", "about.html"];
     for (const [name, markup] of menus) {
       const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
       if (links.slice(0, expected.length).map((link) => normalizeReference(link[1], file)).join("|") !== expected.join("|")) {
         report(file, `menu ${name} incomplet ou dans un ordre different`);
       }
       const communications = links.filter((link) => normalizeReference(link[1], file) === "communications.html");
-      if (communications.length !== 1) report(file, `menu ${name}: lien Communications absent ou duplique`);
-      if (file === "communications.html" && !communications[0]?.[0].includes('aria-current="page"')) {
-        report(file, `menu ${name}: indicateur actif de Communications manquant`);
-      }
+      if (communications.length !== 0) report(file, `menu ${name}: Communications doit rester dans le pied de page`);
+    }
+  }
+
+  if (html.includes('aria-label="Navigation principale"')) {
+    const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/i)?.[1] || "";
+    const links = [...footer.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
+    if (links.filter((link) => normalizeReference(link[1], file) === "communications.html").length !== 1) {
+      report(file, "pied de page: lien Communications absent ou duplique");
     }
   }
 
