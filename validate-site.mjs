@@ -1,8 +1,15 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { extname, resolve } from "node:path";
+import { dirname, extname, posix, resolve } from "node:path";
 
 const root = process.cwd();
-const htmlFiles = readdirSync(root).filter((file) => extname(file) === ".html").sort();
+function pageFiles(directory = "") {
+  return readdirSync(resolve(root, directory), { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name.startsWith(".")) return [];
+    const path = posix.join(directory, entry.name);
+    return entry.isDirectory() ? pageFiles(path) : extname(path) === ".html" ? [path] : [];
+  });
+}
+const htmlFiles = pageFiles().sort();
 const cssFiles = readdirSync(root).filter((file) => extname(file) === ".css").sort();
 const errors = [];
 
@@ -10,15 +17,17 @@ function report(file, message) {
   errors.push(`${file}: ${message}`);
 }
 
-function normalizeReference(reference) {
+function normalizeReference(reference, fromFile = "index.html") {
   const clean = reference.trim().split(/[?#]/, 1)[0];
   if (!clean || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(clean)) return null;
   if (clean === "/") return "index.html";
-  return decodeURIComponent(clean.replace(/^\//, ""));
+  const path = decodeURIComponent(clean);
+  const target = path.startsWith("/") ? path.slice(1) : posix.join(dirname(fromFile), path);
+  return path.endsWith("/") ? posix.join(target, "index.html") : target;
 }
 
 function checkReference(file, reference) {
-  const localPath = normalizeReference(reference);
+  const localPath = normalizeReference(reference, file);
   if (!localPath) return;
   if (!existsSync(resolve(root, localPath))) {
     report(file, `reference locale introuvable: ${reference}`);
@@ -29,7 +38,7 @@ function checkAnchor(file, reference) {
   if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(reference)) return;
   const [page, fragment] = reference.split("#");
   if (!fragment) return;
-  const target = normalizeReference(page) || file;
+  const target = normalizeReference(page, file) || file;
   if (!target.endsWith(".html") || !existsSync(resolve(root, target))) return;
   const ids = [...readFileSync(resolve(root, target), "utf8").matchAll(/\sid=["']([^"']+)["']/gi)].map((match) => match[1]);
   if (!ids.includes(decodeURIComponent(fragment))) report(file, `ancre introuvable: ${reference}`);
@@ -57,10 +66,10 @@ for (const file of htmlFiles) {
     const expected = ["index.html", "vision.html", "expertise.html", "services.html", "about.html", "communications.html"];
     for (const [name, markup] of menus) {
       const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
-      if (links.slice(0, expected.length).map((link) => link[1]).join("|") !== expected.join("|")) {
+      if (links.slice(0, expected.length).map((link) => normalizeReference(link[1], file)).join("|") !== expected.join("|")) {
         report(file, `menu ${name} incomplet ou dans un ordre different`);
       }
-      const communications = links.filter((link) => link[1] === "communications.html");
+      const communications = links.filter((link) => normalizeReference(link[1], file) === "communications.html");
       if (communications.length !== 1) report(file, `menu ${name}: lien Communications absent ou duplique`);
       if (file === "communications.html" && !communications[0]?.[0].includes('aria-current="page"')) {
         report(file, `menu ${name}: indicateur actif de Communications manquant`);

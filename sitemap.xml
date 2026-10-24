@@ -71,4 +71,11 @@
     <priority>0.70</priority>
   </url>
 
+  <url>
+    <loc>https://www.zepoulayiti.com/social/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
 </urlset>
