@@ -600,7 +600,7 @@
 
   function bindInventoryPanel() {
     var panel = document.querySelector("[data-inventory-panel]");
-    if (!panel || isLocalPreview()) return;
+    if (!panel || isLocalPreview() || panel.getAttribute("data-commercialisation") === "preparation") return;
 
     var controller = typeof AbortController === "function" ? new AbortController() : null;
     var timeoutId = window.setTimeout(function () {
@@ -624,7 +624,9 @@
 
         if (
           data.published !== true ||
-          !Number.isFinite(cartons) ||
+          data.cartons === null ||
+          data.cartons === "" ||
+          !Number.isInteger(cartons) ||
           cartons < 0 ||
           Number.isNaN(updatedAt.getTime()) ||
           age < -5 * 60 * 1000 ||
@@ -637,7 +639,7 @@
         var status = panel.querySelector("[data-inventory-status]");
         var message = panel.querySelector("[data-inventory-message]");
         var updated = panel.querySelector("[data-inventory-updated]");
-        var statusText = data.status || "Disponible";
+        var statusText = cartons === 0 ? "Indisponible" : (data.status || "Disponible");
 
         if (quantity) quantity.textContent = new Intl.NumberFormat("fr-HT").format(cartons);
         if (status) {
