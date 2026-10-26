@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 const read = file => readFileSync(new URL(file, import.meta.url), 'utf8');
@@ -53,17 +54,63 @@ test('official social destinations and QR page remain available', () => {
 });
 
 
-test('reference layout has concise institutional headings and four project icons', () => {
+test('institutional sections have no decorative icons or illustrative photos', () => {
   const html = read('index.html');
   const purpose = html.match(/<section class="purpose-grid[\s\S]*?<\/section>/)[0];
-  assert.deepEqual([...purpose.matchAll(/<h2>([^<]+)<\/h2>/g)].map(m => m[1]), ['Notre mission', 'Notre vision', 'Nos valeurs']);
-  assert.equal((html.match(/class="metric-icon"/g) || []).length, 4);
+  assert.deepEqual([...purpose.matchAll(/<h2>[\s\S]*?<span>([^<]+)<\/span><\/h2>/g)].map(m => m[1]), ['Notre mission', 'Notre vision', 'Nos engagements']);
+  assert(!html.includes('class="metric-icon"'));
+  assert(!html.includes('class="purpose-icon"'));
+  for (const cls of ['project-band','purpose-grid','development-band','product-section']) {
+    const section = html.match(new RegExp('<section class="' + cls + '[\\s\\S]*?<\\/section>'))?.[0];
+    assert(section, cls + ': section presente');
+    assert(!/<(?:svg|img|picture)\b/.test(section), cls + ': pas de visuel decoratif');
+  }
+  assert.equal((html.match(/class="phase-dot"/g) || []).length, 5);
+  assert(!html.includes('editorial-icon'));
+  assert(!read('design.css').includes('assets/icons/'));
   assert(html.includes('Âge prévu au début de ponte, et non délai après livraison.'));
   assert(html.includes('class="product-principles"'));
   assert(!html.includes('class="product-symbol"'));
 });
 test('about preserves the director and the six requested narrative sections', () => {
   const html = read('about.html');
-  for (const title of ['Qui sommes-nous ?', 'Pourquoi Zepoul Ayiti ?', 'Notre projet avicole', 'Notre méthode', 'Notre ambition', 'Notre engagement']) assert(html.includes('>' + title + '</h2>'));
-  assert(html.includes('phase pilote, en préparation'));
+  for (const title of ['Notre entreprise', 'Pourquoi Zepoul Ayiti ?', 'Notre projet avicole', 'Notre méthode', 'Perspectives de développement', 'Nos engagements']) assert(html.includes('>' + title + '</h2>'));
+  assert(html.includes('phase pilote est en cours'));
+  assert(html.includes('La préparation est achevée'));
+});
+
+
+test('unused original SVG resources and their licenses remain preserved', () => {
+  const source = JSON.parse(read('assets/icons/sources.json'));
+  assert.equal(source.icons.length, 7);
+  const license=read('assets/icons/' + source.license);
+  assert(license.includes('ISC License'));
+  assert(license.includes('The MIT License'));
+  const html = read('index.html');
+  const css = read('design.css');
+  for (const icon of source.icons) {
+    const svg = read('assets/icons/' + icon.file);
+    assert.equal(createHash('sha256').update(svg).digest('hex'),icon.sha256);
+    assert(!html.includes('data-icon="' + icon.name + '"'));
+    assert(!css.includes('url("assets/icons/' + icon.file + '")'));
+    assert(!/<script|<foreignObject/i.test(svg));
+  }
+  assert(!/<svg class="editorial-icon"/.test(html));
+});
+test('institutional page titles match the requested subjects', () => {
+  const titles = {"index.html":"Production et commercialisation d’œufs en Haïti","about.html":"Présentation de GL Zepoul Peyi","vision.html":"Stratégie de développement de l’exploitation","expertise.html":"Organisation et gestion de l’exploitation avicole","services.html":"Approvisionnement et relations commerciales","communications.html":"Actualités et communications"};
+  for(const [file,title] of Object.entries(titles)) {
+    const h1=read(file).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<br\s*\/?>/g,' ').replace(/<[^>]+>/g,'').trim();
+    assert.equal(h1,title);
+  }
+});
+
+
+test('pilot status reflects completed preparation without activating stock', () => {
+  for (const file of ['index.html','about.html','expertise.html','vision.html','fournisseur-oeufs-haiti.html']) {
+    const html = read(file);
+    assert(/phase pilote (?:est )?en cours/i.test(html), file);
+    assert(!/Pilote en préparation|Mise en exploitation en préparation|phase pilote, en préparation/.test(html), file);
+  }
+  assert.match(read('index.html'), /data-inventory-panel data-commercialisation="preparation" hidden/);
 });
