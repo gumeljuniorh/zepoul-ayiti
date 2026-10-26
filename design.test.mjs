@@ -51,3 +51,19 @@ test('official social destinations and QR page remain available', () => {
   for(const url of ['https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/','https://www.instagram.com/zepoul_ayiti/','https://www.tiktok.com/@zepoul.ayiti','https://x.com/Zepoul_Ayiti','https://wa.me/50944975668']) assert(html.includes(url));
   assert(existsSync(new URL('social/index.html',import.meta.url)));
 });
+
+
+test('reference layout has concise institutional headings and four project icons', () => {
+  const html = read('index.html');
+  const purpose = html.match(/<section class="purpose-grid[\s\S]*?<\/section>/)[0];
+  assert.deepEqual([...purpose.matchAll(/<h2>([^<]+)<\/h2>/g)].map(m => m[1]), ['Notre mission', 'Notre vision', 'Nos valeurs']);
+  assert.equal((html.match(/class="metric-icon"/g) || []).length, 4);
+  assert(html.includes('Âge prévu au début de ponte, et non délai après livraison.'));
+  assert(html.includes('class="product-principles"'));
+  assert(!html.includes('class="product-symbol"'));
+});
+test('about preserves the director and the six requested narrative sections', () => {
+  const html = read('about.html');
+  for (const title of ['Qui sommes-nous ?', 'Pourquoi Zepoul Ayiti ?', 'Notre projet avicole', 'Notre méthode', 'Notre ambition', 'Notre engagement']) assert(html.includes('>' + title + '</h2>'));
+  assert(html.includes('phase pilote, en préparation'));
+});
