@@ -63,7 +63,7 @@ for (const file of htmlFiles) {
       ["ordinateur", html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1]],
       ["mobile", html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1]],
     ];
-    const expected = ["index.html", "vision.html", "expertise.html", "services.html", "about.html"];
+    const expected = ["index.html", "about.html", "expertise.html", "services.html", "vision.html", "index.html", "index.html"];
     for (const [name, markup] of menus) {
       const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
       if (links.slice(0, expected.length).map((link) => normalizeReference(link[1], file)).join("|") !== expected.join("|")) {
