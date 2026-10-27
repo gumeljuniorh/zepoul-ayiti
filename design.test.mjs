@@ -28,11 +28,19 @@ test('home preserves all functional quote controls and endpoint', () => {
 });
 test('capacity figures are project data, not live stock or achieved production', () => {
   const html = read('index.html');
-  assert(html.includes('Données de projet, non résultats de production.'));
-  assert(html.includes('Prévision à confirmer selon le lot'));
+  for (const label of ['Implantation', 'Objectif de développement']) assert(html.includes(label));
+  assert(!html.includes('Âge de ponte'));
+  assert(!html.includes('3 500'));
+  assert(!read('expertise.html').includes('3 500'));
+  assert(!html.includes('class="growth-track"'));
+  assert(!html.includes('Données de projet, non résultats de production.'));
+  assert(read('vision.html').includes('Les phases 2 à 5 sont des objectifs d’expansion.'));
   assert(!/500\s+(œufs|oeufs)\s+(par jour|chaque jour)/i.test(html));
-  for (const value of ['500','3 000','5 000','8 000','12 000']) assert(read('vision.html').includes(`<strong>${value}<span> poules</span>`));
-  assert(read('vision.html').includes('ambition stratégique, et non une capacité acquise'));
+  for (const value of ['3 000','5 000','8 000','12 000']) assert(read('vision.html').includes(`<strong>${value}<span> poules</span>`));
+  for (const file of ['expertise.html','vision.html']) {
+    assert(read(file).includes('ambition d’atteindre à long terme'));
+    assert(read(file).includes('<strong class="strategic-figure">50 000</strong>'));
+  }
 });
 test('director profile precedes the company sections without the removed heading', () => {
   const html = read('about.html');
@@ -65,18 +73,21 @@ test('institutional sections have no decorative icons or illustrative photos', (
     assert(section, cls + ': section presente');
     assert(!/<(?:svg|img|picture)\b/.test(section), cls + ': pas de visuel decoratif');
   }
-  assert.equal((html.match(/class="phase-dot"/g) || []).length, 5);
+  assert.equal((html.match(/class="phase-dot"/g) || []).length, 0);
+  assert.equal((read('vision.html').match(/class="phase-dot"/g) || []).length, 5);
   assert(!html.includes('editorial-icon'));
   assert(!read('design.css').includes('assets/icons/'));
-  assert(html.includes('Âge prévu au début de ponte, et non délai après livraison.'));
+  assert(!html.includes('et non délai après livraison'));
+  assert(!html.includes('class="project-caption"'));
   assert(html.includes('class="product-principles"'));
   assert(!html.includes('class="product-symbol"'));
 });
 test('about preserves the director and the six requested narrative sections', () => {
   const html = read('about.html');
-  for (const title of ['Notre entreprise', 'Pourquoi Zepoul Ayiti ?', 'Notre projet avicole', 'Notre méthode', 'Perspectives de développement', 'Nos engagements']) assert(html.includes('>' + title + '</h2>'));
-  assert(html.includes('phase pilote est en cours'));
-  assert(html.includes('La préparation est achevée'));
+  for (const title of ['Notre entreprise', 'Notre raison d’être', 'Notre exploitation', 'Notre approche', 'Notre développement', 'Nos engagements']) assert(html.includes('>' + title + '</h2>'));
+  assert(html.includes('Le projet pilote est en préparation.'));
+  assert(html.includes('Notre exploitation est implantée à Port-de-Paix.'));
+  assert(!html.includes('bâtiment avicole construit'));
 });
 
 
@@ -98,7 +109,7 @@ test('unused original SVG resources and their licenses remain preserved', () => 
   assert(!/<svg class="editorial-icon"/.test(html));
 });
 test('institutional page titles match the requested subjects', () => {
-  const titles = {"index.html":"Production et commercialisation d’œufs en Haïti","about.html":"Présentation de GL Zepoul Peyi","vision.html":"Stratégie de développement de l’exploitation","expertise.html":"Organisation et gestion de l’exploitation avicole","services.html":"Approvisionnement et relations commerciales","communications.html":"Actualités et communications"};
+  const titles = {"index.html":"Production d’œufs en Haïti","about.html":"GL Zepoul Peyi","vision.html":"Notre développement","expertise.html":"Notre exploitation","services.html":"Produits et services","communications.html":"Communications"};
   for(const [file,title] of Object.entries(titles)) {
     const h1=read(file).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<br\s*\/?>/g,' ').replace(/<[^>]+>/g,'').trim();
     assert.equal(h1,title);
@@ -106,11 +117,47 @@ test('institutional page titles match the requested subjects', () => {
 });
 
 
-test('pilot status reflects completed preparation without activating stock', () => {
+test('pilot remains a preparation phase without activating stock', () => {
   for (const file of ['index.html','about.html','expertise.html','vision.html','fournisseur-oeufs-haiti.html']) {
     const html = read(file);
-    assert(/phase pilote (?:est )?en cours/i.test(html), file);
-    assert(!/Pilote en préparation|Mise en exploitation en préparation|phase pilote, en préparation/.test(html), file);
+    assert(/(?:projet pilote[^<.]*en préparation|en préparation[^<.]*projet pilote)/i.test(html), file);
+    assert(!/phase pilote (?:est )?en cours|préparation est achevée/i.test(html), file);
   }
   assert.match(read('index.html'), /data-inventory-panel data-commercialisation="preparation" hidden/);
+});
+
+test('editorial revision preserves essential commercial and privacy distinctions', () => {
+  assert(read('index.html').includes('La cotation ne vaut pas confirmation de commande.'));
+  assert(read('index.html').includes('Cet envoi est distinct du formulaire.'));
+  assert(read('services.html').includes('Les commandes sont soumises aux disponibilités confirmées.'));
+  assert(read('services.html').includes('Analyse de votre demande'));
+  const privacy = read('politique-confidentialite.html');
+  for (const term of ['La durée de conservation n’est pas encore définie.', 'Google Apps Script et Google Sheets', 'Vos droits', 'ni vendues ni louées']) assert(privacy.includes(term));
+  assert(!read('expertise.html').includes('charges d’exploitation'));
+  assert(!read('about.html').includes('analyse des besoins'));
+  assert.equal((read('communications.html').match(/<figcaption>Visuel de campagne<\/figcaption>/g) || []).length, 3);
+});
+
+
+test('footers contain only the requested identity, communications, social and legal links', () => {
+  const footerPages = [...pages, 'social/index copy.html', 'fournisseur-oeufs-haiti.html', 'girard-gumel-j-henry.html', 'mentions-legales.html', 'politique-confidentialite.html'];
+  const socialLinks = ['https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/', 'https://www.instagram.com/zepoul_ayiti', 'https://x.com/zepoul_ayiti', 'https://www.tiktok.com/@zepoul.ayiti'];
+  for (const file of footerPages) {
+    const html = read(file);
+    const footer = html.match(/<footer\b[^>]*>[\s\S]*?<\/footer>/)[0];
+    const prefix = file.startsWith('social/') ? '../' : '';
+    assert.deepEqual([...footer.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(m => m[1]), [prefix + 'communications.html', ...socialLinks, prefix + 'mentions-legales.html', prefix + 'politique-confidentialite.html'], file);
+    for (const text of ['Zepoul Ayiti', 'GL Zepoul Peyi', 'Port-de-Paix, Haïti', '© 2026 GL Zepoul Peyi. Tous droits réservés.']) assert(footer.includes(text), file);
+    assert(!footer.includes('Découvrir'), file);
+    assert(!/footer-tagline|mailto:|wa.me|#commande/.test(footer), file);
+    const header = html.slice(html.indexOf('<body'), html.indexOf('<main'));
+    assert(!header.includes('communications.html'), file);
+  }
+});
+
+test('public institutional copy omits detailed pilot and building data', () => {
+  for (const file of pages.concat(['llms.txt'])) {
+    const html = read(file);
+    assert(!/Hy-Line|W-80|500\s*(?:<[^>]*>\s*)*poules|Données de projet, non résultats|16 semaines|Bâtiment déjà construit/.test(html), file);
+  }
 });

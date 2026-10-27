@@ -319,7 +319,7 @@
       requested = true;
       retry.hidden = true;
       loadTurnstileScript().then(function () {
-        if (note) note.textContent = "Vérification de sécurité assurée par Cloudflare Turnstile.";
+        if (note) note.textContent = "Vérification de sécurité.";
       }).catch(function () {
         requested = false;
         turnstileLoadPromise = null;
@@ -394,8 +394,8 @@
     function updateFrequency() {
       if (volumeLabel) volumeLabel.textContent = volumeDescription(frequencyField.value);
       if (volumeHint) volumeHint.textContent = frequencyField.value === "Approvisionnement régulier"
-        ? "Indiquez la quantité par livraison et précisez le rythme souhaité dans les précisions."
-        : "Une estimation suffit. Le volume final sera confirmé avec notre équipe.";
+        ? "Indiquez la quantité par livraison et la fréquence dans les précisions."
+        : "Une estimation suffit.";
     }
     frequencyField.addEventListener("change", updateFrequency);
     updateFrequency();

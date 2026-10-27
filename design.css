@@ -59,7 +59,7 @@ body[data-design] .brand-hero .btn-primary { background: #1a7f37 !important; bor
 body[data-design] .brand-hero .btn-secondary { border-color: #f0f2e7 !important; color: #fff !important; background: #10221555 !important; }
 body[data-design] .project-band { position: relative; margin-top: -32px; padding: 16px 24px 12px; border-radius: 18px; background: var(--design-ivory) !important; border: 1px solid var(--design-border); z-index: 1; }
 body[data-design] .project-band > h2 { font: 600 .61rem/1.4 'Plus Jakarta Sans',sans-serif; margin: 0 0 12px; letter-spacing: .06em; }
-.project-metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 0; }
+.project-metrics { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); margin: 0; }
 .project-metrics > div { position: relative; display: grid; grid-template-columns: minmax(0,1fr); align-content: start; padding-inline: 22px; border-left: 1px solid var(--design-border); }
 .project-metrics > div:first-child { padding-left: 0; border: 0; }
 .project-metrics dt { grid-column: 1; grid-row: 2; font-size: .73rem; line-height: 1.45; color: var(--design-muted); }
@@ -75,7 +75,7 @@ body[data-design] .purpose-grid p:not(.design-eyebrow) { font-size: .8rem; line-
 .values-list li { display: block; font-size: .8rem; font-weight: 500; padding: 0; }
 .values-list li::before { display: none; }
 body[data-design] .development-band { padding: 30px 0; background: var(--design-tint) !important; border-block: 1px solid var(--design-border); }
-.development-layout { display: grid; grid-template-columns: .85fr 1.6fr; gap: 38px; align-items: center; }
+.development-layout { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 38px; align-items: center; }
 body[data-design] .development-layout h2 { font-size: 1.8rem; margin: 0 0 8px; }
 body[data-design] .development-layout p { font-size: .79rem; line-height: 1.65; margin: 8px 0 14px; }
 .growth-track { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); margin: 0; padding: 0; list-style: none; }
@@ -116,6 +116,7 @@ body[data-design] .facility-overview { display: grid; grid-template-columns: 1.2
 .facility-facts div:last-child { border: 0; }
 .facility-facts dt { font-size: .72rem; color: var(--design-muted); }
 .facility-facts dd { margin: 5px 0 0; font-weight: 650; font-size: .9rem; }
+.strategic-figure { font: 700 2rem/1.25 'Playfair Display',serif; white-space: nowrap; }
 body[data-design] main :is(.expertise-panel,.vision-panel,.service-panel) { padding: 24px 0 !important; background: transparent !important; box-shadow: none !important; border: 0; border-top: 1px solid var(--design-border); border-radius: 0 !important; }
 body[data-design] .expertise-panel h3 { font: 700 1.35rem 'Playfair Display',serif; color: var(--design-green); margin: 0 0 12px; }
 body[data-design] .expertise-panel p { font-size: .9rem; }
@@ -245,9 +246,6 @@ body[data-design] main p.design-subtitle { color: var(--design-text); font-size:
 .product-principles > div + div { border-left: 1px solid var(--design-border); }
 .product-principles span { font-size: .76rem; line-height: 1.5; }
 body[data-design] .product-principles > p { grid-column: 1 / -1; font-size: .66rem; margin: 0; }
-body[data-design] .development-layout .growth-track li { text-align: center; }
-.development-layout .phase-dot::before { left: calc(50% - 5px); }
-.development-layout .growth-track li + li::after { content: ''; position: absolute; left: -4px; top: 44px; width: 6px; height: 6px; border-top: 1px solid #7b9879; border-right: 1px solid #7b9879; transform: rotate(45deg); }
 body[data-design] .site-footer .footer-grid > section > h2 { font-size: .75rem; margin-bottom: 8px; }
 body[data-design] .site-footer :is(p,a,li) { font-size: .72rem; line-height: 1.65; }
 body[data-design] .site-footer .footer-contact-link { min-height: 28px; }
@@ -263,9 +261,6 @@ body[data-design] .site-footer .footer-social { margin-top: 10px; }
   .purpose-grid article { grid-template-columns: minmax(0,1fr); }
   .product-copy { order: 0; }
   .product-principles { order: 1; gap: 10px; padding-top: 8px; }
-  body[data-design] .development-layout .growth-track li { text-align: left; }
-  .development-layout .phase-dot::before { left: -6px; }
-  .development-layout .growth-track li + li::after { display: none; }
   body[data-design] .site-footer a { min-height: 44px; display: inline-flex; align-items: center; }
   body[data-design] .site-footer .footer-social a { width: 44px; height: 44px; }
 }
