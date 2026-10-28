@@ -26,21 +26,18 @@ test('home preserves all functional quote controls and endpoint', () => {
   assert.match(html, /data-inventory-panel data-commercialisation="preparation" hidden/);
   assert.match(html, /<video[^>]*controls muted autoplay loop playsinline preload="none"/);
 });
-test('capacity figures are project data, not live stock or achieved production', () => {
-  const html = read('index.html');
-  for (const label of ['Implantation', 'Objectif de développement']) assert(html.includes(label));
-  assert(!html.includes('Âge de ponte'));
-  assert(!html.includes('3 500'));
-  assert(!read('expertise.html').includes('3 500'));
-  assert(!html.includes('class="growth-track"'));
-  assert(!html.includes('Données de projet, non résultats de production.'));
-  assert(read('vision.html').includes('Les phases 2 à 5 sont des objectifs d’expansion.'));
-  assert(!/500\s+(œufs|oeufs)\s+(par jour|chaque jour)/i.test(html));
-  for (const value of ['3 000','5 000','8 000','12 000']) assert(read('vision.html').includes(`<strong>${value}<span> poules</span>`));
-  for (const file of ['expertise.html','vision.html']) {
-    assert(read(file).includes('ambition d’atteindre à long terme'));
-    assert(read(file).includes('<strong class="strategic-figure">50 000</strong>'));
+test('only the public long-term objective remains, without invented current production', () => {
+  const home = read('index.html');
+  assert(!home.includes('class="project-band'));
+  assert(!home.includes('class="growth-track"'));
+  for (const f of ['index.html','about.html','expertise.html','vision.html','fournisseur-oeufs-haiti.html','llms.txt']) {
+    const html = read(f);
+    assert(!/Hy-Line|W-80|(?:3|5|8|12) 000|3 500|16 semaines|projet pilote|phase de préparation/i.test(html), f);
+    assert(!/500\s+(œufs|oeufs)\s+(par jour|chaque jour)/i.test(html));
   }
+  assert(read('vision.html').includes('objectif à long terme'));
+  assert(read('vision.html').includes('<strong class="strategic-figure">50 000</strong>'));
+  assert(!read('expertise.html').includes('50 000'));
 });
 test('director profile precedes the company sections without the removed heading', () => {
   const html = read('about.html');
@@ -68,13 +65,13 @@ test('institutional sections have no decorative icons or illustrative photos', (
   assert.deepEqual([...purpose.matchAll(/<h2>[\s\S]*?<span>([^<]+)<\/span><\/h2>/g)].map(m => m[1]), ['Notre mission', 'Notre vision', 'Nos engagements']);
   assert(!html.includes('class="metric-icon"'));
   assert(!html.includes('class="purpose-icon"'));
-  for (const cls of ['project-band','purpose-grid','development-band','product-section']) {
+  for (const cls of ['purpose-grid','development-band','product-section']) {
     const section = html.match(new RegExp('<section class="' + cls + '[\\s\\S]*?<\\/section>'))?.[0];
     assert(section, cls + ': section presente');
     assert(!/<(?:svg|img|picture)\b/.test(section), cls + ': pas de visuel decoratif');
   }
   assert.equal((html.match(/class="phase-dot"/g) || []).length, 0);
-  assert.equal((read('vision.html').match(/class="phase-dot"/g) || []).length, 5);
+  assert.equal((read('vision.html').match(/class="phase-dot"/g) || []).length, 0);
   assert(!html.includes('editorial-icon'));
   assert(!read('design.css').includes('assets/icons/'));
   assert(!html.includes('et non délai après livraison'));
@@ -85,8 +82,8 @@ test('institutional sections have no decorative icons or illustrative photos', (
 test('about preserves the director and the six requested narrative sections', () => {
   const html = read('about.html');
   for (const title of ['Notre entreprise', 'Notre raison d’être', 'Notre exploitation', 'Notre approche', 'Notre développement', 'Nos engagements']) assert(html.includes('>' + title + '</h2>'));
-  assert(html.includes('Le projet pilote est en préparation.'));
-  assert(html.includes('Notre exploitation est implantée à Port-de-Paix.'));
+  assert(html.includes('Notre exploitation est consacrée à l’élevage de poules pondeuses'));
+  assert(!html.includes('projet pilote'));
   assert(!html.includes('bâtiment avicole construit'));
 });
 
@@ -109,7 +106,7 @@ test('unused original SVG resources and their licenses remain preserved', () => 
   assert(!/<svg class="editorial-icon"/.test(html));
 });
 test('institutional page titles match the requested subjects', () => {
-  const titles = {"index.html":"Production d’œufs en Haïti","about.html":"GL Zepoul Peyi","vision.html":"Notre développement","expertise.html":"Notre exploitation","services.html":"Produits et services","communications.html":"Communications"};
+  const titles = {"index.html":"Production et commercialisation d’œufs en Haïti","about.html":"GL Zepoul Peyi","vision.html":"Notre développement","expertise.html":"Notre exploitation","services.html":"Produits et services","communications.html":"Communications"};
   for(const [file,title] of Object.entries(titles)) {
     const h1=read(file).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<br\s*\/?>/g,' ').replace(/<[^>]+>/g,'').trim();
     assert.equal(h1,title);
@@ -117,13 +114,12 @@ test('institutional page titles match the requested subjects', () => {
 });
 
 
-test('pilot remains a preparation phase without activating stock', () => {
+test('operational editorial copy does not activate or fabricate stock', () => {
   for (const file of ['index.html','about.html','expertise.html','vision.html','fournisseur-oeufs-haiti.html']) {
     const html = read(file);
-    assert(/(?:projet pilote[^<.]*en préparation|en préparation[^<.]*projet pilote)/i.test(html), file);
-    assert(!/phase pilote (?:est )?en cours|préparation est achevée/i.test(html), file);
+    assert(!/projet pilote|phase de préparation|phase de lancement/i.test(html), file);
   }
-  assert.match(read('index.html'), /data-inventory-panel data-commercialisation="preparation" hidden/);
+  assert(read('index.html').includes('data-inventory-panel data-commercialisation="preparation" hidden'));
 });
 
 test('editorial revision preserves essential commercial and privacy distinctions', () => {
@@ -146,10 +142,10 @@ test('footers contain only the requested identity, communications, social and le
     const html = read(file);
     const footer = html.match(/<footer\b[^>]*>[\s\S]*?<\/footer>/)[0];
     const prefix = file.startsWith('social/') ? '../' : '';
-    assert.deepEqual([...footer.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(m => m[1]), [prefix + 'communications.html', ...socialLinks, prefix + 'mentions-legales.html', prefix + 'politique-confidentialite.html'], file);
+    assert.deepEqual([...footer.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(m => m[1]), ['mailto:commercial@zepoulayiti.com', 'https://wa.me/50944975668', prefix + 'communications.html', ...socialLinks, prefix + 'mentions-legales.html', prefix + 'politique-confidentialite.html'], file);
     for (const text of ['Zepoul Ayiti', 'GL Zepoul Peyi', 'Port-de-Paix, Haïti', '© 2026 GL Zepoul Peyi. Tous droits réservés.']) assert(footer.includes(text), file);
     assert(!footer.includes('Découvrir'), file);
-    assert(!/footer-tagline|mailto:|wa.me|#commande/.test(footer), file);
+    assert(!/footer-tagline|#commande/.test(footer), file);
     const header = html.slice(html.indexOf('<body'), html.indexOf('<main'));
     assert(!header.includes('communications.html'), file);
   }
@@ -160,4 +156,12 @@ test('public institutional copy omits detailed pilot and building data', () => {
     const html = read(file);
     assert(!/Hy-Line|W-80|500\s*(?:<[^>]*>\s*)*poules|Données de projet, non résultats|16 semaines|Bâtiment déjà construit/.test(html), file);
   }
+});
+
+
+test('internal files are excluded from Jekyll publication without deleting runtime files', () => {
+  const config = read('_config.yml');
+  for (const f of ['.local-backups', 'private', 'backups', 'exports', 'cloudflare-worker.js', 'google-apps-script.gs', 'design.test.mjs', 'inventory.test.mjs', 'quote-form.test.mjs', 'validate-site.mjs', 'social/index copy.html']) assert(config.includes('  - ' + f), f);
+  for (const f of ['site.js','theme.js','admin.js','admin.html','index.html']) assert(existsSync(new URL(f,import.meta.url)), f);
+  assert(read('.gitignore').includes('.local-backups/'));
 });

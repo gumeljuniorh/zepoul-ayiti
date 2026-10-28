@@ -44,12 +44,12 @@ body[data-design] .mobile-menu a { color: var(--design-text) !important; min-hei
 body[data-design] .mobile-social { display: flex; gap: 14px; padding-block: 12px; }
 body[data-design] .mobile-social a { display: grid; place-items: center; width: 44px; background: #fff; border-radius: 6px; }
 body[data-design] .mobile-social img { width: 20px; height: 20px; }
-/* Home: original portrait artwork, editorial overlay and project indicators. */
+/* Home: original portrait artwork and editorial overlay. */
 body[data-design] .brand-hero { position: relative; isolation: isolate; min-height: 420px; display: grid; align-items: center; background: #17291b !important; overflow: hidden; }
 .brand-hero-image { position: absolute; inset: 0; z-index: -2; }
 .brand-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 34%; }
 .brand-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,rgba(13,24,15,.92) 0%,rgba(13,24,15,.78) 30%,rgba(13,24,15,.38) 58%,rgba(13,24,15,.08) 100%); }
-body[data-design] .brand-hero-content { padding-block: 38px 66px; }
+body[data-design] .brand-hero-content { padding-block: 38px; }
 body[data-design] .brand-hero .design-eyebrow { color: #f7e4a4 !important; letter-spacing: .22em; }
 body[data-design] .brand-hero h1 { margin: 0 0 16px; max-width: 790px; color: #fff !important; font: 700 clamp(2.35rem,3.7vw,3.35rem)/1.08 'Playfair Display',serif; text-wrap: balance; }
 body[data-design] .brand-hero h1 span { color: var(--design-yellow); }

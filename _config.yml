@@ -1,0 +1,21 @@
+# Exclusions du rendu GitHub Pages/Jekyll, sans supprimer les sources locales.
+# Une publication statique directe doit appliquer ces exclusions séparément.
+exclude:
+  - .github
+  - .local-backups
+  - .wrangler
+  - .env
+  - .dev.vars
+  - private
+  - backups
+  - exports
+  - cloudflare-worker.js
+  - google-apps-script.gs
+  - DEPLOIEMENT-SYSTEME.md
+  - design.test.mjs
+  - inventory.test.mjs
+  - quote-form.test.mjs
+  - validate-site.mjs
+  - social/index copy.html
+  - .DS_Store
+  - social/.DS_Store
