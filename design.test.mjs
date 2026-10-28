@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 const read = file => readFileSync(new URL(file, import.meta.url), 'utf8');
 const pages = ['index.html', 'about.html', 'expertise.html', 'services.html', 'vision.html', 'communications.html', 'social/index.html'];
-const expected = ['Accueil', 'À propos', 'Notre exploitation', 'Nos produits', 'Notre développement', 'Partenaires', 'Contact', 'Demander une cotation'];
+const expected = ["Accueil","Nos produits","Notre exploitation","Notre développement","Partenaires","À propos","Contact","Demander une cotation"];
 for (const file of pages) {
   test(`${file}: coherent navigation and accessible mobile control`, () => {
     const html = read(file);
