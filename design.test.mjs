@@ -1,5 +1,4 @@
 import test from 'node:test';
-import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 const read = file => readFileSync(new URL(file, import.meta.url), 'utf8');
@@ -90,22 +89,10 @@ test('about preserves the director and the six requested narrative sections', ()
 });
 
 
-test('unused original SVG resources and their licenses remain preserved', () => {
-  const source = JSON.parse(read('assets/icons/sources.json'));
-  assert.equal(source.icons.length, 7);
-  const license=read('assets/icons/' + source.license);
-  assert(license.includes('ISC License'));
-  assert(license.includes('The MIT License'));
-  const html = read('index.html');
-  const css = read('design.css');
-  for (const icon of source.icons) {
-    const svg = read('assets/icons/' + icon.file);
-    assert.equal(createHash('sha256').update(svg).digest('hex'),icon.sha256);
-    assert(!html.includes('data-icon="' + icon.name + '"'));
-    assert(!css.includes('url("assets/icons/' + icon.file + '")'));
-    assert(!/<script|<foreignObject/i.test(svg));
-  }
-  assert(!/<svg class="editorial-icon"/.test(html));
+test('retired decorative icons are not referenced by public pages', () => {
+  for (const file of pages) assert(!read(file).includes('assets/icons/'), file);
+  assert(!read('design.css').includes('assets/icons/'));
+  assert(!read('index.html').includes('<svg class="editorial-icon"'));
 });
 test('institutional page titles match the requested subjects', () => {
   const titles = {"index.html":"Production et commercialisation d’œufs en Haïti","about.html":"GL Zepoul Peyi","vision.html":"Notre développement","expertise.html":"Notre exploitation","services.html":"Produits et services","communications.html":"Communications"};
@@ -138,8 +125,8 @@ test('editorial revision preserves essential commercial and privacy distinctions
 
 
 test('footers contain only the requested identity, communications, social and legal links', () => {
-  const footerPages = [...pages, 'social/index copy.html', 'fournisseur-oeufs-haiti.html', 'girard-gumel-j-henry.html', 'mentions-legales.html', 'politique-confidentialite.html'];
-  const socialLinks = ['https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/', 'https://www.instagram.com/zepoul_ayiti', 'https://x.com/zepoul_ayiti', 'https://www.tiktok.com/@zepoul.ayiti'];
+  const footerPages = [...pages, 'fournisseur-oeufs-haiti.html', 'girard-gumel-j-henry.html', 'mentions-legales.html', 'politique-confidentialite.html'];
+  const socialLinks = ['https://www.facebook.com/p/Zepoul-Ayiti-61578818947873/', 'https://www.instagram.com/zepoul_ayiti/', 'https://x.com/Zepoul_Ayiti', 'https://www.tiktok.com/@zepoul.ayiti'];
   for (const file of footerPages) {
     const html = read(file);
     const footer = html.match(/<footer\b[^>]*>[\s\S]*?<\/footer>/)[0];

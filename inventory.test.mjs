@@ -6,10 +6,11 @@ import vm from 'node:vm';
 const source = readFileSync(new URL('./site.js', import.meta.url), 'utf8')
   .replace(/\}\)\(\);\s*$/, 'globalThis.bindInventoryForTest = bindInventoryPanel; })();');
 
-function setup({ data, preparation = false, local = false, status = 200, malformed = false, unavailable = false } = {}) {
+function setup({ data, preparation = false, local = false, status = 200, malformed = false, unavailable = false, missingField } = {}) {
   const fields = Object.fromEntries(['cartons', 'status', 'message', 'updated'].map(key => [key, {
     textContent: '', setAttribute() {}
   }]));
+  if (missingField) delete fields[missingField];
   const panel = {
     hidden: true,
     getAttribute: () => preparation ? 'preparation' : 'active',
@@ -86,3 +87,22 @@ for (const cartons of [0, 12]) {
     assert.equal(app.cleared(), true);
   });
 }
+
+for (const cartons of [false, true, [], {}, ' ', '1e2', Number.MAX_SAFE_INTEGER + 1]) {
+  test('reject ambiguous quantity: ' + JSON.stringify(cartons), async () => {
+    const app = setup({data: {...valid(), cartons}}); await app.settle();
+    assert.equal(app.panel.hidden, true); assert.equal(app.cleared(), true);
+  });
+}
+for (const missingField of ['cartons', 'updated', 'status', 'message']) {
+  test('do not display incomplete stock panel: ' + missingField, async () => {
+    const app = setup({data:valid(), missingField}); await app.settle();
+    assert.equal(app.panel.hidden,true);
+  });
+}
+test('accept integer quantities from Sheets without inventing values', async () => {
+  const app=setup({data:{...valid(),cartons:'12',message:{},status:[]}}); await app.settle();
+  assert.equal(app.panel.hidden,false); assert.equal(app.fields.cartons.textContent,'12');
+  assert.equal(app.fields.status.textContent,'Disponible');
+  assert.equal(app.fields.message.textContent,'Quantité publiée par notre équipe commerciale.');
+});

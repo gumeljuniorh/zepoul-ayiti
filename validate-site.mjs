@@ -4,7 +4,7 @@ import { dirname, extname, posix, resolve } from "node:path";
 const root = process.cwd();
 function pageFiles(directory = "") {
   return readdirSync(resolve(root, directory), { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name.startsWith(".")) return [];
+    if (entry.name.startsWith(".") || ["shared", "scripts", "node_modules"].includes(entry.name)) return [];
     const path = posix.join(directory, entry.name);
     return entry.isDirectory() ? pageFiles(path) : extname(path) === ".html" ? [path] : [];
   });
@@ -48,6 +48,16 @@ for (const file of htmlFiles) {
   const html = readFileSync(resolve(root, file), "utf8");
   const ids = [...html.matchAll(/\sid=["']([^"']+)["']/gi)].map((match) => match[1]);
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
+  const redirect = html.match(/<meta[^>]*http-equiv="refresh"[^>]*content="0; url=([^"]+)"/i)?.[1];
+  if (redirect && /-(en|es|ht)\.html$/.test(file)) {
+    try {
+      const target = new URL(redirect);
+      if (target.protocol !== "https:" || !["zepoulayiti.com", "www.zepoulayiti.com"].includes(target.hostname)) report(file, "redirection hors domaine");
+      checkReference(file, target.pathname);
+      if (!/name="robots"[^>]*content="noindex,follow"/.test(html)) report(file, "redirection sans noindex");
+    } catch { report(file, "redirection invalide"); }
+    continue;
+  }
   const h1Count = (html.match(/<h1\b/gi) || []).length;
 
   if (!/<html\b[^>]*\blang=["']fr["']/i.test(html)) report(file, "langue de page fr manquante");
@@ -84,8 +94,7 @@ for (const file of htmlFiles) {
 
   const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/i)?.[1];
   const noindex = /<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html);
-  const excludedCopy = file === "social/index copy.html";
-  if (!noindex && !excludedCopy) {
+  if (!noindex) {
     const route = file === "index.html" ? "" : file.replace(/\/index\.html$/, "/");
     if (canonical !== "https://www.zepoulayiti.com/" + route) report(file, "URL canonique incorrecte");
     const ogUrl = html.match(/<meta\b[^>]*property="og:url"[^>]*content="([^"]+)"/i)?.[1];

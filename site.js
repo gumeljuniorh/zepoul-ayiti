@@ -617,16 +617,21 @@
         return response.json();
       })
       .then(function (data) {
-        var cartons = Number(data.cartons);
+        if (!data || typeof data !== "object" || Array.isArray(data)) return;
+        var rawCartons = data.cartons;
+        var validQuantity = typeof rawCartons === "number" ||
+          (typeof rawCartons === "string" && /^\d+$/.test(rawCartons.trim()));
+        var cartons = Number(rawCartons);
         var updatedAt = new Date(data.updatedAt);
         var age = Date.now() - updatedAt.getTime();
         var maxAge = 72 * 60 * 60 * 1000;
 
         if (
           data.published !== true ||
-          data.cartons === null ||
-          data.cartons === "" ||
-          !Number.isInteger(cartons) ||
+          !validQuantity ||
+          !Number.isSafeInteger(cartons) ||
+          typeof data.updatedAt !== "string" ||
+          !data.updatedAt.trim() ||
           cartons < 0 ||
           Number.isNaN(updatedAt.getTime()) ||
           age < -5 * 60 * 1000 ||
@@ -639,7 +644,10 @@
         var status = panel.querySelector("[data-inventory-status]");
         var message = panel.querySelector("[data-inventory-message]");
         var updated = panel.querySelector("[data-inventory-updated]");
-        var statusText = cartons === 0 ? "Indisponible" : (data.status || "Disponible");
+        // Ne jamais dévoiler un panneau dont la quantité ou la date est absente.
+        if (!quantity || !updated || !status || !message) return;
+        var statusText = cartons === 0 ? "Indisponible" :
+          (typeof data.status === "string" && data.status.trim() ? data.status.trim() : "Disponible");
 
         if (quantity) quantity.textContent = new Intl.NumberFormat("fr-HT").format(cartons);
         if (status) {
@@ -647,7 +655,8 @@
           status.setAttribute("data-status", statusText);
         }
         if (message) {
-          message.textContent = data.message || "Quantité publiée par notre équipe commerciale.";
+          message.textContent = typeof data.message === "string" && data.message.trim()
+            ? data.message.trim() : "Quantité publiée par notre équipe commerciale.";
         }
         if (updated) {
           updated.dateTime = updatedAt.toISOString();
