@@ -82,6 +82,26 @@ for (const file of htmlFiles) {
     }
   }
 
+  const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/i)?.[1];
+  const noindex = /<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html);
+  const excludedCopy = file === "social/index copy.html";
+  if (!noindex && !excludedCopy) {
+    const route = file === "index.html" ? "" : file.replace(/\/index\.html$/, "/");
+    if (canonical !== "https://www.zepoulayiti.com/" + route) report(file, "URL canonique incorrecte");
+    const ogUrl = html.match(/<meta\b[^>]*property="og:url"[^>]*content="([^"]+)"/i)?.[1];
+    if (ogUrl !== canonical) report(file, "URL Open Graph absente ou différente de la canonique");
+  }
+  for (const current of html.matchAll(/<a\b([^>]*aria-current="page"[^>]*)>/gi)) {
+    const href = current[1].match(/href="([^"]+)"/)?.[1];
+    if (!href || normalizeReference(href, file) !== file) report(file, "aria-current pointe vers une autre page");
+  }
+  const desktopMenu = html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1];
+  const mobileMenu = html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1];
+  if (desktopMenu && mobileMenu) {
+    const targets = (markup) => [...markup.matchAll(/<a\b[^>]*href="([^"]+)"/gi)].slice(0, 8).map((m) => m[1]).join("|");
+    if (targets(desktopMenu) !== targets(mobileMenu)) report(file, "destinations ordinateur/mobile différentes");
+  }
+
   for (const match of html.matchAll(/<img\b([^>]*)>/gi)) {
     if (!/\balt=["'][^"']*["']/i.test(match[1])) report(file, "image sans attribut alt");
   }

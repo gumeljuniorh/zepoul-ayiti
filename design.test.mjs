@@ -82,7 +82,9 @@ test('institutional sections have no decorative icons or illustrative photos', (
 test('about preserves the director and the six requested narrative sections', () => {
   const html = read('about.html');
   for (const title of ['Notre entreprise', 'Notre raison d’être', 'Notre exploitation', 'Notre approche', 'Notre développement', 'Nos engagements']) assert(html.includes('>' + title + '</h2>'));
-  assert(html.includes('Notre exploitation est consacrée à l’élevage de poules pondeuses'));
+  assert(html.includes('L’élevage de poules pondeuses constitue le cœur de notre activité à Port-de-Paix.'));
+  assert(html.includes('GL Zepoul Peyi exerce ses activités avicoles sous la marque Zepoul Ayiti.'));
+  assert(html.includes('alt="Portrait de Girard Gumel J. Henry, fondateur de GL Zepoul Peyi" loading="eager"')); 
   assert(!html.includes('projet pilote'));
   assert(!html.includes('bâtiment avicole construit'));
 });
