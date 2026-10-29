@@ -73,11 +73,22 @@ for (const file of htmlFiles) {
       ["ordinateur", html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1]],
       ["mobile", html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1]],
     ];
-    const expected = ["index.html", "services.html", "expertise.html", "vision.html", "index.html", "about.html", "index.html"];
+    const expected = [
+      ["Accueil", "index.html"], ["Nos produits", "services.html"],
+      ["Notre exploitation", "expertise.html"], ["Notre développement", "vision.html"],
+      ["Partenaires", "index.html#partenaires"], ["À propos", "about.html"],
+      ["Contact", "index.html#commande"], ["Demander une cotation", "index.html#commande"]
+    ];
     for (const [name, markup] of menus) {
       const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
-      if (links.slice(0, expected.length).map((link) => normalizeReference(link[1], file)).join("|") !== expected.join("|")) {
-        report(file, `menu ${name} incomplet ou dans un ordre different`);
+      const entries = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)]
+        .filter((link) => !/^https?:/i.test(link[1]))
+        .map((link) => {
+          const url = new URL(link[1], "https://www.zepoulayiti.com/" + file);
+          return [link[2].replace(/<[^>]+>/g, "").trim(), url.pathname.slice(1) + url.search + url.hash];
+        });
+      if (JSON.stringify(entries) !== JSON.stringify(expected)) {
+        report(file, `menu ${name}: ordre, libelles ou destinations incorrects`);
       }
       const communications = links.filter((link) => normalizeReference(link[1], file) === "communications.html");
       if (communications.length !== 0) report(file, `menu ${name}: Communications doit rester dans le pied de page`);

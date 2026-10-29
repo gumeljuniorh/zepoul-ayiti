@@ -1,4 +1,6 @@
 import test from 'node:test';
+import vm from 'node:vm';
+import { sync } from './scripts/sync-components.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 const read = file => readFileSync(new URL(file, import.meta.url), 'utf8');
@@ -153,4 +155,84 @@ test('internal files are excluded from Jekyll publication without deleting runti
   for (const f of ['.local-backups', 'private', 'backups', 'exports', 'cloudflare-worker.js', 'google-apps-script.gs', 'design.test.mjs', 'inventory.test.mjs', 'quote-form.test.mjs', 'validate-site.mjs', 'social/index copy.html']) assert(config.includes('  - ' + f), f);
   for (const f of ['site.js','theme.js','admin.js','admin.html','index.html']) assert(existsSync(new URL(f,import.meta.url)), f);
   assert(read('.gitignore').includes('.local-backups/'));
+});
+
+// These checks run locally and never submit forms or contact external services.
+test('all published shared components match their source templates', () => {
+  assert.deepEqual(sync(false), []);
+});
+
+function menuHarness() {
+  let document;
+  const element = () => {
+    const attrs = new Map(), classes = new Set(), listeners = {};
+    return {
+      attrs, listeners, style: { removeProperty() {}, setProperty() {} },
+      classList: {
+        contains: key => classes.has(key), add: key => classes.add(key), remove: key => classes.delete(key),
+        toggle: (key, enabled) => enabled ? classes.add(key) : classes.delete(key)
+      },
+      setAttribute: (key, value) => attrs.set(key, value), getAttribute: key => attrs.get(key),
+      removeAttribute: key => attrs.delete(key), addEventListener: (type, fn) => { listeners[type] = fn; },
+      focus() { document.activeElement = this; }, getClientRects: () => [{}],
+      querySelector: () => null, contains(target) { return target === this; }
+    };
+  };
+  const btn = element(), menu = element(), links = [element(), element()];
+  btn.setAttribute('data-menu-target', 'mobile-menu');
+  menu.querySelector = selector => selector === 'a' ? links[0] : null;
+  menu.querySelectorAll = () => links;
+  menu.contains = target => target === menu || links.includes(target);
+  const events = {}, windowEvents = {};
+  document = {
+    body: element(), documentElement: element(), activeElement: null,
+    querySelectorAll: () => [btn], getElementById: () => menu, querySelector: () => null,
+    addEventListener: (type, fn) => { events[type] = fn; }
+  };
+  const window = { scrollY: 0, scrollTo() {}, matchMedia: () => ({matches: false}),
+    addEventListener: (type, fn) => { windowEvents[type] = fn; }
+  };
+  const source = read('site.js');
+  const start = source.indexOf('  function bindMenu()');
+  const end = source.indexOf('  function bindTracking()', start);
+  assert(start >= 0 && end > start);
+  vm.runInNewContext(source.slice(start, end) + '\nbindMenu();', {document, window});
+  const click = () => btn.listeners.click({preventDefault() {}});
+  return {btn, menu, links, document, events, window, windowEvents, click};
+}
+
+test('mobile menu opens, closes with Escape and restores keyboard focus', () => {
+  const h = menuHarness();
+  assert(h.menu.attrs.has('inert'));
+  h.click();
+  assert.equal(h.btn.getAttribute('aria-expanded'), 'true');
+  assert.equal(h.menu.getAttribute('aria-hidden'), 'false');
+  assert(!h.menu.attrs.has('inert'));
+  assert.equal(h.document.activeElement, h.links[0]);
+  h.events.keydown({key:'Escape'});
+  assert.equal(h.btn.getAttribute('aria-expanded'), 'false');
+  assert(h.menu.attrs.has('inert'));
+  assert.equal(h.document.activeElement, h.btn);
+});
+
+test('mobile menu keeps keyboard focus inside and closes when a link is selected', () => {
+  const h = menuHarness(); h.click();
+  let prevented = false;
+  h.links[1].focus();
+  h.events.keydown({key:'Tab', shiftKey:false, preventDefault() {prevented = true;}});
+  assert(prevented); assert.equal(h.document.activeElement, h.btn);
+  h.events.keydown({key:'Tab', shiftKey:true, preventDefault() {}});
+  assert.equal(h.document.activeElement, h.links[1]);
+  h.links[0].listeners.click();
+  assert.equal(h.btn.getAttribute('aria-expanded'), 'false');
+  assert(!h.document.body.classList.contains('mobile-menu-open'));
+});
+
+test('mobile menu closes on outside click and when switching to desktop', () => {
+  const h = menuHarness(); h.click();
+  h.events.click({target:{}});
+  assert(!h.menu.classList.contains('open'));
+  h.click(); h.window.matchMedia = () => ({matches:true}); h.windowEvents.resize();
+  assert(!h.menu.classList.contains('open'));
+  assert.equal(h.menu.getAttribute('aria-hidden'), 'true');
 });
