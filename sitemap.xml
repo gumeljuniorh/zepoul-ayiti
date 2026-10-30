@@ -9,63 +9,63 @@
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/about.html</loc>
+    <loc>https://www.zepoulayiti.com/entreprise/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/vision.html</loc>
+    <loc>https://www.zepoulayiti.com/vision/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/expertise.html</loc>
+    <loc>https://www.zepoulayiti.com/expertise/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/services.html</loc>
+    <loc>https://www.zepoulayiti.com/produits/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/communications.html</loc>
+    <loc>https://www.zepoulayiti.com/communications/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/fournisseur-oeufs-haiti.html</loc>
+    <loc>https://www.zepoulayiti.com/fournisseur-oeufs-haiti/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/mentions-legales.html</loc>
+    <loc>https://www.zepoulayiti.com/mentions-legales/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/politique-confidentialite.html</loc>
+    <loc>https://www.zepoulayiti.com/politique-confidentialite/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/girard-gumel-j-henry.html</loc>
+    <loc>https://www.zepoulayiti.com/girard-gumel-j-henry/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
@@ -79,9 +79,10 @@
   </url>
 
   <url>
-    <loc>https://www.zepoulayiti.com/contact.html</loc>
+    <loc>https://www.zepoulayiti.com/contact/</loc>
   </url>
   <url>
-    <loc>https://www.zepoulayiti.com/cotation.html</loc>
+    <loc>https://www.zepoulayiti.com/cotation/</loc>
   </url>
+  <url><loc>https://www.zepoulayiti.com/merci/</loc></url>
 </urlset>

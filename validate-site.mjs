@@ -4,7 +4,7 @@ import { dirname, extname, posix, resolve } from "node:path";
 const root = process.cwd();
 function pageFiles(directory = "") {
   return readdirSync(resolve(root, directory), { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name.startsWith(".") || ["shared", "scripts", "node_modules"].includes(entry.name)) return [];
+    if (entry.name.startsWith(".") || entry.name.startsWith("_") || ["shared", "scripts", "node_modules", "zepoul-cotation-update-20261030 (1)"].includes(entry.name) || /^zepoul-social-before-buttons-\d+\.html$/.test(entry.name)) return [];
     const path = posix.join(directory, entry.name);
     return entry.isDirectory() ? pageFiles(path) : extname(path) === ".html" ? [path] : [];
   });
@@ -75,9 +75,8 @@ for (const file of htmlFiles) {
     ];
     const expected = [
       ["Accueil", "index.html"], ["Nos produits", "services.html"],
-      ["Notre exploitation", "expertise.html"], ["Notre développement", "vision.html"],
-      ["Partenaires", "index.html#partenaires"], ["À propos", "about.html"],
-      ["Contact", "index.html#commande"], ["Demander une cotation", "index.html#commande"]
+      ["Notre entreprise", "about.html"], ["Contact", "contact.html"],
+      ["Demander une cotation", "cotation.html"]
     ];
     for (const [name, markup] of menus) {
       const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
@@ -118,7 +117,11 @@ for (const file of htmlFiles) {
   const desktopMenu = html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1];
   const mobileMenu = html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1];
   if (desktopMenu && mobileMenu) {
-    const targets = (markup) => [...markup.matchAll(/<a\b[^>]*href="([^"]+)"/gi)].slice(0, 8).map((m) => m[1]).join("|");
+    const targets = (markup) => [...markup.matchAll(/<a\b[^>]*href="([^"]+)"/gi)]
+      .map((m) => m[1])
+      .filter((href) => !/^https?:/i.test(href))
+      .map((href) => new URL(href, "https://www.zepoulayiti.com/" + file).pathname)
+      .join("|");
     if (targets(desktopMenu) !== targets(mobileMenu)) report(file, "destinations ordinateur/mobile différentes");
   }
 

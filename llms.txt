@@ -14,15 +14,15 @@ Entreprise spécialisée dans l’élevage de poules pondeuses, la production et
 ## Contact
 - E-mail commercial : commercial@zepoulayiti.com
 - WhatsApp officiel : https://wa.me/50944975668
-- Demande de cotation : https://www.zepoulayiti.com/cotation.html
+- Demande de cotation : https://www.zepoulayiti.com/cotation/
 
 ## Pages principales
 - Accueil : https://www.zepoulayiti.com/
-- Services : https://www.zepoulayiti.com/services.html
-- Fournisseur d’œufs en Haïti : https://www.zepoulayiti.com/fournisseur-oeufs-haiti.html
-- Notre entreprise : https://www.zepoulayiti.com/about.html
-- Communications : https://www.zepoulayiti.com/communications.html
-- Politique de confidentialité : https://www.zepoulayiti.com/politique-confidentialite.html
+- Services : https://www.zepoulayiti.com/produits/
+- Fournisseur d’œufs en Haïti : https://www.zepoulayiti.com/fournisseur-oeufs-haiti/
+- Notre entreprise : https://www.zepoulayiti.com/entreprise/
+- Communications : https://www.zepoulayiti.com/communications/
+- Politique de confidentialité : https://www.zepoulayiti.com/politique-confidentialite/
 
 ## Identité
 - Marque : Zepoul Ayiti

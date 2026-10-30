@@ -645,7 +645,7 @@
           updateFrequency();
           if (updateRecap) updateRecap();
           window.setTimeout(function () {
-            window.location.href = "merci.html?source=quote";
+            window.location.href = "/merci/?source=quote";
           }, 500);
         })
         .catch(function (error) {
