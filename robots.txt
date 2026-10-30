@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
+Disallow: /cdn-cgi/
 
 Sitemap: https://www.zepoulayiti.com/sitemap.xml
 Sitemap: https://www.zepoulayiti.com/sitemap-images.xml
