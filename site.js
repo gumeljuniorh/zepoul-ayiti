@@ -414,6 +414,25 @@
       return input && typeof input.value === "string" ? input.value.trim() : "";
     }
 
+
+    function isValidHaitiDate(value) {
+      if (!value) return true;
+      var match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);
+      if (!match) return false;
+      var day = Number(match[1]);
+      var month = Number(match[2]);
+      var year = Number(match[3]);
+      var date = new Date(year, month - 1, day);
+      if (date.getFullYear() !== year ||
+          date.getMonth() !== month - 1 ||
+          date.getDate() !== day) return false;
+      var today = new Date();
+      var selected = year * 10000 + month * 100 + day;
+      var current = today.getFullYear() * 10000 +
+        (today.getMonth() + 1) * 100 + today.getDate();
+      return selected >= current;
+    }
+
     function fullDetails(details) {
       var extra = [];
       var type = checkedChoice("client_type");
@@ -434,12 +453,6 @@
       var recap = document.getElementById("quote-summary");
       if (!recap) return;
       var deliveryGroup = document.getElementById("delivery-address-group");
-      var deliveryDate = document.getElementById("delivery-date");
-      if (deliveryDate) {
-        var today = new Date();
-        var localToday = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
-        deliveryDate.min = localToday;
-      }
       function write(id, value) {
         var node = document.getElementById(id);
         if (node) node.textContent = value;
@@ -551,6 +564,12 @@
       if (!form.checkValidity()) {
         form.reportValidity();
         setFormStatus("Veuillez vérifier les renseignements obligatoires avant de transmettre la demande.", false);
+        return;
+      }
+
+      if (!isValidHaitiDate(optionalField("delivery-date"))) {
+        document.getElementById("delivery-date").focus();
+        setFormStatus("Date invalide. Utilisez JJ/MM/AAAA, avec une date non passée.", false);
         return;
       }
 
