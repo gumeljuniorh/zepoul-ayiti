@@ -19,7 +19,7 @@
 #commande .quote-pro-intro p { max-width: 65ch; font-size: .96rem; line-height: 1.7; margin: 0; color: #445d4e; }
 #commande .quote-pro-intro .quote-intro-note { margin-top: 8px; color: #738075; font-size: .82rem; }
 #commande .quote-pro-grid { display: grid; grid-template-columns: minmax(0,1.57fr) minmax(295px,.8fr); gap: clamp(18px,2.5vw,32px); align-items: start; }
-body[data-page="index"] #commande .order-box.quote-pro-form {
+body[data-page="cotation"] #commande .order-box.quote-pro-form {
   display: grid !important; grid-template-columns: minmax(0,1fr) !important;
   width: 100% !important; max-width: none !important; min-width: 0;
   padding: clamp(22px,3vw,38px) !important; gap: 0 !important;
@@ -41,10 +41,10 @@ body[data-page="index"] #commande .order-box.quote-pro-form {
 #commande .quote-choice span { min-width: 0; }
 #commande .quote-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
 #commande .quote-pro-form .field { gap: 8px; }
-body[data-page="index"] #commande .quote-pro-form .field label { color: #264b36; font-size: .8rem; font-weight: 700; }
-body[data-page="index"] #commande .quote-pro-form .field input,
-body[data-page="index"] #commande .quote-pro-form .field select,
-body[data-page="index"] #commande .quote-pro-form .field textarea {
+body[data-page="cotation"] #commande .quote-pro-form .field label { color: #264b36; font-size: .8rem; font-weight: 700; }
+body[data-page="cotation"] #commande .quote-pro-form .field input,
+body[data-page="cotation"] #commande .quote-pro-form .field select,
+body[data-page="cotation"] #commande .quote-pro-form .field textarea {
   color: var(--qc-ink) !important; background: #fff !important; border: 1px solid #d8e4db !important; border-radius: 10px !important;
   min-height: 48px; box-shadow: none !important; font-size: 16px; font-weight: 450;
 }
@@ -60,8 +60,8 @@ body[data-page="index"] #commande .quote-pro-form .field textarea {
 #commande .quote-pro-form .turnstile-verification p { margin: 4px 0 0; }
 #commande .quote-pro-form .quote-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.85fr); gap: 14px; margin: 20px 0; }
 #commande .quote-pro-form .quote-channel-label { font-size: .72rem; font-weight: 650; color: var(--qc-muted); }
-body[data-page="index"] #commande .quote-pro-form button[type="submit"] { background: var(--qc-orange) !important; color: #fff !important; border: 1px solid var(--qc-orange) !important; box-shadow: none !important; min-height: 52px; border-radius: 10px !important; font-weight: 800; font-size: .82rem; white-space: normal; }
-body[data-page="index"] #commande .quote-pro-form button[type="submit"]:hover { background: #be6f1d !important; }
+body[data-page="cotation"] #commande .quote-pro-form button[type="submit"] { background: var(--qc-orange) !important; color: #fff !important; border: 1px solid var(--qc-orange) !important; box-shadow: none !important; min-height: 52px; border-radius: 10px !important; font-weight: 800; font-size: .82rem; white-space: normal; }
+body[data-page="cotation"] #commande .quote-pro-form button[type="submit"]:hover { background: #be6f1d !important; }
 #commande .quote-pro-form .quote-channel .btn-secondary { border: 1px solid #d6e6d9; background: #f4f8f4; color: #176040; min-height: 52px; border-radius: 10px; font-size: .81rem; }
 #commande .quote-pro-form .form-note { line-height: 1.6; font-size: .72rem; color: var(--qc-muted); margin: 0 0 12px; }
 #commande .quote-pro-form .form-status { margin: 0 0 10px; }
@@ -85,7 +85,7 @@ body[data-page="index"] #commande .quote-pro-form button[type="submit"]:hover { 
 }
 @media (max-width: 650px) {
   #commande.quote-cotation { padding: 45px 0; }
-  body[data-page="index"] #commande .order-box.quote-pro-form { padding: 19px !important; border-radius: 15px !important; }
+  body[data-page="cotation"] #commande .order-box.quote-pro-form { padding: 19px !important; border-radius: 15px !important; }
   #commande .quote-choice-grid, #commande .quote-fields, #commande .quote-actions, #commande .quote-aside { grid-template-columns: 1fr !important; }
   #commande .quote-summary-card { grid-row: auto; }
   #commande .quote-step legend { font-size: 1rem; }
@@ -102,6 +102,6 @@ html[data-theme="dark"] #commande .quote-choice:has(input:checked) { background:
 html[data-theme="dark"] #commande .quote-product, html[data-theme="dark"] #commande .quote-summary-note, html[data-theme="dark"] #commande .quote-service-card, html[data-theme="dark"] #commande .quote-pro-form .turnstile-verification { background: #18281e; border-color: #294133; }
 html[data-theme="dark"] #commande .quote-side-card h3, html[data-theme="dark"] #commande .quote-summary-list dd, html[data-theme="dark"] #commande .quote-product strong, html[data-theme="dark"] #commande .quote-step legend { color: #ebf5ed; }
 html[data-theme="dark"] #commande .quote-service-card p, html[data-theme="dark"] #commande .quote-contact-card p { color: #b3caba; }
-html[data-theme="dark"] body[data-page="index"] #commande .quote-pro-form .field input,
-html[data-theme="dark"] body[data-page="index"] #commande .quote-pro-form .field select,
-html[data-theme="dark"] body[data-page="index"] #commande .quote-pro-form .field textarea { background: #101b14 !important; border-color: #355344 !important; color: #eef6ef !important; }
+html[data-theme="dark"] body[data-page="cotation"] #commande .quote-pro-form .field input,
+html[data-theme="dark"] body[data-page="cotation"] #commande .quote-pro-form .field select,
+html[data-theme="dark"] body[data-page="cotation"] #commande .quote-pro-form .field textarea { background: #101b14 !important; border-color: #355344 !important; color: #eef6ef !important; }
