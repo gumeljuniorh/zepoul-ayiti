@@ -2,6 +2,9 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, extname, posix, resolve } from "node:path";
 
 const root = process.cwd();
+const CLEAN_PATHS = {"/": "index.html", "/entreprise/": "about.html", "/produits/": "services.html", "/contact/": "contact.html", "/cotation/": "cotation.html", "/communications/": "communications.html", "/expertise/": "expertise.html", "/vision/": "vision.html", "/fournisseur-oeufs-haiti/": "fournisseur-oeufs-haiti.html", "/girard-gumel-j-henry/": "girard-gumel-j-henry.html", "/mentions-legales/": "mentions-legales.html", "/politique-confidentialite/": "politique-confidentialite.html", "/merci/": "merci.html", "/social/": "social/index.html"};
+const CLEAN_CANONICAL = {"index.html": "", "about.html": "entreprise/", "services.html": "produits/", "contact.html": "contact/", "cotation.html": "cotation/", "communications.html": "communications/", "expertise.html": "expertise/", "vision.html": "vision/", "fournisseur-oeufs-haiti.html": "fournisseur-oeufs-haiti/", "girard-gumel-j-henry.html": "girard-gumel-j-henry/", "mentions-legales.html": "mentions-legales/", "politique-confidentialite.html": "politique-confidentialite/", "merci.html": "merci/", "social/index.html": "social/"};
+
 function pageFiles(directory = "") {
   return readdirSync(resolve(root, directory), { withFileTypes: true }).flatMap((entry) => {
     if (entry.name.startsWith(".") || entry.name.startsWith("_") || ["shared", "scripts", "node_modules", "zepoul-cotation-update-20261030 (1)"].includes(entry.name) || /^zepoul-social-before-buttons-\d+\.html$/.test(entry.name)) return [];
@@ -23,7 +26,8 @@ function normalizeReference(reference, fromFile = "index.html") {
   if (clean === "/") return "index.html";
   const path = decodeURIComponent(clean);
   const target = path.startsWith("/") ? path.slice(1) : posix.join(dirname(fromFile), path);
-  return path.endsWith("/") ? posix.join(target, "index.html") : target;
+  const mapped = CLEAN_PATHS[path.startsWith("/") ? path : "/" + target];
+  return mapped || (path.endsWith("/") ? posix.join(target, "index.html") : target);
 }
 
 function checkReference(file, reference) {
@@ -74,9 +78,9 @@ for (const file of htmlFiles) {
       ["mobile", html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1]],
     ];
     const expected = [
-      ["Accueil", "index.html"], ["Nos produits", "services.html"],
-      ["Notre entreprise", "about.html"], ["Contact", "contact.html"],
-      ["Demander une cotation", "cotation.html"]
+      ["Accueil", "/"], ["Nos produits", "/produits/"],
+      ["Notre entreprise", "/entreprise/"], ["Contact", "/contact/"],
+      ["Demander une cotation", "/cotation/"]
     ];
     for (const [name, markup] of menus) {
       const links = [...(markup || "").matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/gi)];
@@ -84,7 +88,7 @@ for (const file of htmlFiles) {
         .filter((link) => !/^https?:/i.test(link[1]))
         .map((link) => {
           const url = new URL(link[1], "https://www.zepoulayiti.com/" + file);
-          return [link[2].replace(/<[^>]+>/g, "").trim(), url.pathname.slice(1) + url.search + url.hash];
+          return [link[2].replace(/<[^>]+>/g, "").trim(), url.pathname + url.search + url.hash];
         });
       if (JSON.stringify(entries) !== JSON.stringify(expected)) {
         report(file, `menu ${name}: ordre, libelles ou destinations incorrects`);
@@ -105,7 +109,7 @@ for (const file of htmlFiles) {
   const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/i)?.[1];
   const noindex = /<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html);
   if (!noindex) {
-    const route = file === "index.html" ? "" : file.replace(/\/index\.html$/, "/");
+    const route = CLEAN_CANONICAL[file] ?? (file === "index.html" ? "" : file.replace(/\/index\.html$/, "/"));
     if (canonical !== "https://www.zepoulayiti.com/" + route) report(file, "URL canonique incorrecte");
     const ogUrl = html.match(/<meta\b[^>]*property="og:url"[^>]*content="([^"]+)"/i)?.[1];
     if (ogUrl !== canonical) report(file, "URL Open Graph absente ou différente de la canonique");
@@ -117,11 +121,13 @@ for (const file of htmlFiles) {
   const desktopMenu = html.match(/<nav\b[^>]*aria-label="Navigation principale"[^>]*>([\s\S]*?)<\/nav>/i)?.[1];
   const mobileMenu = html.match(/<div\b[^>]*id="mobile-menu"[^>]*>([\s\S]*?)<\/div>/i)?.[1];
   if (desktopMenu && mobileMenu) {
-    const targets = (markup) => [...markup.matchAll(/<a\b[^>]*href="([^"]+)"/gi)]
-      .map((m) => m[1])
-      .filter((href) => !/^https?:/i.test(href))
-      .map((href) => new URL(href, "https://www.zepoulayiti.com/" + file).pathname)
-      .join("|");
+    const targets = (markup) =>
+      [...markup.matchAll(/<a\b[^>]*href="([^"]+)"/gi)]
+        .map((m) => m[1])
+        .filter((href) => !/^https?:/i.test(href))
+        .map((href) =>
+          new URL(href, "https://www.zepoulayiti.com/" + file).pathname
+        ).join("|");
     if (targets(desktopMenu) !== targets(mobileMenu)) report(file, "destinations ordinateur/mobile différentes");
   }
 

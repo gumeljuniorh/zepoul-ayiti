@@ -19,3 +19,11 @@ exclude:
   - social/index copy.html
   - .DS_Store
   - social/.DS_Store
+
+  - .backups
+  - shared
+  - scripts
+  - node_modules
+  - _site
+  - .jekyll-cache
+  - zepoul-cotation-update-20261030 (1)
