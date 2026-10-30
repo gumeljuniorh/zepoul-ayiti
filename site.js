@@ -386,15 +386,15 @@
     var openWhatsApp = document.getElementById("quote-whatsapp-open");
 
     function volumeDescription(frequency) {
-      if (frequency === "Approvisionnement hebdomadaire") return "Volume hebdomadaire estimé (cartons)";
-      if (frequency === "Approvisionnement régulier") return "Quantité estimée par livraison (cartons)";
-      return "Quantité estimée (cartons)";
+      if (frequency === "Approvisionnement hebdomadaire") return "Combien de cartons par semaine ? *";
+      if (frequency === "Approvisionnement régulier") return "Combien de cartons par livraison ? *";
+      return "Combien de cartons ? *";
     }
 
     function updateFrequency() {
       if (volumeLabel) volumeLabel.textContent = volumeDescription(frequencyField.value);
       if (volumeHint) volumeHint.textContent = frequencyField.value === "Approvisionnement régulier"
-        ? "Indiquez la quantité par livraison et la fréquence dans les précisions."
+        ? "Indiquez le nombre de cartons pour chaque livraison."
         : "Une estimation suffit.";
     }
     frequencyField.addEventListener("change", updateFrequency);
@@ -483,13 +483,13 @@
       var messageLines = [
         "Bonjour Zepoul Ayiti,",
         "",
-        "Client: " + institution,
-        volumeDescription(frequency) + ": " + volume,
-        "Zone d’approvisionnement: " + zone,
-        "Fréquence souhaitée: " + frequency,
-        "Email de contact: " + email,
-        "WhatsApp: " + phone,
-        details ? "Précisions: " + details : "",
+        "Nom : " + institution,
+        "Cartons de 30 œufs : " + volume,
+        "Ville ou commune : " + zone,
+        "Fréquence : " + (frequency === "Demande ponctuelle" ? "Une seule fois" : frequency === "Approvisionnement hebdomadaire" ? "Chaque semaine" : frequency === "Approvisionnement régulier" ? "Régulièrement" : frequency),
+        "E-mail : " + email,
+        "WhatsApp : " + phone,
+        details ? "Message : " + details : "",
         "",
         "Merci."
       ].filter(Boolean);

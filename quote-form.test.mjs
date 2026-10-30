@@ -73,7 +73,7 @@ test('only an explicit server success confirms and resets the form', async () =>
   assert.equal(app.requests[0].url, '/api/quote');
   assert.ok(!JSON.stringify(app.events).includes('Entreprise test'));
   const redirect = app.timers.find(t => t.delay === 500); redirect.fn();
-  assert.equal(app.window.location.href, 'merci.html?source=quote');
+  assert.equal(app.window.location.href, '/merci/?source=quote');
 });
 
 for (const data of [{}, null, { success: false }, { success: 'true' }, []]) {
@@ -144,7 +144,7 @@ test('analytics exception cannot turn a confirmed request into failure', async (
 });
 
 test('quantity labels and payload match the selected frequency', async () => {
-  for (const [frequency, label] of [['Demande ponctuelle', 'Quantité estimée (cartons)'], ['Approvisionnement hebdomadaire', 'Volume hebdomadaire estimé (cartons)'], ['Approvisionnement régulier', 'Quantité estimée par livraison (cartons)']]) {
+  for (const [frequency, label] of [['Demande ponctuelle', 'Combien de cartons ? *'], ['Approvisionnement hebdomadaire', 'Combien de cartons par semaine ? *'], ['Approvisionnement régulier', 'Combien de cartons par livraison ? *']]) {
     const app = setup(); app.fields.frequency.value = frequency;
     app.fields.frequency.listeners.change();
     assert.equal(app.fields['volume-label'].textContent, label);
@@ -159,7 +159,7 @@ test('quantity labels and payload match the selected frequency', async () => {
 test('WhatsApp preview is editable and does not transmit until explicitly opened', () => {
   const app = setup(); app.fields['quote-whatsapp-prepare'].listeners.click();
   assert.equal(app.fields['quote-whatsapp-preview'].hidden, false);
-  assert.match(app.fields['quote-whatsapp-message'].value, /Quantité estimée \(cartons\): 5/);
+  assert.match(app.fields['quote-whatsapp-message'].value, /Cartons de 30 œufs : 5/);
   assert.match(app.fields['quote-whatsapp-message'].value, /Port-de-Paix/);
   assert.equal(app.requests.length, 0);
   assert.equal(app.window.location.href, 'https://www.zepoulayiti.com/');

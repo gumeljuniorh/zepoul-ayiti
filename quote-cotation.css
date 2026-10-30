@@ -105,3 +105,18 @@ html[data-theme="dark"] #commande .quote-service-card p, html[data-theme="dark"]
 html[data-theme="dark"] body[data-page="cotation"] #commande .quote-pro-form .field input,
 html[data-theme="dark"] body[data-page="cotation"] #commande .quote-pro-form .field select,
 html[data-theme="dark"] body[data-page="cotation"] #commande .quote-pro-form .field textarea { background: #101b14 !important; border-color: #355344 !important; color: #eef6ef !important; }
+
+/* Formulaire simplifié, sans changement aux autres pages. */
+#commande .quote-pro-intro { max-width: 820px; margin-inline: auto; }
+#commande .quote-pro-grid { display: block; max-width: 820px; margin-inline: auto; }
+#commande .quote-pro-form .quote-required-note { font-size: .79rem; color: var(--qc-muted); margin: 0 0 24px; }
+#commande .quote-pro-form .quote-more { margin: 22px 0 0; border: 1px solid var(--qc-border); border-radius: 12px; padding: 16px 18px; }
+#commande .quote-pro-form .quote-more summary { cursor: pointer; color: var(--qc-ink); font-size: .86rem; font-weight: 700; }
+#commande .quote-pro-form .quote-more .quote-fields { margin-top: 18px; }
+#commande .quote-pro-form .quote-actions { grid-template-columns: repeat(2,minmax(0,1fr)); }
+@media (max-width: 650px) {
+  #commande .quote-pro-form .quote-actions { grid-template-columns: 1fr; }
+  #commande .quote-pro-form .quote-more { padding: 14px; }
+}
+html[data-theme="dark"] #commande .quote-pro-form .quote-more { border-color: #294133; }
+html[data-theme="dark"] #commande .quote-pro-form .quote-more summary { color: #ebf5ed; }
