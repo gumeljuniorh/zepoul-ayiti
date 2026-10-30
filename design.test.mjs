@@ -236,3 +236,13 @@ test('mobile menu closes on outside click and when switching to desktop', () => 
   assert(!h.menu.classList.contains('open'));
   assert.equal(h.menu.getAttribute('aria-hidden'), 'true');
 });
+
+test('Contact destination includes company, email and WhatsApp before the unchanged quote form', () => {
+  const html = read('index.html');
+  const intro = html.slice(html.indexOf('id="commande"'), html.indexOf('<form class="order-box"'));
+  const config = JSON.parse(read('shared/site.json'));
+  assert(intro.includes(config.brand));
+  assert(intro.includes(config.company));
+  assert(intro.includes('href="mailto:' + config.email + '"'));
+  assert(intro.includes('href="' + config.whatsapp + '"'));
+});

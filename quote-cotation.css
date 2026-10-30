@@ -1,0 +1,107 @@
+/* Zepoul Ayiti · Quote form redesign. Scoped exclusively to #commande. */
+#commande.quote-cotation {
+  --qc-green: #12553b;
+  --qc-orange: #d7842b;
+  --qc-muted: #65736b;
+  --qc-border: #dfebe2;
+  --qc-paper: #ffffff;
+  --qc-wash: #f5f8f4;
+  --qc-ink: #173a2b;
+  padding: clamp(56px, 6vw, 92px) 0;
+  background: #f7f9f5 !important;
+  color: var(--qc-ink);
+}
+#commande .quote-pro-shell { width: min(1240px, 92%); max-width: 1240px; margin-inline: auto; }
+#commande .quote-pro-intro { max-width: 790px; margin: 0 0 30px; }
+#commande .quote-eyebrow,
+#commande .quote-side-kicker { display: block; font-weight: 800; letter-spacing: .13em; font-size: .68rem; color: #297047; }
+#commande .quote-pro-intro h2 { margin: 10px 0 12px; font-size: clamp(2rem,3vw,2.8rem); font-weight: 750; color: var(--qc-ink); letter-spacing: -.04em; line-height: 1.17; }
+#commande .quote-pro-intro p { max-width: 65ch; font-size: .96rem; line-height: 1.7; margin: 0; color: #445d4e; }
+#commande .quote-pro-intro .quote-intro-note { margin-top: 8px; color: #738075; font-size: .82rem; }
+#commande .quote-pro-grid { display: grid; grid-template-columns: minmax(0,1.57fr) minmax(295px,.8fr); gap: clamp(18px,2.5vw,32px); align-items: start; }
+body[data-page="index"] #commande .order-box.quote-pro-form {
+  display: grid !important; grid-template-columns: minmax(0,1fr) !important;
+  width: 100% !important; max-width: none !important; min-width: 0;
+  padding: clamp(22px,3vw,38px) !important; gap: 0 !important;
+  border: 1px solid var(--qc-border) !important; border-radius: 18px !important;
+  background: var(--qc-paper) !important; box-shadow: 0 8px 38px rgba(18,59,33,.055) !important;
+  color: var(--qc-ink) !important;
+}
+#commande .quote-step { margin: 0; padding: 0 0 30px; border: 0; min-width: 0; }
+#commande .quote-step + .quote-step { padding-top: 28px; border-top: 1px solid var(--qc-border); }
+#commande .quote-step:last-child { padding-bottom: 0; }
+#commande .quote-step legend { display: flex; float: none; width: 100%; gap: 14px; align-items: center; padding: 0; margin: 0 0 20px; font-size: 1.09rem; font-weight: 800; line-height: 1.25; color: var(--qc-ink); }
+#commande .quote-step legend small { display: block; margin-top: 6px; color: var(--qc-muted); font-size: .75rem; line-height: 1.45; font-weight: 450; }
+#commande .quote-step-number { flex: 0 0 38px; width: 38px; height: 38px; display: inline-grid; place-items: center; border-radius: 50%; color: #fff; font: 800 .78rem/1 'Plus Jakarta Sans',sans-serif; background: #1c7650; }
+#commande .quote-choice-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+#commande .quote-choice { display: flex; align-items: center; gap: 12px; border: 1px solid #dce7df; border-radius: 12px; padding: 16px 15px; font-size: .84rem; line-height: 1.5; font-weight: 650; background: #fff; color: var(--qc-ink); cursor: pointer; min-width: 0; transition: border-color .15s ease, background .15s ease, box-shadow .15s ease; }
+#commande .quote-choice:hover, #commande .quote-choice:has(input:checked) { border-color: #3d8b64; background: #f1f8f3; }
+#commande .quote-choice:has(input:focus-visible) { outline: 3px solid #b5d9c3; outline-offset: 2px; }
+#commande .quote-choice input { accent-color: #176b43; width: 17px; height: 17px; margin: 0; flex-shrink: 0; }
+#commande .quote-choice span { min-width: 0; }
+#commande .quote-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+#commande .quote-pro-form .field { gap: 8px; }
+body[data-page="index"] #commande .quote-pro-form .field label { color: #264b36; font-size: .8rem; font-weight: 700; }
+body[data-page="index"] #commande .quote-pro-form .field input,
+body[data-page="index"] #commande .quote-pro-form .field select,
+body[data-page="index"] #commande .quote-pro-form .field textarea {
+  color: var(--qc-ink) !important; background: #fff !important; border: 1px solid #d8e4db !important; border-radius: 10px !important;
+  min-height: 48px; box-shadow: none !important; font-size: 16px; font-weight: 450;
+}
+#commande .quote-pro-form .field input::placeholder, #commande .quote-pro-form .field textarea::placeholder { color: #8c9a90; opacity: 1; }
+#commande .quote-pro-form .field-hint { font-size: .72rem; }
+#commande .quote-product { display: flex; align-items: center; gap: 14px; padding: 15px; margin-bottom: 19px; background: #f5f9f5; border: 1px solid #e2ece3; border-radius: 12px; }
+#commande .quote-product-mark { display: grid; place-items: center; width: 49px; height: 49px; flex: 0 0 49px; background: #ddebde; color: #1f6846; border-radius: 12px; font-size: 1.18rem; font-weight: 800; }
+#commande .quote-product strong { display: block; font-size: .9rem; }
+#commande .quote-product small { display: block; margin-top: 4px; color: var(--qc-muted); font-size: .76rem; }
+#commande .quote-disclaimer { font-size: .74rem; margin: 14px 0 0; color: var(--qc-muted); line-height: 1.6; }
+#commande #delivery-address-group[hidden], #commande #quote-whatsapp-preview[hidden] { display: none !important; }
+#commande .quote-pro-form .turnstile-verification { border: 1px solid #e3e9e3; border-radius: 12px; padding: 15px; margin-top: 20px; background: #fafcf9; }
+#commande .quote-pro-form .turnstile-verification p { margin: 4px 0 0; }
+#commande .quote-pro-form .quote-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.85fr); gap: 14px; margin: 20px 0; }
+#commande .quote-pro-form .quote-channel-label { font-size: .72rem; font-weight: 650; color: var(--qc-muted); }
+body[data-page="index"] #commande .quote-pro-form button[type="submit"] { background: var(--qc-orange) !important; color: #fff !important; border: 1px solid var(--qc-orange) !important; box-shadow: none !important; min-height: 52px; border-radius: 10px !important; font-weight: 800; font-size: .82rem; white-space: normal; }
+body[data-page="index"] #commande .quote-pro-form button[type="submit"]:hover { background: #be6f1d !important; }
+#commande .quote-pro-form .quote-channel .btn-secondary { border: 1px solid #d6e6d9; background: #f4f8f4; color: #176040; min-height: 52px; border-radius: 10px; font-size: .81rem; }
+#commande .quote-pro-form .form-note { line-height: 1.6; font-size: .72rem; color: var(--qc-muted); margin: 0 0 12px; }
+#commande .quote-pro-form .form-status { margin: 0 0 10px; }
+#commande .quote-pro-form #quote-whatsapp-preview { margin-bottom: 18px; }
+#commande .quote-aside { display: grid; gap: 18px; }
+#commande .quote-side-card { border: 1px solid var(--qc-border); padding: clamp(22px,2vw,28px); background: #fff; border-radius: 16px; box-shadow: 0 8px 30px rgba(20,60,40,.045); }
+#commande .quote-side-card h3 { font-size: 1.14rem; margin: 9px 0 19px; color: var(--qc-ink); line-height: 1.3; }
+#commande .quote-summary-list { margin: 0; }
+#commande .quote-summary-list div { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #ebf1ec; font-size: .78rem; line-height: 1.5; }
+#commande .quote-summary-list dt { color: #6f7d73; flex: 0 0 36%; }
+#commande .quote-summary-list dd { margin: 0; text-align: right; font-weight: 700; color: #204d35; overflow-wrap: anywhere; }
+#commande .quote-summary-note { margin: 18px 0 0; padding: 13px; border-radius: 10px; background: #edf6ee; color: #2b6446; font-size: .75rem; line-height: 1.65; }
+#commande .quote-service-card { background: #eaf3e9; }
+#commande .quote-service-card p, #commande .quote-contact-card p { font-size: .83rem; line-height: 1.75; margin: 0 0 10px; color: #45614e; }
+#commande .quote-side-card .quote-side-footnote { margin: 13px 0 0; font-size: .72rem; color: #6b8071; }
+#commande .quote-contact-link { display: block; color: #1b6842; text-decoration: underline; text-underline-offset: 3px; font-size: .8rem; line-height: 1.65; margin-top: 8px; overflow-wrap: anywhere; }
+@media (max-width: 980px) {
+  #commande .quote-pro-grid { grid-template-columns: 1fr; }
+  #commande .quote-aside { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  #commande .quote-summary-card { grid-row: span 2; }
+}
+@media (max-width: 650px) {
+  #commande.quote-cotation { padding: 45px 0; }
+  body[data-page="index"] #commande .order-box.quote-pro-form { padding: 19px !important; border-radius: 15px !important; }
+  #commande .quote-choice-grid, #commande .quote-fields, #commande .quote-actions, #commande .quote-aside { grid-template-columns: 1fr !important; }
+  #commande .quote-summary-card { grid-row: auto; }
+  #commande .quote-step legend { font-size: 1rem; }
+  #commande .quote-choice { padding: 13px; }
+}
+/* Respect the site's existing dark appearance when the visitor selects it. */
+html[data-theme="dark"] #commande.quote-cotation {
+  --qc-paper: #101913; --qc-ink: #ecf3ee; --qc-border: #294133; --qc-muted: #a3b8a8;
+  background: #0c120e !important;
+}
+html[data-theme="dark"] #commande .quote-pro-intro p, html[data-theme="dark"] #commande .quote-step legend small { color: #b5c7bb; }
+html[data-theme="dark"] #commande .quote-choice, html[data-theme="dark"] #commande .quote-side-card { background: #101b14; border-color: #294133; color: #eaf3ee; }
+html[data-theme="dark"] #commande .quote-choice:has(input:checked) { background: #1b3525; }
+html[data-theme="dark"] #commande .quote-product, html[data-theme="dark"] #commande .quote-summary-note, html[data-theme="dark"] #commande .quote-service-card, html[data-theme="dark"] #commande .quote-pro-form .turnstile-verification { background: #18281e; border-color: #294133; }
+html[data-theme="dark"] #commande .quote-side-card h3, html[data-theme="dark"] #commande .quote-summary-list dd, html[data-theme="dark"] #commande .quote-product strong, html[data-theme="dark"] #commande .quote-step legend { color: #ebf5ed; }
+html[data-theme="dark"] #commande .quote-service-card p, html[data-theme="dark"] #commande .quote-contact-card p { color: #b3caba; }
+html[data-theme="dark"] body[data-page="index"] #commande .quote-pro-form .field input,
+html[data-theme="dark"] body[data-page="index"] #commande .quote-pro-form .field select,
+html[data-theme="dark"] body[data-page="index"] #commande .quote-pro-form .field textarea { background: #101b14 !important; border-color: #355344 !important; color: #eef6ef !important; }

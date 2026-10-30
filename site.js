@@ -400,6 +400,72 @@
     frequencyField.addEventListener("change", updateFrequency);
     updateFrequency();
 
+    // The current /api/quote API accepts the legacy field names. Additional form
+    // preferences are included within the existing details field so older workers
+    // can receive them without a schema change. Verify the worker separately.
+    function optionalField(id) {
+      var field = document.getElementById(id);
+      return field && typeof field.value === "string" ? field.value.trim() : "";
+    }
+
+    function checkedChoice(name) {
+      if (typeof document.querySelector !== "function") return "";
+      var input = document.querySelector('input[name="' + name + '"]:checked');
+      return input && typeof input.value === "string" ? input.value.trim() : "";
+    }
+
+    function fullDetails(details) {
+      var extra = [];
+      var type = checkedChoice("client_type");
+      var company = optionalField("company-name");
+      var reception = checkedChoice("reception_mode");
+      var wantedDate = optionalField("delivery-date");
+      var deliveryAddress = optionalField("delivery-address");
+      if (type) extra.push("Type de client : " + type);
+      if (company) extra.push("Entreprise : " + company);
+      if (reception) extra.push("Mode de réception : " + reception);
+      if (wantedDate) extra.push("Date souhaitée : " + wantedDate);
+      if (reception === "Livraison souhaitée" && deliveryAddress) extra.push("Adresse de livraison : " + deliveryAddress);
+      if (!extra.length) return details;
+      return (extra.join("\n") + (details ? "\nPrécisions : " + details : "")).slice(0, 1600);
+    }
+
+    function bindQuoteRecap() {
+      var recap = document.getElementById("quote-summary");
+      if (!recap) return;
+      var deliveryGroup = document.getElementById("delivery-address-group");
+      var deliveryDate = document.getElementById("delivery-date");
+      if (deliveryDate) {
+        var today = new Date();
+        var localToday = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
+        deliveryDate.min = localToday;
+      }
+      function write(id, value) {
+        var node = document.getElementById(id);
+        if (node) node.textContent = value;
+      }
+      function refresh() {
+        var cartons = Number(optionalField("vol"));
+        var displayVolume = Number.isSafeInteger(cartons) && cartons > 0
+          ? cartons.toLocaleString("fr-FR") + " carton" + (cartons > 1 ? "s" : "") + " (" + (cartons * 30).toLocaleString("fr-FR") + " œufs)"
+          : "À préciser";
+        var reception = checkedChoice("reception_mode") || "À préciser";
+        write("quote-summary-client", checkedChoice("client_type") || "À préciser");
+        write("quote-summary-volume", displayVolume);
+        write("quote-summary-frequency", optionalField("frequency") || "À préciser");
+        write("quote-summary-reception", reception);
+        write("quote-summary-zone", optionalField("zone") || "À préciser");
+        write("quote-summary-date", optionalField("delivery-date") || "À convenir");
+        if (deliveryGroup) deliveryGroup.hidden = reception !== "Livraison souhaitée";
+      }
+      form.addEventListener("input", refresh);
+      form.addEventListener("change", refresh);
+      refresh();
+      return refresh;
+    }
+
+    var updateRecap = bindQuoteRecap();
+
     function buildWhatsAppMessage(institution, volume, zone, frequency, email, phone, details) {
       var messageLines = [
         "Bonjour Zepoul Ayiti,",
@@ -428,6 +494,7 @@
         var values = ["inst", "vol", "zone", "frequency", "email", "phone", "details"].map(function (id) {
           return document.getElementById(id).value.trim() || (id === "details" ? "" : "À préciser");
         });
+        values[6] = fullDetails(values[6]);
         messageWhatsApp.value = buildWhatsAppMessage.apply(null, values);
         previewWhatsApp.hidden = false;
         prepareWhatsApp.setAttribute("aria-expanded", "true");
@@ -477,7 +544,7 @@
       var frequency = document.getElementById("frequency").value.trim();
       var email = document.getElementById("email").value.trim();
       var phone = document.getElementById("phone").value.trim();
-      var details = document.getElementById("details").value.trim();
+      var details = fullDetails(document.getElementById("details").value.trim());
       var turnstileInput = form.querySelector("input[name='cf-turnstile-response']");
       var turnstileToken = turnstileInput ? turnstileInput.value.trim() : "";
 
@@ -557,6 +624,7 @@
           setFormStatus("Demande envoyée avec succès. Redirection en cours...", true);
           form.reset();
           updateFrequency();
+          if (updateRecap) updateRecap();
           window.setTimeout(function () {
             window.location.href = "merci.html?source=quote";
           }, 500);
