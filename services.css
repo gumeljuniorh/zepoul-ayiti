@@ -37,3 +37,16 @@ html[data-theme="dark"] .service-evidence h2{color:#fff8df}
 html[data-theme="dark"] .service-evidence p{color:#b9c8be}
 html[data-theme="dark"] .evidence-actions a{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#edf5ee}
 @media (max-width:720px){h1{font-size:2.1rem}.service-columns,.service-flow{grid-template-columns:1fr}.flow-step + .flow-step{border-left:0;border-top:1px solid var(--border)}.service-panel{padding:24px}.service-evidence{align-items:flex-start;flex-direction:column;padding:22px}.evidence-actions{width:100%;flex-basis:auto;justify-content:flex-start}.evidence-actions a{width:100%}}
+
+
+/* Image du carton de 30 œufs, uniquement sur la page Nos produits. */
+body[data-page="services"] .service-product-visual {
+  width: min(100%, 800px);
+  margin: 24px auto 28px;
+}
+body[data-page="services"] .service-product-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
