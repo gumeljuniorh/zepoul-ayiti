@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 const read = file => readFileSync(new URL(file, import.meta.url), 'utf8');
 const pages = ['index.html', 'about.html', 'expertise.html', 'services.html', 'vision.html', 'communications.html', 'social/index.html'];
-const expected = ["Accueil","Nos produits","Notre exploitation","Notre développement","Partenaires","À propos","Contact","Demander une cotation"];
+const expected = ["Accueil","Nos produits","Notre entreprise","Contact","Demander une cotation"];
 for (const file of pages) {
   test(`${file}: coherent navigation and accessible mobile control`, () => {
     const html = read(file);
@@ -36,8 +36,8 @@ test('only the public long-term objective remains, without invented current prod
     assert(!/Hy-Line|W-80|(?:3|5|8|12) 000|3 500|16 semaines|projet pilote|phase de préparation/i.test(html), f);
     assert(!/500\s+(œufs|oeufs)\s+(par jour|chaque jour)/i.test(html));
   }
-  assert(read('vision.html').includes('objectif à long terme'));
-  assert(read('vision.html').includes('<strong class="strategic-figure">50 000</strong>'));
+  assert(!read('vision.html').includes('50 000'));
+  assert(!read('vision.html').includes('strategic-figure'));
   assert(!read('expertise.html').includes('50 000'));
 });
 test('director profile precedes the company sections without the removed heading', () => {
@@ -82,7 +82,7 @@ test('institutional sections have no decorative icons or illustrative photos', (
 });
 test('about preserves the director and the six requested narrative sections', () => {
   const html = read('about.html');
-  for (const title of ['Notre entreprise', 'Notre raison d’être', 'Notre exploitation', 'Notre approche', 'Notre développement', 'Nos engagements']) assert(html.includes('>' + title + '</h2>'));
+  for (const title of ['Notre entreprise', 'Notre raison d’être', 'Notre exploitation', 'Notre approche', 'Notre développement', 'Notre engagement']) assert(html.includes('>' + title + '</h2>'));
   assert(html.includes('L’élevage de poules pondeuses constitue le cœur de notre activité à Port-de-Paix.'));
   assert(html.includes('GL Zepoul Peyi exerce ses activités avicoles sous la marque Zepoul Ayiti.'));
   assert(html.includes('alt="Portrait de Girard Gumel J. Henry, fondateur de GL Zepoul Peyi" loading="eager"')); 
@@ -97,7 +97,7 @@ test('retired decorative icons are not referenced by public pages', () => {
   assert(!read('index.html').includes('<svg class="editorial-icon"'));
 });
 test('institutional page titles match the requested subjects', () => {
-  const titles = {"index.html":"Production et commercialisation d’œufs en Haïti","about.html":"GL Zepoul Peyi","vision.html":"Notre développement","expertise.html":"Notre exploitation","services.html":"Produits et services","communications.html":"Communications"};
+  const titles = {"index.html":"Production et commercialisation d’œufs en Haïti","about.html":"Notre entreprise","vision.html":"Notre développement","expertise.html":"Notre exploitation","services.html":"Produits et services","communications.html":"Communications"};
   for(const [file,title] of Object.entries(titles)) {
     const h1=read(file).match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<br\s*\/?>/g,' ').replace(/<[^>]+>/g,'').trim();
     assert.equal(h1,title);
