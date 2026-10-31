@@ -264,3 +264,60 @@ body[data-design] .site-footer .footer-social { margin-top: 10px; }
   body[data-design] .site-footer a { min-height: 44px; display: inline-flex; align-items: center; }
   body[data-design] .site-footer .footer-social a { width: 44px; height: 44px; }
 }
+
+/* Cohérence visuelle : reprendre le vert doux de « Notre développement »
+   sans modifier la navigation, la typographie ou les composants interactifs. */
+:root {
+  --design-page-wash: #f7faf5;
+}
+html[data-theme="dark"] {
+  --design-page-wash: #121b15;
+}
+/* Le vert doux reste une respiration; les surfaces de lecture sont contrastées. */
+body[data-design] {
+  background: var(--design-page-wash) !important;
+}
+html[data-theme="dark"] body[data-design] {
+  background: var(--design-page-wash) !important;
+}
+/* Sections pleine largeur de l’accueil, dans le même vert que le développement. */
+body[data-design] .partner-band,
+body[data-design] .showcase-video {
+  background: var(--design-tint) !important;
+}
+/* En-têtes des pages éditoriales. */
+body[data-design] .page-intro,
+body[data-design] .about-opening {
+  background: var(--design-tint) !important;
+  padding-inline: clamp(16px, 3vw, 32px);
+  border-radius: 8px 8px 0 0;
+}
+/* Des respirations vertes régulières sur Notre entreprise. */
+body[data-page="about"] .about-section:nth-of-type(even) {
+  background: var(--design-tint);
+  padding-inline: clamp(16px, 3vw, 32px);
+  border-radius: 8px;
+}
+/* Produits : harmoniser les parcours d’achat avec le fond vert. */
+body[data-page="services"] .service-flow,
+body[data-page="services"] .service-evidence {
+  background: var(--design-tint) !important;
+}
+/* Garder les cartes de contact et le formulaire blancs pour la lisibilité. */
+body[data-page="contact"] .contact-page,
+body[data-page="cotation"] #commande.quote-cotation {
+  background: var(--design-tint) !important;
+}
+html[data-theme="dark"] body[data-page="contact"] .contact-page,
+html[data-theme="dark"] body[data-page="cotation"] #commande.quote-cotation {
+  background: var(--design-tint) !important;
+}
+@media (max-width: 700px) {
+  body[data-design] .page-intro,
+  body[data-design] .about-opening {
+    padding-inline: 16px;
+  }
+  body[data-page="about"] .about-section:nth-of-type(even) {
+    padding-inline: 16px;
+  }
+}
