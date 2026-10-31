@@ -39,14 +39,32 @@ html[data-theme="dark"] .evidence-actions a{background:rgba(255,255,255,.06);bor
 @media (max-width:720px){h1{font-size:2.1rem}.service-columns,.service-flow{grid-template-columns:1fr}.flow-step + .flow-step{border-left:0;border-top:1px solid var(--border)}.service-panel{padding:24px}.service-evidence{align-items:flex-start;flex-direction:column;padding:22px}.evidence-actions{width:100%;flex-basis:auto;justify-content:flex-start}.evidence-actions a{width:100%}}
 
 
-/* Image du carton de 30 œufs, uniquement sur la page Nos produits. */
+/* Présentation éditoriale des œufs : page Nos produits uniquement. */
 body[data-page="services"] .service-product-visual {
-  width: min(100%, 800px);
-  margin: 24px auto 28px;
+  width: 100%;
+  margin: 28px 0 34px;
+  padding: clamp(10px, 2.2vw, 24px);
+  background: var(--design-ivory, #f8f7f2);
+  border: 1px solid var(--design-border, #dce3d8);
+  border-radius: 8px;
+  overflow: hidden;
 }
 body[data-page="services"] .service-product-visual img {
   display: block;
   width: 100%;
+  max-width: 860px;
   height: auto;
-  border-radius: 10px;
+  margin-inline: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+@media (max-width: 720px) {
+  body[data-page="services"] .service-product-visual {
+    margin: 20px 0 26px;
+    padding: 8px;
+    border-radius: 6px;
+  }
+  body[data-page="services"] .service-product-visual img {
+    border-radius: 3px;
+  }
 }
