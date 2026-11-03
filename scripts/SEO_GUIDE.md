@@ -25,6 +25,14 @@ Optimiser le site pour la **découverte**, l'**indexation** et les **partages**,
 - Les images de produit réelles publiées doivent apparaître dans le sitemap d'images; `image:loc` suffit. Les anciens `image:title` et `image:caption` sont ignorés par Google.
 - Les informations de Schema.org doivent refléter les activités réelles; ne jamais inventer évaluations, prix, stocks, quantités, horaires, recrutements ou projections.
 
+## Maillage interne et qualité du contenu (audit XKey, 3 novembre 2026)
+- Les pages publiques importantes doivent avoir au moins un lien HTML `<a href>` contextuel depuis une autre page; une URL dans un sitemap ne remplace pas la navigation interne.
+- Maintenir les chemins : accueil → `/vision/`, vision → `/expertise/`, entreprise → `/girard-gumel-j-henry/`. Les liens doivent être compréhensibles et réellement utilisables, non masqués pour les robots.
+- La limite « moins de 200 mots » des outils d'audit **n'est pas un seuil minimal de Google** : ajouter du contenu seulement s'il informe réellement un visiteur; ne pas remplir artificiellement les pages Contact, Cotation, Mentions légales ou Réseaux sociaux.
+- Les titres SEO ne sont pas soumis à une limite universelle de caractères ou de pixels; privilégier la clarté et vérifier l'aperçu des résultats.
+- Le JSON-LD de type WebPage, ContactPage ou BreadcrumbList enrichit la description des pages mais **ne garantit aucun résultat enrichi**.
+- Aucun ajout de texte visible, de section ou de changement de disposition ne doit être publié sans approbation.
+
 ## Contrôle lors des mises à jour
 1. Après chaque changement des pages HTML ou du sitemap, exécuter `node scripts/seo-audit.mjs`.
 2. Vérifier en production les codes HTTP, canonicals, `robots.txt`, sitemaps, ressources d'image et les aperçus des liens.
