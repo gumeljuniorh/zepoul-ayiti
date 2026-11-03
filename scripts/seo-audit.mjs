@@ -83,6 +83,23 @@ for (const account of [
   if (!read('index.html').includes(account)) fail('index.html', 'missing official social identity: ' + account);
 }
 
+// Guard against the orphan pages highlighted by the November 2026 audit.
+for (const [source, target] of [
+  ['index.html', '/vision/'],
+  ['vision.html', '/expertise/'],
+  ['about.html', '/girard-gumel-j-henry/']
+]) {
+  if (!read(source).includes('href="' + target + '"')) {
+    fail(source, 'missing crawlable internal link to ' + target);
+  }
+}
+for (const page of [
+  'contact.html', 'cotation.html', 'mentions-legales.html',
+  'politique-confidentialite.html'
+]) {
+  if (!read(page).includes('application/ld+json')) fail(page, 'missing structured data');
+}
+
 if (errors.length) {
   for (const message of errors) console.error('FAIL ' + message);
   console.error(errors.length + ' SEO check(s) failed.');
