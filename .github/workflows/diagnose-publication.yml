@@ -1,0 +1,50 @@
+name: Diagnose public Pages and cache
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect GitHub Pages configuration and live document
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -u
+          echo "### Repository source version"
+          git rev-parse --short HEAD
+          echo "### GitHub Pages settings"
+          gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '{status, html_url, cname, build_type, source, https_enforced}' || echo "Pages settings unavailable (permissions or not configured)"
+          echo "### Latest Pages build"
+          gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '{status, created_at, updated_at, commit, error}' || echo "Pages build unavailable"
+          for path in / /entreprise/ /contact/ /vision/; do
+            echo "### Live path: $path"
+            for variant in normal bypass; do
+              url="https://www.zepoulayiti.com${path}"
+              if [[ "$variant" == "bypass" ]]; then
+                url="${url}?github-diagnostic=${GITHUB_RUN_ID}"
+              fi
+              status=$(curl -L -sS --max-time 25 -D headers.txt -o response.html -w "%{http_code}" -H "Cache-Control: no-cache" "$url") || status="connection-error"
+              echo "variant=${variant} status=${status}"
+              grep -iE "^(server|age|cf-cache-status|cache-control|last-modified|etag|location):" headers.txt || true
+              if [[ "$path" == "/" ]]; then
+                if grep -q 'href="/vision/"' response.html; then echo "development-link=new"; else echo "development-link=missing-or-old"; fi
+                if grep -q 'href="/social/"' response.html; then echo "social-footer-link=present"; else echo "social-footer-link=absent"; fi
+              fi
+              if [[ "$path" == "/entreprise/" ]]; then
+                if grep -q 'href="/girard-gumel-j-henry/"' response.html; then echo "founder-link=present"; else echo "founder-link=absent"; fi
+              fi
+              if [[ "$path" == "/contact/" ]]; then
+                if grep -q "Contact et cotation" response.html; then echo "contact-title=new"; else echo "contact-title=old-or-absent"; fi
+              fi
+            done
+          done
