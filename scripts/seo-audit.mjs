@@ -87,7 +87,8 @@ for (const account of [
 for (const [source, target] of [
   ['index.html', '/vision/'],
   ['vision.html', '/expertise/'],
-  ['about.html', '/girard-gumel-j-henry/']
+  ['about.html', '/girard-gumel-j-henry/'],
+  ['index.html', '/social/']
 ]) {
   if (!read(source).includes('href="' + target + '"')) {
     fail(source, 'missing crawlable internal link to ' + target);
