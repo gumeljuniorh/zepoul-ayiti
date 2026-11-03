@@ -1,0 +1,27 @@
+name: SEO and CSS regression checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Check metadata, sitemap and CSS cascade
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check CSS bundles match source stylesheets
+        run: node scripts/build-page-css.mjs --check
+      - name: Audit all public SEO metadata and internal links
+        run: node scripts/seo-audit.mjs
