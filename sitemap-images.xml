@@ -61,7 +61,12 @@
 
   <url>
     <loc>https://www.zepoulayiti.com/produits/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-30</lastmod>
+    <image:image>
+      <image:loc>https://www.zepoulayiti.com/oeufs-30-zepoul.webp</image:loc>
+      <image:title>Plateau de 30 œufs — Zepoul Ayiti</image:title>
+      <image:caption>Présentation d’un plateau de 30 œufs de consommation Zepoul Ayiti</image:caption>
+    </image:image>
     <image:image>
       <image:loc>https://www.zepoulayiti.com/logo-full-light.jpg</image:loc>
       <image:title>Services Zepoul Ayiti</image:title>
