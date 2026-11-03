@@ -14,42 +14,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect GitHub Pages configuration and live document
+      - name: Compare Pages configuration and public HTML
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -u
-          echo "# Zepoul Ayiti public publishing diagnostic" > publication-diagnostic.md
-          echo "### Repository source version" | tee -a publication-diagnostic.md
-          git rev-parse --short HEAD | tee -a publication-diagnostic.md
-          echo "### GitHub Pages settings" | tee -a publication-diagnostic.md
-          { gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '{status, html_url, cname, build_type, source, https_enforced}' || echo "Pages settings unavailable (permissions or not configured)"; } 2>&1 | tee -a publication-diagnostic.md
-          echo "### Latest Pages build" | tee -a publication-diagnostic.md
-          { gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '{status, created_at, updated_at, commit, error}' || echo "Pages build unavailable"; } 2>&1 | tee -a publication-diagnostic.md
+          report="publication-diagnostic.md"
+          echo "# Zepoul Ayiti public publishing diagnostic" > "$report"
+          {
+            echo "### Repository source version"
+            git rev-parse --short HEAD
+            echo "### GitHub Pages settings"
+            gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '{status, html_url, cname, build_type, source, https_enforced}' || echo "Pages settings unavailable (permissions or not configured)"
+            echo "### Latest Pages build"
+            gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '{status, created_at, updated_at, commit, error}' || echo "Pages build unavailable"
+          } 2>&1 | tee -a "$report"
           for path in / /entreprise/ /contact/ /vision/; do
-            echo "### Live path: $path" | tee -a publication-diagnostic.md
             for variant in normal bypass; do
-              url="https://www.zepoulayiti.com${path}"
-              if [[ "$variant" == "bypass" ]]; then
-                url="${url}?github-diagnostic=${GITHUB_RUN_ID}"
-              fi
-              status=$(curl -L -sS --max-time 25 -D headers.txt -o response.html -w "%{http_code}" -H "Cache-Control: no-cache" "$url") || status="connection-error"
-              echo "variant=${variant} status=${status}" | tee -a publication-diagnostic.md
-              { grep -iE "^(server|age|cf-cache-status|cache-control|last-modified|etag|location):" headers.txt || true; } | tee -a publication-diagnostic.md
-              if [[ "$path" == "/" ]]; then
-                if grep -q 'href="/vision/"' response.html; { then echo "development-link=new"; else echo "development-link=missing-or-old"; fi; } | tee -a publication-diagnostic.md
-                if grep -q 'href="/social/"' response.html; { then echo "social-footer-link=present"; else echo "social-footer-link=absent"; fi; } | tee -a publication-diagnostic.md
-              fi
-              if [[ "$path" == "/entreprise/" ]]; then
-                if grep -q 'href="/girard-gumel-j-henry/"' response.html; { then echo "founder-link=present"; else echo "founder-link=absent"; fi; } | tee -a publication-diagnostic.md
-              fi
-              if [[ "$path" == "/contact/" ]]; then
-                if grep -q "Contact et cotation" response.html; { then echo "contact-title=new"; else echo "contact-title=old-or-absent"; fi; } | tee -a publication-diagnostic.md
-              fi
+              {
+                echo "### Live path: ${path}; variant=${variant}"
+                url="https://www.zepoulayiti.com${path}"
+                if [[ "$variant" == "bypass" ]]; then url="${url}?github-diagnostic=${GITHUB_RUN_ID}"; fi
+                code=$(curl -L -sS --max-time 25 -D headers.txt -o response.html -w "%{http_code}" -H "Cache-Control: no-cache" "$url") || code="connection-error"
+                echo "http_status=${code}"
+                grep -iE "^(server|age|cf-cache-status|cache-control|last-modified|etag|location):" headers.txt || true
+                if [[ "$path" == "/" ]]; then
+                  if grep -q 'href="/vision/"' response.html; then echo "development-link=new"; else echo "development-link=missing-or-old"; fi
+                  if grep -q 'href="/social/"' response.html; then echo "social-footer-link=present"; else echo "social-footer-link=absent"; fi
+                fi
+                if [[ "$path" == "/entreprise/" ]]; then
+                  if grep -q 'href="/girard-gumel-j-henry/"' response.html; then echo "founder-link=present"; else echo "founder-link=absent"; fi
+                fi
+                if [[ "$path" == "/contact/" ]]; then
+                  if grep -q "Contact et cotation" response.html; then echo "contact-title=new"; else echo "contact-title=old-or-absent"; fi
+                fi
+              } 2>&1 | tee -a "$report"
             done
           done
-      - name: Save public diagnostic report to a separate non-deployment branch
+      - name: Save report to separate non-deployment branch
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
