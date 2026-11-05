@@ -3,6 +3,8 @@ name: Diagnose public Pages and cache
 on:
   push:
     branches: [main]
+    paths:
+      - '.github/workflows/diagnose-publication.yml'
   workflow_dispatch:
 
 permissions:
@@ -43,8 +45,7 @@ jobs:
                 # Cloudflare sometimes returns HTTP 403 to automated GitHub runners.
                 if [[ "$code" != "200" ]]; then
                   echo "html_markers=not_evaluated (HTTP $code)"
-                  continue
-                fi
+                else
                 if [[ "$path" == "/" ]]; then
                   if grep -q 'href="/vision/"' response.html; then echo "development-link=new"; else echo "development-link=missing-or-old"; fi
                   if grep -q 'href="/social/"' response.html; then echo "social-footer-link=present"; else echo "social-footer-link=absent"; fi
@@ -54,6 +55,7 @@ jobs:
                 fi
                 if [[ "$path" == "/contact/" ]]; then
                   if grep -q "Contact et cotation" response.html; then echo "contact-title=new"; else echo "contact-title=old-or-absent"; fi
+                fi
                 fi
               } 2>&1 | tee -a "$report"
             done
