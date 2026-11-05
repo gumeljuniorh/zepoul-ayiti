@@ -39,6 +39,12 @@ jobs:
                 code=$(curl -L -sS --max-time 25 -D headers.txt -o response.html -w "%{http_code}" -H "Cache-Control: no-cache" "$url") || code="connection-error"
                 echo "http_status=${code}"
                 grep -iE "^(server|age|cf-cache-status|cache-control|last-modified|etag|location):" headers.txt || true
+                # Only inspect page markers if the request returned actual HTML.
+                # Cloudflare sometimes returns HTTP 403 to automated GitHub runners.
+                if [[ "$code" != "200" ]]; then
+                  echo "html_markers=not_evaluated (HTTP $code)"
+                  continue
+                fi
                 if [[ "$path" == "/" ]]; then
                   if grep -q 'href="/vision/"' response.html; then echo "development-link=new"; else echo "development-link=missing-or-old"; fi
                   if grep -q 'href="/social/"' response.html; then echo "social-footer-link=present"; else echo "social-footer-link=absent"; fi
@@ -57,9 +63,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          content=$(base64 -w0 publication-diagnostic.md)
-          gh api --method PUT "repos/${GITHUB_REPOSITORY}/contents/publication-diagnostic.md" \
-            -f message="ops: update public publishing diagnostic report" \
-            -f content="$content" \
-            -f branch="ops/publication-diagnostic-output-20261103" \
-            --jq ".content.path"
+          set -euo pipefail
+          target_branch="ops/publication-diagnostic-output-20261103"
+          report_path="publication-diagnostic.md"
+          # GitHub requires the current file blob SHA when replacing an existing file.
+          current_sha=$(gh api --method GET "repos/${GITHUB_REPOSITORY}/contents/${report_path}" \
+            -f "ref=$target_branch" --jq '.sha' 2>/dev/null || true)
+          content=$(base64 -w0 "$report_path")
+          fields=(-f "message=ops: update public publishing diagnostic report" \
+            -f "content=$content" -f "branch=$target_branch")
+          if [[ -n "$current_sha" ]]; then
+            fields+=(-f "sha=$current_sha")
+          fi
+          gh api --method PUT "repos/${GITHUB_REPOSITORY}/contents/${report_path}" \
+            "${fields[@]}" --jq '.content.path'
