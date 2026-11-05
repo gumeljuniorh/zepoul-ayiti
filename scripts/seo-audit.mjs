@@ -34,6 +34,9 @@ for (const file of pages) {
   if (!title) fail(file, 'missing title');
   else if (titles.has(title)) fail(file, 'duplicate title: ' + title);
   else titles.add(title);
+  // The browser title and shared-link titles should describe the same page.
+  if (title && meta(head, 'og:title', 'property')[0] !== title) fail(file, 'og:title differs from title');
+  if (title && meta(head, 'twitter:title', 'name')[0] !== title) fail(file, 'twitter:title differs from title');
   const description = meta(head, 'description', 'name');
   if (description.length !== 1 || description[0].trim().length < 30) fail(file, 'missing/short or duplicate description');
   const urls = canonical(head);
@@ -99,6 +102,25 @@ for (const page of [
   'politique-confidentialite.html'
 ]) {
   if (!read(page).includes('application/ld+json')) fail(page, 'missing structured data');
+}
+
+// Maintain truthful brand aliases for recognizable navigation and search snippets.
+try {
+  const home = read('index.html');
+  const jsonlds = [...home.matchAll(/<script\\b[^>]*type="application\\/ld\\+json"[^>]*>([\\s\\S]*?)<\\/script>/gi)]
+    .map(match => JSON.parse(match[1]));
+  const organization = jsonlds.find(data => data['@id'] === 'https://www.zepoulayiti.com/#organization');
+  const website = jsonlds.find(data => data['@id'] === 'https://www.zepoulayiti.com/#website');
+  for (const [label, data] of [['Organization', organization], ['WebSite', website]]) {
+    if (!data || data.name !== 'Zepoul Ayiti') fail('index.html', label + ' official name not found');
+    for (const alias of ['Zepoul', 'Zepoulayiti', 'GL Zepoul Peyi']) {
+      if (!data || !Array.isArray(data.alternateName) || !data.alternateName.includes(alias)) {
+        fail('index.html', label + ' missing validated alias ' + alias);
+      }
+    }
+  }
+} catch {
+  fail('index.html', 'invalid brand JSON-LD');
 }
 
 if (errors.length) {
