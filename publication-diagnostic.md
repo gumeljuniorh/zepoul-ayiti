@@ -1,39 +1,39 @@
 # Zepoul Ayiti public publishing diagnostic
 ### Repository source version
-7501c72
+e4bcc9c
 ### GitHub Pages settings
 {"build_type":"legacy","cname":"www.zepoulayiti.com","html_url":"http://www.zepoulayiti.com/","https_enforced":false,"source":{"branch":"main","path":"/"},"status":"building"}
 ### Latest Pages build
-{"commit":"7501c72e96635b99ab9c92055d278566c1f11c3a","created_at":"2026-11-03T21:09:05Z","error":{"message":null},"status":"building","updated_at":"2026-11-03T21:09:05Z"}
+{"commit":"e4bcc9c34863a97848ac871a8209993b9a4a5fb4","created_at":"2026-11-05T17:17:39Z","error":{"message":null},"status":"building","updated_at":"2026-11-05T17:17:39Z"}
 ### Live path: /; variant=normal
 http_status=403
 server: cloudflare
-development-link=missing-or-old
-social-footer-link=absent
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /; variant=bypass
 http_status=403
 server: cloudflare
-development-link=missing-or-old
-social-footer-link=absent
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /entreprise/; variant=normal
 http_status=403
 server: cloudflare
-founder-link=absent
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /entreprise/; variant=bypass
 http_status=403
 server: cloudflare
-founder-link=absent
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /contact/; variant=normal
 http_status=403
 server: cloudflare
-contact-title=old-or-absent
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /contact/; variant=bypass
 http_status=403
 server: cloudflare
-contact-title=old-or-absent
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /vision/; variant=normal
 http_status=403
 server: cloudflare
+html_markers=not_evaluated (HTTP 403)
 ### Live path: /vision/; variant=bypass
 http_status=403
 server: cloudflare
+html_markers=not_evaluated (HTTP 403)
