@@ -107,7 +107,7 @@ for (const page of [
 // Maintain truthful brand aliases for recognizable navigation and search snippets.
 try {
   const home = read('index.html');
-  const jsonlds = [...home.matchAll(/<script\\b[^>]*type="application\\/ld\\+json"[^>]*>([\\s\\S]*?)<\\/script>/gi)]
+  const jsonlds = [...home.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
     .map(match => JSON.parse(match[1]));
   const organization = jsonlds.find(data => data['@id'] === 'https://www.zepoulayiti.com/#organization');
   const website = jsonlds.find(data => data['@id'] === 'https://www.zepoulayiti.com/#website');
