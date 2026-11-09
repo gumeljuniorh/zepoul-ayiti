@@ -71,6 +71,14 @@ for (const page of ['merci.html', '404.html', 'admin.html']) {
 for (const name of ['sitemap.xml', 'sitemap-images.xml']) {
   if (!robots.includes('Sitemap: https://www.zepoulayiti.com/' + name)) fail('robots.txt', 'missing ' + name);
 }
+// Both sitemaps describe the same canonical pages: keep crawl-freshness dates
+// consistent after page/image updates instead of leaving contradictory hints.
+const mainLastmods = new Map([...sitemap.matchAll(/<url>\\s*<loc>([^<]+)<\\/loc>\\s*<lastmod>(\\d{4}-\\d{2}-\\d{2})<\\/lastmod>/g)]
+  .map(([, url, date]) => [url, date]));
+for (const [, url, date] of imageSitemap.matchAll(/<url>\\s*<loc>([^<]+)<\\/loc>\\s*<lastmod>(\\d{4}-\\d{2}-\\d{2})<\\/lastmod>/g)) {
+  if (!mainLastmods.has(url)) fail('sitemap-images.xml', 'URL absent from main sitemap: ' + url);
+  else if (mainLastmods.get(url) !== date) fail('sitemap-images.xml', 'lastmod differs from main sitemap: ' + url);
+}
 if (!imageSitemap.includes('<image:loc>https://www.zepoulayiti.com/oeufs-30-zepoul.webp</image:loc>')) {
   fail('sitemap-images.xml', 'missing published 30-egg product image');
 }
